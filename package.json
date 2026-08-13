@@ -1,0 +1,37 @@
+{
+  "name": "anika-sterilis-website",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "oxlint",
+    "preview": "vite preview",
+    "test:local": "playwright test browserstack.spec.js --project=local-chrome --project=local-safari",
+    "test:browserstack": "node --env-file-if-exists=.env.browserstack node_modules/browserstack-node-sdk/src/bin/runner.js playwright test --config=./playwright.config.js",
+    "test:browserstack:ventura": "node --env-file=.env.browserstack tests/browserstack-ventura-safari.mjs",
+    "test:safari": "playwright test browserstack.spec.js --project=local-safari",
+    "test:safari:ui": "playwright test --headed --debug",
+    "test:safari:manual": "playwright test --project=local-safari --debug"
+  },
+  "dependencies": {
+    "gsap": "^3.15.0",
+    "lucide-react": "^1.25.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "react-router-dom": "^7.18.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.60.0",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.4",
+    "browserstack-node-sdk": "^1.65.2",
+    "oxlint": "^1.75.0",
+    "puppeteer-core": "^25.3.0",
+    "selenium-webdriver": "^4.46.0",
+    "tslib": "^2.8.1",
+    "vite": "^8.1.5"
+  }
+}

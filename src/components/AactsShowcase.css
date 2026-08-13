@@ -1,0 +1,1945 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap');
+/* Roboto Mono: used only by the phone-only frame-HUD readout (see the
+   @media (max-width: 600px) composition below), matching the monospace
+   technical labels used throughout the rest of the site. */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500;600;700&display=swap');
+
+.aacts {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+  overflow-anchor: none;
+  background: var(--color-graphite);
+  /* Neon-orange accent, scoped to this showcase only. */
+  --acc: #ff7a00;
+  --acc-rgb: 255, 122, 0;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* Promoted /solutions/ mobile experience. The desktop cinematic composition
+   (product video full-bleed behind floating copy) does not survive the move
+   to a phone screen: the card that has to cover most of a 6-7 inch viewport
+   to hold the copy also covers most of the video behind it. Phones get a
+   different composition instead, not a shrunk desktop one: copy in normal
+   flow at the top, and the product image in its own framed instrument panel
+   below it — never overlapping, so neither competes with the other. */
+@media (max-width: 600px), (max-height: 600px) and (pointer: coarse) {
+  .aacts.aacts--testsol {
+    /* One set of geometry, referenced by all five products and by the HUD
+       chrome, so the copy zone and the image panel line up identically
+       regardless of which product is currently mounted. */
+    --aacts-mobile-top: calc(64px + var(--aacts-tabs-height, 58px) + 14px);
+    --aacts-mobile-image-h: clamp(190px, 30svh, 280px);
+    --aacts-mobile-gutter: 5vw;
+    --aacts-mobile-bottom: 16px;
+  }
+
+  .aacts.aacts--testsol .aacts__stage,
+  .aacts.aacts--testsol .sample-card__stage,
+  .aacts.aacts--testsol .handheld__stage,
+  .aacts.aacts--testsol .high-volume__stage,
+  .aacts.aacts--testsol .cleaner__stage {
+    isolation: isolate;
+    background: #05090d;
+  }
+
+  /* The old full-stage scrim existed to darken the video enough for the copy
+     floating over it to read. Nothing floats over the image anymore, so
+     nothing needs darkening — the framed panel carries its own light
+     vignette instead (see .aacts__frame-hud-top below). */
+  .aacts.aacts--testsol .aacts__stage::after,
+  .aacts.aacts--testsol .sample-card__stage::after,
+  .aacts.aacts--testsol .handheld__stage::after,
+  .aacts.aacts--testsol .high-volume__stage::after,
+  .aacts.aacts--testsol .cleaner__stage::after {
+    display: none;
+    content: none;
+  }
+
+  /* ---- Framed image panel, pinned to the stage's bottom edge ----
+     AACTS has a .aacts__media wrapper; the other four products render their
+     canvas directly, with no wrapper. Both end up as the same panel: for
+     AACTS the wrapper carries the frame and the canvas simply fills it, for
+     the rest the canvas carries the frame itself. No stroke or drop shadow —
+     the rounded image mask sits directly on the stage background so nothing
+     draws the eye to the panel's own edges. */
+  .aacts.aacts--testsol .aacts__media,
+  .aacts.aacts--testsol .sample-card__canvas,
+  .aacts.aacts--testsol .handheld__canvas,
+  .aacts.aacts--testsol .high-volume__canvas,
+  .aacts.aacts--testsol .cleaner__canvas {
+    position: absolute;
+    z-index: 1;
+    left: var(--aacts-mobile-gutter);
+    right: var(--aacts-mobile-gutter);
+    bottom: var(--aacts-mobile-bottom);
+    top: auto;
+    width: auto;
+    height: var(--aacts-mobile-image-h);
+    transform: none;
+    overflow: hidden;
+    border: 0;
+    border-radius: 10px;
+    background: #05090d;
+    box-shadow: none;
+  }
+
+  .aacts.aacts--testsol .aacts__canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transform: none;
+    background: transparent;
+  }
+
+  /* The poster <img> sits behind the canvas as a decoded-frame fallback so a
+     Safari canvas repaint delay shows a real frame instead of a black flash
+     (see ProductFramePoster). It must match the canvas's own fit exactly —
+     cover, not contain — or that fallback moment (or a device where the
+     canvas never becomes the visible layer at all) shows the old letterboxed
+     framing with empty margins the canvas no longer has. */
+  .aacts.aacts--testsol .product-frame-poster {
+    display: block;
+    left: var(--aacts-mobile-gutter);
+    right: var(--aacts-mobile-gutter);
+    top: auto;
+    bottom: var(--aacts-mobile-bottom);
+    width: auto;
+    height: var(--aacts-mobile-image-h);
+    border-radius: 10px;
+    object-fit: cover;
+    background: #05090d;
+  }
+
+  .aacts.aacts--testsol .product-frame-background {
+    z-index: 0;
+    opacity: 1;
+    filter: none;
+    transform: none;
+    transform-origin: center;
+  }
+
+  .aacts.aacts--testsol .product-frame-foreground {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  /* ---- Copy zone: normal-flow text above the panel, not floating over the
+     image. Both crossfading blocks (intro/specs, left/right) still share the
+     exact same box — top and bottom are both pinned, so height is simply
+     "whatever is left" above the image panel — and cross-fade in place
+     exactly as before. A plain dark background reads as more considered than
+     a second bordered card stacked on top of the image panel's; the framed
+     instrument panel is the one deliberate "boxed" element.
+     overflow: hidden, not auto and not visible — auto (tried first) made the
+     box an independently scrollable target, and mobile browsers can hand a
+     touch-scroll starting over it to the box itself instead of the page;
+     overscroll-behavior: contain then blocked it from ever reaching the page
+     scroll at all. visible (tried next) fixed that but let a specs list
+     taller than its box bleed down into the image panel below — the exact
+     text-over-image problem this layout exists to avoid. hidden has no
+     scrollable range at all, so there is nothing for touch to capture, and
+     anything taller than the box is clipped instead of overlapping. On a
+     very short viewport a long list's last line or two is invisible rather
+     than reachable; that is a smaller loss than either alternative's
+     failure mode. */
+  .aacts.aacts--testsol .aacts__block,
+  .aacts.aacts--testsol .sample-card__content,
+  .aacts.aacts--testsol .handheld__content,
+  .aacts.aacts--testsol .high-volume__content,
+  .aacts.aacts--testsol .cleaner__content {
+    z-index: 3;
+    left: var(--aacts-mobile-gutter);
+    right: var(--aacts-mobile-gutter);
+    width: auto;
+    top: var(--aacts-mobile-top);
+    bottom: calc(var(--aacts-mobile-image-h) + var(--aacts-mobile-bottom) + 18px);
+    transform: none;
+    margin: 0;
+    padding: 0 0 20px;
+    overflow: hidden;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    box-shadow: none;
+    text-align: left;
+  }
+
+  .aacts.aacts--testsol .aacts__stage-wrap {
+    height: 310vh;
+    height: 310svh;
+  }
+  .aacts.aacts--testsol .sample-card__stage-wrap,
+  .aacts.aacts--testsol .handheld__stage-wrap,
+  .aacts.aacts--testsol .high-volume__stage-wrap {
+    height: 295vh;
+    height: 295svh;
+  }
+  .aacts.aacts--testsol .cleaner__stage-wrap {
+    height: 300vh;
+    height: 300svh;
+  }
+
+  /* ---- Framed-panel HUD chrome. Purely decorative instrument-panel framing
+     for the image, in the same technical/monospace language already used
+     elsewhere on the site (boot sequence coordinates, chapter counters,
+     record cards): corner brackets, a live fill-track + counter reading
+     scroll progress through the current product, and a slow scanline sweep.
+     Renders only inside the promoted mobile composition — see the
+     conditional in AactsShowcase.jsx — so it never exists in the desktop
+     DOM at all. */
+  .aacts.aacts--testsol .aacts__frame-hud {
+    position: absolute;
+    z-index: 5;
+    left: var(--aacts-mobile-gutter);
+    right: var(--aacts-mobile-gutter);
+    bottom: var(--aacts-mobile-bottom);
+    height: var(--aacts-mobile-image-h);
+    pointer-events: none;
+  }
+
+  .aacts__frame-hud-bracket {
+    position: absolute;
+    z-index: 3;
+    width: 16px;
+    height: 16px;
+    border: 0 solid rgba(var(--acc-rgb), .85);
+    opacity: .85;
+  }
+  .aacts__frame-hud-bracket--tl {
+    top: 8px;
+    left: 8px;
+    border-width: 2px 0 0 2px;
+    border-top-left-radius: 3px;
+  }
+  .aacts__frame-hud-bracket--tr {
+    top: 8px;
+    right: 8px;
+    border-width: 2px 2px 0 0;
+    border-top-right-radius: 3px;
+  }
+  .aacts__frame-hud-bracket--bl {
+    bottom: 8px;
+    left: 8px;
+    border-width: 0 0 2px 2px;
+    border-bottom-left-radius: 3px;
+  }
+  .aacts__frame-hud-bracket--br {
+    bottom: 8px;
+    right: 8px;
+    border-width: 0 2px 2px 0;
+    border-bottom-right-radius: 3px;
+  }
+
+  .aacts__frame-hud-top {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 14px;
+    background: linear-gradient(180deg, rgba(5, 9, 13, .82), rgba(5, 9, 13, 0));
+  }
+
+  /* Two classes, not one: the unconditional ".aacts *" rule further down the
+     file sets Space Grotesk at equal (single-class) specificity, and would
+     otherwise win on source order alone and silently drop back to it. */
+  .aacts.aacts--testsol .aacts__frame-hud-code {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: rgba(244, 248, 250, .64);
+  }
+
+  .aacts__frame-hud-readout {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .aacts__frame-hud-track {
+    display: block;
+    width: 40px;
+    height: 2px;
+    background: rgba(255, 255, 255, .16);
+  }
+
+  .aacts__frame-hud-track b {
+    display: block;
+    height: 100%;
+    background: var(--acc);
+    box-shadow: 0 0 8px rgba(var(--acc-rgb), .6);
+  }
+
+  .aacts__frame-hud-readout strong {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    color: var(--acc);
+  }
+
+}
+
+/* True landscape phones only (a portrait phone's viewport is 550-850px tall
+   even with its browser chrome visible — verified against Playwright's own
+   device set, iPhone SE through Pixel 7 — so a max-height threshold anywhere
+   near that range would misfire on ordinary portrait devices too, not just
+   landscape ones). Shrink the same framed-panel geometry so the copy zone
+   above it keeps real height instead of being squeezed toward zero. */
+@media (max-height: 460px) and (pointer: coarse) {
+  .aacts.aacts--testsol {
+    --aacts-mobile-image-h: clamp(84px, 26svh, 130px);
+    --aacts-mobile-top: calc(52px + var(--aacts-tabs-height, 46px) + 6px);
+    --aacts-mobile-bottom: 8px;
+  }
+}
+
+.aacts * {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* ---- Tabs ---- */
+.aacts__tabs-bar {
+  position: sticky;
+  top: 69px;
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  padding: 12px 20px;
+  margin-bottom: calc(var(--aacts-tabs-height, 68px) * -1);
+  background:
+    linear-gradient(180deg, rgba(6, 10, 15, 0.94), rgba(6, 10, 15, 0.66)),
+    radial-gradient(circle at 50% 0%, rgba(var(--acc-rgb), 0.14), transparent 46%);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(var(--acc-rgb), 0.12);
+}
+
+.aacts__mobile-select-wrap {
+  display: none;
+}
+
+.aacts__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  padding: 7px;
+  max-width: 100%;
+  border: 1px solid rgba(var(--acc-rgb), 0.14);
+  border-radius: 6px;
+  background: rgba(9, 11, 14, 0.78);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 18px 42px rgba(0, 0, 0, 0.36);
+}
+
+.aacts__tab {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 4px;
+  border: none;
+  background: transparent;
+  white-space: nowrap;
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.aacts__tab-num {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: rgba(183, 199, 209, 0.4);
+  transition: color 0.25s ease;
+}
+
+.aacts__tab-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-mist);
+  transition: color 0.25s ease;
+}
+
+.aacts__tab:hover .aacts__tab-label {
+  color: var(--color-white);
+}
+
+.aacts__tab.is-active {
+  background:
+    linear-gradient(180deg, rgba(var(--acc-rgb), 0.95), rgba(176, 70, 0, 0.95)),
+    linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  box-shadow:
+    0 8px 22px rgba(var(--acc-rgb), 0.32),
+    0 0 0 1px rgba(var(--acc-rgb), 0.48);
+}
+
+.aacts__tab.is-active .aacts__tab-num {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.aacts__tab.is-active .aacts__tab-label {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* ---- Pinned video experience ---- */
+.aacts__stage-wrap {
+  position: relative;
+  height: 365vh;
+}
+
+.aacts__stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--color-graphite);
+}
+
+.aacts__media {
+  position: absolute;
+  inset: 0;
+}
+
+.aacts__canvas {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Safari can delay the first canvas paint after a product tab unmount/remount.
+   A real decoded frame beneath the transparent canvas prevents a black flash
+   without interfering with the scroll-scrubbed sequence above it. */
+.product-frame-poster {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+}
+
+.sample-card__canvas,
+.handheld__canvas,
+.high-volume__canvas,
+.cleaner__canvas {
+  position: relative;
+  z-index: 1;
+}
+
+/* Monterey-era Intel Safari can lose the large sticky canvas compositor and
+   paint the entire stage black. Its runtime fallback keeps the real decoded
+   product poster visible and removes only the canvas layer; scroll-driven
+   copy and product handoffs continue normally. This class is never applied to
+   modern capable Safari or other browsers. */
+.aacts.aacts--static-safari .aacts__canvas,
+.aacts.aacts--static-safari .sample-card__canvas,
+.aacts.aacts--static-safari .handheld__canvas,
+.aacts.aacts--static-safari .high-volume__canvas,
+.aacts.aacts--static-safari .cleaner__canvas {
+  display: none;
+}
+
+.aacts.aacts--static-safari .product-frame-poster {
+  z-index: 1;
+  display: block;
+}
+
+.aacts.aacts--static-safari .product-frame-poster--end {
+  z-index: 2;
+  transition: opacity 0.16s linear;
+}
+
+/* Safari 15/16 on Monterey can visibly move a sticky layer while reporting
+   unchanged geometry to JavaScript. The fallback therefore has no sticky
+   runway: wheel/touch gestures switch between the first and last poster and
+   then hand off to the next product. */
+.aacts.aacts--static-safari .aacts__stage-wrap,
+.aacts.aacts--static-safari .sample-card__stage-wrap,
+.aacts.aacts--static-safari .handheld__stage-wrap,
+.aacts.aacts--static-safari .high-volume__stage-wrap,
+.aacts.aacts--static-safari .cleaner__stage-wrap {
+  height: 100vh;
+  height: 100svh;
+}
+
+/* iPhone Safari uses touch distance as the frame timeline, so it needs one
+   stable viewport rather than a 320-340svh native-scroll runway. Product
+   changes can now remount at the same document coordinate without a jump. */
+.aacts.aacts--ios-touch .aacts__stage-wrap,
+.aacts.aacts--ios-touch .sample-card__stage-wrap,
+.aacts.aacts--ios-touch .handheld__stage-wrap,
+.aacts.aacts--ios-touch .high-volume__stage-wrap,
+.aacts.aacts--ios-touch .cleaner__stage-wrap {
+  height: 100vh;
+  height: 100svh;
+}
+
+.aacts.aacts--static-safari .aacts__stage,
+.aacts.aacts--static-safari .sample-card__stage,
+.aacts.aacts--static-safari .handheld__stage,
+.aacts.aacts--static-safari .high-volume__stage,
+.aacts.aacts--static-safari .cleaner__stage {
+  position: relative;
+}
+
+/* Monterey desktop Safari uses a viewport-fixed <img> sequence driven by
+   virtual wheel/touch progress. No sticky geometry or canvas compositor is
+   involved, which avoids WebKit 605's stale-geometry/blank-runway failure. */
+.aacts.aacts--fixed-safari .aacts__stage,
+.aacts.aacts--fixed-safari .sample-card__stage,
+.aacts.aacts--fixed-safari .handheld__stage,
+.aacts.aacts--fixed-safari .high-volume__stage,
+.aacts.aacts--fixed-safari .cleaner__stage {
+  position: fixed;
+  z-index: 2;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.aacts.aacts--fixed-safari .aacts__stage.is-fixed-released,
+.aacts.aacts--fixed-safari .sample-card__stage.is-fixed-released,
+.aacts.aacts--fixed-safari .handheld__stage.is-fixed-released,
+.aacts.aacts--fixed-safari .high-volume__stage.is-fixed-released,
+.aacts.aacts--fixed-safari .cleaner__stage.is-fixed-released {
+  position: relative;
+  inset: auto;
+  width: 100%;
+}
+
+.aacts.aacts--fixed-safari .product-frame-poster--active {
+  z-index: 2;
+  transition: none;
+}
+
+.video-brand-overlay {
+  /* left/top are set in JS so the card tracks the baked-in watermark using
+     the same "cover" math the canvas uses — see VideoBrandOverlay. */
+  position: absolute;
+  z-index: 8;
+  width: 82px;
+  aspect-ratio: 1 / 1;
+  /* Explicit fallback for Safari 14, which ignores aspect-ratio. JavaScript
+     updates width and height together after measuring the rendered frame. */
+  height: 82px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: clamp(0.18rem, 0.35vw, 0.35rem);
+  background: linear-gradient(145deg, #000000 0%, #101010 58%, #1a1a1a 100%);
+  box-shadow:
+    0 clamp(0.35rem, 0.9vw, 0.8rem) clamp(0.9rem, 1.8vw, 1.6rem) rgba(0, 0, 0, 0.48),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  pointer-events: none;
+}
+
+.video-brand-overlay img {
+  position: relative;
+  z-index: 1;
+  width: 54%;
+  height: auto;
+  max-height: 64%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Safari 14 / macOS Big Sur paints the soft Veo mark and its tiny label a few
+   pixels beyond the source coordinates used by the canvas cover calculation.
+   Extend only the opaque backing toward that exposed lower-right edge; keep
+   the measured card, logo and coordinates untouched on every other engine. */
+.aacts.aacts--big-sur .video-brand-overlay::before {
+  position: absolute;
+  z-index: 0;
+  top: -5px;
+  right: -16px;
+  bottom: -18px;
+  left: -5px;
+  content: "";
+  border-radius: 5px;
+  background: linear-gradient(145deg, #000 0%, #101010 62%, #181818 100%);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, .42);
+}
+
+/* Veo also stamps a separate wordmark into the extreme bottom-right source
+   corner. It is not the sparkle covered by .video-brand-overlay, so mask that
+   tiny corner independently on Big Sur's fixed-poster fallback. The feathered
+   black field blends into the product-frame vignette and is never emitted on
+   current Safari, Windows, iOS, iPadOS or Android. */
+.aacts.aacts--testsol.aacts--big-sur .aacts__stage::after,
+.aacts.aacts--testsol.aacts--big-sur .sample-card__stage::after,
+.aacts.aacts--testsol.aacts--big-sur .handheld__stage::after,
+.aacts.aacts--testsol.aacts--big-sur .high-volume__stage::after,
+.aacts.aacts--testsol.aacts--big-sur .cleaner__stage::after {
+  position: absolute;
+  z-index: 7;
+  right: 0;
+  bottom: 0;
+  width: 86px;
+  height: 34px;
+  display: block;
+  content: "";
+  background: linear-gradient(135deg, rgba(3, 5, 7, 0), #030507 42%, #030507 100%);
+  pointer-events: none;
+}
+
+/* The promoted single-layer Solutions page keeps the original desktop canvas. These product canvases
+   are painted 38px above their layout box, so move the cover card by the same
+   amount. Keeping the correction in the compositor makes it independent of
+   sticky/loader measurement timing in Safari and Chromium. */
+@media (min-width: 861px) and (pointer: fine), (min-width: 601px) and (min-height: 601px) {
+  .aacts.aacts--testsol1 .video-brand-overlay--sample-card,
+  .aacts.aacts--testsol1 .video-brand-overlay--handheld,
+  .aacts.aacts--testsol1 .video-brand-overlay--high-volume,
+  .aacts.aacts--testsol1 .video-brand-overlay--cleaner {
+    transform: translateY(-38px);
+  }
+
+  /* Safari 14-17's fallback renderer measures the canvas after its expanded
+     height is applied, so the generic -38px correction lifts the mask about
+     20px above the baked sparkle. Scope the compensation to that desktop
+     fallback only: Windows, current Safari, iPad and all phone layouts retain
+     their existing coordinates. */
+  .aacts.aacts--testsol1.aacts--static-safari .video-brand-overlay--sample-card,
+  .aacts.aacts--testsol1.aacts--static-safari .video-brand-overlay--handheld,
+  .aacts.aacts--testsol1.aacts--static-safari .video-brand-overlay--high-volume,
+  .aacts.aacts--testsol1.aacts--static-safari .video-brand-overlay--cleaner {
+    transform: translateY(-18px);
+  }
+}
+
+.aacts__content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Icon rows always read icon-then-text, left to right, regardless of
+   which side of the screen the column sits on — flipping them along with
+   the headline made the label float away from its icon. */
+.aacts__list-item,
+.aacts__spec {
+  text-align: left;
+}
+
+.aacts__block {
+  position: absolute;
+  transition: opacity 0.1s linear;
+  pointer-events: none;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  text-align: center;
+}
+
+.aacts__block--intro {
+  left: clamp(22px, 5vw, 76px);
+  top: 50%;
+  width: min(470px, 34vw);
+  transform: translateY(-50%);
+}
+
+.aacts__block::before {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 2px;
+  margin: 0 auto 22px;
+  background: linear-gradient(90deg, transparent, var(--acc), transparent);
+  box-shadow: 0 0 12px rgba(var(--acc-rgb), 0.5);
+}
+
+.aacts__eyebrow {
+  display: inline-block;
+  margin-bottom: 22px;
+  padding: 7px 16px;
+  border: 1px solid rgba(var(--acc-rgb), 0.46);
+  border-radius: 4px;
+  background: rgba(var(--acc-rgb), 0.08);
+  box-shadow: inset 0 0 18px rgba(var(--acc-rgb), 0.07);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2.6px;
+  text-transform: uppercase;
+  color: var(--acc);
+}
+
+.aacts__headline {
+  font-weight: 800;
+  font-size: clamp(1.35rem, 2.7vw, 3.25rem);
+  line-height: 1.05;
+  color: var(--color-white);
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.72);
+  margin: 0 auto 24px;
+  max-width: 560px;
+  letter-spacing: -1px;
+}
+
+.aacts__headline span {
+  color: var(--acc);
+  text-shadow:
+    0 0 20px rgba(var(--acc-rgb), 0.26),
+    0 4px 20px rgba(0, 0, 0, 0.72);
+}
+
+.aacts__body {
+  max-width: 460px;
+  margin: 0 auto;
+  font-size: clamp(0.88rem, 1.05vw, 1.15rem);
+  line-height: 1.6;
+  font-weight: 500;
+  color: rgba(244, 248, 250, 0.76);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+}
+
+.aacts__body strong,
+.aacts__body b {
+  color: var(--color-white);
+  font-weight: 800;
+}
+
+.aacts__body span {
+  color: var(--acc);
+  font-weight: 800;
+}
+
+.aacts__certified {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin-top: 28px;
+  color: var(--acc);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2.8px;
+  text-transform: uppercase;
+}
+
+.aacts__certified::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--acc);
+  box-shadow: 0 0 12px rgba(var(--acc-rgb), 0.7);
+}
+
+.aacts__list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.aacts__block--specs {
+  right: clamp(58px, 9vw, 150px);
+  top: 50%;
+  width: min(540px, 38vw);
+  transform: translateY(-50%);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  text-align: left;
+}
+
+.aacts__block--specs::before {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.aacts__spec-title {
+  margin-bottom: 20px;
+  color: var(--color-white);
+  font-size: clamp(1.2rem, 2vw, 2.55rem);
+  line-height: 1.1;
+  text-align: left;
+}
+
+.aacts__list-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.aacts__list-icon {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--acc);
+  border: 1px solid rgba(var(--acc-rgb), 0.4);
+  background: rgba(6, 13, 20, 0.5);
+  box-shadow: 0 0 16px rgba(var(--acc-rgb), 0.2);
+}
+
+.aacts__list-icon svg {
+  width: 19px;
+  height: 19px;
+}
+
+.aacts__list-item h4 {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: 4px;
+}
+
+.aacts__list-item p {
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: var(--color-mist);
+}
+
+.aacts__specs {
+  display: grid;
+  gap: 0;
+  padding: 0;
+  border: 1px solid rgba(var(--acc-rgb), 0.2);
+  background:
+    linear-gradient(180deg, rgba(12, 12, 12, 0.72), rgba(8, 9, 10, 0.52)),
+    radial-gradient(circle at 100% 0%, rgba(var(--acc-rgb), 0.08), transparent 42%);
+  box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.28);
+}
+
+.aacts__spec {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
+  padding: clamp(8px, 1.2vw, 16px) clamp(10px, 1.4vw, 18px);
+  border-bottom: 1px solid rgba(var(--acc-rgb), 0.11);
+}
+
+.aacts__spec:last-child {
+  border-bottom: 0;
+}
+
+.aacts__spec-icon {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--acc);
+  border: 1px solid rgba(var(--acc-rgb), 0.35);
+  background:
+    radial-gradient(circle, rgba(var(--acc-rgb), 0.18), rgba(var(--acc-rgb), 0.04));
+  box-shadow: 0 0 18px rgba(var(--acc-rgb), 0.12);
+}
+
+.aacts__spec-icon svg {
+  width: 15px;
+  height: 15px;
+}
+
+.aacts__spec h5 {
+  font-size: clamp(0.58rem, 0.72vw, 0.73rem);
+  font-weight: 900;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--acc);
+  margin-bottom: 3px;
+}
+
+.aacts__spec p {
+  font-size: clamp(0.84rem, 1.03vw, 1.15rem);
+  line-height: 1.34;
+  font-weight: 700;
+  text-align: left;
+  text-transform: none;
+  color: rgba(244, 248, 250, 0.88);
+}
+
+/* ---- Placeholder for non-AACTS tabs ---- */
+.aacts__placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 80px 24px;
+  text-align: center;
+}
+
+.aacts__placeholder-media {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  border: 1px solid rgba(var(--acc-rgb), 0.2);
+  background: linear-gradient(160deg, rgba(18, 29, 39, 0.9), rgba(8, 13, 19, 0.85));
+}
+
+.aacts__placeholder-media img {
+  max-width: 70%;
+  max-height: 70%;
+  object-fit: contain;
+}
+
+.aacts__placeholder h3 {
+  font-size: 1.4rem;
+  color: var(--color-white);
+}
+
+.aacts__placeholder p {
+  color: var(--color-mist);
+  font-size: 0.95rem;
+}
+
+/* ---- Aspiration Sample Card frame experience ---- */
+.sample-card__stage-wrap {
+  position: relative;
+  height: 350vh;
+}
+
+.sample-card__stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: #070a0e;
+}
+
+.sample-card__canvas {
+  width: 100%;
+  height: calc(100% + 38px);
+  display: block;
+  transform: translateY(-38px);
+}
+
+.sample-card__content {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  width: min(470px, 34vw);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  backdrop-filter: none;
+  box-shadow: none;
+  transition: opacity 0.12s linear;
+  text-align: center;
+}
+
+.sample-card__content--left {
+  left: 6vw;
+  transform: translateY(-50%);
+}
+
+.sample-card__content--right {
+  right: clamp(58px, 9vw, 150px);
+  transform: translateY(-50%);
+}
+
+.sample-card__eyebrow {
+  display: inline-block;
+  margin-bottom: 22px;
+  padding: 7px 16px;
+  border: 1px solid rgba(var(--acc-rgb), 0.46);
+  border-radius: 4px;
+  background: rgba(var(--acc-rgb), 0.08);
+  box-shadow: inset 0 0 18px rgba(var(--acc-rgb), 0.07);
+  color: var(--acc);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2.6px;
+  text-transform: uppercase;
+}
+
+.sample-card__content h2 {
+  font-size: clamp(1.35rem, 2.7vw, 3.25rem);
+  line-height: 1.06;
+  font-weight: 800;
+  color: var(--color-white);
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.72);
+  letter-spacing: -1px;
+}
+
+.sample-card__provider {
+  margin-top: 8px;
+  color: rgba(244, 248, 250, 0.72);
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.sample-card__content p {
+  margin-top: 16px;
+  color: rgba(244, 248, 250, 0.76);
+  font-size: clamp(0.88rem, 1.05vw, 1.15rem);
+  line-height: 1.6;
+  font-weight: 500;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+}
+
+.sample-card__content p strong,
+.sample-card__content p b {
+  color: var(--color-white);
+  font-weight: 800;
+}
+
+.sample-card__content p span {
+  color: var(--acc);
+  font-weight: 800;
+}
+
+.sample-card__details {
+  display: grid;
+  gap: 0;
+  margin-top: 20px;
+  border-top: 1px solid rgba(var(--acc-rgb), 0.24);
+  border-bottom: 1px solid rgba(var(--acc-rgb), 0.16);
+  background: transparent;
+  text-align: left;
+}
+
+.sample-card__detail {
+  padding: clamp(8px, 1vw, 14px) 0;
+  border-bottom: 1px solid rgba(var(--acc-rgb), 0.12);
+}
+
+.sample-card__detail:last-child {
+  border-bottom: 0;
+}
+
+.sample-card__detail h3 {
+  color: var(--acc);
+  font-size: clamp(0.6rem, 0.72vw, 0.78rem);
+  font-weight: 900;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.sample-card__detail p {
+  margin-top: 7px;
+  font-size: clamp(0.84rem, 1rem, 1.12rem);
+  line-height: 1.45;
+}
+
+/* ---- Handheld Sampler frame experience ---- */
+.handheld__stage-wrap {
+  position: relative;
+  height: 350vh;
+}
+
+.handheld__stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: #070a0e;
+}
+
+.handheld__canvas {
+  width: 100%;
+  height: calc(100% + 38px);
+  display: block;
+  transform: translateY(-38px);
+}
+
+.handheld__content {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  width: min(470px, 34vw);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  text-align: center;
+  transition: opacity 0.12s linear;
+}
+
+.handheld__content--left {
+  left: 6vw;
+  transform: translateY(-50%);
+}
+
+.handheld__content--right {
+  right: clamp(58px, 9vw, 150px);
+  transform: translateY(-50%);
+}
+
+.handheld__eyebrow {
+  display: inline-block;
+  margin-bottom: 22px;
+  padding: 7px 16px;
+  border: 1px solid rgba(var(--acc-rgb), 0.46);
+  border-radius: 4px;
+  background: rgba(var(--acc-rgb), 0.08);
+  box-shadow: inset 0 0 18px rgba(var(--acc-rgb), 0.07);
+  color: var(--acc);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2.6px;
+  text-transform: uppercase;
+}
+
+.handheld__content h2 {
+  font-size: clamp(1.35rem, 2.7vw, 3.25rem);
+  line-height: 1.06;
+  font-weight: 800;
+  color: var(--color-white);
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.72);
+  letter-spacing: -1px;
+}
+
+.handheld__content h2 span {
+  color: var(--acc);
+  text-shadow:
+    0 0 20px rgba(var(--acc-rgb), 0.24),
+    0 4px 20px rgba(0, 0, 0, 0.72);
+}
+
+.handheld__content p {
+  margin-top: 16px;
+  color: rgba(244, 248, 250, 0.76);
+  font-size: clamp(0.88rem, 1.05vw, 1.15rem);
+  line-height: 1.6;
+  font-weight: 500;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+}
+
+.handheld__content p strong,
+.handheld__content p b {
+  color: var(--color-white);
+  font-weight: 800;
+}
+
+.handheld__content p span {
+  color: var(--acc);
+  font-weight: 800;
+}
+
+.handheld__specs {
+  display: grid;
+  gap: 0;
+  margin-top: 20px;
+  border-top: 1px solid rgba(var(--acc-rgb), 0.24);
+  border-bottom: 1px solid rgba(var(--acc-rgb), 0.16);
+  background: transparent;
+  text-align: left;
+}
+
+.handheld__spec {
+  padding: clamp(8px, 1vw, 14px) 0;
+  border-bottom: 1px solid rgba(var(--acc-rgb), 0.12);
+}
+
+.handheld__spec:last-child {
+  border-bottom: 0;
+}
+
+.handheld__spec h3 {
+  color: var(--acc);
+  font-size: clamp(0.6rem, 0.72vw, 0.78rem);
+  font-weight: 900;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.handheld__spec p {
+  margin-top: 7px;
+  font-size: clamp(0.84rem, 1rem, 1.12rem);
+  line-height: 1.45;
+}
+
+/* ---- High Volume Sampler frame experience ---- */
+.high-volume__stage-wrap {
+  position: relative;
+  height: 350vh;
+}
+
+.high-volume__stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: #070a0e;
+}
+
+.high-volume__canvas {
+  width: 100%;
+  height: calc(100% + 38px);
+  display: block;
+  transform: translateY(-38px);
+}
+
+.high-volume__content {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  width: min(470px, 34vw);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  text-align: center;
+  transition: opacity 0.12s linear;
+}
+
+.high-volume__content--left {
+  left: 6vw;
+  transform: translateY(-50%);
+}
+
+.high-volume__content--right {
+  right: clamp(58px, 9vw, 150px);
+  transform: translateY(-50%);
+}
+
+.high-volume__eyebrow {
+  display: inline-block;
+  margin-bottom: 22px;
+  padding: 7px 16px;
+  border: 1px solid rgba(var(--acc-rgb), 0.46);
+  border-radius: 4px;
+  background: rgba(var(--acc-rgb), 0.08);
+  box-shadow: inset 0 0 18px rgba(var(--acc-rgb), 0.07);
+  color: var(--acc);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2.6px;
+  text-transform: uppercase;
+}
+
+.high-volume__content h2 {
+  font-size: clamp(1.35rem, 2.7vw, 3.25rem);
+  line-height: 1.06;
+  font-weight: 800;
+  color: var(--color-white);
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.72);
+  letter-spacing: -1px;
+}
+
+.high-volume__content h2 span {
+  color: var(--acc);
+  text-shadow:
+    0 0 20px rgba(var(--acc-rgb), 0.24),
+    0 4px 20px rgba(0, 0, 0, 0.72);
+}
+
+.high-volume__content p {
+  margin-top: 16px;
+  color: rgba(244, 248, 250, 0.76);
+  font-size: clamp(0.88rem, 1.05vw, 1.15rem);
+  line-height: 1.6;
+  font-weight: 500;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+}
+
+.high-volume__content p strong,
+.high-volume__content p b {
+  color: var(--color-white);
+  font-weight: 800;
+}
+
+.high-volume__content p span {
+  color: var(--acc);
+  font-weight: 800;
+}
+
+.high-volume__specs {
+  display: grid;
+  gap: 0;
+  margin-top: 20px;
+  border-top: 1px solid rgba(var(--acc-rgb), 0.24);
+  border-bottom: 1px solid rgba(var(--acc-rgb), 0.16);
+  background: transparent;
+  text-align: left;
+}
+
+.high-volume__spec {
+  padding: clamp(8px, 1vw, 14px) 0;
+  border-bottom: 1px solid rgba(var(--acc-rgb), 0.12);
+}
+
+.high-volume__spec:last-child {
+  border-bottom: 0;
+}
+
+.high-volume__spec h3 {
+  color: var(--acc);
+  font-size: clamp(0.6rem, 0.72vw, 0.78rem);
+  font-weight: 900;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.high-volume__spec p {
+  margin-top: 7px;
+  font-size: clamp(0.84rem, 1rem, 1.12rem);
+  line-height: 1.45;
+}
+
+/* ---- Aspiration Card Cleaner frame experience ---- */
+.cleaner__stage-wrap {
+  position: relative;
+  height: 350vh;
+}
+
+.cleaner__stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: #070a0e;
+}
+
+.cleaner__canvas {
+  width: 100%;
+  height: calc(100% + 38px);
+  display: block;
+  transform: translateY(-38px);
+}
+
+.cleaner__content {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  width: min(400px, 30vw);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  text-align: center;
+  transition: opacity 0.12s linear;
+}
+
+.cleaner__content--left {
+  left: 4vw;
+  transform: translateY(-50%);
+}
+
+.cleaner__content--right {
+  right: clamp(58px, 8vw, 130px);
+  transform: translateY(-50%);
+}
+
+.cleaner__eyebrow {
+  display: inline-block;
+  margin-bottom: 22px;
+  padding: 7px 16px;
+  border: 1px solid rgba(var(--acc-rgb), 0.46);
+  border-radius: 4px;
+  background: rgba(var(--acc-rgb), 0.08);
+  box-shadow: inset 0 0 18px rgba(var(--acc-rgb), 0.07);
+  color: var(--acc);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2.6px;
+  text-transform: uppercase;
+}
+
+.cleaner__content h2 {
+  font-size: clamp(1.25rem, 2.1vw, 2.7rem);
+  line-height: 1.06;
+  font-weight: 800;
+  color: var(--color-white);
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.72);
+  letter-spacing: -1px;
+}
+
+.cleaner__content h2 span {
+  color: var(--acc);
+  text-shadow:
+    0 0 20px rgba(var(--acc-rgb), 0.24),
+    0 4px 20px rgba(0, 0, 0, 0.72);
+}
+
+.cleaner__content p {
+  margin-top: 16px;
+  color: rgba(244, 248, 250, 0.76);
+  font-size: clamp(0.84rem, 0.97vw, 1.1rem);
+  line-height: 1.58;
+  font-weight: 500;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+}
+
+.cleaner__content p strong,
+.cleaner__content p b {
+  color: var(--color-white);
+  font-weight: 800;
+}
+
+.cleaner__content p span {
+  color: var(--acc);
+  font-weight: 800;
+}
+
+.cleaner__specs {
+  display: grid;
+  gap: 0;
+  margin-top: 20px;
+  border-top: 1px solid rgba(var(--acc-rgb), 0.24);
+  border-bottom: 1px solid rgba(var(--acc-rgb), 0.16);
+  background: transparent;
+  text-align: left;
+}
+
+.cleaner__spec {
+  padding: clamp(7px, 0.9vw, 12px) 0;
+  border-bottom: 1px solid rgba(var(--acc-rgb), 0.12);
+}
+
+.cleaner__spec:last-child {
+  border-bottom: 0;
+}
+
+.cleaner__spec h3 {
+  color: var(--acc);
+  font-size: clamp(0.58rem, 0.68vw, 0.76rem);
+  font-weight: 900;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.cleaner__spec p {
+  margin-top: 7px;
+  color: rgba(244, 248, 250, 0.92);
+  font-size: clamp(0.8rem, 0.94vw, 1.08rem);
+  line-height: 1.4;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.68);
+}
+
+/* Desktop specification mode: technical two-column readouts remain completely
+   visible on short laptop screens instead of extending beyond the viewport. */
+@media (min-width: 861px) and (pointer: fine), (min-width: 601px) and (min-height: 601px) {
+  .aacts__block--specs,
+  .sample-card__content--right,
+  .handheld__content--right,
+  .high-volume__content--right,
+  .cleaner__content--right {
+    right: 3vw;
+    width: min(680px, 50vw);
+    max-height: calc(100vh - 118px);
+  }
+
+  .aacts__specs,
+  .sample-card__details,
+  .handheld__specs,
+  .high-volume__specs,
+  .cleaner__specs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border: 1px solid rgba(var(--acc-rgb), 0.2);
+  }
+
+  .aacts__spec,
+  .sample-card__detail,
+  .handheld__spec,
+  .high-volume__spec,
+  .cleaner__spec {
+    min-width: 0;
+    padding: clamp(8px, 1vh, 12px) clamp(10px, 1vw, 16px);
+    border-right: 1px solid rgba(var(--acc-rgb), 0.12);
+    border-bottom: 1px solid rgba(var(--acc-rgb), 0.12);
+  }
+
+  .aacts__spec:nth-child(even),
+  .sample-card__detail:nth-child(even),
+  .handheld__spec:nth-child(even),
+  .high-volume__spec:nth-child(even),
+  .cleaner__spec:nth-child(even) {
+    border-right: 0;
+  }
+
+  .aacts__spec p,
+  .sample-card__detail p,
+  .handheld__spec p,
+  .high-volume__spec p,
+  .cleaner__spec p {
+    overflow-wrap: anywhere;
+    font-size: clamp(0.76rem, 0.86vw, 0.98rem);
+    line-height: 1.35;
+  }
+}
+
+@media (min-width: 861px) and (pointer: fine) and (max-height: 760px),
+  (min-width: 601px) and (min-height: 601px) and (max-height: 760px) {
+  .aacts__block--specs,
+  .sample-card__content--right,
+  .handheld__content--right,
+  .high-volume__content--right,
+  .cleaner__content--right {
+    top: 52%;
+    max-height: calc(100vh - 92px);
+  }
+
+  .aacts__block--specs::before { margin-bottom: 10px; }
+  .aacts__eyebrow,
+  .sample-card__eyebrow,
+  .handheld__eyebrow,
+  .high-volume__eyebrow,
+  .cleaner__eyebrow {
+    margin-bottom: 10px;
+    padding-block: 5px;
+  }
+  .aacts__spec-title,
+  .sample-card__content--right h2,
+  .handheld__content--right h2,
+  .high-volume__content--right h2,
+  .cleaner__content--right h2 {
+    margin-bottom: 10px;
+    font-size: clamp(1.35rem, 2.2vw, 2rem);
+  }
+  .aacts__specs,
+  .sample-card__details,
+  .handheld__specs,
+  .high-volume__specs,
+  .cleaner__specs {
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 600px), (max-height: 600px) and (pointer: coarse) {
+  .product-frame-poster {
+    display: none;
+  }
+  .aacts__tabs-bar {
+    top: 64px;
+    padding: 8px 12px;
+  }
+
+  /* One horizontally scrollable row instead of a tall stacked panel that
+     would cover the section copy underneath. */
+  .aacts__tabs {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 4px;
+    padding: 5px;
+  }
+
+  .aacts__tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .aacts__tab {
+    flex: 0 0 auto;
+    padding: 9px 13px;
+  }
+
+  .aacts__tab-label {
+    font-size: 0.8rem;
+  }
+
+  .aacts__content {
+    inset: 0;
+  }
+
+  /* Explicit mobile composition: copy/readout above, isolated canvas below.
+     Clipping the media bay means product imagery can never sit behind text. */
+  .aacts__media {
+    top: auto;
+    bottom: 0;
+    height: clamp(150px, 24svh, 230px);
+    overflow: hidden;
+    background: #070a0e;
+  }
+
+  .aacts__canvas {
+    height: 100%;
+  }
+
+  .sample-card__canvas,
+  .handheld__canvas,
+  .high-volume__canvas,
+  .cleaner__canvas {
+    position: absolute;
+    inset: auto 0 0;
+    width: 100%;
+    height: clamp(150px, 24svh, 230px);
+    transform: none;
+    background: #070a0e;
+  }
+
+  .aacts.aacts--static-safari .product-frame-poster {
+    top: auto;
+    bottom: 0;
+    height: clamp(150px, 24svh, 230px);
+    object-fit: contain;
+    background: #070a0e;
+  }
+
+  .aacts__block--intro,
+  .aacts__block--specs {
+    left: 6vw;
+    right: auto;
+    width: 88vw;
+    transform: translateY(-50%);
+    text-align: left;
+  }
+
+  .aacts__block--intro {
+    top: calc(64px + var(--aacts-tabs-height, 58px) + 22px);
+    transform: none;
+  }
+
+  .aacts__block--specs {
+    top: calc(64px + var(--aacts-tabs-height, 58px) + 16px);
+    transform: none;
+  }
+
+  .aacts__headline {
+    margin-bottom: 14px;
+    font-size: clamp(1.55rem, 7.2vw, 2.25rem);
+  }
+
+  .aacts__block::before {
+    margin-bottom: 10px;
+  }
+
+  .aacts__block--intro .aacts__eyebrow {
+    margin-bottom: 10px;
+  }
+
+  .aacts__body,
+  .sample-card__content--left p,
+  .handheld__content--left p,
+  .high-volume__content--left p,
+  .cleaner__content--left p {
+    font-size: clamp(0.78rem, 3.6vw, 0.92rem);
+    line-height: 1.45;
+  }
+
+  .aacts__certified {
+    margin-top: 14px;
+  }
+
+  .aacts__stage-wrap {
+    height: 340svh;
+  }
+
+  .sample-card__stage-wrap {
+    height: 320svh;
+  }
+
+  .sample-card__content {
+    width: 88vw;
+    left: 6vw;
+    right: auto;
+    padding: 18px;
+  }
+
+  .sample-card__content--left {
+    top: calc(64px + var(--aacts-tabs-height, 58px) + 22px);
+    transform: none;
+  }
+
+  .sample-card__content--right {
+    top: calc(64px + var(--aacts-tabs-height, 58px) + 16px);
+    transform: none;
+  }
+
+  .handheld__stage-wrap {
+    height: 320svh;
+  }
+
+  .handheld__content {
+    width: 88vw;
+    left: 6vw;
+    right: auto;
+    padding: 0;
+  }
+
+  .handheld__content--left {
+    top: calc(64px + var(--aacts-tabs-height, 58px) + 22px);
+    transform: none;
+  }
+
+  .handheld__content--right {
+    top: calc(64px + var(--aacts-tabs-height, 58px) + 16px);
+    transform: none;
+  }
+
+  .high-volume__stage-wrap {
+    height: 320svh;
+  }
+
+  .high-volume__content {
+    width: 88vw;
+    left: 6vw;
+    right: auto;
+    padding: 0;
+  }
+
+  .high-volume__content--left {
+    top: calc(64px + var(--aacts-tabs-height, 58px) + 22px);
+    transform: none;
+  }
+
+  .high-volume__content--right {
+    top: calc(64px + var(--aacts-tabs-height, 58px) + 16px);
+    transform: none;
+  }
+
+  .cleaner__stage-wrap {
+    height: 320svh;
+  }
+
+  .aacts__stage,
+  .sample-card__stage,
+  .handheld__stage,
+  .high-volume__stage,
+  .cleaner__stage {
+    height: 100svh;
+  }
+
+  .cleaner__content {
+    width: 88vw;
+    left: 6vw;
+    right: auto;
+    padding: 0;
+  }
+
+  .cleaner__content--left {
+    top: calc(64px + var(--aacts-tabs-height, 58px) + 22px);
+    transform: none;
+  }
+
+  .cleaner__content--right {
+    top: calc(64px + var(--aacts-tabs-height, 58px) + 16px);
+    transform: none;
+  }
+
+  /* Technical readout occupies the upper mobile band; the complete 16:9
+     product frame is painted in a separate band at the bottom. */
+  .aacts__block--specs,
+  .sample-card__content--right,
+  .handheld__content--right,
+  .high-volume__content--right,
+  .cleaner__content--right {
+    left: 5vw;
+    width: 90vw;
+  }
+
+  .aacts__block--specs::before {
+    margin-bottom: 7px;
+  }
+
+  .aacts__eyebrow,
+  .sample-card__content--right .sample-card__eyebrow,
+  .handheld__content--right .handheld__eyebrow,
+  .high-volume__content--right .high-volume__eyebrow,
+  .cleaner__content--right .cleaner__eyebrow {
+    margin-bottom: 8px;
+    padding: 5px 12px;
+    font-size: 8px;
+    letter-spacing: 2px;
+  }
+
+  .aacts__spec-title,
+  .sample-card__content--right h2,
+  .handheld__content--right h2,
+  .high-volume__content--right h2,
+  .cleaner__content--right h2 {
+    margin-bottom: 7px;
+    font-size: clamp(1.25rem, 5.8vw, 1.6rem);
+    line-height: 1.05;
+  }
+
+  .aacts__specs,
+  .sample-card__details,
+  .handheld__specs,
+  .high-volume__specs,
+  .cleaner__specs {
+    margin-top: 7px;
+  }
+
+  .aacts__spec,
+  .sample-card__detail,
+  .handheld__spec,
+  .high-volume__spec,
+  .cleaner__spec {
+    padding: 5px 0;
+  }
+
+  .aacts__spec {
+    grid-template-columns: 34px minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .aacts__spec-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .aacts__spec h5,
+  .sample-card__detail h3,
+  .handheld__spec h3,
+  .high-volume__spec h3,
+  .cleaner__spec h3 {
+    font-size: 0.56rem;
+    line-height: 1.1;
+    letter-spacing: 1px;
+  }
+
+  .aacts__spec p,
+  .sample-card__detail p,
+  .handheld__spec p,
+  .high-volume__spec p,
+  .cleaner__spec p {
+    margin-top: 3px;
+    font-size: clamp(0.7rem, 3.2vw, 0.8rem);
+    line-height: 1.28;
+  }
+}
+
+@media (max-width: 600px) {
+  .aacts__tabs-bar {
+    padding: 8px 10px;
+    margin-bottom: 0;
+  }
+
+  .aacts__tabs {
+    display: none;
+  }
+
+  .aacts__mobile-select-wrap {
+    position: relative;
+    width: 100%;
+    min-height: 48px;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 10px;
+    padding: 0 14px;
+    border: 1px solid rgba(var(--acc-rgb), 0.32);
+    border-radius: 5px;
+    background: rgba(9, 11, 14, 0.94);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  .aacts__mobile-select-index {
+    color: rgb(var(--acc-rgb));
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
+  .aacts__mobile-select {
+    width: 100%;
+    min-width: 0;
+    border: 0;
+    outline: 0;
+    appearance: none;
+    background: transparent;
+    color: var(--color-white);
+    font-size: 0.82rem;
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .aacts__mobile-select option {
+    background: #090b0e;
+    color: #ffffff;
+  }
+
+  .aacts__mobile-select-chevron {
+    width: 7px;
+    height: 7px;
+    margin-top: -4px;
+    border-right: 1.5px solid rgb(var(--acc-rgb));
+    border-bottom: 1.5px solid rgb(var(--acc-rgb));
+    color: rgb(var(--acc-rgb));
+    transform: rotate(45deg);
+    pointer-events: none;
+  }
+}
+
+/* Short phone viewports need both the technical readout and the media bay in
+   one sticky view. Use a compact two-column readout and a shallower render bay
+   instead of allowing either layer to overlap the other. */
+@media (max-width: 600px) and (max-height: 700px),
+  (max-height: 600px) and (pointer: coarse) {
+  .aacts__media,
+  .sample-card__canvas,
+  .handheld__canvas,
+  .high-volume__canvas,
+  .cleaner__canvas,
+  .aacts.aacts--static-safari .product-frame-poster {
+    height: clamp(104px, 19svh, 126px);
+  }
+
+  .sample-card__content {
+    padding: 0;
+  }
+
+  .aacts__specs,
+  .sample-card__details,
+  .handheld__specs,
+  .high-volume__specs,
+  .cleaner__specs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 10px;
+  }
+
+  .aacts__spec,
+  .sample-card__detail,
+  .handheld__spec,
+  .high-volume__spec,
+  .cleaner__spec {
+    min-width: 0;
+    padding: 3px 4px;
+  }
+
+  .aacts__spec {
+    grid-template-columns: 25px minmax(0, 1fr);
+    gap: 5px;
+  }
+
+  .aacts__spec-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .aacts__spec p,
+  .sample-card__detail p,
+  .handheld__spec p,
+  .high-volume__spec p,
+  .cleaner__spec p {
+    margin-top: 2px;
+    font-size: 0.62rem;
+    line-height: 1.18;
+  }
+}

@@ -1,0 +1,1 @@
+Upload all contents of this dist folder into the cPanel directory for /website1/

@@ -1,0 +1,35 @@
+.solutions-page {
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+  overflow-x: clip;
+  background: var(--color-graphite);
+}
+
+/* The product tabs and final stage are sticky layers. Let the footer cover
+   those completed layers as it enters instead of leaving a floating dark-grey
+   strip between the Cleaner and footer on mobile Safari/Chrome. */
+.solutions-page + .site-footer {
+  position: relative;
+  z-index: 30;
+  margin-top: 0;
+}
+
+.solutions-page .aacts__tabs-bar {
+  top: 86px;
+  transition: top 0.38s cubic-bezier(.2, .8, .2, 1);
+}
+
+.index-header--compact + .solutions-page .aacts__tabs-bar {
+  top: 0;
+}
+
+@media (max-width: 1200px) {
+  .solutions-page .aacts__tabs-bar {
+    top: 76px;
+  }
+
+  .index-header--compact + .solutions-page .aacts__tabs-bar {
+    top: 70px;
+  }
+}

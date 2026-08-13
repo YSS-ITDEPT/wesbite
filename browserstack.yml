@@ -1,0 +1,30 @@
+framework: playwright
+
+platforms:
+  - os: OS X
+    osVersion: Tahoe
+    browserName: playwright-webkit
+    browserVersion: latest
+    playwrightConfigOptions:
+      name: safari-tahoe
+  - os: OS X
+    osVersion: Sequoia
+    browserName: playwright-webkit
+    browserVersion: latest
+    playwrightConfigOptions:
+      name: safari-sequoia
+  - os: Windows
+    osVersion: 11
+    browserName: Chrome
+    browserVersion: latest
+    playwrightConfigOptions:
+      name: chrome-windows-11
+
+parallelsPerPlatform: 1
+browserstackLocal: true
+projectName: Anika Sterilis Website
+buildName: Cross-browser compatibility audit
+buildIdentifier: ${DATE_TIME}
+debug: true
+networkLogs: true
+consoleLogs: errors

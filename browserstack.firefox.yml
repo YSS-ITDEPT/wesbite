@@ -1,0 +1,18 @@
+framework: playwright
+
+platforms:
+  - os: OS X
+    osVersion: Sequoia
+    browserName: playwright-firefox
+    browserVersion: latest
+    playwrightConfigOptions:
+      name: firefox-macos-sequoia
+
+parallelsPerPlatform: 1
+browserstackLocal: true
+projectName: Anika Sterilis Website
+buildName: Firefox macOS rendering diagnostic
+buildIdentifier: ${DATE_TIME}
+debug: true
+networkLogs: true
+consoleLogs: errors

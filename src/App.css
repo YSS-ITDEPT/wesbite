@@ -1,0 +1,9 @@
+main {
+  display: block;
+}
+
+.about-page > section:not(:first-child),
+.contact-page > section:not(:first-child) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
+}

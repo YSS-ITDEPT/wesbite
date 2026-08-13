@@ -1,0 +1,2413 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="color-scheme" content="only light" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style data-critical-loader>
+      html,body{margin:0;min-height:100%;background:#080a0b;color:#f4f6f7}.boot{position:fixed;z-index:10000;inset:0;overflow:hidden;background:#080a0b;color:#f4f6f7;font-family:Arial,sans-serif}.boot-grid{position:absolute;inset:0;opacity:.55;background:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:80px 80px}.boot:before{position:absolute;inset:0;content:"";background:radial-gradient(circle at 50% 50%,rgba(255,122,0,.055),transparent 36%)}.boot-scan{position:absolute;z-index:2;top:0;bottom:0;left:12%;width:1px;background:linear-gradient(transparent,#ff7a00,transparent);box-shadow:0 0 38px rgba(255,122,0,.35);animation:critical-scan var(--boot-duration,1850ms) cubic-bezier(.7,0,.3,1) forwards}.boot-brand{position:absolute;z-index:4;top:34px;left:clamp(24px,3vw,52px);display:flex;gap:12px;align-items:center}.boot-brand img{width:58px;height:58px;object-fit:contain}.boot-brand>div{display:flex;flex-direction:column;gap:4px}.boot-brand b{font-size:13px;letter-spacing:.13em}.boot-brand span{color:#787f83;font-size:6px;letter-spacing:.18em}.boot-center{position:absolute;z-index:3;top:50%;left:50%;width:min(76vw,1120px);text-align:center;transform:translate(-50%,-50%)}.boot-coordinates{display:flex;gap:15px;align-items:center;justify-content:center;color:#6f767a;font:500 7px monospace;letter-spacing:.16em}.boot-coordinates i{width:56px;height:1px;background:#ff7a00}.boot-word{position:relative;margin:28px 0 22px;color:rgba(231,235,238,.035);font:500 clamp(100px,16vw,260px)/.8 Arial,sans-serif;letter-spacing:-.09em}.boot-word:after{position:absolute;inset:0;content:attr(data-word);color:#e7ebee;clip-path:inset(0 100% 0 0);animation:critical-word var(--boot-duration,1850ms) cubic-bezier(.72,0,.2,1) forwards}.boot-system{display:grid;grid-template-columns:1fr auto 1fr;gap:18px;align-items:center;color:#676f73;font:500 7px monospace;letter-spacing:.18em}.boot-system span:first-child{text-align:right}.boot-system span:last-child{text-align:left}.boot-system b{color:#ff7a00;font-size:9px;letter-spacing:.12em}.boot-status{position:absolute;z-index:4;bottom:66px;left:50%;margin:0;color:#767d81;font:500 7px monospace;letter-spacing:.14em;transform:translateX(-50%)}.boot-progress{position:absolute;z-index:4;right:clamp(24px,3vw,52px);bottom:27px;left:clamp(24px,3vw,52px);display:grid;grid-template-columns:auto 1fr 35px;gap:18px;align-items:center;color:#787f83;font:500 7px monospace;letter-spacing:.13em}.boot-progress i{height:1px;background:#292d2f}.boot-progress i b{display:block;width:0;height:100%;background:#ff7a00}.boot-progress strong{color:#f4f6f7;font:500 11px monospace;text-align:right}.boot.is-hidden{display:none}@keyframes critical-scan{0%{left:12%;opacity:0}12%,88%{opacity:1}100%{left:88%;opacity:0}}@keyframes critical-word{to{clip-path:inset(0)}}@media(max-width:800px){.boot-word{font-size:25vw}.boot-system{grid-template-columns:1fr}.boot-system span{display:none}.boot-status{width:100%;text-align:center}.boot-brand img{width:46px;height:46px}.boot-progress{grid-template-columns:1fr 30px}.boot-progress>span{display:none}}
+    </style>
+    <link rel="icon" type="image/jpeg" href="https://ik.imagekit.io/7oaqyvwnm/Untitled%20design%20(5).png?updatedAt=1726408067986" />
+    <meta
+      name="description"
+      content="Anika Sterilis engineering, manufacturing, quality and traceability capabilities."
+    />
+    <title>Capabilities | Anika Sterilis</title>
+    <script>
+      const isSafariBrowser = /^((?!chrome|android|crios|fxios|edgios).)*safari/i.test(navigator.userAgent);
+      document.documentElement.classList.toggle("is-safari", isSafariBrowser);
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Roboto+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --orange: #ff7a00;
+        --ink: #0a0d0f;
+        --paper: #edf0f2;
+        --white: #f5f7f8;
+        --muted: #747d82;
+        --line: rgba(10, 13, 15, 0.18);
+        --dark-line: rgba(237, 240, 242, 0.16);
+        --pad: clamp(22px, 4vw, 68px);
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; background: var(--ink); color: var(--white); }
+      body {
+        /* `hidden` creates a root scroll container in Safari and disables
+           descendant sticky positioning. `clip` blocks horizontal spill
+           without changing the sticky containing block. */
+        overflow-x: clip;
+        font-family: "Space Grotesk", sans-serif;
+        cursor: crosshair;
+      }
+      a { color: inherit; text-decoration: none; }
+      button { font: inherit; }
+      img { display: block; max-width: 100%; }
+      ::selection { background: var(--orange); color: var(--ink); }
+
+      .site-head {
+        position: fixed;
+        z-index: 100;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 66px;
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        padding: 0 var(--pad);
+        border-bottom: 1px solid var(--dark-line);
+        background: rgba(10, 13, 15, 0.78);
+        backdrop-filter: blur(16px);
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+      }
+      .brand img { width: 28px; height: 28px; object-fit: contain; }
+      .brand small {
+        display: block;
+        margin-top: 2px;
+        color: #777f83;
+        font: 500 6px "Roboto Mono";
+        letter-spacing: 0.14em;
+      }
+      .site-head nav { display: flex; gap: clamp(20px, 3vw, 48px); }
+      .site-head nav a,
+      .head-contact {
+        color: #a8afb3;
+        font: 600 9px "Roboto Mono";
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .site-head nav a:hover,
+      .head-contact:hover { color: var(--orange); }
+      .head-contact { justify-self: end; }
+      .head-progress {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -1px;
+        height: 2px;
+      }
+      .head-progress i {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: var(--orange);
+        transform: scaleX(0);
+        transform-origin: left;
+      }
+
+      .eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: var(--orange);
+        font: 600 9px "Roboto Mono";
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      .eyebrow:before {
+        content: "";
+        width: 30px;
+        height: 1px;
+        background: currentColor;
+      }
+      .word-line { display: block; overflow: visible !important; }
+      .copy {
+        color: var(--muted);
+        font-size: clamp(15px, 1.08vw, 19px);
+        line-height: 1.62;
+      }
+      .link-line {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: min(300px, 100%);
+        padding: 14px 0;
+        border-top: 1px solid;
+        border-bottom: 1px solid;
+        font: 600 9px "Roboto Mono";
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+      .link-line b { color: var(--orange); font-size: 15px; }
+
+      /* Hero */
+      .cap-hero {
+        position: relative;
+        min-height: 100svh;
+        display: grid;
+        grid-template-columns: 55% 45%;
+        overflow: hidden;
+        background:
+          linear-gradient(rgba(255,255,255,.026) 1px, transparent 1px),
+          linear-gradient(90deg,rgba(255,255,255,.026) 1px,transparent 1px),
+          var(--ink);
+        background-size: 8vw 8vw;
+      }
+      .hero-copy {
+        z-index: 4;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 11vh var(--pad) 5vh;
+      }
+      .hero-copy h1 {
+        margin: 30px 0 42px;
+        font-size: clamp(58px, 7vw, 124px);
+        font-weight: 500;
+        line-height: .83;
+        letter-spacing: -.08em;
+      }
+      .hero-copy h1 em { color: var(--orange); font-style: normal; }
+      .hero-copy .copy {
+        max-width: 620px;
+        padding-left: 30px;
+        border-left: 1px solid var(--orange);
+        color: #a7afb3;
+      }
+      .hero-copy .link-line { margin-top: 40px; }
+      .hero-visual {
+        position: relative;
+        min-height: 100svh;
+        border-left: 1px solid var(--dark-line);
+      }
+      .hero-shot {
+        position: absolute;
+        overflow: hidden;
+        background: #15191b;
+      }
+      .hero-shot img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: saturate(.62) contrast(1.04);
+        transition: filter .5s, transform 1s;
+      }
+      .hero-shot:hover img { filter: saturate(.9); transform: scale(1.025); }
+      .hero-shot span {
+        position: absolute;
+        z-index: 2;
+        left: 14px;
+        bottom: 12px;
+        color: #fff;
+        font: 500 8px "Roboto Mono";
+        letter-spacing: .12em;
+        text-transform: uppercase;
+      }
+      .hero-shot:nth-child(1) { left: 0; top: 66px; width: 65%; height: 54%; }
+      .hero-shot:nth-child(2) { right: 0; top: 18%; width: 34%; height: 38%; }
+      .hero-shot:nth-child(3) { right: 0; bottom: 0; width: 73%; height: 43%; }
+      .hero-shot:nth-child(3) img { object-position: center 45%; }
+      .hero-facility {
+        position: absolute;
+        left: 0;
+        bottom: 4%;
+        width: 25%;
+        color: #838b8f;
+        font: 500 8px/1.5 "Roboto Mono";
+        letter-spacing: .1em;
+        text-transform: uppercase;
+      }
+      .hero-facility b {
+        display: block;
+        color: var(--orange);
+        font: 500 clamp(36px, 4vw, 72px)/.9 "Space Grotesk";
+        letter-spacing: -.06em;
+      }
+
+      .proof-strip {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        background: var(--paper);
+        color: var(--ink);
+        border-bottom: 1px solid var(--line);
+      }
+      .proof-strip article {
+        min-height: 150px;
+        padding: 28px var(--pad);
+        border-right: 1px solid var(--line);
+      }
+      .proof-strip b {
+        display: block;
+        margin-bottom: 18px;
+        color: var(--orange);
+        font-size: clamp(27px, 2.5vw, 44px);
+        font-weight: 500;
+        letter-spacing: -.05em;
+      }
+      .proof-strip span {
+        font: 600 8px/1.5 "Roboto Mono";
+        letter-spacing: .1em;
+        text-transform: uppercase;
+      }
+
+      /* Intro */
+      .cap-intro {
+        min-height: 88svh;
+        display: grid;
+        grid-template-columns: 25% 75%;
+        padding: 12vh var(--pad);
+        background: var(--paper);
+        color: var(--ink);
+      }
+      .intro-index {
+        color: transparent;
+        font-size: clamp(100px, 15vw, 250px);
+        font-weight: 600;
+        line-height: .75;
+        -webkit-text-stroke: 1px rgba(10,13,15,.14);
+      }
+      .intro-main h2 {
+        max-width: 1250px;
+        margin: 0;
+        font-size: clamp(52px, 6.5vw, 116px);
+        font-weight: 500;
+        line-height: .91;
+        letter-spacing: -.07em;
+      }
+      .intro-main h2 em { color: var(--orange); font-style: normal; }
+      .intro-note {
+        width: min(620px, 80%);
+        margin: 64px 0 0 auto;
+        display: grid;
+        grid-template-columns: 90px 1fr;
+        gap: 28px;
+        padding-top: 20px;
+        border-top: 1px solid var(--line);
+      }
+      .intro-note b {
+        color: var(--orange);
+        font: 500 9px "Roboto Mono";
+        letter-spacing: .1em;
+      }
+
+      /* Capability selector */
+      .disciplines {
+        position: relative;
+        height: 600vh;
+        background: #0b0e10;
+      }
+      .disciplines-pin {
+        position: sticky;
+        top: 0;
+        height: 100svh;
+        display: grid;
+        grid-template-columns: 45% 55%;
+        overflow: hidden;
+      }
+      .discipline-list {
+        align-self: center;
+        padding: 6vh var(--pad);
+      }
+      .discipline-list h2 {
+        margin: 26px 0 50px;
+        font-size: clamp(48px, 5vw, 88px);
+        font-weight: 500;
+        line-height: .88;
+        letter-spacing: -.07em;
+      }
+      .discipline-list button {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 42px 1fr auto;
+        align-items: center;
+        gap: 15px;
+        padding: 17px 0;
+        border: 0;
+        border-bottom: 1px solid var(--dark-line);
+        background: transparent;
+        color: #697176;
+        text-align: left;
+        cursor: pointer;
+        transition: color .3s, padding .3s;
+      }
+      .discipline-list button b {
+        color: var(--orange);
+        font: 500 8px "Roboto Mono";
+      }
+      .discipline-list button span {
+        font-size: clamp(18px, 1.55vw, 27px);
+        letter-spacing: -.03em;
+      }
+      .discipline-list button i { color: var(--orange); font-style: normal; }
+      .discipline-list button.is-active {
+        padding-left: 14px;
+        color: #fff;
+        border-color: var(--orange);
+      }
+      .discipline-media {
+        position: relative;
+        height: 100svh;
+        overflow: hidden;
+      }
+      .discipline-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: saturate(.58);
+      }
+
+      /* Safari can drop a filtered image layer inside a clipped sticky grid
+         while its source is changing. Keep clipping on the media cell, leave
+         the sticky grid compositable, and avoid the expensive filtered layer. */
+      .is-safari .disciplines-pin {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        height: 100svh;
+        overflow: hidden;
+        align-self: start;
+      }
+      .is-safari .discipline-list {
+        position: relative;
+        z-index: 2;
+        background: #0b0e10;
+      }
+      .is-safari .discipline-media {
+        overflow: hidden;
+        background: #0b0e10;
+        isolation: isolate;
+        contain: paint;
+      }
+      .is-safari .discipline-media img {
+        filter: none;
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+      }
+
+      .safari-disciplines-flow { display: none; }
+      .discipline-media:after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, transparent 45%, rgba(8,10,11,.88));
+      }
+      .media-caption {
+        position: absolute;
+        z-index: 2;
+        left: 40px;
+        right: 40px;
+        bottom: 36px;
+      }
+      .media-caption small {
+        color: var(--orange);
+        font: 600 8px "Roboto Mono";
+        letter-spacing: .13em;
+      }
+      .media-caption h3 {
+        max-width: 680px;
+        margin: 12px 0;
+        font-size: clamp(32px, 3.3vw, 60px);
+        font-weight: 500;
+        line-height: .94;
+        letter-spacing: -.05em;
+      }
+      .media-caption p { max-width: 600px; color: #bbc1c4; }
+
+      /* Chain */
+      .chain {
+        min-height: 110svh;
+        padding: 11vh var(--pad);
+        background: var(--paper);
+        color: var(--ink);
+      }
+      .chain-head {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: end;
+        gap: 70px;
+      }
+      .chain-head h2 {
+        margin: 24px 0 0;
+        font-size: clamp(54px, 6vw, 108px);
+        font-weight: 500;
+        line-height: .86;
+        letter-spacing: -.075em;
+      }
+      .chain-head h2 em { color: var(--orange); font-style: normal; }
+      .chain-head .copy { max-width: 520px; justify-self: end; }
+      .chain-flow {
+        margin-top: 11vh;
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+      .chain-flow article {
+        position: relative;
+        min-height: 245px;
+        padding: 22px 18px;
+        border-right: 1px solid var(--line);
+        transition: background .35s, color .35s;
+      }
+      .chain-flow article:hover,
+      .chain-flow article.is-active { background: var(--orange); color: var(--ink); }
+      .chain-flow b {
+        color: var(--orange);
+        font: 600 8px "Roboto Mono";
+      }
+      .chain-flow article:hover b,
+      .chain-flow article.is-active b { color: var(--ink); }
+      .chain-flow h3 {
+        position: absolute;
+        left: 18px;
+        bottom: 42px;
+        margin: 0;
+        font-size: clamp(16px, 1.35vw, 23px);
+        font-weight: 500;
+        line-height: 1;
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+      }
+      .chain-flow i {
+        position: absolute;
+        right: 13px;
+        top: 20px;
+        color: var(--orange);
+        font-style: normal;
+      }
+      .chain-flow article:hover i,
+      .chain-flow article.is-active i { color: var(--ink); }
+
+      /* Facility gallery */
+      .facility {
+        padding: 10vh var(--pad);
+        background: #0a0d0f;
+      }
+      .facility-head {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        margin-bottom: 8vh;
+      }
+      .facility-head h2 {
+        margin: 22px 0 0;
+        font-size: clamp(53px, 6vw, 105px);
+        font-weight: 500;
+        line-height: .86;
+        letter-spacing: -.07em;
+      }
+      .facility-head .copy { align-self: end; max-width: 550px; justify-self: end; }
+      .facility-grid {
+        display: grid;
+        grid-template-columns: 1.25fr .75fr;
+        grid-template-rows: 46vh 38vh;
+        gap: 8px;
+      }
+      .facility-grid figure {
+        position: relative;
+        margin: 0;
+        overflow: hidden;
+        background: #161a1c;
+      }
+      .facility-grid figure:first-child { grid-row: 1 / 3; }
+      .facility-grid img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: saturate(.66);
+        transition: transform .9s, filter .5s;
+      }
+      .facility-grid figure:hover img { transform: scale(1.025); filter: saturate(.92); }
+      .facility-grid figcaption {
+        position: absolute;
+        left: 18px;
+        right: 18px;
+        bottom: 16px;
+        display: flex;
+        justify-content: space-between;
+        color: #fff;
+        font: 500 8px "Roboto Mono";
+        letter-spacing: .1em;
+        text-transform: uppercase;
+      }
+      .facility-grid figcaption b { color: var(--orange); }
+
+      /* Traceability */
+      .traceability {
+        min-height: 100svh;
+        display: grid;
+        grid-template-columns: 47% 53%;
+        background: var(--orange);
+        color: var(--ink);
+      }
+      .trace-copy {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 10vh var(--pad);
+      }
+      .trace-copy .eyebrow { color: var(--ink); }
+      .trace-copy h2 {
+        margin: 28px 0 40px;
+        font-size: clamp(54px, 6vw, 105px);
+        font-weight: 500;
+        line-height: .84;
+        letter-spacing: -.075em;
+      }
+      .trace-copy .copy { color: rgba(10,13,15,.72); max-width: 600px; }
+      .trace-records {
+        position: relative;
+        overflow: hidden;
+        border-left: 1px solid rgba(10,13,15,.25);
+        background:
+          linear-gradient(rgba(10,13,15,.12) 1px,transparent 1px),
+          linear-gradient(90deg,rgba(10,13,15,.12) 1px,transparent 1px);
+        background-size: 11% 9%;
+      }
+      .record {
+        position: absolute;
+        width: min(78%, 620px);
+        padding: 24px;
+        border: 1px solid rgba(10,13,15,.35);
+        background: rgba(255,255,255,.16);
+        backdrop-filter: blur(8px);
+      }
+      .record:nth-child(1) { left: 8%; top: 15%; transform: rotate(-2deg); }
+      .record:nth-child(2) { right: 5%; top: 39%; transform: rotate(1.5deg); }
+      .record:nth-child(3) { left: 14%; bottom: 10%; transform: rotate(-1deg); }
+      .record-head {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 16px;
+        border-bottom: 1px solid rgba(10,13,15,.24);
+        font: 600 8px "Roboto Mono";
+        letter-spacing: .1em;
+      }
+      .record h3 { margin: 22px 0 10px; font-size: 28px; font-weight: 500; }
+      .record p { margin: 0; color: rgba(10,13,15,.65); font-size: 13px; }
+      .record-foot {
+        display: flex;
+        gap: 7px;
+        margin-top: 24px;
+      }
+      .record-foot i { width: 7px; height: 7px; border-radius: 50%; background: var(--ink); }
+
+      /* Compact desktop / laptop viewports cannot safely accommodate three
+         percentage-positioned records. Preserve the layered board aesthetic,
+         but give each card its own row and alternate its horizontal anchor. */
+      @media (min-width: 901px) and (max-height: 820px) {
+        .trace-records {
+          display: grid;
+          grid-template-rows: repeat(3, minmax(0, auto));
+          align-content: center;
+          gap: clamp(14px, 2.2vh, 22px);
+          padding: clamp(24px, 4vh, 38px) clamp(22px, 3vw, 50px);
+        }
+        .record,
+        .record:nth-child(1),
+        .record:nth-child(2),
+        .record:nth-child(3) {
+          position: relative;
+          inset: auto;
+          width: min(86%, 620px);
+          box-sizing: border-box;
+          padding: clamp(14px, 2.1vh, 20px);
+        }
+        .record:nth-child(1) {
+          justify-self: start;
+          transform: rotate(-1deg);
+        }
+        .record:nth-child(2) {
+          justify-self: end;
+          transform: rotate(.65deg);
+        }
+        .record:nth-child(3) {
+          justify-self: center;
+          transform: rotate(-.45deg);
+        }
+        .record-head { padding-bottom: clamp(9px, 1.4vh, 13px); }
+        .record h3 {
+          margin: clamp(12px, 1.8vh, 17px) 0 7px;
+          font-size: clamp(21px, 2vw, 27px);
+        }
+        .record p {
+          font-size: clamp(11px, .9vw, 13px);
+          line-height: 1.35;
+        }
+        .record-foot {
+          margin-top: clamp(11px, 1.7vh, 16px);
+        }
+      }
+
+      /* Quality */
+      .quality {
+        padding: 11vh var(--pad);
+        background: var(--paper);
+        color: var(--ink);
+      }
+      .quality-head {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: end;
+      }
+      .quality-head h2 {
+        margin: 25px 0 0;
+        font-size: clamp(54px, 6vw, 106px);
+        font-weight: 500;
+        line-height: .86;
+        letter-spacing: -.075em;
+      }
+      .quality-head h2 em { color: var(--orange); font-style: normal; }
+      .quality-head .copy { max-width: 520px; justify-self: end; }
+      .quality-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        margin-top: 9vh;
+        border: 1px solid var(--line);
+      }
+      .quality-grid article {
+        min-height: 320px;
+        padding: 26px;
+        border-right: 1px solid var(--line);
+      }
+      .quality-grid b {
+        color: transparent;
+        font-size: 58px;
+        font-weight: 500;
+        -webkit-text-stroke: 1px var(--orange);
+      }
+      .quality-grid h3 { margin: 75px 0 16px; font-size: 25px; font-weight: 500; }
+      .quality-grid p { color: var(--muted); font-size: 13px; line-height: 1.55; }
+
+      .closing {
+        min-height: 100svh;
+        display: grid;
+        grid-template-columns: 57% 43%;
+        background: #090b0c;
+      }
+      .closing-copy {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-width: 0;
+        padding: 10vh var(--pad);
+      }
+      .closing h2 {
+        margin: 28px 0 44px;
+        font-size: clamp(57px, 7vw, 124px);
+        font-weight: 500;
+        line-height: .83;
+        letter-spacing: -.08em;
+      }
+      .closing h2 em { color: var(--orange); font-style: normal; }
+      .closing-mark {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: clamp(18px, 3vh, 40px);
+        overflow: hidden;
+        padding: clamp(40px, 6vh, 66px) clamp(24px, 3vw, 54px);
+        background: var(--orange);
+      }
+      
+      .closing-logo {
+        position: relative;
+        z-index: 2;
+        width: clamp(74px, 8vw, 120px);
+        height: auto;
+        object-fit: contain;
+      }
+      .aacts-stack {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        gap: clamp(2px, 5.6vh, 40px);
+        width: 100%;
+      }
+      .aacts-word {
+        display: flex;
+        align-items: center;
+        min-width: 0;
+        max-width: 100%;
+        font-family: "Space Grotesk", sans-serif;
+        text-transform: uppercase;
+        line-height: .8;
+      }
+      .aacts-ini {
+        flex: 0 0 auto;
+        width: clamp(58px, 8vw, 150px);
+        font-weight: 800;
+        font-size: clamp(68px, 10vw, 162px);
+        line-height: .72;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+        background-image: linear-gradient(
+          100deg,
+          var(--ink) 0%,
+          var(--ink) 43%,
+          #575c61 50%,
+          var(--ink) 57%,
+          var(--ink) 100%
+        );
+        background-size: 250% 100%;
+        background-position: 150% 0;
+        -webkit-background-clip: text;
+        background-clip: text;
+        animation: aacts-shine 5s ease-in-out infinite;
+        will-change: background-position;
+      }
+      .aacts-rest {
+        min-width: 0;
+        font-weight: 700;
+        font-size: clamp(42px, 5vw, 96px);
+        letter-spacing: -.015em;
+        white-space: nowrap;
+        color: transparent;
+        -webkit-text-stroke: 1.5px rgba(10, 13, 15, 0.5);
+      }
+
+      /* Desktop closing composition: scale against both width and available
+         height so the statement and complete AACTS mark fit in one view. */
+      @media (min-width: 901px) {
+        .closing {
+          height: 100svh;
+          min-height: 0;
+          overflow: hidden;
+        }
+        .closing-copy {
+          padding-block: clamp(68px, 9vh, 104px);
+        }
+        .closing h2 {
+          margin: clamp(20px, 3vh, 30px) 0 clamp(28px, 4.5vh, 44px);
+          font-size: clamp(48px, min(7vw, 11vh), 108px);
+          line-height: .85;
+        }
+        .closing-mark {
+          gap: clamp(14px, 2.4vh, 26px);
+          padding-block: clamp(24px, 4vh, 44px);
+        }
+        .closing-logo {
+          width: clamp(64px, min(7vw, 11vh), 104px);
+        }
+        .aacts-stack {
+          gap: clamp(5px, 2.25vh, 20px);
+        }
+        .aacts-ini {
+          width: clamp(54px, min(8vw, 13vh), 124px);
+          font-size: clamp(64px, min(10vw, 14vh), 148px);
+        }
+        .aacts-rest {
+          font-size: clamp(38px, min(5vw, 8.4vh), 82px);
+        }
+      }
+      .aacts-word--fill .aacts-ini {
+        background-image: linear-gradient(
+          100deg,
+          var(--white) 0%,
+          var(--white) 43%,
+          #ffd7a8 50%,
+          var(--white) 57%,
+          var(--white) 100%
+        );
+      }
+      .aacts-word--fill .aacts-rest {
+        color: var(--white);
+        -webkit-text-stroke: 0;
+      }
+      .aacts-word:nth-child(1) .aacts-ini { animation-delay: 0s; }
+      .aacts-word:nth-child(2) .aacts-ini { animation-delay: .28s; }
+      .aacts-word:nth-child(3) .aacts-ini { animation-delay: .56s; }
+      .aacts-word:nth-child(4) .aacts-ini { animation-delay: .84s; }
+      .aacts-word:nth-child(5) .aacts-ini { animation-delay: 1.12s; }
+      @keyframes aacts-shine {
+        0% { background-position: 150% 0; }
+        45% { background-position: -50% 0; }
+        100% { background-position: -50% 0; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .aacts-ini { animation: none; background-position: 0 0; }
+      }
+      .site-foot {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 30px;
+        padding: 32px var(--pad);
+        border-top: 1px solid var(--dark-line);
+        background: #090b0c;
+        color: #777f83;
+        font: 500 8px "Roboto Mono";
+        letter-spacing: .1em;
+        text-transform: uppercase;
+      }
+      .site-foot nav { display: flex; gap: 28px; }
+      .site-foot a:hover { color: var(--orange); }
+
+      @media (max-width: 900px) {
+        .site-head { grid-template-columns: 1fr auto; }
+        .site-head nav { display: none; }
+        .cap-hero,
+        .traceability,
+        .closing { grid-template-columns: 1fr; }
+        .hero-copy { min-height: 76svh; padding-top: 110px; }
+        .hero-visual { min-height: 70svh; }
+        .proof-strip { grid-template-columns: 1fr 1fr; }
+        .cap-intro { grid-template-columns: 1fr; gap: 60px; }
+        .disciplines { height: auto; }
+        .disciplines-pin {
+          position: relative;
+          height: auto;
+          grid-template-columns: 1fr;
+          overflow: visible;
+        }
+        /* This must match the specificity of the desktop Safari safeguard.
+           Otherwise Safari keeps the mobile grid at 100svh and clips its
+           second row (the selected discipline image and caption). */
+        .is-safari .disciplines-pin {
+          position: relative;
+          top: auto;
+          height: auto;
+          overflow: visible;
+          align-self: auto;
+        }
+        .discipline-list { align-self: stretch; padding: 10vh var(--pad) 6vh; }
+        .discipline-media { height: 70svh; }
+        .chain-head,
+        .facility-head,
+        .quality-head { grid-template-columns: 1fr; }
+        .chain-flow { grid-template-columns: repeat(4,1fr); }
+        .chain-flow article { min-height: 190px; }
+        .facility-grid { grid-template-columns: 1fr; grid-template-rows: repeat(3,48vh); }
+        .facility-grid figure:first-child { grid-row: auto; }
+        .trace-records { min-height: 82svh; }
+        .quality-grid { grid-template-columns: 1fr 1fr; }
+        .closing-mark { min-height: 56svh; justify-content: center; }
+        .closing-copy .eyebrow { max-width: 100%; white-space: normal; }
+        .closing h2 { font-size: clamp(48px, 10vw, 86px); }
+        .aacts-stack { gap: clamp(12px, 4vh, 30px); }
+        .aacts-ini {
+          width: clamp(50px, 16vw, 84px);
+          font-size: clamp(62px, 19vw, 104px);
+        }
+        .aacts-rest { font-size: clamp(38px, 14vw, 72px); }
+      }
+      @media (max-width: 560px) {
+        .hero-copy h1 { font-size: 13.4vw; }
+        .hero-shot:nth-child(1) { width: 73%; }
+        .hero-shot:nth-child(2) { width: 26%; }
+        .hero-shot:nth-child(3) { width: 82%; }
+        .hero-shot {
+          overflow: visible;
+        }
+        .hero-shot span {
+          z-index: 8;
+          top: 10px;
+          bottom: auto;
+          left: 10px;
+          max-width: calc(100% - 20px);
+          padding: 6px 8px;
+          border-left: 2px solid var(--orange);
+          background: rgba(7, 9, 10, .82);
+          box-shadow: 0 6px 18px rgba(0, 0, 0, .28);
+          color: #fff;
+          font-size: 7px;
+          line-height: 1.25;
+          letter-spacing: .09em;
+          white-space: normal;
+        }
+        .hero-shot:nth-child(2) span {
+          right: 8px;
+          left: auto;
+          max-width: calc(100% - 16px);
+          text-align: right;
+          border-right: 2px solid var(--orange);
+          border-left: 0;
+        }
+        .hero-facility {
+          z-index: 4;
+          left: 0;
+          bottom: 18px;
+          width: min(142px, 44vw);
+          padding: 13px 14px 12px;
+          border: 1px solid rgba(10,13,15,.18);
+          background: rgba(244,246,247,.92);
+          color: var(--ink);
+          box-shadow: 0 12px 28px rgba(0,0,0,.28);
+          backdrop-filter: blur(8px);
+        }
+        .hero-facility b {
+          color: var(--ink);
+          font-size: clamp(30px, 10vw, 44px);
+        }
+        .proof-strip {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          border-top: 1px solid var(--line);
+        }
+        .proof-strip article {
+          min-height: 138px;
+          padding: 24px 16px 20px;
+          border-right: 1px solid var(--line);
+          border-bottom: 1px solid var(--line);
+        }
+        .proof-strip article:nth-child(2n) { border-right: 0; }
+        .proof-strip b {
+          margin-bottom: 14px;
+          font-size: clamp(21px, 7vw, 31px);
+          overflow-wrap: anywhere;
+        }
+        .proof-strip span {
+          font-size: 7px;
+          letter-spacing: .075em;
+        }
+        .intro-index {
+          color: rgba(10,13,15,.82);
+          -webkit-text-stroke-color: transparent;
+        }
+        .intro-note { width: 100%; grid-template-columns: 1fr; }
+        /* Keep the selected discipline and its complete image together on
+           short iPhone viewports. The tablet rule leaves 6vh below the last
+           button, which looked like a gap and pushed the image off-screen. */
+        .discipline-list {
+          padding-bottom: 0;
+        }
+        .discipline-media,
+        .is-safari .discipline-media {
+          height: auto;
+          min-height: 0;
+          overflow: visible;
+          background: #080b0d;
+          contain: none;
+        }
+        .discipline-media img,
+        .is-safari .discipline-media img {
+          display: block;
+          height: min(100vw, 520px);
+          object-fit: contain;
+          object-position: center;
+        }
+        .discipline-media:after {
+          display: none;
+        }
+        .media-caption {
+          position: relative;
+          left: 20px;
+          right: 20px;
+          bottom: auto;
+          width: calc(100% - 40px);
+          padding: 22px 0 28px;
+        }
+        .chain-flow { grid-template-columns: 1fr 1fr; }
+        .chain-flow h3 { writing-mode: initial; transform: none; }
+        .quality-grid {
+          grid-template-columns: 1fr;
+          border-color: rgba(255, 122, 0, .68);
+        }
+        .quality-grid article {
+          min-height: 260px;
+          border-right: 0;
+          border-bottom: 1px solid rgba(255, 122, 0, .68);
+        }
+        .quality-grid article:last-child { border-bottom: 0; }
+        .site-foot { grid-template-columns: 1fr; }
+        /* Stack the traceability record cards instead of overlapping them. */
+        .trace-records {
+          min-height: 0;
+          display: grid;
+          gap: 16px;
+          padding: 34px 18px;
+        }
+        .record,
+        .record:nth-child(1),
+        .record:nth-child(2),
+        .record:nth-child(3) {
+          position: static;
+          width: 100%;
+          inset: auto;
+        }
+        .record:nth-child(1) { transform: rotate(-1deg); }
+        .record:nth-child(2) { transform: rotate(0.75deg); }
+        .record:nth-child(3) { transform: rotate(-0.5deg); }
+      }
+
+      /* Portrait tablets need their own rhythm: the <=900px layout stacks the
+         desktop columns, but retaining desktop viewport heights creates very
+         long empty runways. Keep every section readable in normal flow without
+         changing phones or the established landscape/desktop compositions. */
+      @media (min-width: 561px) and (max-width: 900px) and (pointer: coarse) {
+        .cap-hero {
+          min-height: 0;
+        }
+        .hero-copy {
+          min-height: 0;
+          padding-top: clamp(128px, 12svh, 150px);
+          padding-bottom: clamp(68px, 7svh, 88px);
+        }
+        .hero-copy h1 {
+          margin-block: 24px 34px;
+          font-size: clamp(56px, 8.6vw, 76px);
+          line-height: .9;
+        }
+        .hero-visual {
+          min-height: min(62svh, 680px);
+        }
+
+        .cap-intro {
+          min-height: 0;
+          gap: 36px;
+          padding-block: clamp(82px, 8svh, 100px);
+        }
+        .intro-index {
+          font-size: clamp(104px, 17vw, 145px);
+        }
+        .intro-main h2 {
+          font-size: clamp(52px, 7.8vw, 68px);
+          line-height: .94;
+        }
+        .intro-note {
+          margin-top: 42px;
+        }
+
+        .discipline-list {
+          padding-top: clamp(86px, 8svh, 104px);
+          padding-bottom: 34px;
+        }
+        .discipline-list h2 {
+          margin: 22px 0 38px;
+          font-size: clamp(48px, 7.5vw, 66px);
+        }
+        .discipline-media,
+        .is-safari .discipline-media {
+          height: min(60svh, 650px);
+        }
+
+        .traceability {
+          min-height: 0;
+        }
+        .trace-copy {
+          padding-block: clamp(78px, 8svh, 96px);
+        }
+        .trace-copy h2 {
+          margin: 24px 0 32px;
+          font-size: clamp(54px, 8.5vw, 72px);
+          line-height: .88;
+        }
+        .trace-records {
+          min-height: 0;
+          display: grid;
+          grid-template-rows: repeat(3, auto);
+          align-content: center;
+          gap: 18px;
+          padding: 48px 36px;
+        }
+        .record,
+        .record:nth-child(1),
+        .record:nth-child(2),
+        .record:nth-child(3) {
+          position: relative;
+          inset: auto;
+          width: min(82%, 620px);
+          box-sizing: border-box;
+          padding: 20px;
+        }
+        .record:nth-child(1) { justify-self: start; transform: rotate(-1deg); }
+        .record:nth-child(2) { justify-self: end; transform: rotate(.65deg); }
+        .record:nth-child(3) { justify-self: center; transform: rotate(-.45deg); }
+        .record h3 { margin: 16px 0 8px; font-size: 25px; }
+        .record-foot { margin-top: 16px; }
+
+        .quality {
+          padding-block: clamp(78px, 8svh, 96px);
+        }
+        .quality-head {
+          gap: 34px;
+        }
+        .quality-head h2 {
+          font-size: clamp(54px, 8vw, 70px);
+          line-height: .9;
+        }
+        .quality-grid {
+          margin-top: 56px;
+        }
+        .quality-grid article {
+          min-height: 270px;
+          padding: 24px;
+        }
+        .quality-grid h3 {
+          margin-top: 48px;
+        }
+
+        .closing {
+          min-height: 0;
+        }
+        .closing-copy {
+          padding-block: clamp(84px, 8svh, 100px);
+        }
+        .closing h2 {
+          margin: 24px 0 38px;
+          font-size: clamp(52px, 8vw, 68px);
+          line-height: .9;
+        }
+        .closing-mark {
+          min-height: 0;
+          gap: 24px;
+          padding: 58px clamp(34px, 6vw, 52px);
+        }
+        .closing-logo {
+          width: 82px;
+        }
+        .aacts-stack {
+          gap: 14px;
+        }
+        .aacts-ini {
+          width: 68px;
+          font-size: 82px;
+        }
+        .aacts-rest {
+          font-size: clamp(44px, 7vw, 58px);
+        }
+      }
+
+      /* Pinned image-led capability chain */
+      .chain[data-chain] {
+        height: 800vh;
+        min-height: 0;
+        padding: 0;
+        background: var(--paper);
+        color: var(--ink);
+      }
+      .chain-pin {
+        position: sticky;
+        top: 0;
+        height: 100svh;
+        overflow: hidden;
+        padding: clamp(76px, 9vh, 100px) var(--pad) 22px;
+      }
+      .chain[data-chain] .chain-head {
+        height: clamp(104px, 15vh, 150px);
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 35px;
+        border-bottom: 1px solid var(--line);
+      }
+      .chain[data-chain] .chain-head h2 {
+        margin: -.08em 0 0;
+        font-size: clamp(44px, 5vw, 82px);
+        line-height: .9;
+        white-space: nowrap;
+      }
+      .chain-stage {
+        height: calc(100svh - clamp(76px, 9vh, 100px) - clamp(104px, 15vh, 150px) - 22px);
+        display: grid;
+        grid-template-columns: 35% 65%;
+        grid-template-rows: minmax(0, 1fr) 50px;
+        border-left: 1px solid var(--line);
+        border-right: 1px solid var(--line);
+      }
+      .chain-copy {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: clamp(24px, 3.2vw, 56px);
+        border-right: 1px solid var(--line);
+      }
+      .chain-counter {
+        position: absolute;
+        left: clamp(24px, 3.2vw, 56px);
+        top: 24px;
+        display: flex;
+        align-items: baseline;
+        gap: 7px;
+        color: #858d91;
+        font: 500 10px "Roboto Mono";
+      }
+      .chain-counter b {
+        color: transparent;
+        font: 500 clamp(42px, 5vw, 78px) "Space Grotesk";
+        letter-spacing: -.07em;
+        -webkit-text-stroke: 1px var(--orange);
+      }
+      .chain-copy > small {
+        color: var(--orange);
+        font: 600 8px "Roboto Mono";
+        letter-spacing: .12em;
+      }
+      .chain-copy h3 {
+        margin: 17px 0 22px;
+        font-size: clamp(45px, 5vw, 86px);
+        font-weight: 500;
+        line-height: .84;
+        letter-spacing: -.07em;
+      }
+      .chain-copy > p {
+        max-width: 470px;
+        margin: 0;
+        color: #626b70;
+        font-size: clamp(13px, .94vw, 16px);
+        line-height: 1.6;
+      }
+      .chain-progress {
+        margin-top: clamp(28px, 4vh, 48px);
+      }
+      .chain-progress i {
+        display: block;
+        height: 2px;
+        background: rgba(10,13,15,.14);
+      }
+      .chain-progress em {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: var(--orange);
+        transform: scaleX(.125);
+        transform-origin: left;
+      }
+      .chain-progress span {
+        display: block;
+        margin-top: 11px;
+        color: #7b8488;
+        font: 600 7px "Roboto Mono";
+        letter-spacing: .12em;
+      }
+      .chain-images {
+        position: relative;
+        overflow: hidden;
+        background: #111416;
+      }
+      .chain-images:after {
+        content: "";
+        position: absolute;
+        z-index: 3;
+        inset: 0;
+        background: linear-gradient(180deg, transparent 58%, rgba(7,9,10,.72));
+        pointer-events: none;
+      }
+      .chain-images figure {
+        position: absolute;
+        inset: 0;
+        margin: 0;
+        opacity: 0;
+        visibility: hidden;
+        clip-path: inset(0 0 100% 0);
+      }
+      .chain-images figure.is-active {
+        opacity: 1;
+        visibility: visible;
+        clip-path: inset(0);
+      }
+      .chain-images img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .chain-image-meta {
+        position: absolute;
+        z-index: 4;
+        left: 20px;
+        right: 20px;
+        bottom: 18px;
+        display: flex;
+        justify-content: space-between;
+        color: #dce0e2;
+        font: 500 7px "Roboto Mono";
+        letter-spacing: .11em;
+      }
+      .chain-image-meta span:first-child { color: var(--orange); }
+      .chain-nav {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        border-top: 1px solid var(--line);
+      }
+      .chain-nav button {
+        padding: 0 10px;
+        border: 0;
+        border-right: 1px solid var(--line);
+        background: transparent;
+        color: #7c8589;
+        font: 600 clamp(6px, .48vw, 8px) "Roboto Mono";
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: color .3s, background .3s;
+      }
+      .chain-nav button.is-active {
+        background: var(--orange);
+        color: var(--ink);
+      }
+      @media (max-width: 900px) {
+        .chain[data-chain] { height: auto; }
+        .chain-pin {
+          position: relative;
+          height: auto;
+          padding: 88px 22px 35px;
+        }
+        .chain[data-chain] .chain-head {
+          height: auto;
+          display: block;
+          padding-bottom: 28px;
+        }
+        .chain[data-chain] .chain-head h2 {
+          margin-top: 18px;
+          white-space: normal;
+        }
+        .chain-stage {
+          height: auto;
+          grid-template-columns: 1fr;
+          grid-template-rows: auto 58vh;
+        }
+        .chain-copy { min-height: 55vh; border-right: 0; }
+        .chain-images { grid-row: 2; }
+        .chain-nav { display: none; }
+      }
+
+      /* Touch-phone disciplines: use the same six-step scroll story as the
+         desktop without scroll snapping. The compact sticky composition keeps
+         the controls, selected image and caption visible in one phone view. */
+      @media (max-width: 600px) {
+        .disciplines {
+          height: auto;
+          min-height: 0;
+        }
+        .disciplines > .disciplines-pin {
+          display: none;
+        }
+        .safari-disciplines-flow {
+          display: block;
+          background: #0b0e10;
+        }
+        .mobile-discipline-step {
+          scroll-margin-top: 76px;
+          border-bottom: 1px solid var(--dark-line);
+          background: #0b0e10;
+        }
+        .mobile-discipline-step__head {
+          padding: 18px 16px 8px;
+        }
+        .mobile-discipline-step:first-child .mobile-discipline-step__head {
+          padding-top: 26px;
+        }
+        .mobile-discipline-step__head h2 {
+          margin: 8px 0 12px;
+          font-size: clamp(31px, 9vw, 42px);
+          font-weight: 500;
+          line-height: .88;
+          letter-spacing: -.07em;
+        }
+        .mobile-discipline-step__button {
+          display: grid;
+          grid-template-columns: 30px minmax(0, 1fr) auto;
+          align-items: center;
+          gap: 8px;
+          min-height: 34px;
+          padding: 6px 0;
+          border-bottom: 1px solid var(--dark-line);
+          color: #697176;
+        }
+        .mobile-discipline-step__button b {
+          color: var(--orange);
+          font: 500 8px "Roboto Mono";
+        }
+        .mobile-discipline-step__button span {
+          font-size: clamp(13px, 3.8vw, 17px);
+          line-height: 1.15;
+        }
+        .mobile-discipline-step__button i {
+          color: var(--orange);
+          font-style: normal;
+        }
+        .mobile-discipline-step__button.is-active {
+          padding-left: 8px;
+          color: #fff;
+          border-color: var(--orange);
+        }
+        .mobile-discipline-step__media {
+          background: #080a0b;
+        }
+        .mobile-discipline-step__media img {
+          display: block;
+          width: 100%;
+          height: auto;
+        }
+        .mobile-discipline-step__caption {
+          padding: 14px 16px 20px;
+          background: #080a0b;
+        }
+        .mobile-discipline-step__caption small {
+          color: var(--orange);
+          font: 600 8px "Roboto Mono";
+          letter-spacing: .13em;
+        }
+        .mobile-discipline-step__caption h3 {
+          margin: 6px 0;
+          color: #fff;
+          font-size: clamp(20px, 5.8vw, 28px);
+          font-weight: 500;
+          line-height: 1;
+          letter-spacing: -.04em;
+        }
+        .mobile-discipline-step__caption p {
+          margin: 0;
+          color: #9ba2a6;
+          font-size: clamp(10px, 2.8vw, 13px);
+          line-height: 1.4;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .disciplines {
+          height: 600svh;
+          min-height: 600vh;
+        }
+        .disciplines-pin,
+        .is-safari .disciplines-pin {
+          position: -webkit-sticky;
+          position: sticky;
+          top: 76px;
+          height: calc(100vh - 76px);
+          height: calc(100svh - 76px);
+          display: grid;
+          grid-template-columns: 1fr;
+          grid-template-rows: max-content auto;
+          align-content: start;
+          overflow: hidden;
+          align-self: start;
+          background: #0b0e10;
+        }
+        .discipline-list,
+        .is-safari .discipline-list {
+          z-index: 3;
+          align-self: stretch;
+          min-height: 0;
+          padding: 14px 16px 8px;
+          background: #0b0e10;
+        }
+        .discipline-list h2 {
+          margin: 8px 0 10px;
+          font-size: clamp(31px, 9vw, 42px);
+          line-height: .88;
+        }
+        /* All six rows are present from the start on phones, dimmed until they
+           become active. Revealing them one by one meant the list block changed
+           height at every step, which forced either a shifting image or a dead
+           band waiting for the next row. A full list keeps the block a constant
+           height, so the image below it is identical on all six steps — and the
+           active highlight still carries the progression. */
+        .discipline-list button {
+          display: grid;
+          grid-template-columns: 30px minmax(0, 1fr) auto;
+          gap: 8px;
+          min-height: 34px;
+          padding: 6px 0;
+        }
+        .discipline-list button span {
+          font-size: clamp(13px, 3.8vw, 17px);
+          line-height: 1.15;
+        }
+        .discipline-list button.is-active {
+          padding-left: 8px;
+        }
+        .discipline-media,
+        .is-safari .discipline-media {
+          height: 100%;
+          min-height: 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          overflow: hidden;
+          contain: paint;
+        }
+        .discipline-media::before,
+        .is-safari .discipline-media::before {
+          content: "";
+          position: absolute;
+          z-index: 0;
+          inset: -24px;
+          background-image:
+            linear-gradient(180deg, rgba(8,10,11,.2), rgba(8,10,11,.64)),
+            var(--discipline-image);
+          background-position: center;
+          background-size: cover;
+          filter: blur(7px) saturate(.72);
+          transform: scale(1.045);
+          pointer-events: none;
+        }
+        .discipline-media img,
+        .is-safari .discipline-media img {
+          position: relative;
+          z-index: 1;
+          flex: 0 1 auto;
+          width: 100%;
+          height: auto;
+          max-height: calc(100% - 96px);
+          object-fit: contain;
+          object-position: center top;
+        }
+        .discipline-media:after {
+          display: none;
+        }
+        .media-caption {
+          position: relative;
+          z-index: 2;
+          left: auto;
+          right: auto;
+          bottom: auto;
+          flex: 0 0 auto;
+          width: 100%;
+          padding: 12px 16px 14px;
+          background: linear-gradient(180deg, rgba(8,10,11,.94), #080a0b);
+        }
+        .media-caption h3 {
+          margin: 5px 0 4px;
+          font-size: clamp(20px, 5.8vw, 28px);
+          line-height: 1;
+        }
+        .media-caption p {
+          max-width: 38rem;
+          font-size: clamp(10px, 2.8vw, 13px);
+          line-height: 1.32;
+        }
+        @keyframes mobile-discipline-enter {
+          from { opacity: 0; transform: translateY(8px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+      }
+
+      @media (max-height: 600px) and (pointer: coarse) and (orientation: landscape) {
+        .disciplines {
+          height: 600svh;
+        }
+        .disciplines-pin,
+        .is-safari .disciplines-pin {
+          top: 62px;
+          height: calc(100svh - 62px);
+          grid-template-columns: 48% 52%;
+          grid-template-rows: 1fr;
+        }
+        .discipline-list,
+        .is-safari .discipline-list {
+          padding: 8px 14px;
+        }
+        .discipline-list h2 {
+          margin: 4px 0 6px;
+          font-size: clamp(25px, 5.2vh, 34px);
+        }
+        .discipline-list button {
+          min-height: 27px;
+          padding: 3px 0;
+        }
+        .discipline-list button span {
+          font-size: clamp(11px, 2.7vh, 14px);
+        }
+      }
+      @media (max-width: 600px) {
+        .disciplines {
+          height: 600svh;
+          min-height: 600vh;
+        }
+        .disciplines > .disciplines-pin,
+        .is-safari .disciplines > .disciplines-pin {
+          position: -webkit-sticky;
+          position: sticky;
+          top: 76px;
+          display: grid;
+          height: calc(100vh - 76px);
+          height: calc(100svh - 76px);
+          /* Track the *dynamic* viewport. Sized in svh the panel stays as tall
+             as the smallest viewport, so collapsing the iOS toolbar exposed a
+             dead band below the caption. dvh keeps the panel exactly as tall as
+             what the visitor can actually see. */
+          height: calc(100dvh - 76px);
+          grid-template-columns: 1fr;
+          /* List block on top at its own height, artwork takes the rest. Both
+             are constant because the list always carries all six rows. */
+          grid-template-rows: max-content minmax(0, 1fr);
+          overflow: hidden;
+          background: #080a0b;
+        }
+        .disciplines > .disciplines-pin::after,
+        .is-safari .disciplines > .disciplines-pin::after {
+          display: none;
+          content: none;
+        }
+        /* The artwork owns the second grid row outright, so it starts below the
+           list rather than behind it. */
+        .discipline-media,
+        .is-safari .discipline-media {
+          position: relative;
+          inset: auto;
+          display: block;
+          height: 100%;
+          min-height: 0;
+          overflow: hidden;
+          contain: none;
+          isolation: auto;
+          background: #080a0b;
+        }
+        .discipline-media::before,
+        .is-safari .discipline-media::before {
+          display: none;
+        }
+        .discipline-media img,
+        .is-safari .discipline-media img {
+          position: absolute;
+          inset: 0;
+          display: block;
+          width: 100%;
+          height: 100%;
+          max-width: none;
+          max-height: none;
+          margin: 0;
+          object-fit: cover;
+          object-position: center;
+        }
+        /* No scrim on the media box: sized as a percentage of it, the fade
+           shrank with the image and left the kicker stranded on bright artwork
+           at short viewport heights. The caption carries its own instead, so it
+           is always exactly as tall as the text it has to cover. */
+        .discipline-media:after,
+        .is-safari .discipline-media:after {
+          display: none;
+          content: none;
+        }
+        .media-caption {
+          position: absolute;
+          z-index: 4;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          width: 100%;
+          min-height: 0;
+          padding: 12px 16px 20px;
+          background: transparent;
+          text-shadow: none;
+        }
+        /* Scrim tied to the caption box, with an overshoot for the fade tail —
+           it scales with the copy rather than with the image. */
+        .media-caption::before {
+          content: "";
+          position: absolute;
+          z-index: -1;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          top: -58px;
+          background: linear-gradient(
+            0deg,
+            rgba(8, 10, 11, .96) 0%,
+            rgba(8, 10, 11, .9) 58%,
+            rgba(8, 10, 11, 0) 100%
+          );
+          pointer-events: none;
+        }
+        /* Solid plate above the artwork — no scrim needed, nothing overlaps. */
+        .discipline-list,
+        .is-safari .discipline-list {
+          position: relative;
+          z-index: 3;
+          display: block;
+          padding: 14px 16px 10px;
+          background: #0b0e10;
+        }
+        .safari-disciplines-flow {
+          display: none;
+        }
+        /* Let the real next section occupy any unused part of the final
+           discipline viewport. The value is measured from the live sticky
+           composition, so short images do not leave a black artificial gap. */
+        .traceability {
+          position: relative;
+          z-index: 4;
+          margin-top: calc(-1 * var(--mobile-discipline-tail-gap, 0px));
+        }
+        .trace-copy {
+          justify-content: flex-start;
+          padding: 14px 16px 48px;
+        }
+      }
+    </style>
+    <link rel="stylesheet" href="/website1/index-chrome.css" />
+  </head>
+  <body id="top">
+    <div class="boot" data-boot data-page-loader aria-label="Loading Anika Sterilis">
+      <div class="boot-grid"></div>
+      <div class="boot-scan"></div>
+      <div class="boot-brand">
+        <img src="https://ik.imagekit.io/d9wt8plt0/logo.png?updatedAt=1726730990831" alt="" />
+        <div><b>ANIKA STERILIS</b><span>ADVANCED ACTIVE CHEMICAL THREAT SCANNING</span></div>
+      </div>
+      <div class="boot-center">
+        <div class="boot-coordinates"><span>17.6868° N</span><i></i><span>83.2185° E</span></div>
+        <div class="boot-word" data-word="AACTS">AACTS</div>
+        <div class="boot-system"><span>ADVANCED ACTIVE</span><b>CHEMICAL THREAT SCANNING</b><span>SYSTEM / 3000</span></div>
+      </div>
+      <p class="boot-status" data-boot-status>CALIBRATING DETECTION ENVIRONMENT</p>
+      <div class="boot-progress"><span>LOADING EXPERIENCE</span><i><b data-boot-bar></b></i><strong data-boot-count>000</strong></div>
+    </div>
+    <div class="cursor" data-site-cursor aria-hidden="true"><i></i><b></b></div>
+    <div class="cursor-dot" data-site-cursor-dot aria-hidden="true"></div>
+    <header class="index-header">
+      <a class="brand" href="/website1/index.html">
+        <img src="https://ik.imagekit.io/d9wt8plt0/logo.png?updatedAt=1726730990831" alt="Anika Sterilis corporate logo" />
+        <span><b>ANIKA STERILIS</b><small>PRIVATE LIMITED</small></span>
+      </a>
+      <nav>
+        <a href="/website1/index.html">Platform</a>
+        <a class="is-active" href="/website1/capability.html" aria-current="page">Capabilities</a>
+        <a href="/website1/solutions">Solutions</a>
+        <a href="/website1/about">About us</a>
+      </nav>
+      <a class="contact" href="/website1/contact">Contact <span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M8 7h9v9" /></svg></span></a>
+      <button
+        class="mnav-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="mobile-site-navigation"
+        data-mnav-toggle
+      >
+        <span>Menu</span><i aria-hidden="true"><b></b><b></b></i>
+      </button>
+      <div class="mnav-panel" id="mobile-site-navigation" data-mnav-panel>
+        <span>Site navigation / 05</span>
+        <nav>
+          <a href="/website1/index.html"><b>01</b>Platform</a
+          ><a class="is-active" href="/website1/capability.html"><b>02</b>Capabilities</a
+          ><a href="/website1/solutions"><b>03</b>Solutions</a
+          ><a href="/website1/about"><b>04</b>About Us</a
+          ><a href="/website1/contact"><b>05</b>Contact</a>
+        </nav>
+      </div>
+      <div class="page-completion" aria-hidden="true"><i></i></div>
+    </header>
+
+    <main>
+      <section class="cap-hero">
+        <div class="hero-copy">
+          <span class="eyebrow">Engineering &amp; manufacturing capability</span>
+          <h1 data-reveal>
+            Innovation to<br />manufacturing.<br /><em>Under one roof.</em>
+          </h1>
+          <p class="copy">
+            Anika Sterilis combines patented technology, product engineering,
+            precision manufacturing, in-house integration, stage-wise
+            traceability and rigorous verification to build trusted threat
+            detection systems from the ground up.
+          </p>
+          <a class="link-line" href="#disciplines">Explore our capability <b>→</b></a>
+        </div>
+        <div class="hero-visual">
+          <figure class="hero-shot">
+            <img src="https://ik.imagekit.io/petdz32jy/public/Manu.jpg?updatedAt=1727247148793" alt="Anika Sterilis CNC manufacturing team" />
+            <span>Precision manufacturing</span>
+          </figure>
+          <figure class="hero-shot">
+            <img src="https://ik.imagekit.io/petdz32jy/public/Proddev.jpg?updatedAt=1727247148767" alt="Anika Sterilis product engineering" />
+            <span>Product engineering</span>
+          </figure>
+          <figure class="hero-shot">
+            <img src="https://ik.imagekit.io/jxuol7kjt/WhatsApp%20Image%202026-07-23%20at%2012.20.38%20PM.jpeg" alt="Anika Sterilis assembly team" />
+            <span>In-house integration</span>
+          </figure>
+          <div class="hero-facility"><b>123K</b>sq.ft manufacturing capability<br />AMTZ Visakhapatnam</div>
+        </div>
+      </section>
+
+      <section class="proof-strip" aria-label="Capability proof">
+        <article><b>100%</b><span>Indigenous IP<br />end-to-end ownership</span></article>
+        <article><b>123,842</b><span>Square-foot<br />manufacturing facility</span></article>
+        <article><b>AERB</b><span>Certified systems<br />regulated operation</span></article>
+        <article><b>DIPP13936</b><span>Make in India<br />registered company</span></article>
+      </section>
+
+      <section class="cap-intro">
+        <b class="intro-index">01</b>
+        <div class="intro-main">
+          <span class="eyebrow">The capability behind the system</span>
+          <h2 data-reveal>
+            We do not simply assemble products. We control the journey from
+            <em>idea to verified system.</em>
+          </h2>
+          <div class="intro-note">
+            <b>ONE ROOF</b>
+            <p class="copy">
+              Engineering, machining, fabrication, assembly, quality control,
+              validation and documentation operate as one connected capability.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="disciplines" id="disciplines">
+        <div class="disciplines-pin">
+          <div class="discipline-list">
+            <span class="eyebrow">02 / Six disciplines</span>
+            <h2 data-reveal>Capability,<br />made visible.</h2>
+            <button class="is-active" data-cap="0"><b>01</b><span>Product design &amp; engineering</span><i>→</i></button>
+            <button data-cap="1"><b>02</b><span>Patented core technology</span><i>→</i></button>
+            <button data-cap="2"><b>03</b><span>Advanced manufacturing</span><i>→</i></button>
+            <button data-cap="3"><b>04</b><span>Precision machining</span><i>→</i></button>
+            <button data-cap="4"><b>05</b><span>In-house integration</span><i>→</i></button>
+            <button data-cap="5"><b>06</b><span>Quality &amp; final verification</span><i>→</i></button>
+          </div>
+          <div class="discipline-media">
+            <img data-cap-image src="https://ik.imagekit.io/d9wt8plt0/20240927_130922.jpg?updatedAt=1727427867752&amp;tr=w-1800,q-82,f-auto" alt="" />
+            <div class="media-caption">
+              <small data-cap-kicker>ENGINEERING / 01</small>
+              <h3 data-cap-title>Systems begin as engineered intent.</h3>
+              <p data-cap-copy>
+                Mechanical design, system architecture and prototyping are
+                developed internally around operational requirements.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="safari-disciplines-flow" aria-label="Six capability disciplines"></div>
+      </section>
+
+      <section class="traceability" data-cursor-contrast>
+        <div class="trace-copy">
+          <span class="eyebrow">04 / Manufacturing intelligence</span>
+          <h2 data-reveal>Every stage<br />leaves a<br />record.</h2>
+          <p class="copy">
+            In-house digital systems support stage-wise production recording,
+            quality documentation and workflow visibility—creating consistency,
+            accountability and traceability across the build.
+          </p>
+        </div>
+        <div class="trace-records">
+          <article class="record">
+            <div class="record-head"><span>WORK ORDER / ENG-041</span><b>VERIFIED</b></div>
+            <h3>Engineering release</h3>
+            <p>Drawing revision, material callout and process route recorded.</p>
+            <div class="record-foot"><i></i><i></i><i></i><i></i><i></i></div>
+          </article>
+          <article class="record">
+            <div class="record-head"><span>STAGE / MFG-118</span><b>RECORDED</b></div>
+            <h3>Manufacturing history</h3>
+            <p>Component preparation and production stage linked to the system build.</p>
+            <div class="record-foot"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          </article>
+          <article class="record">
+            <div class="record-head"><span>QUALITY / VAL-007</span><b>RELEASED</b></div>
+            <h3>Final validation</h3>
+            <p>Inspection state and verification outcome preserved for accountability.</p>
+            <div class="record-foot"><i></i><i></i><i></i><i></i></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="quality">
+        <div class="quality-head">
+          <div>
+            <span class="eyebrow">05 / Quality discipline</span>
+            <h2 data-reveal>Verified before<br /><em>deployment.</em></h2>
+          </div>
+          <p class="copy">
+            Quality is not a final inspection added at the end. It is a
+            stage-wise discipline carried through the complete manufacturing
+            and integration process.
+          </p>
+        </div>
+        <div class="quality-grid">
+          <article><b>01</b><h3>Incoming control</h3><p>Materials and prepared components enter the build through defined checks.</p></article>
+          <article><b>02</b><h3>Process inspection</h3><p>Critical work is reviewed at the stage where quality can be controlled.</p></article>
+          <article><b>03</b><h3>System verification</h3><p>Integrated assemblies are checked for functional and operational readiness.</p></article>
+          <article><b>04</b><h3>Documented release</h3><p>Final validation and quality records support a controlled deployment decision.</p></article>
+        </div>
+      </section>
+
+      <section class="closing">
+        <div class="closing-copy">
+          <span class="eyebrow">Anika Sterilis / Capability</span>
+          <h2 data-reveal>
+            Built with precision.<br />Verified with discipline.<br /><em>Powered by innovation.</em>
+          </h2>
+          <a class="link-line" href="/website1/contact">Discuss your requirement <b>→</b></a>
+        </div>
+        <div class="closing-mark" aria-label="AACTS — Advanced Active Chemical Threat Scanning">
+          <img class="closing-logo" src="https://ik.imagekit.io/jxuol7kjt/orangeround-removebg-preview.png" alt="AACTS emblem" />
+          <div class="aacts-stack">
+            <span class="aacts-word"><span class="aacts-ini">A</span><span class="aacts-rest">dvanced</span></span>
+            <span class="aacts-word"><span class="aacts-ini">A</span><span class="aacts-rest">ctive</span></span>
+            <span class="aacts-word"><span class="aacts-ini">C</span><span class="aacts-rest">hemical</span></span>
+            <span class="aacts-word aacts-word--fill"><span class="aacts-ini">T</span><span class="aacts-rest">hreat</span></span>
+            <span class="aacts-word"><span class="aacts-ini">S</span><span class="aacts-rest">canning</span></span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" id="footer" data-footer>
+      <div class="footer-grid" aria-hidden="true"></div>
+      <div class="footer-top">
+        <a class="footer-brand" href="#top" aria-label="Back to top">
+          <span class="footer-logo"><img src="https://ik.imagekit.io/d9wt8plt0/logo.png?updatedAt=1726730990831" alt="Anika Sterilis" /><i></i></span>
+          <span><b>ANIKA STERILIS</b><small>PRIVATE LIMITED</small></span>
+        </a>
+        <div class="footer-status"><i></i><span>AACTS® PLATFORM / OPERATIONAL</span></div>
+        <a class="footer-toplink" href="#top">Return to top <b>↑</b></a>
+      </div>
+      <div class="footer-main">
+        <div class="footer-statement">
+          <span>CHEMICAL INTELLIGENCE / INDIA</span>
+          <h2>Make the invisible<br /><em>actionable.</em></h2>
+          <p>Advanced Active Chemical Threat Scanning systems engineered for security environments where every trace matters.</p>
+          <a href="/website1/contact">Start a conversation <b>↗</b></a>
+        </div>
+        <div class="footer-seal" aria-label="Anika Sterilis identity">
+          <span>ANIKA STERILIS / PRIVATE LIMITED</span>
+          <div><i></i><img src="https://ik.imagekit.io/d9wt8plt0/logo.png?updatedAt=1726730990831" alt="Anika Sterilis" /></div>
+          <small>PATENTED DETECTION PLATFORM / 3000</small>
+        </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <div><span>Platform</span><a href="/website1/solutions">AACTS® 3000</a><a href="/website1/index.html#products">Product platform</a><a href="/website1/capability.html">Capabilities</a><a href="/website1/index.html#applications">Applications</a></div>
+          <div><span>Company</span><a href="/website1/about">About us</a><a href="/website1/solutions">Solutions</a><a href="/website1/contact">Contact</a></div>
+          <div><span>Legal</span><a href="/website1/privacy">Privacy</a><a href="/website1/terms">Terms</a></div>
+        </nav>
+      </div>
+      <div class="footer-wordmark" aria-hidden="true">ANIKA <em>STERILIS</em></div>
+      <div class="footer-bottom">
+        <span>© 2026 ANIKA STERILIS PRIVATE LIMITED</span>
+        <span>ADVANCED ACTIVE CHEMICAL THREAT SCANNING</span>
+        <span>LOCAL TIME <b data-footer-time>--:-- IST</b></span>
+      </div>
+    </footer>
+
+    <script src="/website1/page-transition.js"></script>
+    <script src="/website1/site-crosshair.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.8/dist/lenis.min.js"></script>
+    <script>
+      gsap.registerPlugin(ScrollTrigger, SplitText);
+      const lenis = new Lenis({
+        lerp: isSafariBrowser ? 1 : .085,
+        smoothWheel: !isSafariBrowser,
+        wheelMultiplier: .85,
+      });
+      lenis.on("scroll", ScrollTrigger.update);
+      gsap.ticker.add((time) => lenis.raf(time * 1000));
+      gsap.ticker.lagSmoothing(0);
+      lenis.on("scroll", ({ progress }) =>
+        gsap.set(".page-completion i", { scaleX: progress }),
+      );
+      const footerTime = document.querySelector("[data-footer-time]");
+      const updateFooterTime = () => {
+        const value = new Intl.DateTimeFormat("en-GB", {
+          timeZone: "Asia/Kolkata",
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
+        }).format(new Date());
+        if (footerTime) footerTime.textContent = `${value} IST`;
+      };
+      let footerTimer = 0;
+      const syncFooterClock = () => {
+        clearInterval(footerTimer);
+        footerTimer = 0;
+        if (document.hidden) return;
+        updateFooterTime();
+        footerTimer = setInterval(updateFooterTime, 30000);
+      };
+      syncFooterClock();
+      document.addEventListener("visibilitychange", syncFooterClock);
+
+      // Mobile navigation: toggle the dropdown panel that replaces the desktop nav.
+      const mnavToggle = document.querySelector("[data-mnav-toggle]"),
+        mnavPanel = document.querySelector("[data-mnav-panel]");
+      if (mnavToggle && mnavPanel) {
+        const closeMnav = () => {
+          mnavToggle.setAttribute("aria-expanded", "false");
+          mnavPanel.classList.remove("is-open");
+        };
+        mnavToggle.addEventListener("click", () => {
+          const open = mnavToggle.getAttribute("aria-expanded") === "true";
+          mnavToggle.setAttribute("aria-expanded", String(!open));
+          mnavPanel.classList.toggle("is-open", !open);
+        });
+        mnavPanel.addEventListener("click", (event) => {
+          if (event.target.closest("a")) closeMnav();
+        });
+        document.addEventListener("click", (event) => {
+          if (
+            mnavPanel.classList.contains("is-open") &&
+            !event.target.closest("[data-mnav-panel]") &&
+            !event.target.closest("[data-mnav-toggle]")
+          )
+            closeMnav();
+        });
+      }
+
+      document.querySelectorAll("[data-reveal]").forEach((heading) => {
+        const split = new SplitText(heading, {
+          type: "words,lines",
+          linesClass: "word-line",
+        });
+        gsap.from(split.words, {
+          scrollTrigger: { trigger: heading, start: "top 84%", once: true },
+          yPercent: 65,
+          opacity: 0,
+          color: "#ff7a00",
+          duration: .55,
+          stagger: .085,
+          ease: "power3.out",
+        });
+      });
+
+      gsap.from(".hero-shot", {
+        clipPath: "inset(100% 0 0 0)",
+        yPercent: 8,
+        duration: 1.15,
+        stagger: .13,
+        delay: .2,
+        ease: "power4.inOut",
+      });
+      gsap.from(".hero-copy .copy,.hero-copy .link-line", {
+        opacity: 0,
+        y: 24,
+        duration: .7,
+        stagger: .12,
+        delay: .75,
+      });
+
+      const capData = [
+        {
+          image: "https://ik.imagekit.io/d9wt8plt0/20240927_130922.jpg?updatedAt=1727427867752",
+          // mobileImage is used only below 600px; desktop keeps the photography.
+          mobileImage: "https://ik.imagekit.io/r3f301602/01.png",
+          kicker: "ENGINEERING / 01",
+          title: "Systems begin as engineered intent.",
+          copy: "Mechanical design, system architecture and prototyping are developed internally around operational requirements.",
+        },
+        {
+          image: "https://ik.imagekit.io/d9wt8plt0/ChatGPT%20Image%20Jul%2023,%202026,%2002_53_41%20PM.png",
+          mobileImage: "https://ik.imagekit.io/r3f301602/02.png",
+          kicker: "PROPRIETARY TECHNOLOGY / 02",
+          title: "Innovation owned at the core.",
+          copy: "Patented technology and proprietary know-how form the foundation for technology-led product development.",
+        },
+        {
+          image: "https://ik.imagekit.io/jxuol7kjt/ChatGPT%20Image%20Jul%2022,%202026,%2003_00_30%20PM.png?updatedAt=1784712650437",
+          mobileImage: "https://ik.imagekit.io/r3f301602/03.png",
+          kicker: "INFRASTRUCTURE / 03",
+          title: "Engineering moves into controlled production.",
+          copy: "Modern manufacturing infrastructure supports repeatable production inside a dedicated facility.",
+        },
+        {
+          image: "https://ik.imagekit.io/jxuol7kjt/WhatsApp%20Image%202026-07-23%20at%2012.46.46%20PM.jpeg?updatedAt=1784791118105",
+          mobileImage: "https://ik.imagekit.io/r3f301602/04%20(2).png",
+          kicker: "MACHINING / 04",
+          title: "Precision is made, not assumed.",
+          copy: "High-tolerance component preparation and machining support the mechanical integrity of each system.",
+        },
+        {
+          image: "https://ik.imagekit.io/jxuol7kjt/WhatsApp%20Image%202026-07-23%20at%2012.20.38%20PM.jpeg",
+          mobileImage: "https://ik.imagekit.io/r3f301602/05.png",
+          kicker: "INTEGRATION / 05",
+          title: "Modules become one accountable system.",
+          copy: "Sub-assemblies, wiring and final integration are completed through a controlled internal build process.",
+        },
+        {
+          image: "https://ik.imagekit.io/d9wt8plt0/20240927_132814_486.jpg?updatedAt=1727424222357",
+          mobileImage: "https://ik.imagekit.io/r3f301602/06.png",
+          kicker: "QUALITY / 06",
+          title: "Every unit earns its release.",
+          copy: "Stage-wise inspection, functional verification and documented validation precede deployment.",
+        },
+      ];
+      const capSection = document.getElementById("disciplines");
+      const mobileDisciplineFlow = document.querySelector(".safari-disciplines-flow");
+      const useMobileDisciplineFlow = false;
+      if (mobileDisciplineFlow && useMobileDisciplineFlow) {
+        mobileDisciplineFlow.innerHTML = capData.map((item, index) => `
+          <article class="mobile-discipline-step" data-mobile-cap="${index}">
+            <div class="mobile-discipline-step__head">
+              ${index === 0 ? '<span class="eyebrow">02 / Six disciplines</span><h2>Capability,<br>made visible.</h2>' : ''}
+              ${[item].map(() => `
+                <div class="mobile-discipline-step__button is-active">
+                  <b>${String(index + 1).padStart(2, '0')}</b>
+                  <span>${['Product design &amp; engineering','Patented core technology','Advanced manufacturing','Precision machining','In-house integration','Quality &amp; final verification'][index]}</span>
+                  <i>→</i>
+                </div>`).join('')}
+            </div>
+            <div class="mobile-discipline-step__media">
+              <img src="${item.image}" alt="" loading="${index < 2 ? 'eager' : 'lazy'}" decoding="async">
+              <div class="mobile-discipline-step__caption">
+                <small>${item.kicker}</small>
+                <h3>${item.title}</h3>
+                <p>${item.copy}</p>
+              </div>
+            </div>
+          </article>`).join('');
+
+        gsap.utils.toArray(".mobile-discipline-step").forEach((step) => {
+          gsap.fromTo(
+            step.querySelector(".mobile-discipline-step__media"),
+            { opacity: .45, y: 24 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: .65,
+              ease: "power2.out",
+              scrollTrigger: { trigger: step, start: "top 82%" },
+            },
+          );
+        });
+      }
+      const capButtons = [...document.querySelectorAll("[data-cap]")];
+      const capImage = document.querySelector("[data-cap-image]");
+      const capMedia = document.querySelector(".discipline-media");
+      const usePhoneCapabilityImage = matchMedia("(max-width: 600px)").matches;
+      if (capImage && usePhoneCapabilityImage && capData[0].mobileImage) {
+        capImage.src = capData[0].mobileImage;
+      }
+      if (capMedia && capImage) {
+        capMedia.style.setProperty(
+          "--discipline-image",
+          `url("${capImage.currentSrc || capImage.src}")`,
+        );
+      }
+      const capKicker = document.querySelector("[data-cap-kicker]");
+      const capTitle = document.querySelector("[data-cap-title]");
+      const capCopy = document.querySelector("[data-cap-copy]");
+      /* The phone artwork fills the pinned panel edge to edge in CSS, so there
+         is no card to measure and no leftover height to redistribute. Every step
+         shows the same frame at the same size by construction. */
+      const capabilityImageUrl = (image) => {
+        if (!isSafariBrowser) return image;
+        return `${image}${image.includes("?") ? "&" : "?"}tr=w-1800,q-82,f-auto`;
+      };
+      const capImageLoads = capData.map(({ image, mobileImage }) => {
+        const selectedImage = usePhoneCapabilityImage && mobileImage ? mobileImage : image;
+        const preload = new Image();
+        preload.decoding = "async";
+        preload.src = capabilityImageUrl(selectedImage);
+        return new Promise((resolve) => {
+          const ready = () => {
+            const decoded = preload.decode ? preload.decode().catch(() => {}) : Promise.resolve();
+            decoded.finally(() => resolve(preload.src));
+          };
+          if (preload.complete && preload.naturalWidth) ready();
+          else {
+            preload.addEventListener("load", ready, { once: true });
+            preload.addEventListener("error", () => resolve(selectedImage), { once: true });
+          }
+        });
+      });
+      let activeCap = 0;
+      capButtons.forEach((button, index) =>
+        button.classList.toggle("is-reached", index === 0),
+      );
+      let capRequest = 0;
+      function showCapability(index, immediate) {
+        capButtons.forEach((button, i) => {
+          button.classList.toggle("is-active", i === index);
+          button.classList.toggle("is-reached", i <= index);
+        });
+        const data = capData[index];
+        const request = ++capRequest;
+        gsap.killTweensOf([capImage, capKicker, capTitle, capCopy]);
+        capKicker.textContent = data.kicker;
+        capTitle.textContent = data.title;
+        capCopy.textContent = data.copy;
+        gsap.set([capKicker, capTitle, capCopy], { opacity: 1, y: 0 });
+        capImageLoads[index].then((source) => {
+          if (request !== capRequest) return;
+          capImage.src = source;
+          capMedia?.style.setProperty("--discipline-image", `url("${source}")`);
+          if (!immediate) {
+            gsap.fromTo(
+              capImage,
+              { opacity: .45, scale: 1.012 },
+              { opacity: 1, scale: 1, duration: .45, ease: "power2.out", overwrite: true },
+            );
+          } else {
+            gsap.set(capImage, { opacity: 1, scale: 1 });
+          }
+        });
+        if (!immediate) {
+          gsap.fromTo(
+            [capKicker, capTitle, capCopy],
+            { opacity: 0, y: 12 },
+            { opacity: 1, y: 0, duration: .38, stagger: .035, ease: "power2.out" },
+          );
+        }
+        activeCap = index;
+      }
+      function updateCapability(index) {
+        if (index !== activeCap) showCapability(index);
+      }
+      const mobileCapabilityScroll = matchMedia(
+        "(max-width: 600px), (max-height: 600px) and (pointer: coarse)",
+      ).matches;
+      if (capSection && (innerWidth > 900 || mobileCapabilityScroll)) {
+        const capSteps = capData.length;
+        const capabilityTrigger = ScrollTrigger.create({
+          trigger: capSection,
+          start: "top top",
+          end: "bottom bottom",
+          onUpdate: ({ progress }) =>
+            updateCapability(Math.min(capSteps - 1, Math.floor(progress * capSteps))),
+          snap: mobileCapabilityScroll ? false : {
+            // Active chapters use floor(progress * 6), so snapping must use
+            // the same six equal intervals. A five-interval snap pulled 06
+            // back into chapter 05 near the end of the sticky range.
+            snapTo: (value) => Math.round(value * capSteps) / capSteps,
+            duration: { min: .18, max: .38 },
+            delay: .06,
+          },
+          invalidateOnRefresh: true,
+        });
+        capButtons.forEach((button, index) =>
+          button.addEventListener("click", () => {
+            const destination =
+              capSection.offsetTop +
+              (capSection.offsetHeight - innerHeight) * (index / (capSteps - 1));
+            lenis.scrollTo(destination, { duration: 1.05 });
+          }),
+        );
+      } else {
+        capButtons.forEach((button, index) => {
+          button.addEventListener("click", () => showCapability(index));
+          button.addEventListener("mouseenter", () => showCapability(index));
+        });
+      }
+
+      const chainSection = document.querySelector("[data-chain]");
+      const chainImages = [...document.querySelectorAll("[data-chain-image]")];
+      const chainNav = [...document.querySelectorAll("[data-chain-nav]")];
+      const chainIndex = document.querySelector("[data-chain-index]");
+      const chainKicker = document.querySelector("[data-chain-kicker]");
+      const chainTitle = document.querySelector("[data-chain-title]");
+      const chainCopy = document.querySelector("[data-chain-copy]");
+      const chainProgress = document.querySelector("[data-chain-progress]");
+      const chainState = document.querySelector("[data-chain-state]");
+      const chainPhoto = document.querySelector("[data-chain-photo]");
+      const chainData = [
+        ["ORIGIN / R&D", "Innovation", "Detection physics, operational requirements and proprietary ideas are translated into a viable system direction.", "IDEA → SYSTEM INTENT"],
+        ["ENGINEERING / CAD", "Design", "Mechanical architecture, interfaces and precision components are resolved before controlled production begins.", "INTENT → ENGINEERED DEFINITION"],
+        ["PRODUCTION / CNC", "Machining", "Critical metal components are produced to controlled tolerances for repeatable mechanical and analytical performance.", "DEFINITION → PRECISION COMPONENT"],
+        ["ENCLOSURE / FORMING", "Fabrication", "Protective structures and system panels are formed into robust, production-ready assemblies.", "MATERIAL → CONTROLLED FORM"],
+        ["SYSTEM / INTEGRATION", "Assembly", "Electronics, sampling paths, analytical modules and harnesses are integrated as one accountable system.", "MODULES → INTEGRATED SYSTEM"],
+        ["METROLOGY / QA", "Quality", "Dimensions, interfaces and build states are inspected where quality can still be controlled.", "BUILD → VERIFIED CONFORMANCE"],
+        ["PERFORMANCE / TEST", "Validation", "The completed system is tested against defined functional and operational acceptance criteria.", "SYSTEM → VALIDATED PERFORMANCE"],
+        ["RECORD / RELEASE", "Documented release", "Configuration, inspection state and release evidence are preserved before the system leaves controlled production.", "VALIDATION → CONTROLLED RELEASE"],
+      ];
+      let activeChain = 0;
+      function showChain(index) {
+        if (index === activeChain && chainImages[index].classList.contains("is-active")) return;
+        const previous = chainImages[activeChain];
+        const next = chainImages[index];
+        gsap.killTweensOf([...chainImages, chainTitle, chainCopy, chainKicker]);
+        chainImages.forEach((image, imageIndex) => {
+          if (imageIndex !== activeChain && imageIndex !== index) {
+            image.classList.remove("is-active");
+            gsap.set(image, { autoAlpha: 0, clearProps: "clipPath,transform" });
+          }
+        });
+        next.classList.add("is-active");
+        gsap.set(next, { zIndex: 2 });
+        gsap.fromTo(
+          next,
+          { autoAlpha: 1, clipPath: "inset(100% 0 0 0)", scale: 1.045 },
+          { clipPath: "inset(0% 0 0 0)", scale: 1, duration: .72, ease: "power3.inOut" },
+        );
+        if (previous && previous !== next) {
+          gsap.to(previous, {
+            autoAlpha: 0,
+            scale: .985,
+            duration: .38,
+            onComplete: () => previous.classList.remove("is-active"),
+          });
+        }
+        const data = chainData[index];
+        gsap.to([chainKicker, chainTitle, chainCopy, chainState], {
+          opacity: 0,
+          y: -12,
+          duration: .18,
+          onComplete: () => {
+            chainKicker.textContent = data[0];
+            chainTitle.textContent = data[1];
+            chainCopy.textContent = data[2];
+            chainState.textContent = data[3];
+            gsap.fromTo(
+              [chainKicker, chainTitle, chainCopy, chainState],
+              { opacity: 0, y: 14 },
+              { opacity: 1, y: 0, duration: .38, stagger: .035 },
+            );
+          },
+        });
+        chainIndex.textContent = String(index + 1).padStart(2, "0");
+        chainPhoto.textContent = `${String(index + 1).padStart(2, "0")} / ${data[1].toUpperCase()}`;
+        gsap.to(chainProgress, { scaleX: (index + 1) / 8, duration: .45 });
+        chainNav.forEach((button, buttonIndex) =>
+          button.classList.toggle("is-active", buttonIndex === index),
+        );
+        activeChain = index;
+      }
+      if (chainSection && innerWidth > 900) {
+        ScrollTrigger.create({
+          trigger: chainSection,
+          start: "top top",
+          end: "bottom bottom",
+          onUpdate: ({ progress }) =>
+            showChain(Math.min(7, Math.floor(progress * 8))),
+          snap: {
+            snapTo: (value) => Math.round(value * 7) / 7,
+            duration: { min: .18, max: .38 },
+            delay: .06,
+          },
+        });
+        chainNav.forEach((button, index) =>
+          button.addEventListener("click", () => {
+            const destination =
+              chainSection.offsetTop +
+              (chainSection.offsetHeight - innerHeight) * (index / 7);
+            lenis.scrollTo(destination, { duration: 1.05 });
+          }),
+        );
+      }
+
+      gsap.from(".facility-grid figure", {
+        scrollTrigger: { trigger: ".facility-grid", start: "top 78%" },
+        clipPath: "inset(0 0 100% 0)",
+        y: 40,
+        duration: 1,
+        stagger: .14,
+        ease: "power4.inOut",
+      });
+      gsap.from(".record", {
+        scrollTrigger: { trigger: ".trace-records", start: "top 72%" },
+        xPercent: 35,
+        y: 55,
+        opacity: 0,
+        rotate: 4,
+        duration: .95,
+        stagger: .16,
+        ease: "power3.out",
+      });
+      gsap.from(".quality-grid article", {
+        scrollTrigger: { trigger: ".quality-grid", start: "top 78%" },
+        y: 45,
+        opacity: 0,
+        duration: .65,
+        stagger: .1,
+      });
+      document.querySelectorAll('a[href^="#"]').forEach((link) =>
+        link.addEventListener("click", (event) => {
+          event.preventDefault();
+          lenis.scrollTo(link.getAttribute("href"), { duration: 1.25 });
+        }),
+      );
+    </script>
+  </body>
+</html>

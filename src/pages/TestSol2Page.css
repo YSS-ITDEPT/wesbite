@@ -1,0 +1,294 @@
+.sol2 {
+  --sol2-orange: #ff7200;
+  --sol2-ink: #06090b;
+  --sol2-line: rgba(228, 235, 238, .16);
+  overflow-x: clip;
+  overflow-y: visible;
+  background: #080b0d;
+  color: #f2f5f6;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.sol2 *, .sol2 *::before, .sol2 *::after { box-sizing: border-box; }
+.sol2-kicker { margin: 0; color: var(--sol2-orange); font: 700 9px/1.3 "Roboto Mono", monospace; letter-spacing: .17em; text-transform: uppercase; }
+
+.sol2-intro {
+  min-height: 100svh;
+  padding: clamp(118px, 17svh, 170px) 20px 44px;
+  background:
+    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px),
+    #080b0d;
+  background-size: 64px 64px;
+}
+.sol2-intro__meta { display: flex; justify-content: space-between; margin-bottom: 17svh; color: #798187; font: 600 8px "Roboto Mono", monospace; letter-spacing: .12em; text-transform: uppercase; }
+.sol2-intro__meta b { color: #c9ced0; font-weight: 600; }
+.sol2-intro h1 { max-width: 620px; margin: 16px 0 28px; font-size: clamp(45px, 13.5vw, 76px); font-weight: 500; line-height: .89; letter-spacing: -.075em; }
+.sol2-intro h1 em, .sol2-outro h2 em { color: var(--sol2-orange); font-style: normal; }
+.sol2-intro__copy { max-width: 560px; margin: 0 0 44px; color: #a7afb3; font-size: 15px; line-height: 1.58; }
+.sol2-index { border-top: 1px solid var(--sol2-line); }
+.sol2-index a { display: grid; grid-template-columns: 34px 1fr; gap: 10px; padding: 14px 0; border-bottom: 1px solid var(--sol2-line); color: #aab1b5; text-decoration: none; }
+.sol2-index b { color: var(--sol2-orange); font: 700 9px "Roboto Mono", monospace; }
+.sol2-index span { font-size: 14px; }
+
+.sol2-product { position: relative; scroll-margin-top: 72px; padding: 54px 20px 72px; border-top: 1px solid var(--sol2-line); background: #080b0d; opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.75,.2,1); }
+.sol2-product.is-visible { opacity: 1; transform: none; }
+.sol2-product:nth-child(even) { background: #0d1012; }
+.sol2-product__scene { position: relative; }
+.sol2-product__progress { display: none; }
+.sol2-product__index { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 11px; margin-bottom: 34px; color: var(--sol2-orange); font: 700 9px "Roboto Mono", monospace; letter-spacing: .12em; }
+.sol2-product__index i { height: 1px; background: linear-gradient(90deg, var(--sol2-orange), rgba(255,114,0,.08)); }
+.sol2-product__index small { color: #697176; font: inherit; }
+.sol2-product__copy h2 { margin: 13px 0 6px; font-size: clamp(37px, 11vw, 58px); font-weight: 500; line-height: .92; letter-spacing: -.065em; }
+.sol2-product__copy h3 { max-width: 540px; margin: 0 0 24px; color: #d8dddf; font-size: clamp(21px, 6.3vw, 30px); font-weight: 500; line-height: 1.05; letter-spacing: -.035em; }
+.sol2-product__description { max-width: 590px; margin: 0; color: #969fa4; font-size: 14px; line-height: 1.58; }
+.sol2-facts { display: grid; grid-template-columns: repeat(3, 1fr); margin: 32px 0 42px; border-block: 1px solid var(--sol2-line); }
+.sol2-facts div { min-width: 0; padding: 16px 8px 15px 0; border-right: 1px solid var(--sol2-line); }
+.sol2-facts div + div { padding-left: 10px; }
+.sol2-facts div:last-child { border-right: 0; }
+.sol2-facts dt { overflow-wrap: anywhere; color: #f4f7f8; font-size: clamp(16px, 4.5vw, 22px); font-weight: 600; line-height: 1; }
+.sol2-facts dd { margin: 7px 0 0; color: #717a7f; font: 600 7px/1.2 "Roboto Mono", monospace; letter-spacing: .1em; text-transform: uppercase; }
+
+.sol2-study { margin-inline: -20px; }
+.sol2-study__cue { display: none; }
+.sol2-study figure { margin: 0; overflow: hidden; background: #111619; }
+.sol2-study img { display: block; width: 100%; height: 100%; object-fit: cover; filter: saturate(.74) contrast(1.06); transition: filter .35s ease; }
+.sol2-study__primary { --scan-progress: 0; position: relative; aspect-ratio: 16 / 9; border-block: 1px solid rgba(255,114,0,.34); transform: translateZ(0); transform-origin: left center; will-change: clip-path, opacity; }
+.sol2-study__primary img { object-fit: cover; transform-origin: center; will-change: transform; }
+.sol2-study__primary::after { position: absolute; z-index: 8; top: 0; bottom: 0; left: calc(var(--scan-progress) * 100%); width: 1px; content: ""; background: linear-gradient(transparent 4%, rgba(255,114,0,.9) 18%, #fff 50%, rgba(255,114,0,.9) 82%, transparent 96%); box-shadow: 0 0 18px rgba(255,114,0,.72); opacity: calc(1 - var(--scan-progress)); pointer-events: none; }
+.sol2-brand-overlay { position: absolute; z-index: 9; top: 83.3%; left: 90.5%; width: clamp(48px, 14vw, 58px); aspect-ratio: 1; display: grid; place-items: center; border: 1px solid rgba(255,114,0,.26); border-radius: 3px; background: rgba(5,8,10,.94); box-shadow: 0 12px 30px rgba(0,0,0,.48), inset 0 0 0 1px rgba(255,255,255,.035); opacity: 0; transform: translate(-50%, -50%) scale(.72); will-change: transform, opacity; }
+.sol2-brand-overlay::before, .sol2-brand-overlay::after { position: absolute; width: 8px; height: 8px; content: ""; border-color: var(--sol2-orange); }
+.sol2-brand-overlay::before { top: -4px; left: -4px; border-top: 1px solid; border-left: 1px solid; }
+.sol2-brand-overlay::after { right: -4px; bottom: -4px; border-right: 1px solid; border-bottom: 1px solid; }
+.sol2-brand-overlay img { width: 61%; height: 61%; object-fit: contain; transform: none !important; }
+.sol2-image-hud { position: absolute; z-index: 7; top: 11px; right: 12px; display: flex; gap: 10px; align-items: center; padding: 6px 8px; border: 1px solid rgba(255,255,255,.12); background: rgba(5,8,10,.76); color: #8f999e; font: 600 6px "Roboto Mono", monospace; letter-spacing: .12em; text-transform: uppercase; opacity: 0; }
+.sol2-image-hud b { color: var(--sol2-orange); font: inherit; }
+.sol2-study--high-volume .sol2-brand-overlay { top: calc(83.3% - 8px); }
+
+.sol2-specifications { margin: 64px -20px -72px; padding: 48px 20px 62px; border-top: 1px solid var(--sol2-orange); background: #e8ebeb; color: #0a0d0f; }
+.sol2-specifications__lockup { display: grid; grid-template-columns: 34px minmax(0, 1fr) auto; align-items: center; gap: 8px; min-height: 48px; margin: -48px -20px 34px; padding: 0 20px; background: #090c0e; color: #dfe4e6; font-family: "Roboto Mono", monospace; text-transform: uppercase; }
+.sol2-specifications__lockup b { color: var(--sol2-orange); font-size: 9px; letter-spacing: .12em; }
+.sol2-specifications__lockup span { overflow: hidden; font-size: 8px; font-weight: 600; letter-spacing: .1em; text-overflow: ellipsis; white-space: nowrap; }
+.sol2-specifications__lockup i { color: #697277; font-size: 6px; font-style: normal; letter-spacing: .12em; }
+.sol2-specifications header { position: relative; padding-bottom: 28px; border-bottom: 1px solid rgba(10,13,15,.28); }
+.sol2-specifications header .sol2-kicker { color: #b54f00; }
+.sol2-specifications header h3 { max-width: 320px; margin: 14px 0 0; font-size: clamp(31px, 9vw, 48px); font-weight: 500; line-height: .94; letter-spacing: -.055em; }
+.sol2-specifications header > span { position: absolute; right: 0; bottom: 30px; color: #6d7477; font: 600 7px "Roboto Mono", monospace; letter-spacing: .12em; text-transform: uppercase; }
+.sol2-specifications dl { margin: 0; }
+.sol2-specifications dl > div { display: grid; grid-template-columns: minmax(112px, .78fr) minmax(0, 1.22fr); gap: 18px; padding: 17px 0; border-bottom: 1px solid rgba(10,13,15,.2); }
+.sol2-specifications dt { display: grid; grid-template-columns: 24px 1fr; gap: 6px; color: #22282b; font-size: 11px; font-weight: 700; line-height: 1.35; }
+.sol2-specifications dt b { color: #d35c00; font: 700 7px/1.8 "Roboto Mono", monospace; }
+.sol2-specifications dd { margin: 0; color: #525b5f; font-size: 11px; line-height: 1.48; }
+
+.sol2-outro { padding: 88px 20px 96px; background: var(--sol2-orange); color: var(--sol2-ink); }
+.sol2-outro .sol2-kicker { color: var(--sol2-ink); }
+.sol2-outro h2 { margin: 18px 0 54px; font-size: clamp(43px, 12.5vw, 70px); font-weight: 500; line-height: .9; letter-spacing: -.075em; }
+.sol2-outro h2 em { color: #fff; }
+.sol2-outro a { display: flex; justify-content: space-between; padding: 17px 0; border-block: 1px solid rgba(6,9,11,.48); color: inherit; font: 700 10px "Roboto Mono", monospace; letter-spacing: .12em; text-decoration: none; text-transform: uppercase; }
+
+@media (max-width: 700px) {
+  .sol2-product {
+    height: auto;
+    min-height: 0;
+    padding: 0;
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .sol2-product__runway {
+    position: relative;
+    height: 165svh;
+    min-height: 980px;
+  }
+  .sol2-product__scene {
+    position: sticky;
+    top: 72px;
+    height: calc(100vh - 72px);
+    height: calc(100svh - 72px);
+    padding: 22px 20px 0;
+    overflow: hidden;
+    background: inherit;
+    box-shadow: inset -1px 0 rgba(255,114,0,.15);
+  }
+  .sol2-product__progress {
+    position: absolute;
+    z-index: 8;
+    top: 18px;
+    right: 5px;
+    bottom: 18px;
+    display: block;
+    width: 1px;
+    background: rgba(255,255,255,.1);
+  }
+  .sol2-product__progress i {
+    position: absolute;
+    inset: 0;
+    display: block;
+    background: var(--sol2-orange);
+    transform: scaleY(.035);
+    transform-origin: top;
+    will-change: transform;
+  }
+  .sol2-product__index { margin-bottom: 19px; padding-right: 5px; }
+  .sol2-product__index { opacity: 1; transform: none; transition: none; }
+  .sol2-product__copy {
+    position: relative;
+    z-index: 2;
+    opacity: 1;
+    transform: none;
+    transform-origin: left top;
+    transition: none;
+    will-change: transform, opacity;
+  }
+  .sol2-product.is-visible .sol2-product__index,
+  .sol2-product.is-visible .sol2-product__copy {
+    opacity: 1;
+    transform: none;
+  }
+  .sol2-product__copy h2 { margin-top: 10px; font-size: clamp(35px, 10.5vw, 48px); }
+  .sol2-product__copy h3 { margin-bottom: 17px; font-size: clamp(19px, 5.7vw, 26px); }
+  .sol2-product__description { font-size: 12px; line-height: 1.48; }
+  .sol2-facts { margin: 20px 0 0; }
+  .sol2-facts div { padding-top: 12px; padding-bottom: 12px; }
+  .sol2-facts dt { font-size: clamp(15px, 4.4vw, 20px); }
+  .sol2-study {
+    position: absolute;
+    z-index: 4;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: auto;
+    margin: 0;
+    overflow: hidden;
+    background: #070a0c;
+    opacity: 1;
+    transform: translate3d(0, 74%, 0);
+    transition: none;
+    will-change: transform, box-shadow;
+  }
+  .sol2-product.is-visible .sol2-study { opacity: 1; transform: none; }
+  .sol2-study::before {
+    position: absolute;
+    z-index: 6;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 1px;
+    content: "";
+    background: linear-gradient(90deg, transparent, var(--sol2-orange) 28%, var(--sol2-orange) 72%, transparent);
+  }
+  .sol2-study__cue {
+    position: absolute;
+    z-index: 9;
+    right: 16px;
+    bottom: 25px;
+    left: 16px;
+    display: grid;
+    grid-template-columns: 26px 1fr auto;
+    align-items: center;
+    gap: 10px;
+    min-height: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #aeb6ba;
+    font: 600 7px "Roboto Mono", monospace;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    pointer-events: none;
+    will-change: opacity, transform;
+  }
+  .sol2-study__cue i { height: 1px; background: var(--sol2-orange); }
+  .sol2-study__cue b { color: var(--sol2-orange); font-size: 12px; }
+  .sol2-study__primary { height: auto; aspect-ratio: 16 / 9; }
+  .sol2-study__primary {
+    clip-path: none;
+    opacity: 1;
+    transform: none;
+    transform-origin: left center;
+    will-change: transform, opacity;
+  }
+  .sol2-study__primary::before,
+  .sol2-study__primary::after { display: none; }
+  .sol2-study__primary > img {
+    transform: none;
+    transform-origin: center bottom;
+    will-change: transform;
+  }
+  .sol2-brand-overlay {
+    /* The product frames already contain a sparkle in this position. Keep
+       the mobile verification plate opaque from the first painted frame so
+       the source watermark cannot flash during the scroll transition. */
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  .sol2-image-hud { opacity: 0; }
+  .sol2-brand-overlay {
+    /* Keep the verification plate inside the image field when the product
+       dossier rises into view. The offset includes the caption strip and half
+       of the responsive plate, so the two layers never collide. */
+    top: calc(100% - clamp(36px, 11vw, 48px));
+  }
+  .sol2-study--high-volume .sol2-brand-overlay {
+    /* High Volume uses an external caption, but follows the same optical
+       baseline so every product transition feels consistent. */
+    top: calc(100% - clamp(36px, 11vw, 48px));
+  }
+  .sol2-specifications {
+    position: relative;
+    z-index: 10;
+    margin: calc(-1 * var(--spec-lift, 0px)) 0 0;
+    padding: 48px 20px 62px;
+  }
+}
+
+/* iOS Safari: keep the same scroll narrative on compositor-friendly layers.
+   Large animated clip paths, filters and shadows force full-frame repaints on
+   iPhone; these overrides let WebKit move already-composited textures instead. */
+@media (max-width: 700px) {
+  .sol2-ios-motion .sol2-study,
+  .sol2-ios-motion .sol2-product__copy,
+  .sol2-ios-motion .sol2-study__primary,
+  .sol2-ios-motion .sol2-study__primary > img,
+  .sol2-ios-motion .sol2-brand-overlay {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+  }
+  .sol2-ios-motion .sol2-study { box-shadow: none !important; }
+  .sol2-ios-motion .sol2-study__primary {
+    clip-path: none !important;
+    will-change: transform, opacity;
+  }
+  .sol2-ios-motion .sol2-study img {
+    filter: none;
+  }
+  .sol2-ios-motion .sol2-study__primary > img {
+    will-change: transform;
+  }
+  .sol2-ios-motion .sol2-study__primary::after {
+    display: none;
+  }
+}
+
+@media (min-width: 701px) {
+  .sol2-intro, .sol2-product, .sol2-outro { padding-inline: max(7vw, calc((100vw - 980px) / 2)); }
+  .sol2-intro h1 { font-size: clamp(66px, 8vw, 106px); }
+  .sol2-product__scene { display: grid; grid-template-columns: minmax(280px, .78fr) minmax(420px, 1.22fr); column-gap: 6vw; }
+  .sol2-product__index { grid-column: 1 / -1; }
+  .sol2-study { grid-column: 2; grid-row: 2; margin: 0; }
+  .sol2-product__copy { grid-column: 1; grid-row: 2; }
+  .sol2-facts { grid-template-columns: 1fr; }
+  .sol2-facts div { border-right: 0; border-bottom: 1px solid var(--sol2-line); }
+  .sol2-facts div + div { padding-left: 0; }
+  .sol2-facts div:last-child { border-bottom: 0; }
+  .sol2-specifications { margin: 70px 0 -72px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sol2-product { opacity: 1; transform: none; transition: none; }
+  .sol2-study__primary,
+  .sol2-study__primary img { opacity: 1 !important; clip-path: none !important; transform: none !important; }
+  .sol2-study__cue { display: none !important; }
+}

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="color-scheme" content="only light" />
+    <link rel="icon" type="image/jpeg" href="https://ik.imagekit.io/7oaqyvwnm/Untitled%20design%20(5).png?updatedAt=1726408067986" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      /* Safari can restore the previous document's scroll offset after the
+         Solutions markup has started measuring its sticky product runway.
+         Reset before React/CSS paint, then once more at the pageshow boundary.
+         A direct product query is positioned by the mounted desktop/mobile
+         experience, so this entry guard must not reset that deep link. */
+      const hasRequestedProduct = new URLSearchParams(location.search).has('product');
+      if (/\/(?:solutions|sol)\/?$/.test(location.pathname) && !hasRequestedProduct) {
+        if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+        const resetSolutionsEntry = () => scrollTo(0, 0);
+        resetSolutionsEntry();
+        addEventListener('DOMContentLoaded', resetSolutionsEntry, { once: true });
+        addEventListener('pageshow', () => {
+          resetSolutionsEntry();
+          requestAnimationFrame(resetSolutionsEntry);
+          setTimeout(resetSolutionsEntry, 120);
+        }, { once: true });
+      }
+    </script>
+    <style data-critical-loader>
+      html,body{margin:0;min-height:100%;background:#080a0b;color:#f4f6f7}body{overflow-x:hidden}
+      .boot{position:fixed;z-index:10000;inset:0;overflow:hidden;background:#080a0b;color:#f4f6f7;font-family:Arial,sans-serif}
+      .boot-grid{position:absolute;inset:0;opacity:.55;background:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:80px 80px}
+      .boot:before{position:absolute;inset:0;content:"";background:radial-gradient(circle at 50% 50%,rgba(255,122,0,.055),transparent 36%)}
+      .boot-scan{position:absolute;z-index:2;top:0;bottom:0;left:12%;width:1px;background:linear-gradient(transparent,#ff7a00,transparent);box-shadow:0 0 38px rgba(255,122,0,.35);animation:critical-scan var(--boot-duration,1850ms) cubic-bezier(.7,0,.3,1) forwards}
+      .boot-brand{position:absolute;z-index:4;top:34px;left:clamp(24px,3vw,52px);display:flex;gap:12px;align-items:center}.boot-brand img{width:58px;height:58px;object-fit:contain}.boot-brand>div{display:flex;flex-direction:column;gap:4px}.boot-brand b{font-size:13px;letter-spacing:.13em}.boot-brand span{color:#787f83;font-size:6px;letter-spacing:.18em}
+      .boot-center{position:absolute;z-index:3;top:50%;left:50%;width:min(76vw,1120px);text-align:center;transform:translate(-50%,-50%)}.boot-coordinates{display:flex;gap:15px;align-items:center;justify-content:center;color:#6f767a;font:500 7px monospace;letter-spacing:.16em}.boot-coordinates i{width:56px;height:1px;background:#ff7a00}.boot-word{position:relative;margin:28px 0 22px;color:rgba(231,235,238,.035);font:500 clamp(100px,16vw,260px)/.8 Arial,sans-serif;letter-spacing:-.09em}.boot-word:after{position:absolute;inset:0;content:attr(data-word);color:#e7ebee;clip-path:inset(0 100% 0 0);animation:critical-word var(--boot-duration,1850ms) cubic-bezier(.72,0,.2,1) forwards}.boot-system{display:grid;grid-template-columns:1fr auto 1fr;gap:18px;align-items:center;color:#676f73;font:500 7px monospace;letter-spacing:.18em}.boot-system span:first-child{text-align:right}.boot-system span:last-child{text-align:left}.boot-system b{color:#ff7a00;font-size:9px;letter-spacing:.12em}
+      .boot-status{position:absolute;z-index:4;bottom:66px;left:50%;margin:0;color:#767d81;font:500 7px monospace;letter-spacing:.14em;transform:translateX(-50%)}.boot-progress{position:absolute;z-index:4;right:clamp(24px,3vw,52px);bottom:27px;left:clamp(24px,3vw,52px);display:grid;grid-template-columns:auto 1fr 35px;gap:18px;align-items:center;color:#787f83;font:500 7px monospace;letter-spacing:.13em}.boot-progress i{height:1px;background:#292d2f}.boot-progress i b{display:block;width:0;height:100%;background:#ff7a00}.boot-progress strong{color:#f4f6f7;font:500 11px monospace;text-align:right}.boot.is-hidden{display:none}
+      @keyframes critical-scan{0%{left:12%;opacity:0}12%,88%{opacity:1}100%{left:88%;opacity:0}}@keyframes critical-word{to{clip-path:inset(0)}}
+      @media(max-width:800px){.boot-word{font-size:25vw}.boot-system{grid-template-columns:1fr}.boot-system span{display:none}.boot-status{width:100%;text-align:center}.boot-brand img{width:46px;height:46px}.boot-progress{grid-template-columns:1fr 30px}.boot-progress>span{display:none}}
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/index-chrome.css" />
+    <title>Anika Sterilis Private Limited</title>
+  </head>
+  <body>
+    <div class="boot" data-boot data-page-loader aria-label="Loading Anika Sterilis">
+      <div class="boot-grid"></div>
+      <div class="boot-scan"></div>
+      <div class="boot-brand">
+        <img src="https://ik.imagekit.io/d9wt8plt0/logo.png?updatedAt=1726730990831" alt="" />
+        <div><b>ANIKA STERILIS</b><span>ADVANCED ACTIVE CHEMICAL THREAT SCANNING</span></div>
+      </div>
+      <div class="boot-center">
+        <div class="boot-coordinates"><span>17.6868° N</span><i></i><span>83.2185° E</span></div>
+        <div class="boot-word" data-word="AACTS">AACTS</div>
+        <div class="boot-system"><span>ADVANCED ACTIVE</span><b>CHEMICAL THREAT SCANNING</b><span>SYSTEM / 3000</span></div>
+      </div>
+      <p class="boot-status" data-boot-status>CALIBRATING DETECTION ENVIRONMENT</p>
+      <div class="boot-progress"><span>LOADING EXPERIENCE</span><i><b data-boot-bar></b></i><strong data-boot-count>000</strong></div>
+    </div>
+    <div class="cursor" data-site-cursor aria-hidden="true"><i></i><b></b></div>
+    <div class="cursor-dot" data-site-cursor-dot aria-hidden="true"></div>
+    <div id="root"></div>
+    <script src="/page-transition.js"></script>
+    <script src="/site-crosshair.js"></script>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

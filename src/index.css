@@ -1,0 +1,86 @@
+:root {
+  /* Prevent Android auto-dark from remapping the brand orange to red. */
+  color-scheme: only light;
+  forced-color-adjust: none;
+  -webkit-print-color-adjust: exact;
+  --color-ink: #060d14;
+  --color-navy: #0a1622;
+  --color-navy-light: #101f30;
+  --color-cyan: #24e0d8;
+  --color-cyan-dim: #1aa79f;
+  --color-violet: #8b6bff;
+  --color-violet-dim: #6247c9;
+  --color-amber: #f5b942;
+  --color-white: #f4f8fa;
+  --color-mist: #b7c7d1;
+  --color-graphite: #0c141c;
+  --font-body: 'Space Grotesk', 'Archivo', 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+  --font-display: 'Space Grotesk', 'Archivo', 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-body);
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-ink);
+  color: var(--color-white);
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+body,
+button,
+input,
+textarea,
+select,
+a,
+p,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li {
+  font-family: var(--font-body);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+#root {
+  min-height: 100vh;
+  font-family: var(--font-body);
+}

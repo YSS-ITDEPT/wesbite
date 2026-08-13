@@ -1,0 +1,892 @@
+.contact-page {
+  min-height: 100vh;
+  background: #000;
+}
+
+.contact-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: min(78vh, 680px);
+  overflow: hidden;
+  padding: clamp(6.5rem, 12vh, 9rem) clamp(1.5rem, 6vw, 6rem) clamp(3rem, 6vh, 4rem);
+  isolation: isolate;
+}
+
+.contact-hero__image {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center;
+}
+
+.contact-hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    90deg,
+    rgba(8, 6, 18, 0.94) 0%,
+    rgba(8, 6, 18, 0.68) 40%,
+    rgba(8, 6, 18, 0.28) 68%,
+    rgba(8, 6, 18, 0.05) 100%
+  );
+}
+
+.contact-hero__content {
+  position: relative;
+  max-width: 620px;
+  color: #fff;
+}
+
+.contact-hero__kicker {
+  margin: 0 0 clamp(1rem, 2vw, 1.5rem);
+  color: rgba(255, 255, 255, 0.82);
+  font-size: clamp(1.1rem, 2vw, 2.05rem);
+  font-weight: 400;
+  
+}
+
+.contact-hero__heading {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(3rem, 6vw, 5.2rem);
+  font-weight: 300;
+  line-height: 1.08;
+}
+
+.contact-hero__heading span {
+  display: block;
+}
+
+.contact-hero__lead {
+  margin: clamp(1.25rem, 3vh, 2rem) 0 0;
+  width: 1000px;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: clamp(1rem, 1.2vw, 1.2rem);
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+.contact-locations {
+  position: relative;
+  padding: clamp(4rem, 9vh, 6.5rem) clamp(1.5rem, 6vw, 6rem);
+  background: #000;
+}
+
+.contact-locations__header {
+  max-width: 720px;
+  margin: 0 auto clamp(3rem, 7vh, 4.5rem);
+  text-align: center;
+}
+
+.contact-locations__kicker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  margin: 0 0 0.85rem;
+  color: #ff7a00;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.contact-locations__kicker span {
+  width: 1.6rem;
+  height: 1px;
+  background: rgba(255, 122, 0, 0.55);
+}
+
+.contact-locations__title {
+  margin: 0 0 0.9rem;
+  color: #fff;
+  font-size: clamp(2.1rem, 4vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  
+}
+
+.contact-locations__title span {
+  color: #ff7a00;
+}
+
+.contact-locations__subtitle {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: clamp(0.95rem, 1.1vw, 1.1rem);
+  line-height: 1.6;
+}
+
+.contact-locations__grid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(1.5rem, 3vw, 2.25rem);
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.contact-locations__media {
+  display: flex;
+  flex: 0 1 460px;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-locations__card {
+  position: relative;
+  display: flex;
+  flex: 0 1 420px;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: clamp(2rem, 3vw, 2.75rem);
+  background: #111114;
+  border: 1px solid rgba(255, 122, 0, 0.18);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+/* Camera-viewfinder corner brackets (top-left + bottom-right). */
+.contact-locations__card::before,
+.contact-locations__card::after {
+  content: '';
+  position: absolute;
+  width: 1.75rem;
+  height: 1.75rem;
+  pointer-events: none;
+}
+
+.contact-locations__card::before {
+  top: 14px;
+  left: 14px;
+  border-top: 2px solid #fff;
+  border-left: 2px solid #fff;
+}
+
+.contact-locations__card::after {
+  bottom: 14px;
+  right: 14px;
+  border-bottom: 2px solid #fff;
+  border-right: 2px solid #fff;
+}
+
+.contact-locations__icon {
+  display: grid;
+  place-items: center;
+  width: 4rem;
+  height: 4rem;
+  margin-bottom: 1.5rem;
+  /* background: rgba(255, 122, 0, 0.16); */
+  /* border: 1px solid rgba(255, 122, 0, 0.4); */
+  /* border-radius: 50%; */
+  color: #ff7a00;
+}
+
+.contact-locations__icon svg {
+  width: 1.9rem;
+  height: 1.9rem;
+}
+
+.contact-locations__country {
+  margin: 0 0 0.4rem;
+  color: #ff7a00;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.contact-locations__name {
+  margin: 0 0 1rem;
+  color: #fff;
+  font-size: clamp(1.35rem, 1.9vw, 1.65rem);
+  font-weight: 800;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.contact-locations__name::after {
+  content: '';
+  display: block;
+  width: 3rem;
+  height: 2px;
+  margin-top: 1rem;
+  background: #ff7a00;
+}
+
+.contact-locations__details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin: 0 0 1.75rem;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+}
+
+.contact-locations__details li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.contact-locations__details li svg {
+  flex: 0 0 auto;
+  margin-top: 0.15rem;
+  color: #ff7a00;
+}
+
+.contact-locations__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.9rem 1.4rem;
+  background: rgba(255, 122, 0, 0.14);
+  border: 1px solid rgba(255, 122, 0, 0.45);
+  border-radius: 5px;
+  color: #ff9d44;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.contact-locations__button:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 122, 0, 0.24);
+  color: #ffb066;
+}
+
+.contact-locations__button-arrow {
+  margin-left: auto;
+}
+
+.contact-world {
+  background: #000;
+  color: #fff;
+  padding: clamp(3.5rem, 8vh, 5.5rem) clamp(1.5rem, 5vw, 5.5rem);
+}
+
+.contact-world__title {
+  margin: 0 auto clamp(2.5rem, 6vw, 4.5rem);
+  color: #fff;
+  font-size: clamp(1.9rem, 2.6vw, 2.9rem);
+  font-weight: 400;
+  letter-spacing: 0;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.contact-world__inner {
+  width: min(1600px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(200px, 0.3fr) minmax(0, 1fr) minmax(200px, 0.3fr);
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 4rem);
+}
+
+.contact-world__details {
+  min-width: 0;
+}
+
+.contact-world__address h3 {
+  margin: 0 0 1.65rem;
+  color: #ff7a00;
+  font-size: clamp(1.55rem, 2vw, 2.1rem);
+  font-weight: 700;
+}
+
+.contact-world__address p {
+  margin: 0 0 1.25rem;
+  color: rgba(255, 255, 255, 0.84);
+  font-size: clamp(1.02rem, 1.25vw, 1.35rem);
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.contact-world__map {
+  min-width: 0;
+}
+
+.contact-world__map-shell {
+  display: grid;
+  width: 100%;
+  aspect-ratio: 845.2 / 458;
+  place-items: center;
+}
+
+.world-dot-map {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.world-dot-map__dots,
+.world-dot-map__dots circle {
+  fill: #fff;
+}
+
+.world-dot-map__marker circle:first-child {
+  fill: #ff7a00;
+}
+
+.world-dot-map__marker circle:last-child {
+  fill: rgba(255, 122, 0, 0.22);
+  stroke: #ff7a00;
+  stroke-width: 2;
+  transform-origin: center;
+  animation: worldMarkerPulse 2s ease-in-out infinite;
+}
+
+@keyframes worldMarkerPulse {
+  0%,
+  100% {
+    opacity: 0.95;
+    transform: scale(0.86);
+  }
+
+  50% {
+    opacity: 0.35;
+    transform: scale(1.18);
+  }
+}
+
+.contact-inquiry {
+  padding: clamp(2rem, 5vw, 4rem) clamp(1.25rem, 4vw, 3rem);
+  background: #ededed;
+}
+
+.contact-inquiry__shell {
+  position: relative;
+  width: min(1720px, 100%);
+  margin: 0 auto;
+  min-height: clamp(560px, 78vh, 780px);
+  overflow: hidden;
+  border-radius: 8px;
+  background: #fbfbfb;
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.12);
+}
+
+/* Left dark panel: diagonal right edge + background image. */
+.contact-inquiry__visual {
+  position: absolute;
+  inset: 0 auto 0 0;
+  z-index: 2;
+  width: 42%;
+  padding: clamp(2.25rem, 4vw, 4rem);
+  display: flex;
+  align-items: flex-start;
+  background-color: #0c0a09;
+  background-position: center bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.contact-inquiry__visual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8, 6, 4, 0.55) 0%, rgba(8, 6, 4, 0.15) 42%, rgba(8, 6, 4, 0.08) 100%);
+  pointer-events: none;
+}
+
+.contact-inquiry__copy {
+  position: relative;
+  z-index: 1;
+  max-width: 340px;
+}
+
+.contact-inquiry__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin: 0 0 clamp(1.1rem, 2.5vh, 1.7rem);
+  color: #ff7a00;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+.contact-inquiry__eyebrow::before {
+  content: "";
+  width: 26px;
+  height: 2px;
+  background: #ff7a00;
+}
+
+.contact-inquiry__title {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(2.1rem, 3.4vw, 3.3rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: 0.01em;
+}
+
+.contact-inquiry__title span {
+  display: block;
+}
+
+.contact-inquiry__title-accent {
+  color: #ff7a00;
+}
+
+.contact-inquiry__lead {
+  margin: clamp(1.2rem, 2.5vh, 1.8rem) 0 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: clamp(0.92rem, 1vw, 1.05rem);
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.contact-inquiry__form {
+  margin-left: 42%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-content: center;
+  gap: clamp(1rem, 1.6vw, 1.35rem);
+  padding: clamp(2rem, 3.5vw, 3.5rem) clamp(1.5rem, 3vw, 3rem) clamp(2rem, 3.5vw, 3.5rem)
+    clamp(2rem, 4vw, 4rem);
+}
+
+.contact-inquiry__field {
+  min-height: clamp(3.65rem, 5vw, 4.5rem);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1.15rem;
+  border: 1px solid rgba(0, 0, 0, 0.13);
+  border-radius: 6px;
+  background: #fff;
+  color: #ff7a00;
+}
+
+.contact-inquiry__field svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex: 0 0 auto;
+  stroke-width: 2.7;
+}
+
+.contact-inquiry__field input,
+.contact-inquiry__field textarea {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #1b1b1b;
+  font-size: clamp(0.98rem, 1.05vw, 1.14rem);
+  font-weight: 400;
+}
+
+.contact-inquiry__field input::placeholder,
+.contact-inquiry__field textarea::placeholder {
+  color: rgba(0, 0, 0, 0.48);
+}
+
+.contact-inquiry__field select {
+  flex: 1;
+  min-width: 0;
+  min-height: 2.5rem;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #1b1b1b;
+  font-size: clamp(0.98rem, 1.05vw, 1.14rem);
+  font-weight: 400;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  color-scheme: light;
+}
+
+/* Show the muted placeholder tone until a real country is chosen. */
+.contact-inquiry__field select:has(option[value='']:checked) {
+  color: rgba(0, 0, 0, 0.48);
+}
+
+.contact-inquiry__field select option {
+  color: #1b1b1b;
+  background: #fff;
+  font-weight: 500;
+}
+
+.contact-inquiry__field select option:disabled {
+  color: #777;
+}
+
+.contact-inquiry__field select option.contact-inquiry__country-primary {
+  color: #d85f00;
+  background: #fff4e8;
+  font-weight: 800;
+}
+
+.contact-inquiry__field--select:focus-within {
+  border-color: rgba(255, 122, 0, 0.72);
+  box-shadow: 0 0 0 3px rgba(255, 122, 0, 0.1);
+}
+
+.contact-inquiry__select-arrow {
+  margin-left: auto;
+  color: rgba(0, 0, 0, 0.45);
+  pointer-events: none;
+}
+
+.contact-inquiry__field--message {
+  grid-column: 1 / -1;
+  min-height: clamp(10rem, 18vh, 13.5rem);
+  display: grid;
+  grid-template-columns: 1.25rem minmax(0, 1fr);
+  column-gap: 1rem;
+  align-items: flex-start;
+  padding-top: 1.5rem;
+}
+
+.contact-inquiry__field--message > svg {
+  position: relative;
+  z-index: 2;
+  grid-column: 1;
+}
+
+.contact-inquiry__field--message textarea {
+  grid-column: 2;
+  min-width: 0;
+  min-height: 8rem;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+/* Country/Region select spans the full form width. */
+.contact-inquiry__field--select {
+  grid-column: 1 / -1;
+}
+
+/* Actions row: send button + reply note. */
+.contact-inquiry__actions {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2vw, 1.75rem);
+  flex-wrap: wrap;
+  margin-top: 0.25rem;
+}
+
+.contact-inquiry__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-height: 3.1rem;
+  padding: 0.9rem 2rem;
+  border: 0;
+  border-radius: 4px;
+  background: #ff7a00;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 14px 30px rgba(255, 122, 0, 0.28);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.contact-inquiry__button svg {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.contact-inquiry__button:hover {
+  background: #ff6a00;
+  transform: translateY(-1px);
+}
+
+.contact-inquiry__button:disabled {
+  opacity: 0.7;
+  cursor: wait;
+  transform: none;
+}
+
+.contact-inquiry__status {
+  grid-column: 1 / -1;
+  min-height: 1.4rem;
+  margin: -0.25rem 0 0;
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.contact-inquiry__status:empty {
+  display: none;
+}
+
+.contact-inquiry__status--submitting {
+  color: rgba(0, 0, 0, 0.58);
+}
+
+.contact-inquiry__status--success {
+  color: #287a36;
+}
+
+.contact-inquiry__status--error {
+  color: #b42318;
+}
+
+.contact-inquiry__note {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-width: 0;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 0.92rem;
+  font-style: italic;
+  line-height: 1.3;
+}
+
+.contact-inquiry__note-arrow {
+  width: clamp(2.6rem, 3.2vw, 3.4rem);
+  height: auto;
+  flex: 0 0 auto;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+/* Keep the split inquiry panel clear of the viewport edge on compact laptops.
+   This range covers older 11–15 inch MacBooks without changing the stacked
+   tablet/mobile composition or the wider desktop layout. */
+@media (min-width: 901px) and (max-width: 1500px) {
+  .contact-inquiry {
+    padding-inline: clamp(3rem, 5vw, 4.5rem);
+  }
+}
+
+/* Below this width the lead's fixed 1000px width no longer fits the viewport. */
+@media (max-width: 1140px) {
+  .contact-hero__lead {
+    width: 100%;
+    max-width: 620px;
+  }
+}
+
+/* Keep the inquiry message on the image's right side on touch tablets. The
+   phone rule below retains its tighter width, while pointer-based desktops
+   keep the original composition. */
+@media (min-width: 721px) and (max-width: 1180px) and (pointer: coarse) {
+  .contact-inquiry__copy {
+    width: min(88%, 340px);
+    margin-left: auto;
+  }
+}
+
+/* iPad and compact-laptop landscape: keep the map composition, but give the
+   address cards explicit usable columns instead of allowing all three flex
+   items to shrink against their desktop basis sizes. */
+@media (min-width: 901px) and (max-width: 1280px) {
+  .contact-locations {
+    padding-inline: clamp(1.25rem, 2.5vw, 2rem);
+  }
+
+  .contact-locations__grid {
+    display: grid;
+    grid-template-columns: minmax(230px, 0.9fr) minmax(300px, 1.25fr) minmax(230px, 0.9fr);
+    gap: clamp(1rem, 1.8vw, 1.5rem);
+  }
+
+  .contact-locations__card,
+  .contact-locations__media {
+    width: 100%;
+    min-width: 0;
+    flex: none;
+  }
+
+  .contact-locations__card {
+    padding: clamp(1.35rem, 2vw, 1.75rem);
+  }
+
+  .contact-locations__details li span {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .contact-locations__button {
+    padding-inline: 1rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .contact-locations__grid {
+    flex-direction: column;
+  }
+
+  .contact-locations__card {
+    flex-basis: auto;
+    width: 100%;
+  }
+
+  .contact-locations__media {
+    order: -1;
+    flex-basis: auto;
+    width: min(62vw, 360px);
+    max-width: 360px;
+  }
+
+  .contact-world__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-world__title {
+    margin-bottom: 2.5rem;
+    white-space: normal;
+  }
+
+  .contact-world__map {
+    order: -1;
+  }
+
+  .contact-inquiry__visual {
+    position: relative;
+    width: 100%;
+    min-height: 360px;
+    clip-path: none;
+    align-items: flex-end;
+  }
+
+  .contact-inquiry__form {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 720px) {
+  .contact-hero {
+    align-items: flex-end;
+    min-height: 80vh;
+    padding: 6.5rem 1.25rem 3rem;
+  }
+
+  .contact-hero__overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(8, 6, 18, 0.35) 0%,
+      rgba(8, 6, 18, 0.55) 45%,
+      rgba(8, 6, 18, 0.92) 100%
+    );
+  }
+
+  .contact-hero__heading {
+    font-size: clamp(2.4rem, 10vw, 3.4rem);
+  }
+
+  .contact-inquiry {
+    padding-inline: 1rem;
+  }
+
+  .contact-inquiry__visual {
+    align-items: flex-start;
+  }
+
+  .contact-inquiry__copy {
+    width: min(78%, 260px);
+    margin-left: auto;
+  }
+
+  .contact-inquiry__form {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-inquiry__title {
+    display: grid;
+    row-gap: 0.16em;
+    font-size: clamp(1.95rem, 8.6vw, 2.7rem);
+    line-height: 1.04;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  .contact-inquiry__title span + span {
+    margin-top: 0;
+  }
+
+  .contact-inquiry__title span {
+    position: relative;
+    min-height: 1.04em;
+  }
+
+  .contact-inquiry__actions {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .contact-inquiry__note-arrow {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-hero {
+    min-height: 100svh;
+    padding-inline: 1rem;
+    padding-bottom: max(2rem, env(safe-area-inset-bottom));
+  }
+
+  .contact-locations,
+  .contact-world {
+    padding-inline: 1rem;
+  }
+
+  .contact-locations__header {
+    margin-bottom: 2.25rem;
+  }
+
+  .contact-locations__media {
+    width: min(90vw, 360px);
+    margin-inline: auto;
+  }
+
+  .contact-locations__card {
+    padding: 1.5rem;
+  }
+
+  .contact-locations__icon {
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .contact-world__map-shell {
+    width: calc(100% + 1rem);
+    margin-left: -0.5rem;
+  }
+
+  .contact-inquiry {
+    padding: 1rem 0.75rem;
+  }
+
+  .contact-inquiry__shell {
+    border-radius: 6px;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) and (max-height: 500px) {
+  .contact-hero {
+    min-height: 100svh;
+    padding: 5rem max(1.5rem, env(safe-area-inset-left)) 2rem;
+  }
+
+  .contact-hero__content { max-width: 58vw; }
+  .contact-hero__heading { font-size: clamp(2.5rem, 7vw, 4rem); }
+  .contact-locations { padding-block: 3.5rem; }
+  .contact-locations__grid { align-items: stretch; }
+  .contact-locations__card { flex: 1 1 0; }
+  .contact-locations__media { display: none; }
+  .contact-world { padding-block: 3.5rem; }
+}

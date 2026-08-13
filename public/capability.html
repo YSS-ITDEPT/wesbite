@@ -1,0 +1,3151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="color-scheme" content="only light" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style data-critical-loader>
+      html,body{margin:0;min-height:100%;background:#080a0b;color:#f4f6f7}.boot{position:fixed;z-index:10000;inset:0;overflow:hidden;background:#080a0b;color:#f4f6f7;font-family:Arial,sans-serif}.boot-grid{position:absolute;inset:0;opacity:.55;background:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:80px 80px}.boot:before{position:absolute;inset:0;content:"";background:radial-gradient(circle at 50% 50%,rgba(255,122,0,.055),transparent 36%)}.boot-scan{position:absolute;z-index:2;top:0;bottom:0;left:12%;width:1px;background:linear-gradient(transparent,#ff7a00,transparent);box-shadow:0 0 38px rgba(255,122,0,.35);animation:critical-scan var(--boot-duration,1850ms) cubic-bezier(.7,0,.3,1) forwards}.boot-brand{position:absolute;z-index:4;top:34px;left:clamp(24px,3vw,52px);display:flex;gap:12px;align-items:center}.boot-brand img{width:58px;height:58px;object-fit:contain}.boot-brand>div{display:flex;flex-direction:column;gap:4px}.boot-brand b{font-size:13px;letter-spacing:.13em}.boot-brand span{color:#787f83;font-size:6px;letter-spacing:.18em}.boot-center{position:absolute;z-index:3;top:50%;left:50%;width:min(76vw,1120px);text-align:center;transform:translate(-50%,-50%)}.boot-coordinates{display:flex;gap:15px;align-items:center;justify-content:center;color:#6f767a;font:500 7px monospace;letter-spacing:.16em}.boot-coordinates i{width:56px;height:1px;background:#ff7a00}.boot-word{position:relative;margin:28px 0 22px;color:rgba(231,235,238,.035);font:500 clamp(100px,16vw,260px)/.8 Arial,sans-serif;letter-spacing:-.09em}.boot-word:after{position:absolute;inset:0;content:attr(data-word);color:#e7ebee;clip-path:inset(0 100% 0 0);animation:critical-word var(--boot-duration,1850ms) cubic-bezier(.72,0,.2,1) forwards}.boot-system{display:grid;grid-template-columns:1fr auto 1fr;gap:18px;align-items:center;color:#676f73;font:500 7px monospace;letter-spacing:.18em}.boot-system span:first-child{text-align:right}.boot-system span:last-child{text-align:left}.boot-system b{color:#ff7a00;font-size:9px;letter-spacing:.12em}.boot-status{position:absolute;z-index:4;bottom:66px;left:50%;margin:0;color:#767d81;font:500 7px monospace;letter-spacing:.14em;transform:translateX(-50%)}.boot-progress{position:absolute;z-index:4;right:clamp(24px,3vw,52px);bottom:27px;left:clamp(24px,3vw,52px);display:grid;grid-template-columns:auto 1fr 35px;gap:18px;align-items:center;color:#787f83;font:500 7px monospace;letter-spacing:.13em}.boot-progress i{height:1px;background:#292d2f}.boot-progress i b{display:block;width:0;height:100%;background:#ff7a00}.boot-progress strong{color:#f4f6f7;font:500 11px monospace;text-align:right}.boot.is-hidden{display:none}@keyframes critical-scan{0%{left:12%;opacity:0}12%,88%{opacity:1}100%{left:88%;opacity:0}}@keyframes critical-word{to{clip-path:inset(0)}}@media(max-width:800px){.boot-word{font-size:25vw}.boot-system{grid-template-columns:1fr}.boot-system span{display:none}.boot-status{width:100%;text-align:center}.boot-brand img{width:46px;height:46px}.boot-progress{grid-template-columns:1fr 30px}.boot-progress>span{display:none}}
+    </style>
+    <link rel="icon" type="image/jpeg" href="https://ik.imagekit.io/7oaqyvwnm/Untitled%20design%20(5).png?updatedAt=1726408067986" />
+    <meta
+      name="description"
+      content="Anika Sterilis engineering, manufacturing, quality and traceability capabilities."
+    />
+    <title>Capabilities | Anika Sterilis</title>
+    <script>
+      const isSafariBrowser = /^((?!chrome|android|crios|fxios|edgios).)*safari/i.test(navigator.userAgent);
+      document.documentElement.classList.toggle("is-safari", isSafariBrowser);
+      const isTouchDevice = navigator.maxTouchPoints > 0 || "ontouchstart" in window;
+      document.documentElement.classList.toggle("is-touch-device", isTouchDevice);
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Roboto+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --orange: #ff7a00;
+        --ink: #0a0d0f;
+        --paper: #edf0f2;
+        --white: #f5f7f8;
+        --muted: #747d82;
+        --line: rgba(10, 13, 15, 0.18);
+        --dark-line: rgba(237, 240, 242, 0.16);
+        --pad: clamp(22px, 4vw, 68px);
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; background: var(--ink); color: var(--white); }
+      body {
+        /* `hidden` creates a root scroll container in Safari and disables
+           descendant sticky positioning. `clip` blocks horizontal spill
+           without changing the sticky containing block. */
+        overflow-x: clip;
+        font-family: "Space Grotesk", sans-serif;
+        cursor: crosshair;
+      }
+      a { color: inherit; text-decoration: none; }
+      button { font: inherit; }
+      img { display: block; max-width: 100%; }
+      ::selection { background: var(--orange); color: var(--ink); }
+
+      .site-head {
+        position: fixed;
+        z-index: 100;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 66px;
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        padding: 0 var(--pad);
+        border-bottom: 1px solid var(--dark-line);
+        background: rgba(10, 13, 15, 0.78);
+        backdrop-filter: blur(16px);
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+      }
+      .brand img { width: 28px; height: 28px; object-fit: contain; }
+      .brand small {
+        display: block;
+        margin-top: 2px;
+        color: #777f83;
+        font: 500 6px "Roboto Mono";
+        letter-spacing: 0.14em;
+      }
+      .site-head nav { display: flex; gap: clamp(20px, 3vw, 48px); }
+      .site-head nav a,
+      .head-contact {
+        color: #a8afb3;
+        font: 600 9px "Roboto Mono";
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .site-head nav a:hover,
+      .head-contact:hover { color: var(--orange); }
+      .head-contact { justify-self: end; }
+      .head-progress {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -1px;
+        height: 2px;
+      }
+      .head-progress i {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: var(--orange);
+        transform: scaleX(0);
+        transform-origin: left;
+      }
+
+      .eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: var(--orange);
+        font: 600 9px "Roboto Mono";
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      .eyebrow:before {
+        content: "";
+        width: 30px;
+        height: 1px;
+        background: currentColor;
+      }
+      .word-line { display: block; overflow: visible !important; }
+      .copy {
+        color: var(--muted);
+        font-size: clamp(15px, 1.08vw, 19px);
+        line-height: 1.62;
+      }
+      .link-line {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: min(300px, 100%);
+        padding: 14px 0;
+        border-top: 1px solid;
+        border-bottom: 1px solid;
+        font: 600 9px "Roboto Mono";
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+      .link-line b { color: var(--orange); font-size: 15px; }
+
+      /* Hero */
+      .cap-hero {
+        position: relative;
+        min-height: 100svh;
+        display: grid;
+        grid-template-columns: 55% 45%;
+        overflow: hidden;
+        background:
+          linear-gradient(rgba(255,255,255,.026) 1px, transparent 1px),
+          linear-gradient(90deg,rgba(255,255,255,.026) 1px,transparent 1px),
+          var(--ink);
+        background-size: 8vw 8vw;
+      }
+      .hero-copy {
+        z-index: 4;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 11vh var(--pad) 5vh;
+      }
+      .hero-copy h1 {
+        margin: 30px 0 42px;
+        font-size: clamp(48px, 5.6vw, 96px);
+        font-weight: 500;
+        line-height: .83;
+        letter-spacing: -.08em;
+      }
+      .hero-copy h1 em { color: var(--orange); font-style: normal; }
+      .hero-copy .copy {
+        max-width: 620px;
+        padding-left: 30px;
+        border-left: 1px solid var(--orange);
+        color: #a7afb3;
+      }
+      .hero-copy .link-line { margin-top: 40px; }
+      .hero-visual {
+        position: relative;
+        min-height: 100svh;
+        border-left: 1px solid var(--dark-line);
+      }
+      .hero-shot {
+        position: absolute;
+        overflow: hidden;
+        background: #15191b;
+      }
+      .hero-shot img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: saturate(.62) contrast(1.04);
+        transition: filter .5s, transform 1s;
+      }
+      .hero-shot:hover img { filter: saturate(.9); transform: scale(1.025); }
+      .hero-shot span {
+        position: absolute;
+        z-index: 2;
+        left: 14px;
+        bottom: 12px;
+        max-width: calc(100% - 28px);
+        padding: 7px 10px 7px 11px;
+        border-left: 2px solid var(--orange);
+        background: rgba(5, 8, 10, .84);
+        box-shadow: 0 7px 20px rgba(0, 0, 0, .38);
+        color: #fff;
+        font: 600 clamp(8px, .62vw, 10px)/1.25 "Roboto Mono";
+        letter-spacing: .12em;
+        text-shadow: 0 1px 3px #000;
+        text-transform: uppercase;
+        white-space: normal;
+      }
+      .hero-shot:nth-child(2) span {
+        right: 12px;
+        left: auto;
+        border-right: 2px solid var(--orange);
+        border-left: 0;
+        text-align: right;
+      }
+      /* The third photograph overlaps the lower edge of shots 01 and 02.
+         GSAP promotes each shot to its own compositor layer, and on Windows
+         that later layer can cover their bottom captions. Anchor the first
+         two captions in the clear upper corners; shot 03 keeps its lower tag. */
+      .hero-shot:nth-child(1) span,
+      .hero-shot:nth-child(2) span {
+        top: 14px;
+        bottom: auto;
+      }
+      .hero-shot:nth-child(1) { left: 0; top: 66px; width: 65%; height: 54%; }
+      .hero-shot:nth-child(2) { right: 0; top: 18%; width: 34%; height: 38%; }
+      .hero-shot:nth-child(3) { right: 0; bottom: 0; width: 73%; height: 43%; }
+      .hero-shot:nth-child(3) img { object-position: center 45%; }
+      .hero-facility {
+        position: absolute;
+        left: 0;
+        bottom: 4%;
+        width: 25%;
+        color: #838b8f;
+        font: 500 8px/1.5 "Roboto Mono";
+        letter-spacing: .1em;
+        text-transform: uppercase;
+      }
+      .hero-facility b {
+        display: block;
+        color: var(--orange);
+        font: 500 clamp(36px, 4vw, 72px)/.9 "Space Grotesk";
+        letter-spacing: -.06em;
+      }
+
+      .proof-strip {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        background: var(--paper);
+        color: var(--ink);
+        border-bottom: 1px solid var(--line);
+      }
+      .proof-strip article {
+        min-height: 150px;
+        padding: 28px var(--pad);
+        border-right: 1px solid var(--line);
+      }
+      .proof-strip b {
+        display: block;
+        margin-bottom: 18px;
+        color: var(--orange);
+        font-size: clamp(27px, 2.5vw, 44px);
+        font-weight: 500;
+        letter-spacing: -.05em;
+      }
+      .proof-strip span {
+        font: 600 8px/1.5 "Roboto Mono";
+        letter-spacing: .1em;
+        text-transform: uppercase;
+      }
+
+      /* Intro */
+      .cap-intro {
+        min-height: 88svh;
+        display: grid;
+        grid-template-columns: 25% 75%;
+        padding: 12vh var(--pad);
+        background: var(--paper);
+        color: var(--ink);
+      }
+      .intro-index {
+        color: transparent;
+        font-size: clamp(100px, 15vw, 250px);
+        font-weight: 600;
+        line-height: .75;
+        -webkit-text-stroke: 1px rgba(10,13,15,.14);
+      }
+      .intro-main h2 {
+        max-width: 1250px;
+        margin: 0;
+        font-size: clamp(44px, 5.25vw, 88px);
+        font-weight: 500;
+        line-height: .91;
+        letter-spacing: -.07em;
+      }
+      .intro-main h2 em { color: var(--orange); font-style: normal; }
+      .intro-note {
+        width: min(620px, 80%);
+        margin: 64px 0 0 auto;
+        display: grid;
+        grid-template-columns: 90px 1fr;
+        gap: 28px;
+        padding-top: 20px;
+        border-top: 1px solid var(--line);
+      }
+      .intro-note b {
+        color: var(--orange);
+        font: 500 9px "Roboto Mono";
+        letter-spacing: .1em;
+      }
+
+      /* Capability selector */
+      .disciplines {
+        position: relative;
+        height: 600vh;
+        background: #0b0e10;
+      }
+      .disciplines-pin {
+        position: sticky;
+        top: 0;
+        height: 100svh;
+        display: grid;
+        grid-template-columns: 45% 55%;
+        overflow: hidden;
+      }
+      .discipline-list {
+        align-self: center;
+        padding: 6vh var(--pad);
+      }
+      .discipline-list h2 {
+        margin: 26px 0 50px;
+        font-size: clamp(48px, 5vw, 88px);
+        font-weight: 500;
+        line-height: .88;
+        letter-spacing: -.07em;
+      }
+      .discipline-list button {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 42px 1fr auto;
+        align-items: center;
+        gap: 15px;
+        padding: 17px 0;
+        border: 0;
+        border-bottom: 1px solid var(--dark-line);
+        background: transparent;
+        color: #697176;
+        text-align: left;
+        cursor: pointer;
+        transition: color .3s, padding .3s;
+      }
+      .discipline-list button b {
+        color: var(--orange);
+        font: 500 8px "Roboto Mono";
+      }
+      .discipline-list button span {
+        font-size: clamp(18px, 1.55vw, 27px);
+        letter-spacing: -.03em;
+      }
+      .discipline-list button i { color: var(--orange); font-style: normal; }
+      .discipline-list button.is-active {
+        padding-left: 14px;
+        color: #fff;
+        border-color: var(--orange);
+      }
+      .discipline-media {
+        position: relative;
+        height: 100svh;
+        overflow: hidden;
+      }
+      .discipline-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: saturate(.58);
+      }
+
+      /* Safari can drop a filtered image layer inside a clipped sticky grid
+         while its source is changing. Keep clipping on the media cell, leave
+         the sticky grid compositable, and avoid the expensive filtered layer. */
+      .is-safari .disciplines-pin {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        height: 100svh;
+        overflow: hidden;
+        align-self: start;
+      }
+      .is-safari .discipline-list {
+        position: relative;
+        z-index: 2;
+        background: #0b0e10;
+      }
+      .is-safari .discipline-media {
+        overflow: hidden;
+        background: #0b0e10;
+        isolation: isolate;
+        contain: paint;
+      }
+      .is-safari .discipline-media img {
+        filter: none;
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+      }
+
+      .safari-disciplines-flow { display: none; }
+      .discipline-media:after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, transparent 45%, rgba(8,10,11,.88));
+      }
+      .media-caption {
+        position: absolute;
+        z-index: 2;
+        left: 40px;
+        right: 40px;
+        bottom: 36px;
+      }
+      .media-caption small {
+        color: var(--orange);
+        font: 600 8px "Roboto Mono";
+        letter-spacing: .13em;
+      }
+      .media-caption h3 {
+        max-width: 680px;
+        margin: 12px 0;
+        font-size: clamp(32px, 3.3vw, 60px);
+        font-weight: 500;
+        line-height: .94;
+        letter-spacing: -.05em;
+      }
+      .media-caption p { max-width: 600px; color: #bbc1c4; }
+
+      /* Chain */
+      .chain {
+        min-height: 110svh;
+        padding: 11vh var(--pad);
+        background: var(--paper);
+        color: var(--ink);
+      }
+      .chain-head {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: end;
+        gap: 70px;
+      }
+      .chain-head h2 {
+        margin: 24px 0 0;
+        font-size: clamp(54px, 6vw, 108px);
+        font-weight: 500;
+        line-height: .86;
+        letter-spacing: -.075em;
+      }
+      .chain-head h2 em { color: var(--orange); font-style: normal; }
+      .chain-head .copy { max-width: 520px; justify-self: end; }
+      .chain-flow {
+        margin-top: 11vh;
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+      }
+      .chain-flow article {
+        position: relative;
+        min-height: 245px;
+        padding: 22px 18px;
+        border-right: 1px solid var(--line);
+        transition: background .35s, color .35s;
+      }
+      .chain-flow article:hover,
+      .chain-flow article.is-active { background: var(--orange); color: var(--ink); }
+      .chain-flow b {
+        color: var(--orange);
+        font: 600 8px "Roboto Mono";
+      }
+      .chain-flow article:hover b,
+      .chain-flow article.is-active b { color: var(--ink); }
+      .chain-flow h3 {
+        position: absolute;
+        left: 18px;
+        bottom: 42px;
+        margin: 0;
+        font-size: clamp(16px, 1.35vw, 23px);
+        font-weight: 500;
+        line-height: 1;
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+      }
+      .chain-flow i {
+        position: absolute;
+        right: 13px;
+        top: 20px;
+        color: var(--orange);
+        font-style: normal;
+      }
+      .chain-flow article:hover i,
+      .chain-flow article.is-active i { color: var(--ink); }
+
+      /* Facility gallery */
+      .facility {
+        padding: 10vh var(--pad);
+        background: #0a0d0f;
+      }
+      .facility-head {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        margin-bottom: 8vh;
+      }
+      .facility-head h2 {
+        margin: 22px 0 0;
+        font-size: clamp(53px, 6vw, 105px);
+        font-weight: 500;
+        line-height: .86;
+        letter-spacing: -.07em;
+      }
+      .facility-head .copy { align-self: end; max-width: 550px; justify-self: end; }
+      .facility-grid {
+        display: grid;
+        grid-template-columns: 1.25fr .75fr;
+        grid-template-rows: 46vh 38vh;
+        gap: 8px;
+      }
+      .facility-grid figure {
+        position: relative;
+        margin: 0;
+        overflow: hidden;
+        background: #161a1c;
+      }
+      .facility-grid figure:first-child { grid-row: 1 / 3; }
+      .facility-grid img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: saturate(.66);
+        transition: transform .9s, filter .5s;
+      }
+      .facility-grid figure:hover img { transform: scale(1.025); filter: saturate(.92); }
+      .facility-grid figcaption {
+        position: absolute;
+        left: 18px;
+        right: 18px;
+        bottom: 16px;
+        display: flex;
+        justify-content: space-between;
+        color: #fff;
+        font: 500 8px "Roboto Mono";
+        letter-spacing: .1em;
+        text-transform: uppercase;
+      }
+      .facility-grid figcaption b { color: var(--orange); }
+
+      /* Traceability */
+      .traceability {
+        min-height: 100svh;
+        display: grid;
+        grid-template-columns: 47% 53%;
+        background: var(--orange);
+        color: var(--ink);
+      }
+      .trace-copy {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 10vh var(--pad);
+      }
+      .trace-copy .eyebrow { color: var(--ink); }
+      .trace-copy h2 {
+        margin: 28px 0 40px;
+        font-size: clamp(54px, 6vw, 105px);
+        font-weight: 500;
+        line-height: .84;
+        letter-spacing: -.075em;
+      }
+      .trace-copy h2 em { color: #fff; font-style: normal; }
+      .trace-copy .copy { color: rgba(10,13,15,.72); max-width: 600px; }
+      .trace-records {
+        position: relative;
+        overflow: hidden;
+        display: grid;
+        grid-template-rows: repeat(3, auto);
+        align-content: center;
+        gap: clamp(18px, 2.2vw, 30px);
+        padding: clamp(36px, 5vw, 88px);
+        border-left: 1px solid rgba(10,13,15,.25);
+        background:
+          linear-gradient(rgba(10,13,15,.12) 1px,transparent 1px),
+          linear-gradient(90deg,rgba(10,13,15,.12) 1px,transparent 1px);
+        background-size: 11% 9%;
+      }
+      .record {
+        position: relative;
+        box-sizing: border-box;
+        width: min(100%, 720px);
+        min-height: 174px;
+        padding: 30px 34px 28px 168px;
+        border: 1px solid rgba(10,13,15,.14);
+        border-radius: 16px;
+        background: rgba(250,251,251,.94);
+        box-shadow: 0 16px 38px rgba(90,42,0,.12);
+        backdrop-filter: blur(8px);
+      }
+      .record-icon {
+        position: absolute;
+        top: 28px;
+        bottom: 28px;
+        left: 28px;
+        width: 104px;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(255,122,0,.6);
+        border-radius: 13px;
+      }
+      .record-icon::before,
+      .record-icon::after {
+        position: absolute;
+        width: 13px;
+        height: 13px;
+        content: "";
+        border-color: var(--orange);
+        pointer-events: none;
+      }
+      .record-icon::before {
+        top: -1px;
+        left: -1px;
+        border-top: 2px solid var(--orange);
+        border-left: 2px solid var(--orange);
+      }
+      .record-icon::after {
+        right: -1px;
+        bottom: -1px;
+        border-right: 2px solid var(--orange);
+        border-bottom: 2px solid var(--orange);
+      }
+      .record-icon svg {
+        width: 64%;
+        height: 64%;
+        overflow: visible;
+        fill: none;
+        stroke: var(--ink);
+        stroke-width: 1.75;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .record-icon svg .accent { stroke: var(--orange); }
+      .record:nth-child(1),
+      .record:nth-child(2),
+      .record:nth-child(3) { inset: auto; transform: none; }
+      .record-head {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 16px;
+        border-bottom: 1px solid rgba(10,13,15,.24);
+        font: 600 8px "Roboto Mono";
+        letter-spacing: .1em;
+      }
+      .record-head b { display: flex; align-items: center; gap: 8px; color: var(--orange); }
+      .record-head b svg {
+        width: 25px;
+        height: 25px;
+        flex: 0 0 auto;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.7;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .record h3 { margin: 22px 0 10px; font-size: 28px; font-weight: 500; }
+      .record p { margin: 0; color: rgba(10,13,15,.65); font-size: 13px; }
+      .record-foot {
+        display: flex;
+        gap: 7px;
+        margin-top: 24px;
+      }
+      .record-foot i { width: 7px; height: 7px; border-radius: 50%; background: var(--ink); }
+
+      /* Compact desktop / laptop viewports cannot safely accommodate three
+         percentage-positioned records. Preserve the layered board aesthetic,
+         but give each card its own row and alternate its horizontal anchor. */
+      @media (min-width: 901px) and (max-height: 820px) {
+        .trace-records {
+          display: grid;
+          grid-template-rows: repeat(3, minmax(0, auto));
+          align-content: center;
+          gap: clamp(14px, 2.2vh, 22px);
+          padding: clamp(24px, 4vh, 38px) clamp(22px, 3vw, 50px);
+        }
+        .record,
+        .record:nth-child(1),
+        .record:nth-child(2),
+        .record:nth-child(3) {
+          position: relative;
+          inset: auto;
+          width: min(86%, 620px);
+          box-sizing: border-box;
+          padding: clamp(14px, 2.1vh, 20px);
+        }
+        .record:nth-child(1) {
+          justify-self: start;
+          transform: rotate(-1deg);
+        }
+        .record:nth-child(2) {
+          justify-self: end;
+          transform: rotate(.65deg);
+        }
+        .record:nth-child(3) {
+          justify-self: center;
+          transform: rotate(-.45deg);
+        }
+        .record-head { padding-bottom: clamp(9px, 1.4vh, 13px); }
+        .record h3 {
+          margin: clamp(12px, 1.8vh, 17px) 0 7px;
+          font-size: clamp(21px, 2vw, 27px);
+        }
+        .record p {
+          font-size: clamp(11px, .9vw, 13px);
+          line-height: 1.35;
+        }
+        .record-foot {
+          margin-top: clamp(11px, 1.7vh, 16px);
+        }
+      }
+
+      /* Quality */
+      .quality {
+        padding: 11vh var(--pad);
+        background: var(--paper);
+        color: var(--ink);
+      }
+      .quality-head {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: end;
+      }
+      .quality-head h2 {
+        margin: 25px 0 0;
+        font-size: clamp(54px, 6vw, 106px);
+        font-weight: 500;
+        line-height: .86;
+        letter-spacing: -.075em;
+      }
+      .quality-head h2 em { color: var(--orange); font-style: normal; }
+      .quality-head .copy { max-width: 520px; justify-self: end; }
+      .quality-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        margin-top: 9vh;
+        border: 1px solid var(--line);
+      }
+      .quality-grid article {
+        min-height: 320px;
+        padding: 26px;
+        border-right: 1px solid var(--line);
+      }
+      .quality-grid b {
+        color: transparent;
+        font-size: 58px;
+        font-weight: 500;
+        -webkit-text-stroke: 1px var(--orange);
+      }
+      .quality-grid h3 { margin: 75px 0 16px; font-size: 25px; font-weight: 500; }
+      .quality-grid p { color: var(--muted); font-size: 13px; line-height: 1.55; }
+
+      .closing {
+        min-height: 100svh;
+        display: grid;
+        grid-template-columns: 57% 43%;
+        background: #090b0c;
+      }
+      .closing-copy {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-width: 0;
+        padding: 10vh var(--pad);
+      }
+      .closing h2 {
+        margin: 28px 0 44px;
+        font-size: clamp(57px, 7vw, 124px);
+        font-weight: 500;
+        line-height: .83;
+        letter-spacing: -.08em;
+      }
+      .closing h2 em { color: var(--orange); font-style: normal; }
+      .closing-mark {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: clamp(18px, 3vh, 40px);
+        overflow: hidden;
+        padding: clamp(40px, 6vh, 66px) clamp(24px, 3vw, 54px);
+        background: var(--orange);
+      }
+      
+      .closing-logo {
+        position: relative;
+        z-index: 2;
+        width: clamp(74px, 8vw, 120px);
+        height: auto;
+        object-fit: contain;
+      }
+      .aacts-stack {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        gap: clamp(2px, 5.6vh, 40px);
+        width: 100%;
+      }
+      .aacts-word {
+        display: flex;
+        align-items: center;
+        min-width: 0;
+        max-width: 100%;
+        font-family: "Space Grotesk", sans-serif;
+        text-transform: uppercase;
+        line-height: .8;
+      }
+      .aacts-ini {
+        flex: 0 0 auto;
+        width: clamp(58px, 8vw, 150px);
+        font-weight: 800;
+        font-size: clamp(68px, 10vw, 162px);
+        line-height: .72;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+        background-image: linear-gradient(
+          100deg,
+          var(--ink) 0%,
+          var(--ink) 43%,
+          #575c61 50%,
+          var(--ink) 57%,
+          var(--ink) 100%
+        );
+        background-size: 250% 100%;
+        background-position: 150% 0;
+        -webkit-background-clip: text;
+        background-clip: text;
+        animation: aacts-shine 5s ease-in-out infinite;
+        will-change: background-position;
+      }
+      .aacts-rest {
+        min-width: 0;
+        font-weight: 700;
+        font-size: clamp(42px, 5vw, 96px);
+        letter-spacing: -.015em;
+        white-space: nowrap;
+        color: transparent;
+        -webkit-text-stroke: 1.5px rgba(10, 13, 15, 0.5);
+      }
+
+      /* Desktop closing composition: scale against both width and available
+         height so the statement and complete AACTS mark fit in one view. */
+      @media (min-width: 901px) {
+        .closing {
+          height: 100svh;
+          min-height: 0;
+          overflow: hidden;
+        }
+        .closing-copy {
+          padding-block: clamp(68px, 9vh, 104px);
+        }
+        .closing h2 {
+          margin: clamp(20px, 3vh, 30px) 0 clamp(28px, 4.5vh, 44px);
+          font-size: clamp(48px, min(7vw, 11vh), 108px);
+          line-height: .85;
+        }
+        .closing-mark {
+          gap: clamp(14px, 2.4vh, 26px);
+          padding-block: clamp(24px, 4vh, 44px);
+        }
+        .closing-logo {
+          width: clamp(64px, min(7vw, 11vh), 104px);
+        }
+        .aacts-stack {
+          gap: clamp(5px, 2.25vh, 20px);
+        }
+        .aacts-ini {
+          width: clamp(54px, min(8vw, 13vh), 124px);
+          font-size: clamp(64px, min(10vw, 14vh), 148px);
+        }
+        .aacts-rest {
+          font-size: clamp(38px, min(5vw, 8.4vh), 82px);
+        }
+      }
+      .aacts-word--fill .aacts-ini {
+        background-image: linear-gradient(
+          100deg,
+          var(--white) 0%,
+          var(--white) 43%,
+          #ffd7a8 50%,
+          var(--white) 57%,
+          var(--white) 100%
+        );
+      }
+      .aacts-word--fill .aacts-rest {
+        color: var(--white);
+        -webkit-text-stroke: 0;
+      }
+      .aacts-word:nth-child(1) .aacts-ini { animation-delay: 0s; }
+      .aacts-word:nth-child(2) .aacts-ini { animation-delay: .28s; }
+      .aacts-word:nth-child(3) .aacts-ini { animation-delay: .56s; }
+      .aacts-word:nth-child(4) .aacts-ini { animation-delay: .84s; }
+      .aacts-word:nth-child(5) .aacts-ini { animation-delay: 1.12s; }
+      @keyframes aacts-shine {
+        0% { background-position: 150% 0; }
+        45% { background-position: -50% 0; }
+        100% { background-position: -50% 0; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .aacts-ini { animation: none; background-position: 0 0; }
+      }
+      .site-foot {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 30px;
+        padding: 32px var(--pad);
+        border-top: 1px solid var(--dark-line);
+        background: #090b0c;
+        color: #777f83;
+        font: 500 8px "Roboto Mono";
+        letter-spacing: .1em;
+        text-transform: uppercase;
+      }
+      .site-foot nav { display: flex; gap: 28px; }
+      .site-foot a:hover { color: var(--orange); }
+
+      @media (max-width: 900px) {
+        .site-head { grid-template-columns: 1fr auto; }
+        .site-head nav { display: none; }
+        .cap-hero,
+        .traceability,
+        .closing { grid-template-columns: 1fr; }
+        .hero-copy { min-height: 76svh; padding-top: 110px; }
+        .hero-visual { min-height: 70svh; }
+        .proof-strip { grid-template-columns: 1fr 1fr; }
+        .cap-intro { grid-template-columns: 1fr; gap: 60px; }
+        .disciplines { height: auto; }
+        .disciplines-pin {
+          position: relative;
+          height: auto;
+          grid-template-columns: 1fr;
+          overflow: visible;
+        }
+        /* This must match the specificity of the desktop Safari safeguard.
+           Otherwise Safari keeps the mobile grid at 100svh and clips its
+           second row (the selected discipline image and caption). */
+        .is-safari .disciplines-pin {
+          position: relative;
+          top: auto;
+          height: auto;
+          overflow: visible;
+          align-self: auto;
+        }
+        .discipline-list { align-self: stretch; padding: 10vh var(--pad) 6vh; }
+        .discipline-media { height: 70svh; }
+        .chain-head,
+        .facility-head,
+        .quality-head { grid-template-columns: 1fr; }
+        .chain-flow { grid-template-columns: repeat(4,1fr); }
+        .chain-flow article { min-height: 190px; }
+        .facility-grid { grid-template-columns: 1fr; grid-template-rows: repeat(3,48vh); }
+        .facility-grid figure:first-child { grid-row: auto; }
+        .trace-records { min-height: 82svh; }
+        .quality-grid { grid-template-columns: 1fr 1fr; }
+        .closing-mark { min-height: 56svh; justify-content: center; }
+        .closing-copy .eyebrow { max-width: 100%; white-space: normal; }
+        .closing h2 { font-size: clamp(48px, 10vw, 86px); }
+        .aacts-stack { gap: clamp(12px, 4vh, 30px); }
+        .aacts-ini {
+          width: clamp(50px, 16vw, 84px);
+          font-size: clamp(62px, 19vw, 104px);
+        }
+        .aacts-rest { font-size: clamp(38px, 14vw, 72px); }
+      }
+      @media (max-width: 560px) {
+        .hero-copy h1 { font-size: 13.4vw; }
+        .hero-shot:nth-child(1) { width: 73%; }
+        .hero-shot:nth-child(2) { width: 26%; }
+        .hero-shot:nth-child(3) { width: 82%; }
+        .hero-shot {
+          overflow: visible;
+        }
+        .hero-shot span {
+          z-index: 8;
+          top: 10px;
+          bottom: auto;
+          left: 10px;
+          max-width: calc(100% - 20px);
+          padding: 6px 8px;
+          border-left: 2px solid var(--orange);
+          background: rgba(7, 9, 10, .82);
+          box-shadow: 0 6px 18px rgba(0, 0, 0, .28);
+          color: #fff;
+          font-size: 7px;
+          line-height: 1.25;
+          letter-spacing: .09em;
+          white-space: normal;
+        }
+        .hero-shot:nth-child(2) span {
+          right: 8px;
+          left: auto;
+          max-width: calc(100% - 16px);
+          text-align: right;
+          border-right: 2px solid var(--orange);
+          border-left: 0;
+        }
+        .hero-facility {
+          z-index: 4;
+          left: 0;
+          bottom: 18px;
+          width: min(142px, 44vw);
+          padding: 13px 14px 12px;
+          border: 1px solid rgba(10,13,15,.18);
+          background: rgba(244,246,247,.92);
+          color: var(--ink);
+          box-shadow: 0 12px 28px rgba(0,0,0,.28);
+          backdrop-filter: blur(8px);
+        }
+        .hero-facility b {
+          color: var(--ink);
+          font-size: clamp(30px, 10vw, 44px);
+        }
+        .proof-strip {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          border-top: 1px solid var(--line);
+        }
+        .proof-strip article {
+          min-height: 138px;
+          padding: 24px 16px 20px;
+          border-right: 1px solid var(--line);
+          border-bottom: 1px solid var(--line);
+        }
+        .proof-strip article:nth-child(2n) { border-right: 0; }
+        .proof-strip b {
+          margin-bottom: 14px;
+          font-size: clamp(21px, 7vw, 31px);
+          overflow-wrap: anywhere;
+        }
+        .proof-strip span {
+          font-size: 7px;
+          letter-spacing: .075em;
+        }
+        .intro-index {
+          color: rgba(10,13,15,.82);
+          -webkit-text-stroke-color: transparent;
+        }
+        .intro-note { width: 100%; grid-template-columns: 1fr; }
+        /* Keep the selected discipline and its complete image together on
+           short iPhone viewports. The tablet rule leaves 6vh below the last
+           button, which looked like a gap and pushed the image off-screen. */
+        .discipline-list {
+          padding-bottom: 0;
+        }
+        .discipline-media,
+        .is-safari .discipline-media {
+          height: auto;
+          min-height: 0;
+          overflow: visible;
+          background: #080b0d;
+          contain: none;
+        }
+        .discipline-media img,
+        .is-safari .discipline-media img {
+          display: block;
+          height: min(100vw, 520px);
+          object-fit: contain;
+          object-position: center;
+        }
+        .discipline-media:after {
+          display: none;
+        }
+        .media-caption {
+          position: relative;
+          left: 20px;
+          right: 20px;
+          bottom: auto;
+          width: calc(100% - 40px);
+          padding: 22px 0 28px;
+        }
+        .chain-flow { grid-template-columns: 1fr 1fr; }
+        .chain-flow h3 { writing-mode: initial; transform: none; }
+        .quality-grid {
+          grid-template-columns: 1fr;
+          border-color: rgba(255, 122, 0, .68);
+        }
+        .quality-grid article {
+          min-height: 260px;
+          border-right: 0;
+          border-bottom: 1px solid rgba(255, 122, 0, .68);
+        }
+        .quality-grid article:last-child { border-bottom: 0; }
+        .site-foot { grid-template-columns: 1fr; }
+        /* Stack the traceability record cards instead of overlapping them. */
+        .trace-records {
+          min-height: 0;
+          display: grid;
+          gap: 16px;
+          padding: 34px 18px;
+        }
+        .record,
+        .record:nth-child(1),
+        .record:nth-child(2),
+        .record:nth-child(3) {
+          position: static;
+          width: 100%;
+          inset: auto;
+        }
+        .record:nth-child(1) { transform: rotate(-1deg); }
+        .record:nth-child(2) { transform: rotate(0.75deg); }
+        .record:nth-child(3) { transform: rotate(-0.5deg); }
+      }
+
+      /* iPad landscape keeps the desktop hero composition, but its shorter
+         image tiles can place the plain captions against bright machinery or
+         directly on a crop edge. Keep each label visibly inside its own image
+         without changing desktop, phone or portrait-tablet geometry. */
+      @media (min-width: 901px) and (max-width: 1600px) and (any-pointer: coarse) {
+        .hero-shot span {
+          top: 14px;
+          bottom: auto;
+          left: 14px;
+          max-width: calc(100% - 28px);
+          padding: 7px 10px;
+          border-left: 2px solid var(--orange);
+          background: rgba(7, 9, 10, .82);
+          box-shadow: 0 7px 20px rgba(0, 0, 0, .28);
+          font-size: 8px;
+          line-height: 1.25;
+          white-space: normal;
+        }
+        .hero-shot:nth-child(2) span {
+          right: 14px;
+          left: auto;
+          border-right: 2px solid var(--orange);
+          border-left: 0;
+          text-align: right;
+        }
+      }
+
+      /* iPad Safari can report a fine/unknown primary pointer when a trackpad
+         or keyboard is attached. Use the existing Safari marker as a second
+         tablet signal so captions do not silently fall back beneath the
+         overlapping image tiles. */
+      @media (min-width: 901px) and (max-width: 1600px) {
+        .is-safari .hero-shot span,
+        .is-touch-device .hero-shot span {
+          z-index: 20;
+          display: block;
+          top: 14px;
+          bottom: auto;
+          left: 14px;
+          max-width: calc(100% - 28px);
+          padding: 7px 10px;
+          border-left: 2px solid var(--orange);
+          background: rgba(7, 9, 10, .88);
+          box-shadow: 0 7px 20px rgba(0, 0, 0, .32);
+          color: #fff;
+          font-size: 8px;
+          line-height: 1.25;
+          white-space: normal;
+        }
+        .is-safari .hero-shot:nth-child(1) span,
+        .is-touch-device .hero-shot:nth-child(1) span {
+          right: auto;
+          left: 14px;
+        }
+        .is-safari .hero-shot:nth-child(2) span,
+        .is-touch-device .hero-shot:nth-child(2) span {
+          right: 14px;
+          left: auto;
+          border-right: 2px solid var(--orange);
+          border-left: 0;
+          text-align: right;
+        }
+      }
+
+      /* Portrait tablets need their own rhythm: the <=900px layout stacks the
+         desktop columns, but retaining desktop viewport heights creates very
+         long empty runways. Keep every section readable in normal flow without
+         changing phones or the established landscape/desktop compositions. */
+      @media (min-width: 561px) and (max-width: 900px) and (pointer: coarse) {
+        .cap-hero {
+          min-height: 0;
+        }
+        .hero-copy {
+          min-height: 0;
+          padding-top: clamp(128px, 12svh, 150px);
+          padding-bottom: clamp(68px, 7svh, 88px);
+        }
+        .hero-copy h1 {
+          margin-block: 24px 34px;
+          font-size: clamp(56px, 8.6vw, 76px);
+          line-height: .9;
+        }
+        .hero-visual {
+          min-height: min(62svh, 680px);
+        }
+
+        .cap-intro {
+          min-height: 0;
+          gap: 36px;
+          padding-block: clamp(82px, 8svh, 100px);
+        }
+        .intro-index {
+          font-size: clamp(104px, 17vw, 145px);
+        }
+        .intro-main h2 {
+          font-size: clamp(52px, 7.8vw, 68px);
+          line-height: .94;
+        }
+        .intro-note {
+          margin-top: 42px;
+        }
+
+        .discipline-list {
+          padding-top: clamp(86px, 8svh, 104px);
+          padding-bottom: 34px;
+        }
+        .discipline-list h2 {
+          margin: 22px 0 38px;
+          font-size: clamp(48px, 7.5vw, 66px);
+        }
+        .discipline-media,
+        .is-safari .discipline-media {
+          height: min(60svh, 650px);
+        }
+
+        .traceability {
+          min-height: 0;
+        }
+        .trace-copy {
+          padding-block: clamp(78px, 8svh, 96px);
+        }
+        .trace-copy h2 {
+          margin: 24px 0 32px;
+          font-size: clamp(54px, 8.5vw, 72px);
+          line-height: .88;
+        }
+        .trace-records {
+          min-height: 0;
+          display: grid;
+          grid-template-rows: repeat(3, auto);
+          align-content: center;
+          gap: 18px;
+          padding: 48px 36px;
+        }
+        .record,
+        .record:nth-child(1),
+        .record:nth-child(2),
+        .record:nth-child(3) {
+          position: relative;
+          inset: auto;
+          width: min(82%, 620px);
+          box-sizing: border-box;
+          padding: 20px;
+        }
+        .record:nth-child(1) { justify-self: start; transform: rotate(-1deg); }
+        .record:nth-child(2) { justify-self: end; transform: rotate(.65deg); }
+        .record:nth-child(3) { justify-self: center; transform: rotate(-.45deg); }
+        .record h3 { margin: 16px 0 8px; font-size: 25px; }
+        .record-foot { margin-top: 16px; }
+
+        .quality {
+          padding-block: clamp(78px, 8svh, 96px);
+        }
+        .quality-head {
+          gap: 34px;
+        }
+        .quality-head h2 {
+          font-size: clamp(54px, 8vw, 70px);
+          line-height: .9;
+        }
+        .quality-grid {
+          margin-top: 56px;
+        }
+        .quality-grid article {
+          min-height: 270px;
+          padding: 24px;
+        }
+        .quality-grid h3 {
+          margin-top: 48px;
+        }
+
+        .closing {
+          min-height: 0;
+        }
+        .closing-copy {
+          padding-block: clamp(84px, 8svh, 100px);
+        }
+        .closing h2 {
+          margin: 24px 0 38px;
+          font-size: clamp(52px, 8vw, 68px);
+          line-height: .9;
+        }
+        .closing-mark {
+          min-height: 0;
+          gap: 24px;
+          padding: 58px clamp(34px, 6vw, 52px);
+        }
+        .closing-logo {
+          width: 82px;
+        }
+        .aacts-stack {
+          gap: 14px;
+        }
+        .aacts-ini {
+          width: 68px;
+          font-size: 82px;
+        }
+        .aacts-rest {
+          font-size: clamp(44px, 7vw, 58px);
+        }
+      }
+
+      /* Pinned image-led capability chain */
+      .chain[data-chain] {
+        height: 800vh;
+        min-height: 0;
+        padding: 0;
+        background: var(--paper);
+        color: var(--ink);
+      }
+      .chain-pin {
+        position: sticky;
+        top: 0;
+        height: 100svh;
+        overflow: hidden;
+        padding: clamp(76px, 9vh, 100px) var(--pad) 22px;
+      }
+      .chain[data-chain] .chain-head {
+        height: clamp(104px, 15vh, 150px);
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 35px;
+        border-bottom: 1px solid var(--line);
+      }
+      .chain[data-chain] .chain-head h2 {
+        margin: -.08em 0 0;
+        font-size: clamp(44px, 5vw, 82px);
+        line-height: .9;
+        white-space: nowrap;
+      }
+      .chain-stage {
+        height: calc(100svh - clamp(76px, 9vh, 100px) - clamp(104px, 15vh, 150px) - 22px);
+        display: grid;
+        grid-template-columns: 35% 65%;
+        grid-template-rows: minmax(0, 1fr) 50px;
+        border-left: 1px solid var(--line);
+        border-right: 1px solid var(--line);
+      }
+      .chain-copy {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: clamp(24px, 3.2vw, 56px);
+        border-right: 1px solid var(--line);
+      }
+      .chain-counter {
+        position: absolute;
+        left: clamp(24px, 3.2vw, 56px);
+        top: 24px;
+        display: flex;
+        align-items: baseline;
+        gap: 7px;
+        color: #858d91;
+        font: 500 10px "Roboto Mono";
+      }
+      .chain-counter b {
+        color: transparent;
+        font: 500 clamp(42px, 5vw, 78px) "Space Grotesk";
+        letter-spacing: -.07em;
+        -webkit-text-stroke: 1px var(--orange);
+      }
+      .chain-copy > small {
+        color: var(--orange);
+        font: 600 8px "Roboto Mono";
+        letter-spacing: .12em;
+      }
+      .chain-copy h3 {
+        margin: 17px 0 22px;
+        font-size: clamp(45px, 5vw, 86px);
+        font-weight: 500;
+        line-height: .84;
+        letter-spacing: -.07em;
+      }
+      .chain-copy > p {
+        max-width: 470px;
+        margin: 0;
+        color: #626b70;
+        font-size: clamp(13px, .94vw, 16px);
+        line-height: 1.6;
+      }
+      .chain-progress {
+        margin-top: clamp(28px, 4vh, 48px);
+      }
+      .chain-progress i {
+        display: block;
+        height: 2px;
+        background: rgba(10,13,15,.14);
+      }
+      .chain-progress em {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: var(--orange);
+        transform: scaleX(.125);
+        transform-origin: left;
+      }
+      .chain-progress span {
+        display: block;
+        margin-top: 11px;
+        color: #7b8488;
+        font: 600 7px "Roboto Mono";
+        letter-spacing: .12em;
+      }
+      .chain-images {
+        position: relative;
+        overflow: hidden;
+        background: #111416;
+      }
+      .chain-images:after {
+        content: "";
+        position: absolute;
+        z-index: 3;
+        inset: 0;
+        background: linear-gradient(180deg, transparent 58%, rgba(7,9,10,.72));
+        pointer-events: none;
+      }
+      .chain-images figure {
+        position: absolute;
+        inset: 0;
+        margin: 0;
+        opacity: 0;
+        visibility: hidden;
+        clip-path: inset(0 0 100% 0);
+      }
+      .chain-images figure.is-active {
+        opacity: 1;
+        visibility: visible;
+        clip-path: inset(0);
+      }
+      .chain-images img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .chain-image-meta {
+        position: absolute;
+        z-index: 4;
+        left: 20px;
+        right: 20px;
+        bottom: 18px;
+        display: flex;
+        justify-content: space-between;
+        color: #dce0e2;
+        font: 500 7px "Roboto Mono";
+        letter-spacing: .11em;
+      }
+      .chain-image-meta span:first-child { color: var(--orange); }
+      .chain-nav {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        border-top: 1px solid var(--line);
+      }
+      .chain-nav button {
+        padding: 0 10px;
+        border: 0;
+        border-right: 1px solid var(--line);
+        background: transparent;
+        color: #7c8589;
+        font: 600 clamp(6px, .48vw, 8px) "Roboto Mono";
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: color .3s, background .3s;
+      }
+      .chain-nav button.is-active {
+        background: var(--orange);
+        color: var(--ink);
+      }
+      @media (max-width: 900px) {
+        .chain[data-chain] { height: auto; }
+        .chain-pin {
+          position: relative;
+          height: auto;
+          padding: 88px 22px 35px;
+        }
+        .chain[data-chain] .chain-head {
+          height: auto;
+          display: block;
+          padding-bottom: 28px;
+        }
+        .chain[data-chain] .chain-head h2 {
+          margin-top: 18px;
+          white-space: normal;
+        }
+        .chain-stage {
+          height: auto;
+          grid-template-columns: 1fr;
+          grid-template-rows: auto 58vh;
+        }
+        .chain-copy { min-height: 55vh; border-right: 0; }
+        .chain-images { grid-row: 2; }
+        .chain-nav { display: none; }
+      }
+
+      /* Touch-phone disciplines: use the same six-step scroll story as the
+         desktop without scroll snapping. The compact sticky composition keeps
+         the controls, selected image and caption visible in one phone view. */
+      @media (max-width: 600px) {
+        .disciplines {
+          height: auto;
+          min-height: 0;
+        }
+        .disciplines > .disciplines-pin {
+          display: none;
+        }
+        .safari-disciplines-flow {
+          display: block;
+          background: #0b0e10;
+        }
+        .mobile-discipline-step {
+          scroll-margin-top: 76px;
+          border-bottom: 1px solid var(--dark-line);
+          background: #0b0e10;
+        }
+        .mobile-discipline-step__head {
+          padding: 18px 16px 8px;
+        }
+        .mobile-discipline-step:first-child .mobile-discipline-step__head {
+          padding-top: 26px;
+        }
+        .mobile-discipline-step__head h2 {
+          margin: 8px 0 12px;
+          font-size: clamp(31px, 9vw, 42px);
+          font-weight: 500;
+          line-height: .88;
+          letter-spacing: -.07em;
+        }
+        .mobile-discipline-step__button {
+          display: grid;
+          grid-template-columns: 30px minmax(0, 1fr) auto;
+          align-items: center;
+          gap: 8px;
+          min-height: 34px;
+          padding: 6px 0;
+          border-bottom: 1px solid var(--dark-line);
+          color: #697176;
+        }
+        .mobile-discipline-step__button b {
+          color: var(--orange);
+          font: 500 8px "Roboto Mono";
+        }
+        .mobile-discipline-step__button span {
+          font-size: clamp(13px, 3.8vw, 17px);
+          line-height: 1.15;
+        }
+        .mobile-discipline-step__button i {
+          color: var(--orange);
+          font-style: normal;
+        }
+        .mobile-discipline-step__button.is-active {
+          padding-left: 8px;
+          color: #fff;
+          border-color: var(--orange);
+        }
+        .mobile-discipline-step__media {
+          background: #080a0b;
+        }
+        .mobile-discipline-step__media img {
+          display: block;
+          width: 100%;
+          height: auto;
+        }
+        .mobile-discipline-step__caption {
+          padding: 14px 16px 20px;
+          background: #080a0b;
+        }
+        .mobile-discipline-step__caption small {
+          color: var(--orange);
+          font: 600 8px "Roboto Mono";
+          letter-spacing: .13em;
+        }
+        .mobile-discipline-step__caption h3 {
+          margin: 6px 0;
+          color: #fff;
+          font-size: clamp(20px, 5.8vw, 28px);
+          font-weight: 500;
+          line-height: 1;
+          letter-spacing: -.04em;
+        }
+        .mobile-discipline-step__caption p {
+          margin: 0;
+          color: #9ba2a6;
+          font-size: clamp(10px, 2.8vw, 13px);
+          line-height: 1.4;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .disciplines {
+          height: 600svh;
+          min-height: 600vh;
+        }
+        .disciplines-pin,
+        .is-safari .disciplines-pin {
+          position: -webkit-sticky;
+          position: sticky;
+          top: 76px;
+          height: calc(100vh - 76px);
+          height: calc(100svh - 76px);
+          display: grid;
+          grid-template-columns: 1fr;
+          grid-template-rows: max-content auto;
+          align-content: start;
+          overflow: hidden;
+          align-self: start;
+          background: #0b0e10;
+        }
+        .discipline-list,
+        .is-safari .discipline-list {
+          z-index: 3;
+          align-self: stretch;
+          min-height: 0;
+          padding: 14px 16px 8px;
+          background: #0b0e10;
+        }
+        .discipline-list h2 {
+          margin: 8px 0 10px;
+          font-size: clamp(31px, 9vw, 42px);
+          line-height: .88;
+        }
+        /* All six rows are present from the start on phones, dimmed until they
+           become active. Revealing them one by one meant the list block changed
+           height at every step, which forced either a shifting image or a dead
+           band waiting for the next row. A full list keeps the block a constant
+           height, so the image below it is identical on all six steps — and the
+           active highlight still carries the progression. */
+        .discipline-list button {
+          display: grid;
+          grid-template-columns: 30px minmax(0, 1fr) auto;
+          gap: 8px;
+          min-height: 34px;
+          padding: 6px 0;
+        }
+        .discipline-list button span {
+          font-size: clamp(13px, 3.8vw, 17px);
+          line-height: 1.15;
+        }
+        .discipline-list button.is-active {
+          padding-left: 8px;
+        }
+        .discipline-media,
+        .is-safari .discipline-media {
+          height: 100%;
+          min-height: 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          overflow: hidden;
+          contain: paint;
+        }
+        .discipline-media::before,
+        .is-safari .discipline-media::before {
+          content: "";
+          position: absolute;
+          z-index: 0;
+          inset: -24px;
+          background-image:
+            linear-gradient(180deg, rgba(8,10,11,.2), rgba(8,10,11,.64)),
+            var(--discipline-image);
+          background-position: center;
+          background-size: cover;
+          filter: blur(7px) saturate(.72);
+          transform: scale(1.045);
+          pointer-events: none;
+        }
+        .discipline-media img,
+        .is-safari .discipline-media img {
+          position: relative;
+          z-index: 1;
+          flex: 0 1 auto;
+          width: 100%;
+          height: auto;
+          max-height: calc(100% - 96px);
+          object-fit: contain;
+          object-position: center top;
+        }
+        .discipline-media:after {
+          display: none;
+        }
+        .media-caption {
+          position: relative;
+          z-index: 2;
+          left: auto;
+          right: auto;
+          bottom: auto;
+          flex: 0 0 auto;
+          width: 100%;
+          padding: 12px 16px 14px;
+          background: linear-gradient(180deg, rgba(8,10,11,.94), #080a0b);
+        }
+        .media-caption h3 {
+          margin: 5px 0 4px;
+          font-size: clamp(20px, 5.8vw, 28px);
+          line-height: 1;
+        }
+        .media-caption p {
+          max-width: 38rem;
+          font-size: clamp(10px, 2.8vw, 13px);
+          line-height: 1.32;
+        }
+        @keyframes mobile-discipline-enter {
+          from { opacity: 0; transform: translateY(8px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+      }
+
+      @media (max-height: 600px) and (pointer: coarse) and (orientation: landscape) {
+        .disciplines {
+          height: 600svh;
+        }
+        .disciplines-pin,
+        .is-safari .disciplines-pin {
+          top: 62px;
+          height: calc(100svh - 62px);
+          grid-template-columns: 48% 52%;
+          grid-template-rows: 1fr;
+        }
+        .discipline-list,
+        .is-safari .discipline-list {
+          padding: 8px 14px;
+        }
+        .discipline-list h2 {
+          margin: 4px 0 6px;
+          font-size: clamp(25px, 5.2vh, 34px);
+        }
+        .discipline-list button {
+          min-height: 27px;
+          padding: 3px 0;
+        }
+        .discipline-list button span {
+          font-size: clamp(11px, 2.7vh, 14px);
+        }
+      }
+      @media (max-width: 600px) {
+        .disciplines {
+          height: 600svh;
+          min-height: 600vh;
+        }
+        .disciplines > .disciplines-pin,
+        .is-safari .disciplines > .disciplines-pin {
+          position: -webkit-sticky;
+          position: sticky;
+          top: 76px;
+          display: grid;
+          height: calc(100vh - 76px);
+          height: calc(100svh - 76px);
+          /* Track the *dynamic* viewport. Sized in svh the panel stays as tall
+             as the smallest viewport, so collapsing the iOS toolbar exposed a
+             dead band below the caption. dvh keeps the panel exactly as tall as
+             what the visitor can actually see. */
+          height: calc(100dvh - 76px);
+          grid-template-columns: 1fr;
+          /* List block on top at its own height, artwork takes the rest. Both
+             are constant because the list always carries all six rows. */
+          grid-template-rows: max-content minmax(0, 1fr);
+          overflow: hidden;
+          background: #080a0b;
+        }
+        .disciplines > .disciplines-pin::after,
+        .is-safari .disciplines > .disciplines-pin::after {
+          display: none;
+          content: none;
+        }
+        /* The artwork owns the second grid row outright, so it starts below the
+           list rather than behind it. */
+        .discipline-media,
+        .is-safari .discipline-media {
+          position: relative;
+          inset: auto;
+          display: block;
+          height: 100%;
+          min-height: 0;
+          overflow: hidden;
+          contain: none;
+          isolation: auto;
+          background: #080a0b;
+        }
+        .discipline-media::before,
+        .is-safari .discipline-media::before {
+          display: none;
+        }
+        .discipline-media img,
+        .is-safari .discipline-media img {
+          position: absolute;
+          inset: 0;
+          display: block;
+          width: 100%;
+          height: 100%;
+          max-width: none;
+          max-height: none;
+          margin: 0;
+          object-fit: cover;
+          object-position: center;
+        }
+        /* No scrim on the media box: sized as a percentage of it, the fade
+           shrank with the image and left the kicker stranded on bright artwork
+           at short viewport heights. The caption carries its own instead, so it
+           is always exactly as tall as the text it has to cover. */
+        .discipline-media:after,
+        .is-safari .discipline-media:after {
+          display: none;
+          content: none;
+        }
+        .media-caption {
+          position: absolute;
+          z-index: 4;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          width: 100%;
+          min-height: 0;
+          padding: 12px 16px 20px;
+          background: transparent;
+          text-shadow: none;
+        }
+        /* Scrim tied to the caption box, with an overshoot for the fade tail —
+           it scales with the copy rather than with the image. */
+        .media-caption::before {
+          content: "";
+          position: absolute;
+          z-index: -1;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          top: -58px;
+          background: linear-gradient(
+            0deg,
+            rgba(8, 10, 11, .96) 0%,
+            rgba(8, 10, 11, .9) 58%,
+            rgba(8, 10, 11, 0) 100%
+          );
+          pointer-events: none;
+        }
+        /* Solid plate above the artwork — no scrim needed, nothing overlaps. */
+        .discipline-list,
+        .is-safari .discipline-list {
+          position: relative;
+          z-index: 3;
+          display: block;
+          padding: 14px 16px 10px;
+          background: #0b0e10;
+        }
+        .safari-disciplines-flow {
+          display: none;
+        }
+        /* Let the real next section occupy any unused part of the final
+           discipline viewport. The value is measured from the live sticky
+           composition, so short images do not leave a black artificial gap. */
+        .traceability {
+          position: relative;
+          z-index: 4;
+          margin-top: calc(-1 * var(--mobile-discipline-tail-gap, 0px));
+        }
+        .trace-copy {
+          justify-content: flex-start;
+          padding: 14px 16px 48px;
+        }
+      }
+
+      /* Technology-to-deployment records: final responsive normalization.
+         This sits after the legacy traceability breakpoints so compact laptops,
+         tablets and phones retain the same clean card system without overlap. */
+      .trace-records .record,
+      .trace-records .record:nth-child(1),
+      .trace-records .record:nth-child(2),
+      .trace-records .record:nth-child(3) {
+        position: relative;
+        inset: auto;
+        width: min(100%, 720px);
+        min-height: 0;
+        padding: clamp(18px, 2.2vh, 26px) 32px clamp(17px, 2vh, 24px) 158px;
+        transform: none;
+        justify-self: stretch;
+      }
+      .trace-records .record-icon {
+        top: clamp(18px, 2.2vh, 26px);
+        bottom: clamp(18px, 2.2vh, 26px);
+        left: 26px;
+        width: 100px;
+      }
+      .trace-records .record h3 {
+        margin: clamp(13px, 1.8vh, 19px) 0 8px;
+        font-size: clamp(23px, 1.8vw, 28px);
+      }
+      .trace-records .record-foot { margin-top: clamp(12px, 1.7vh, 19px); }
+      @media (max-width: 900px) {
+        .trace-records {
+          min-height: 0;
+          gap: 18px;
+          padding: clamp(28px, 6vw, 48px);
+        }
+        .trace-records .record,
+        .trace-records .record:nth-child(1),
+        .trace-records .record:nth-child(2),
+        .trace-records .record:nth-child(3) {
+          width: 100%;
+          min-height: 164px;
+          padding: 26px 28px 24px 148px;
+        }
+        .trace-records .record-icon {
+          top: 24px;
+          bottom: 24px;
+          left: 24px;
+          width: 92px;
+        }
+      }
+      @media (max-width: 560px) {
+        .trace-copy h2 {
+          font-size: clamp(46px, 14vw, 66px);
+          line-height: .88;
+        }
+        .trace-records { gap: 14px; padding: 26px 14px 34px; }
+        .trace-records .record,
+        .trace-records .record:nth-child(1),
+        .trace-records .record:nth-child(2),
+        .trace-records .record:nth-child(3) {
+          min-height: 0;
+          padding: 22px 18px 22px 94px;
+          border-radius: 12px;
+        }
+        .trace-records .record-icon {
+          top: 20px;
+          bottom: 20px;
+          left: 16px;
+          width: 60px;
+          border-radius: 9px;
+        }
+        .record-head b svg { width: 20px; height: 20px; }
+        .record-head { gap: 10px; padding-bottom: 12px; font-size: 7px; }
+        .record h3 { margin: 16px 0 8px; font-size: clamp(20px, 6vw, 25px); }
+        .record p { font-size: 12px; line-height: 1.45; }
+        .record-foot { margin-top: 16px; }
+      }
+
+      /* 04 / The Anika Difference */
+      .traceability {
+        min-height: 100svh;
+        grid-template-columns: minmax(300px, .86fr) minmax(0, 1.74fr);
+        grid-template-rows: auto auto auto;
+        gap: clamp(18px, 2vw, 30px);
+        padding: clamp(92px, 9vh, 128px) var(--pad) clamp(30px, 5vh, 62px);
+        background:
+          radial-gradient(circle at 80% 18%, rgba(255,255,255,.09), transparent 30%),
+          linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px),
+          var(--orange);
+        background-size: auto, 70px 70px, 70px 70px, auto;
+      }
+      .trace-copy {
+        grid-column: 1;
+        grid-row: 1;
+        justify-content: flex-start;
+        padding: 30px clamp(12px, 2.2vw, 36px) 0 0;
+      }
+      .trace-copy h2 {
+        margin: clamp(26px, 3vh, 42px) 0 clamp(26px, 3.5vh, 46px);
+        font-size: clamp(50px, 4.3vw, 82px);
+        line-height: .9;
+      }
+      .trace-copy .copy { max-width: 500px; font-size: clamp(14px, 1.05vw, 18px); line-height: 1.65; }
+      .trace-records {
+        grid-column: 2;
+        grid-row: 1;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-rows: none;
+        align-content: stretch;
+        gap: clamp(14px, 1.25vw, 22px);
+        padding: 0;
+        overflow: visible;
+        border: 0;
+        background: none;
+      }
+      .trace-records .record,
+      .trace-records .record:nth-child(1),
+      .trace-records .record:nth-child(2),
+      .trace-records .record:nth-child(3) {
+        width: 100%;
+        min-width: 0;
+        min-height: 0;
+        padding: clamp(20px, 2vw, 34px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-color: rgba(255,255,255,.25);
+        border-radius: 13px;
+        background: rgba(255,255,255,.075);
+        box-shadow: 0 15px 35px rgba(120,52,0,.12);
+        text-align: center;
+        backdrop-filter: blur(4px);
+      }
+      .difference-icon {
+        width: clamp(78px, 7vw, 112px);
+        height: clamp(78px, 7vw, 112px);
+        aspect-ratio: 1;
+        flex: 0 0 auto;
+        align-self: center;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: rgba(248,247,242,.92);
+        box-shadow: 0 10px 22px rgba(88,36,0,.16);
+      }
+      .difference-icon svg {
+        width: 60%;
+        height: 60%;
+        fill: none;
+        stroke: var(--ink);
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .difference-icon svg .accent { stroke: var(--orange); }
+      .difference-number {
+        align-self: flex-start;
+        margin: 10px 0 -4px;
+        color: rgba(10,13,15,.25);
+        font: 600 14px "Roboto Mono", monospace;
+      }
+      .trace-records .record h3 {
+        min-height: 2.2em;
+        margin: 2px 0 12px;
+        font: 700 clamp(20px, 1.55vw, 28px)/1.05 "Roboto Mono", monospace;
+        letter-spacing: -.04em;
+        text-transform: uppercase;
+      }
+      .difference-rule { width: 34px; height: 1px; margin-bottom: 22px; background: var(--ink); }
+      .trace-records .record p { margin: 0 auto; color: rgba(10,13,15,.78); font-size: clamp(12px, .85vw, 15px); line-height: 1.55; }
+      .difference-tags {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        margin-top: auto;
+        padding-top: 20px;
+        border-top: 1px solid rgba(10,13,15,.18);
+      }
+      .difference-tags span {
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 7px;
+        padding: 4px 2px;
+        border-right: 1px solid rgba(10,13,15,.17);
+        font: 600 clamp(7px, .55vw, 9px) "Roboto Mono", monospace;
+        text-transform: uppercase;
+      }
+      .difference-tags span:last-child { border-right: 0; }
+      .difference-tags svg {
+        width: clamp(27px, 2vw, 34px);
+        height: clamp(27px, 2vw, 34px);
+        fill: none;
+        stroke: var(--ink);
+        stroke-width: 1.75;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        vector-effect: non-scaling-stroke;
+      }
+      .difference-apart {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        padding: clamp(18px, 2.2vw, 30px);
+        border: 1px solid rgba(255,255,255,.25);
+        border-radius: 13px;
+        background: rgba(255,255,255,.065);
+      }
+      .difference-apart > h3 {
+        margin: 0 0 22px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 22px;
+        font: 600 14px "Roboto Mono", monospace;
+        letter-spacing: .07em;
+        text-transform: uppercase;
+      }
+      .difference-apart > h3 span { width: 70px; height: 1px; background: var(--ink); }
+      .difference-apart-grid { display: grid; grid-template-columns: repeat(5, 1fr); }
+      .difference-apart-grid article {
+        min-width: 0;
+        display: grid;
+        grid-template-columns: 44px 1fr;
+        gap: 12px;
+        padding: 4px clamp(12px, 1.4vw, 24px);
+        border-right: 1px solid rgba(10,13,15,.2);
+      }
+      .difference-apart-grid article:last-child { border-right: 0; }
+      .difference-apart-grid > article > svg {
+        width: 46px;
+        height: 46px;
+        fill: none;
+        stroke: var(--ink);
+        stroke-width: 1.75;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        vector-effect: non-scaling-stroke;
+      }
+      .difference-apart-grid h4 { margin: 0 0 8px; font: 600 10px "Roboto Mono", monospace; text-transform: uppercase; }
+      .difference-apart-grid p { margin: 0; color: rgba(10,13,15,.72); font-size: 10px; line-height: 1.55; }
+      .difference-statement {
+        grid-column: 1 / -1;
+        grid-row: 3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+        color: #fff;
+        font: 500 clamp(11px, 1vw, 16px) "Roboto Mono", monospace;
+        letter-spacing: .045em;
+        text-align: center;
+        text-transform: uppercase;
+      }
+      .difference-statement i { width: 32px; height: 32px; display: grid; place-items: center; flex: 0 0 auto; border-radius: 50%; background: var(--ink); font-style: normal; }
+
+      @media (max-width: 1100px) {
+        .traceability { grid-template-columns: 1fr; grid-template-rows: auto auto auto auto; }
+        .trace-copy { grid-column: 1; grid-row: 1; padding: 0; }
+        .trace-copy h2 br { display: none; }
+        .trace-records { grid-column: 1; grid-row: 2; }
+        .difference-apart { grid-row: 3; }
+        .difference-statement { grid-row: 4; }
+        .difference-apart-grid { grid-template-columns: repeat(3, 1fr); gap: 18px 0; }
+        .difference-apart-grid article:nth-child(3) { border-right: 0; }
+      }
+      @media (max-width: 720px) {
+        .traceability { gap: 20px; padding: 88px 16px 34px; }
+        .trace-copy { padding: 0; }
+        .trace-copy h2 { font-size: clamp(45px, 14vw, 64px); }
+        .trace-records { grid-template-columns: 1fr; padding: 0; }
+        .trace-records .record,
+        .trace-records .record:nth-child(1),
+        .trace-records .record:nth-child(2),
+        .trace-records .record:nth-child(3) { padding: 24px 20px; }
+        .trace-records .record h3 { min-height: 0; }
+        .difference-apart { padding: 22px 16px; }
+        .difference-apart > h3 { gap: 10px; font-size: 11px; }
+        .difference-apart > h3 span { width: 34px; }
+        .difference-apart-grid { grid-template-columns: 1fr; gap: 0; }
+        .difference-apart-grid article,
+        .difference-apart-grid article:nth-child(3) { padding: 18px 0; border-right: 0; border-bottom: 1px solid rgba(10,13,15,.18); }
+        .difference-apart-grid article:last-child { border-bottom: 0; }
+        .difference-statement { align-items: flex-start; }
+        .difference-statement i { width: 26px; height: 26px; }
+      }
+
+      /* 06 / Our Position */
+      .quality {
+        min-height: 100svh;
+        padding: clamp(100px, 10.5vh, 122px) var(--pad) clamp(26px, 3.5vh, 42px);
+        background:
+          radial-gradient(circle at 70% 12%, rgba(255,255,255,.78), transparent 34%),
+          #eef0f2;
+      }
+      .quality-head {
+        grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr);
+        gap: clamp(45px, 8vw, 130px);
+        align-items: center;
+      }
+      .quality-head h2 {
+        margin-top: clamp(18px, 2.2vh, 28px);
+        font-size: clamp(48px, 5.2vw, 88px);
+        line-height: .88;
+      }
+      .quality-head .copy {
+        max-width: 600px;
+        padding-left: clamp(20px, 2.5vw, 40px);
+        border-left: 1px solid var(--orange);
+        color: rgba(10,13,15,.78);
+        font-size: clamp(15px, 1.3vw, 22px);
+        line-height: 1.55;
+      }
+      .quality-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: clamp(16px, 1.6vw, 26px);
+        margin-top: clamp(22px, 2.8vh, 34px);
+        border: 0;
+      }
+      .quality-grid article {
+        position: relative;
+        min-height: clamp(250px, 29vh, 320px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: clamp(20px, 1.9vw, 32px);
+        border: 1px solid rgba(10,13,15,.14);
+        border-radius: 14px;
+        text-align: center;
+      }
+      .quality-grid b {
+        position: absolute;
+        top: clamp(22px, 2.2vw, 34px);
+        left: clamp(22px, 2.2vw, 34px);
+        color: var(--orange);
+        font: 600 clamp(28px, 2.5vw, 42px)/1 "Roboto Mono", monospace;
+        text-decoration: underline;
+        text-underline-offset: 8px;
+        -webkit-text-stroke: 0;
+      }
+      .position-icon {
+        width: clamp(66px, 5.8vw, 90px);
+        height: clamp(66px, 5.8vw, 90px);
+        aspect-ratio: 1;
+        flex: 0 0 auto;
+        align-self: center;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: rgba(255,255,255,.88);
+        box-shadow: 0 10px 28px rgba(10,13,15,.08);
+      }
+      .position-icon svg {
+        width: 62%;
+        height: 62%;
+        fill: none;
+        stroke: var(--ink);
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .position-icon svg .fill { fill: var(--orange); stroke: var(--orange); }
+      .position-icon svg .accent { stroke: var(--orange); }
+      .quality-grid h3 {
+        margin: clamp(15px, 1.7vh, 22px) 0 0;
+        font: 700 clamp(21px, 1.8vw, 30px)/1 "Roboto Mono", monospace;
+        letter-spacing: -.04em;
+        text-transform: uppercase;
+      }
+      .quality-grid article > i { width: 34px; height: 2px; margin: 18px 0 15px; background: var(--orange); }
+      .quality-grid p { max-width: 420px; margin: 0; color: rgba(10,13,15,.8); font-size: clamp(12px, .9vw, 15px); line-height: 1.45; }
+      .position-band {
+        display: grid;
+        grid-template-columns: .8fr .9fr 1.5fr;
+        margin-top: clamp(16px, 2vh, 24px);
+        padding: 10px clamp(14px, 1.6vw, 24px);
+        border: 1px solid rgba(10,13,15,.14);
+        border-radius: 13px;
+      }
+      .position-band article {
+        min-width: 0;
+        display: grid;
+        grid-template-columns: 54px 1fr;
+        gap: 14px;
+        align-items: center;
+        padding: 4px clamp(10px, 1.3vw, 22px);
+        border-right: 1px solid rgba(10,13,15,.22);
+      }
+      .position-band article:last-child { border-right: 0; }
+      .position-band .is-positive {
+        grid-template-columns: 54px minmax(230px, 1fr) minmax(180px, 260px);
+      }
+      .position-band span {
+        width: 48px;
+        height: 48px;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(10,13,15,.13);
+        border-radius: 50%;
+        color: var(--orange);
+        background: rgba(255,255,255,.7);
+        font: 300 31px/1 "Space Grotesk", sans-serif;
+      }
+      .position-band h3 { margin: 0 0 6px; font: 600 10px/1.3 "Roboto Mono", monospace; text-transform: uppercase; }
+      .position-band h3 em { color: var(--orange); font-style: normal; }
+      .position-band p { margin: 0; font-size: 11px; }
+      .position-world-map {
+        position: relative;
+        width: 100%;
+        min-width: 0;
+        justify-self: end;
+        opacity: .82;
+      }
+      .position-world-map svg { display: block; width: 100%; height: auto; overflow: visible; }
+      .position-world-map__art { display: block; width: 100%; height: auto; opacity: .9; }
+      .position-world-map__marker {
+        position: absolute;
+        left: 68.5%;
+        top: 49%;
+        width: 8px;
+        height: 8px;
+        border: 2px solid var(--orange);
+        border-radius: 50%;
+        background: #eef0f2;
+        box-shadow: 0 0 0 3px rgba(255,122,0,.13);
+        transform: translate(-50%, -50%);
+      }
+      .position-world-map__marker::before {
+        content: "";
+        position: absolute;
+        inset: -5px;
+        border: 1px solid var(--orange);
+        border-radius: 50%;
+        animation: position-map-pulse 2.8s ease-out infinite;
+      }
+      .position-world-map__marker::after {
+        content: "INDIA";
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        color: var(--orange);
+        font: 700 7px "Roboto Mono", monospace;
+        letter-spacing: .08em;
+        transform: translateY(-50%);
+      }
+      .position-world-map__india-ring {
+        fill: rgba(255,122,0,.15);
+        stroke: var(--orange);
+        stroke-width: 1.5;
+        transform-box: fill-box;
+        transform-origin: center;
+        animation: position-map-pulse 2.8s ease-out infinite;
+      }
+      .position-world-map__india-dot { fill: var(--orange); }
+      .position-world-map__india-label {
+        fill: var(--orange);
+        font: 700 9px "Roboto Mono", monospace;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+      }
+      @keyframes position-map-pulse {
+        0%, 35% { opacity: .95; transform: scale(.72); }
+        72%, 100% { opacity: 0; transform: scale(2.2); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .position-world-map__marker::before { animation: none; opacity: .75; }
+      }
+      .position-statement {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: clamp(22px, 4vw, 62px);
+        margin-top: clamp(18px, 2.5vh, 30px);
+        font: 600 clamp(11px, 1.1vw, 17px) "Roboto Mono", monospace;
+        letter-spacing: .025em;
+        text-align: center;
+        text-transform: uppercase;
+      }
+      .position-statement i { min-width: 70px; height: 1px; flex: 1; background: rgba(10,13,15,.62); }
+      .position-statement em { color: var(--orange); font-style: normal; }
+
+      @media (max-width: 900px) {
+        .quality-head { grid-template-columns: 1fr; gap: 34px; }
+        .quality-head .copy { justify-self: start; }
+        .quality-grid { grid-template-columns: 1fr 1fr; }
+        .quality-grid article:last-child { grid-column: 1 / -1; }
+        .position-band { grid-template-columns: 1fr 1fr; }
+        .position-band article:nth-child(2) { border-right: 0; }
+        .position-band .is-positive { grid-column: 1 / -1; grid-template-columns: 54px minmax(0, 1fr) minmax(190px, 270px); margin-top: 14px; padding-top: 20px; border-top: 1px solid rgba(10,13,15,.18); }
+      }
+      @media (max-width: 560px) {
+        .quality { padding: 104px 16px 38px; }
+        .quality-head h2 { font-size: clamp(48px, 14vw, 65px); }
+        .quality-head .copy { padding-left: 16px; font-size: 16px; }
+        .quality-grid { grid-template-columns: 1fr; }
+        .quality-grid article,
+        .quality-grid article:last-child { grid-column: auto; min-height: 330px; padding: 26px 20px; }
+        .quality-grid b { top: 24px; left: 22px; }
+        .position-band { grid-template-columns: 1fr; padding: 10px 16px; }
+        .position-band article,
+        .position-band article:nth-child(2),
+        .position-band .is-positive {
+          grid-column: auto;
+          grid-template-columns: 52px 1fr;
+          margin: 0;
+          padding: 18px 0;
+          border-right: 0;
+          border-top: 0;
+          border-bottom: 1px solid rgba(10,13,15,.18);
+        }
+        .position-band article:last-child { border-bottom: 0; }
+        .position-band .is-positive { grid-template-columns: 52px minmax(0, 1fr); }
+        .position-world-map { grid-column: 1 / -1; width: min(100%, 330px); margin: 8px auto 0; justify-self: center; }
+        .position-band span { width: 46px; height: 46px; font-size: 30px; }
+        .position-statement { gap: 12px; align-items: flex-start; }
+        .position-statement i { min-width: 26px; margin-top: 8px; }
+      }
+    </style>
+    <link rel="stylesheet" href="index-chrome.css" />
+  </head>
+  <body id="top">
+    <div class="boot" data-boot data-page-loader aria-label="Loading Anika Sterilis">
+      <div class="boot-grid"></div>
+      <div class="boot-scan"></div>
+      <div class="boot-brand">
+        <img src="https://ik.imagekit.io/d9wt8plt0/logo.png?updatedAt=1726730990831" alt="" />
+        <div><b>ANIKA STERILIS</b><span>ADVANCED ACTIVE CHEMICAL THREAT SCANNING</span></div>
+      </div>
+      <div class="boot-center">
+        <div class="boot-coordinates"><span>17.6868° N</span><i></i><span>83.2185° E</span></div>
+        <div class="boot-word" data-word="AACTS">AACTS</div>
+        <div class="boot-system"><span>ADVANCED ACTIVE</span><b>CHEMICAL THREAT SCANNING</b><span>SYSTEM / 3000</span></div>
+      </div>
+      <p class="boot-status" data-boot-status>CALIBRATING DETECTION ENVIRONMENT</p>
+      <div class="boot-progress"><span>LOADING EXPERIENCE</span><i><b data-boot-bar></b></i><strong data-boot-count>000</strong></div>
+    </div>
+    <div class="cursor" data-site-cursor aria-hidden="true"><i></i><b></b></div>
+    <div class="cursor-dot" data-site-cursor-dot aria-hidden="true"></div>
+    <header class="index-header">
+      <a class="brand" href="/index.html">
+        <img src="https://ik.imagekit.io/d9wt8plt0/logo.png?updatedAt=1726730990831" alt="Anika Sterilis corporate logo" />
+        <span><b>ANIKA STERILIS</b><small>PRIVATE LIMITED</small></span>
+      </a>
+      <nav>
+        <a href="/index.html">Platform</a>
+        <a class="is-active" href="/capability.html" aria-current="page">Capabilities</a>
+        <a href="/solutions">Solutions</a>
+        <a href="/about">About us</a>
+      </nav>
+      <a class="contact" href="/contact">Contact <span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M8 7h9v9" /></svg></span></a>
+      <button
+        class="mnav-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="mobile-site-navigation"
+        data-mnav-toggle
+      >
+        <span>Menu</span><i aria-hidden="true"><b></b><b></b></i>
+      </button>
+      <div class="mnav-panel" id="mobile-site-navigation" data-mnav-panel>
+        <span>Site navigation / 05</span>
+        <nav>
+          <a href="/index.html"><b>01</b>Platform</a
+          ><a class="is-active" href="/capability.html"><b>02</b>Capabilities</a
+          ><a href="/solutions"><b>03</b>Solutions</a
+          ><a href="/about"><b>04</b>About Us</a
+          ><a href="/contact"><b>05</b>Contact</a>
+        </nav>
+      </div>
+      <div class="page-completion" aria-hidden="true"><i></i></div>
+    </header>
+
+    <main>
+      <section class="cap-hero">
+        <div class="hero-copy">
+          <span class="eyebrow">Proprietary technology platform</span>
+          <h1 data-reveal>
+            Proprietary detection<br />technology.<br /><em>Engineered for the real world.</em>
+          </h1>
+          <p class="copy">
+            Anika Sterilis develops proprietary, patented detection technologies
+            that transform complex chemical signatures into rapid,
+            actionable intelligence. Our integrated R&amp;D, engineering and
+            manufacturing capabilities take these technologies from innovation to
+            deployable platforms.
+          </p>
+          <a class="link-line" href="#disciplines">Explore our technology <b>→</b></a>
+        </div>
+        <div class="hero-visual">
+          <figure class="hero-shot">
+            <img src="https://ik.imagekit.io/petdz32jy/public/Manu.jpg?updatedAt=1727247148793" alt="Anika Sterilis CNC manufacturing team" />
+            <span>Precision manufacturing</span>
+          </figure>
+          <figure class="hero-shot">
+            <img src="https://ik.imagekit.io/petdz32jy/public/Proddev.jpg?updatedAt=1727247148767" alt="Anika Sterilis product engineering" />
+            <span>Product engineering</span>
+          </figure>
+          <figure class="hero-shot">
+            <img src="https://ik.imagekit.io/jxuol7kjt/WhatsApp%20Image%202026-07-23%20at%2012.20.38%20PM.jpeg" alt="Anika Sterilis assembly team" />
+            <span>In-house integration</span>
+          </figure>
+          <div class="hero-facility"><b>25+</b>Patents &amp; proprietary IP</div>
+        </div>
+      </section>
+
+      <section class="proof-strip" aria-label="Capability proof">
+        <article><b>25+</b><span>Patents &amp;<br />proprietary IP</span></article>
+        <article><b>18+</b><span>Years of<br />technology &amp; R&amp;D*</span></article>
+        <article><b>100+</b><span>Detectable<br />substances*</span></article>
+        <article><b>100%</b><span>In-house technology<br />ownership</span></article>
+        <article><b>123,842</b><span>Square-foot<br />manufacturing facility</span></article>
+        <article><b>100%</b><span>Indigenous IP<br />end-to-end ownership</span></article>
+        <article><b>DIPP13936</b><span>Make in India<br />registered company</span></article>
+        <article><b>AERB</b><span>Certified systems<br />regulated operation</span></article>
+      </section>
+
+      <section class="cap-intro">
+        <b class="intro-index">01</b>
+        <div class="intro-main">
+          <span class="eyebrow">The technology behind the platform</span>
+          <h2 data-reveal>
+            We do not simply build instruments. We develop the technology that
+            powers them. <em>From proprietary IP to deployable intelligence.</em>
+          </h2>
+          <div class="intro-note">
+            <b>FROM IP TO DEPLOYMENT</b>
+            <p class="copy">
+              Our proprietary technology, R&amp;D, engineering, electronics,
+              software, integration and validation capabilities operate as one
+              connected platform &mdash; enabling us to move from fundamental
+              innovation to field-ready detection systems.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="disciplines" id="disciplines">
+        <div class="disciplines-pin">
+          <div class="discipline-list">
+            <span class="eyebrow">02 / Technology &amp; engineering</span>
+            <h2 data-reveal>From technology<br />to deployment.</h2>
+            <button class="is-active" data-cap="0"><b>01</b><span>Core technology architecture</span><i>→</i></button>
+            <button data-cap="1"><b>02</b><span>Proprietary detection technology</span><i>→</i></button>
+            <button data-cap="2"><b>03</b><span>Platform Engineering &amp; Scale</span><i>→</i></button>
+            <button data-cap="3"><b>04</b><span>Critical component engineering</span><i>→</i></button>
+            <button data-cap="4"><b>05</b><span>System integration &amp; validation</span><i>→</i></button>
+            <button data-cap="5"><b>06</b><span>Production &amp; field deployment</span><i>→</i></button>
+          </div>
+          <div class="discipline-media">
+            <img data-cap-image src="https://ik.imagekit.io/d9wt8plt0/20240927_130922.jpg?updatedAt=1727427867752&amp;tr=w-1800,q-82,f-auto" alt="" />
+            <div class="media-caption">
+              <small data-cap-kicker>CORE TECHNOLOGY ARCHITECTURE</small>
+              <h3 data-cap-title>A proprietary technology stack built around advanced sensing.</h3>
+              <p data-cap-copy>
+                Our detection platforms integrate proprietary sensing architectures
+                with controlled sample handling, ionization, mobility separation,
+                signal acquisition and analytical processing. Each layer is engineered
+                and validated as part of an integrated technology platform&mdash;from trace
+                sample introduction to substance identification and actionable detection.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="safari-disciplines-flow" aria-label="Six capability disciplines"></div>
+      </section>
+
+      <section class="traceability" data-cursor-contrast>
+        <div class="trace-copy">
+          <span class="eyebrow">04 / The Anika Difference</span>
+          <h2 data-reveal>From proprietary<br />technology<br /><em>to deployable<br />systems.</em></h2>
+          <p class="copy">
+            Anika Sterilis brings together innovation, precision engineering,
+            manufacturing excellence and rigorous validation under one integrated
+            framework&mdash;delivering high-performance systems that are reliable,
+            scalable and mission-ready.
+          </p>
+        </div>
+        <div class="trace-records">
+          <article class="record">
+            <div class="difference-icon"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M21 38c-4-3-7-8-7-14a18 18 0 0 1 36 0c0 6-3 11-7 14-3 2-4 5-4 8H25c0-3-1-6-4-8Z"/><path d="M25 46h14M27 51h10M29 56h6"/><path class="accent" d="M32 7v6M13 16l5 3M51 16l-5 3"/></svg></div>
+            <span class="difference-number">01</span>
+            <h3>Engineering<br />Innovation</h3>
+            <i class="difference-rule"></i>
+            <p>Proprietary sensing technologies and system architectures developed in-house through deep R&amp;D and domain expertise.</p>
+            <div class="difference-tags">
+              <span><svg viewBox="0 0 32 32" aria-hidden="true"><ellipse cx="16" cy="16" rx="14" ry="5"/><ellipse cx="16" cy="16" rx="14" ry="5" transform="rotate(60 16 16)"/><ellipse cx="16" cy="16" rx="14" ry="5" transform="rotate(120 16 16)"/><circle cx="16" cy="16" r="2"/></svg>Research</span>
+              <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.38a2 2 0 0 0-.73-2.73l-.15-.09a2 2 0 0 1-1-1.74v-.51a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2Z"/><circle cx="12" cy="12" r="3"/></svg>Design</span>
+              <span><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3c4.6 3.5 8.5 4.3 13 5v7.2c0 7.2-4.7 12-13 15-8.3-3-13-7.8-13-15V8c4.5-.7 8.4-1.5 13-5Z"/><path d="m10.5 16 3.6 3.6 7.8-8"/></svg>IP ownership</span>
+            </div>
+          </article>
+          <article class="record">
+            <div class="difference-icon"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="m15 22 17-10 17 10v20L32 52 15 42V22Z"/><path d="m15 22 17 10 17-10M32 32v20"/><path class="accent" d="M18 24l14 8 14-8"/></svg></div>
+            <span class="difference-number">02</span>
+            <h3>Integrated<br />Execution</h3>
+            <i class="difference-rule"></i>
+            <p>End-to-end capabilities from precision manufacturing to system integration&mdash;everything built and controlled in-house.</p>
+            <div class="difference-tags">
+              <span><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 28h24M6 25v-7h5v7M14 25V13h5v12M22 25V8h5v17M8 14l6-6 4 2 8-7"/><path d="m21 3 5 0 0 5"/></svg>Manufacture</span>
+              <span><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 5h9c-2 3 0 6 3 6s5-3 3-6h9v9c-3-2-6 0-6 3s3 5 6 3v8h-9c2-3 0-6-3-6s-5 3-3 6H4v-8c3 2 6 0 6-3s-3-5-6-3V5Z"/></svg>Integrate</span>
+              <span><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="7" y="7" width="18" height="18" rx="2"/><path d="M11 2v5M16 2v5M21 2v5M11 25v5M16 25v5M21 25v5M2 11h5M2 16h5M2 21h5M25 11h5M25 16h5M25 21h5"/></svg>Control</span>
+            </div>
+          </article>
+          <article class="record">
+            <div class="difference-icon"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 7c8 6 14 7 21 8v14c0 13-8 22-21 28C19 51 11 42 11 29V15c7-1 13-2 21-8Z"/><path class="accent" d="m22 32 7 7 14-16"/></svg></div>
+            <span class="difference-number">03</span>
+            <h3>Validated<br />For Impact</h3>
+            <i class="difference-rule"></i>
+            <p>Every system is rigorously validated and field-proven to deliver reliability, performance and mission success.</p>
+            <div class="difference-tags">
+              <span><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="8.5"/><circle cx="16" cy="16" r="3"/><path d="M16 2v5.5M16 24.5V30M2 16h5.5M24.5 16H30"/></svg>Validate</span>
+              <span><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="11.5" r="7.5"/><path d="m11.5 19-1.8 10 6.3-3.8 6.3 3.8-1.8-10M12.5 11.5l2.3 2.4 4.8-5"/></svg>Qualify</span>
+              <span><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13"/><path d="M3 16h26M16 3c3.8 3.7 6 8 6 13s-2.2 9.3-6 13c-3.8-3.7-6-8-6-13s2.2-9.3 6-13ZM5.5 9.5h21M5.5 22.5h21"/></svg>Deploy</span>
+            </div>
+          </article>
+        </div>
+        <div class="difference-apart">
+          <h3><span></span>What Sets Anika Apart<span></span></h3>
+          <div class="difference-apart-grid">
+            <article><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 3c7 5 13 6 19 7v11c0 11-7 18-19 24C12 39 5 32 5 21V10c6-1 12-2 19-7Z"/><path d="m15 24 6 6 13-15"/></svg><div><h4>End-to-end control</h4><p>Complete control across technology, engineering, manufacturing and validation ensures consistency and quality.</p></div></article>
+            <article><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg><div><h4>Proprietary advantage</h4><p>Patented technologies and proprietary know-how deliver performance that competitors find hard to replicate.</p></div></article>
+            <article><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.38a2 2 0 0 0-.73-2.73l-.15-.09a2 2 0 0 1-1-1.74v-.51a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2Z"/><circle cx="12" cy="12" r="3"/></svg><div><h4>Precision by design</h4><p>Precision engineering and manufacturing at every layer drive accuracy, reliability and long-term durability.</p></div></article>
+            <article><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M5 43h38M8 39V29h7v10M20 39V22h7v17M32 39V13h7v26M10 23l10-10 7 3L41 4"/><path d="M34 4h7v7"/></svg><div><h4>Built to scale</h4><p>Integrated infrastructure and processes enable scalable production without compromising quality or performance.</p></div></article>
+            <article><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="13" r="7"/><circle cx="10" cy="20" r="6"/><circle cx="38" cy="20" r="6"/><path d="M13 42v-7c0-7 5-11 11-11s11 4 11 11v7M2 40v-5c0-5 3-8 8-8 2 0 4 1 5 2M46 40v-5c0-5-3-8-8-8-2 0-4 1-5 2"/></svg><div><h4>Mission-focused</h4><p>Everything we build is driven by real-world needs&mdash;delivering solutions that perform where it truly matters.</p></div></article>
+          </div>
+        </div>
+        <div class="difference-statement"><i>+</i><strong>One integrated capability. Different by design. Built for real-world impact.</strong><i>+</i></div>
+      </section>
+
+      <section class="quality">
+        <div class="quality-head">
+          <div>
+            <span class="eyebrow">06 / Our Position</span>
+            <h2 data-reveal>Built for missions<br /><em>where reliability<br />matters.</em></h2>
+          </div>
+          <p class="copy">
+            Anika Sterilis combines proprietary technology, end-to-end control
+            and field-ready execution to deliver specialized detection systems
+            for demanding real-world environments.
+          </p>
+        </div>
+        <div class="quality-grid">
+          <article>
+            <b>01</b>
+            <div class="position-icon"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 6c9 7 16 8 23 9v14c0 14-9 24-23 30C18 53 9 43 9 29V15c7-1 14-2 23-9Z"/><path class="fill" d="m32 19 4 8 9 1-7 6 2 9-8-4-8 4 2-9-7-6 9-1 4-8Z"/></svg></div>
+            <h3>Proprietary</h3><i></i>
+            <p>Core sensing technologies, algorithms and system architectures developed, owned and continuously advanced by Anika Sterilis.</p>
+          </article>
+          <article>
+            <b>02</b>
+            <div class="position-icon"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="m12 21 20-12 20 12v23L32 56 12 44V21Z"/><path d="m12 21 20 12 20-12M32 33v23"/><rect class="accent" x="27" y="26" width="11" height="13"/></svg></div>
+            <h3>Integrated</h3><i></i>
+            <p>R&amp;D, engineering, manufacturing, integration and deployment&mdash;everything is controlled in-house under one integrated framework.</p>
+          </article>
+          <article>
+            <b>03</b>
+            <div class="position-icon"><svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="13"/><circle class="accent" cx="32" cy="32" r="4"/><path d="M32 5v14M32 45v14M5 32h14M45 32h14"/></svg></div>
+            <h3>Mission-ready</h3><i></i>
+            <p>Systems designed, tested and deployed for environments where performance, reliability and response time are critical.</p>
+          </article>
+        </div>
+        <div class="position-band">
+          <article><span>×</span><div><h3>Not a component supplier.</h3><p>We don&rsquo;t just supply parts.</p></div></article>
+          <article><span>×</span><div><h3>Not an equipment assembler.</h3><p>We don&rsquo;t just put things together.</p></div></article>
+          <article class="is-positive">
+            <span>✓</span>
+            <div><h3>We are a <em>technology company</em><br />building complete detection systems.</h3><p>Engineered to perform. Built to protect.</p></div>
+            <div class="position-world-map" role="img" aria-label="World map showing India as Anika Sterilis's origin">
+              <img class="position-world-map__art" src="capability-world-map.png" alt="" aria-hidden="true" />
+              <i class="position-world-map__marker" aria-hidden="true"></i>
+            </div>
+          </article>
+        </div>
+        <div class="position-statement"><i></i><strong>One integrated capability. One purpose: <em>Deliver systems our customers can trust.</em></strong><i></i></div>
+      </section>
+
+      <section class="closing">
+        <div class="closing-copy">
+          <span class="eyebrow">Anika Sterilis / Capability</span>
+          <h2 data-reveal>
+            Built with precision.<br />Verified with discipline.<br /><em>Powered by innovation.</em>
+          </h2>
+          <a class="link-line" href="/contact">Discuss your requirement <b>→</b></a>
+        </div>
+        <div class="closing-mark" aria-label="AACTS — Advanced Active Chemical Threat Scanning">
+          <img class="closing-logo" src="https://ik.imagekit.io/jxuol7kjt/orangeround-removebg-preview.png" alt="AACTS emblem" />
+          <div class="aacts-stack">
+            <span class="aacts-word"><span class="aacts-ini">A</span><span class="aacts-rest">dvanced</span></span>
+            <span class="aacts-word"><span class="aacts-ini">A</span><span class="aacts-rest">ctive</span></span>
+            <span class="aacts-word"><span class="aacts-ini">C</span><span class="aacts-rest">hemical</span></span>
+            <span class="aacts-word aacts-word--fill"><span class="aacts-ini">T</span><span class="aacts-rest">hreat</span></span>
+            <span class="aacts-word"><span class="aacts-ini">S</span><span class="aacts-rest">canning</span></span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" id="footer" data-footer>
+      <div class="footer-grid" aria-hidden="true"></div>
+      <div class="footer-top">
+        <a class="footer-brand" href="#top" aria-label="Back to top">
+          <span class="footer-logo"><img src="https://ik.imagekit.io/d9wt8plt0/logo.png?updatedAt=1726730990831" alt="Anika Sterilis" /><i></i></span>
+          <span><b>ANIKA STERILIS</b><small>PRIVATE LIMITED</small></span>
+        </a>
+        <div class="footer-status"><i></i><span>AACTS® PLATFORM / OPERATIONAL</span></div>
+        <a class="footer-toplink" href="#top">Return to top <b>↑</b></a>
+      </div>
+      <div class="footer-main">
+        <div class="footer-statement">
+          <span>CHEMICAL INTELLIGENCE / INDIA</span>
+          <h2>Make the invisible<br /><em>actionable.</em></h2>
+          <p>Advanced Active Chemical Threat Scanning systems engineered for security environments where every trace matters.</p>
+          <a href="/contact">Start a conversation <b>↗</b></a>
+        </div>
+        <div class="footer-seal" aria-label="Anika Sterilis identity">
+          <span>ANIKA STERILIS / PRIVATE LIMITED</span>
+          <div><i></i><img src="https://ik.imagekit.io/d9wt8plt0/logo.png?updatedAt=1726730990831" alt="Anika Sterilis" /></div>
+          <small>PATENTED DETECTION PLATFORM / 3000</small>
+        </div>
+        <nav class="footer-nav" aria-label="Footer navigation">
+          <div><span>Platform</span><a href="/solutions">AACTS® 3000</a><a href="/index.html#products">Product platform</a><a href="/capability.html">Capabilities</a><a href="/index.html#applications">Applications</a></div>
+          <div><span>Company</span><a href="/about">About us</a><a href="/solutions">Solutions</a><a href="/contact">Contact</a></div>
+          <div><span>Legal</span><a href="/privacy">Privacy</a><a href="/terms">Terms</a></div>
+        </nav>
+      </div>
+      <div class="footer-wordmark" aria-hidden="true">ANIKA <em>STERILIS</em></div>
+      <div class="footer-bottom">
+        <span>© 2026 ANIKA STERILIS PRIVATE LIMITED</span>
+        <span>ADVANCED ACTIVE CHEMICAL THREAT SCANNING</span>
+        <span>LOCAL TIME <b data-footer-time>--:-- IST</b></span>
+      </div>
+    </footer>
+
+    <script src="page-transition.js"></script>
+    <script src="site-crosshair.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.8/dist/lenis.min.js"></script>
+    <script>
+      gsap.registerPlugin(ScrollTrigger, SplitText);
+      const lenis = new Lenis({
+        lerp: isSafariBrowser ? 1 : .085,
+        smoothWheel: !isSafariBrowser,
+        wheelMultiplier: .85,
+      });
+      lenis.on("scroll", ScrollTrigger.update);
+      gsap.ticker.add((time) => lenis.raf(time * 1000));
+      gsap.ticker.lagSmoothing(0);
+      lenis.on("scroll", ({ progress }) =>
+        gsap.set(".page-completion i", { scaleX: progress }),
+      );
+      const footerTime = document.querySelector("[data-footer-time]");
+      const updateFooterTime = () => {
+        const value = new Intl.DateTimeFormat("en-GB", {
+          timeZone: "Asia/Kolkata",
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
+        }).format(new Date());
+        if (footerTime) footerTime.textContent = `${value} IST`;
+      };
+      let footerTimer = 0;
+      const syncFooterClock = () => {
+        clearInterval(footerTimer);
+        footerTimer = 0;
+        if (document.hidden) return;
+        updateFooterTime();
+        footerTimer = setInterval(updateFooterTime, 30000);
+      };
+      syncFooterClock();
+      document.addEventListener("visibilitychange", syncFooterClock);
+
+      // Mobile navigation: toggle the dropdown panel that replaces the desktop nav.
+      const mnavToggle = document.querySelector("[data-mnav-toggle]"),
+        mnavPanel = document.querySelector("[data-mnav-panel]");
+      if (mnavToggle && mnavPanel) {
+        const closeMnav = () => {
+          mnavToggle.setAttribute("aria-expanded", "false");
+          mnavPanel.classList.remove("is-open");
+        };
+        mnavToggle.addEventListener("click", () => {
+          const open = mnavToggle.getAttribute("aria-expanded") === "true";
+          mnavToggle.setAttribute("aria-expanded", String(!open));
+          mnavPanel.classList.toggle("is-open", !open);
+        });
+        mnavPanel.addEventListener("click", (event) => {
+          if (event.target.closest("a")) closeMnav();
+        });
+        document.addEventListener("click", (event) => {
+          if (
+            mnavPanel.classList.contains("is-open") &&
+            !event.target.closest("[data-mnav-panel]") &&
+            !event.target.closest("[data-mnav-toggle]")
+          )
+            closeMnav();
+        });
+      }
+
+      document.querySelectorAll("[data-reveal]").forEach((heading) => {
+        const split = new SplitText(heading, {
+          type: "words,lines",
+          linesClass: "word-line",
+        });
+        gsap.from(split.words, {
+          scrollTrigger: { trigger: heading, start: "top 84%", once: true },
+          yPercent: 65,
+          opacity: 0,
+          color: "#ff7a00",
+          duration: .55,
+          stagger: .085,
+          ease: "power3.out",
+        });
+      });
+
+      gsap.from(".hero-shot", {
+        clipPath: "inset(100% 0 0 0)",
+        yPercent: 8,
+        duration: 1.15,
+        stagger: .13,
+        delay: .2,
+        ease: "power4.inOut",
+      });
+      gsap.from(".hero-copy .copy,.hero-copy .link-line", {
+        opacity: 0,
+        y: 24,
+        duration: .7,
+        stagger: .12,
+        delay: .75,
+      });
+
+      const capData = [
+        {
+          image: "https://ik.imagekit.io/d9wt8plt0/20240927_130922.jpg?updatedAt=1727427867752",
+          // mobileImage is used only below 600px; desktop keeps the photography.
+          mobileImage: "https://ik.imagekit.io/r3f301602/01.png",
+          kicker: "CORE TECHNOLOGY ARCHITECTURE",
+          title: "A proprietary technology stack built around advanced sensing.",
+          copy: "Our detection platforms integrate proprietary sensing architectures with controlled sample handling, ionization, mobility separation, signal acquisition and analytical processing. Each layer is engineered and validated as part of an integrated technology platform—from trace sample introduction to substance identification and actionable detection.",
+        },
+        {
+          image: "https://ik.imagekit.io/d9wt8plt0/ChatGPT%20Image%20Jul%2023,%202026,%2002_53_41%20PM.png",
+          mobileImage: "https://ik.imagekit.io/r3f301602/02.png",
+          kicker: "PROPRIETARY TECHNOLOGY / 02",
+          title: "Detection technology engineered from first principles.",
+          copy: "Anika Sterilis develops proprietary ion mobility spectrometry platforms for rapid trace detection. Our technology combines controlled sample handling, ionization, Dual Axial IMS, signal acquisition and analytical processing within an integrated detection architecture. The result is a vertically integrated technology platform that converts trace chemical signatures into rapid, actionable identification—across security, safety and diagnostic applications.",
+        },
+        {
+          image: "https://ik.imagekit.io/jxuol7kjt/ChatGPT%20Image%20Jul%2022,%202026,%2003_00_30%20PM.png?updatedAt=1784712650437",
+          mobileImage: "https://ik.imagekit.io/r3f301602/03.png",
+          kicker: "PLATFORM ENGINEERING / 03",
+          title: "Technology becomes a scalable platform.",
+          copy: "Our vertically integrated engineering and production capabilities translate proprietary detection technology into repeatable, validated platforms. From critical components and electronics to system assembly and verification, we maintain control across the technology-to-production lifecycle.",
+        },
+        {
+          image: "https://ik.imagekit.io/jxuol7kjt/WhatsApp%20Image%202026-07-23%20at%2012.46.46%20PM.jpeg?updatedAt=1784791118105",
+          mobileImage: "https://ik.imagekit.io/r3f301602/04%20(2).png",
+          kicker: "CRITICAL COMPONENT ENGINEERING / 04",
+          title: "The smallest components can define system performance.",
+          copy: "We engineer and manufacture critical mechanical and functional components in-house, with controlled dimensions, material selection and process parameters. From precision-machined parts and gas-path components to custom assemblies, every component is developed around the performance requirements of our detection systems.",
+        },
+        {
+          image: "https://ik.imagekit.io/jxuol7kjt/WhatsApp%20Image%202026-07-23%20at%2012.20.38%20PM.jpeg",
+          mobileImage: "https://ik.imagekit.io/r3f301602/05.png",
+          kicker: "INTEGRATION / 05",
+          title: "Every subsystem is engineered to perform as one.",
+          copy: "Detection architecture, sampling, electronics, fluidics, embedded control and mechanical assemblies are integrated in-house into a unified analytical system. Each build is verified at subsystem and system level before deployment.",
+        },
+        {
+          image: "https://ik.imagekit.io/d9wt8plt0/20240927_132814_486.jpg?updatedAt=1727424222357",
+          mobileImage: "https://ik.imagekit.io/r3f301602/06.png",
+          kicker: "DEPLOYMENT / 06",
+          title: "From verified system to field-ready platform.",
+          copy: "Validated systems move through controlled production, final calibration and release checks before deployment. Our engineering and service capability supports installation, commissioning and sustained operation in the field.",
+        },
+      ];
+      const capSection = document.getElementById("disciplines");
+      const mobileDisciplineFlow = document.querySelector(".safari-disciplines-flow");
+      const useMobileDisciplineFlow = false;
+      if (mobileDisciplineFlow && useMobileDisciplineFlow) {
+        mobileDisciplineFlow.innerHTML = capData.map((item, index) => `
+          <article class="mobile-discipline-step" data-mobile-cap="${index}">
+            <div class="mobile-discipline-step__head">
+              ${index === 0 ? '<span class="eyebrow">02 / Technology &amp; engineering</span><h2>From technology<br>to deployment.</h2>' : ''}
+              ${[item].map(() => `
+                <div class="mobile-discipline-step__button is-active">
+                  <b>${String(index + 1).padStart(2, '0')}</b>
+                  <span>${['Core technology architecture','Proprietary detection technology','Platform Engineering &amp; Scale','Critical component engineering','System integration &amp; validation','Production &amp; field deployment'][index]}</span>
+                  <i>→</i>
+                </div>`).join('')}
+            </div>
+            <div class="mobile-discipline-step__media">
+              <img src="${item.image}" alt="" loading="${index < 2 ? 'eager' : 'lazy'}" decoding="async">
+              <div class="mobile-discipline-step__caption">
+                <small>${item.kicker}</small>
+                <h3>${item.title}</h3>
+                <p>${item.copy}</p>
+              </div>
+            </div>
+          </article>`).join('');
+
+        gsap.utils.toArray(".mobile-discipline-step").forEach((step) => {
+          gsap.fromTo(
+            step.querySelector(".mobile-discipline-step__media"),
+            { opacity: .45, y: 24 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: .65,
+              ease: "power2.out",
+              scrollTrigger: { trigger: step, start: "top 82%" },
+            },
+          );
+        });
+      }
+      const capButtons = [...document.querySelectorAll("[data-cap]")];
+      const capImage = document.querySelector("[data-cap-image]");
+      const capMedia = document.querySelector(".discipline-media");
+      const usePhoneCapabilityImage = matchMedia("(max-width: 600px)").matches;
+      if (capImage && usePhoneCapabilityImage && capData[0].mobileImage) {
+        capImage.src = capData[0].mobileImage;
+      }
+      if (capMedia && capImage) {
+        capMedia.style.setProperty(
+          "--discipline-image",
+          `url("${capImage.currentSrc || capImage.src}")`,
+        );
+      }
+      const capKicker = document.querySelector("[data-cap-kicker]");
+      const capTitle = document.querySelector("[data-cap-title]");
+      const capCopy = document.querySelector("[data-cap-copy]");
+      /* The phone artwork fills the pinned panel edge to edge in CSS, so there
+         is no card to measure and no leftover height to redistribute. Every step
+         shows the same frame at the same size by construction. */
+      const capabilityImageUrl = (image) => {
+        if (!isSafariBrowser) return image;
+        return `${image}${image.includes("?") ? "&" : "?"}tr=w-1800,q-82,f-auto`;
+      };
+      const capImageLoads = capData.map(({ image, mobileImage }) => {
+        const selectedImage = usePhoneCapabilityImage && mobileImage ? mobileImage : image;
+        const preload = new Image();
+        preload.decoding = "async";
+        preload.src = capabilityImageUrl(selectedImage);
+        return new Promise((resolve) => {
+          const ready = () => {
+            const decoded = preload.decode ? preload.decode().catch(() => {}) : Promise.resolve();
+            decoded.finally(() => resolve(preload.src));
+          };
+          if (preload.complete && preload.naturalWidth) ready();
+          else {
+            preload.addEventListener("load", ready, { once: true });
+            preload.addEventListener("error", () => resolve(selectedImage), { once: true });
+          }
+        });
+      });
+      let activeCap = 0;
+      capButtons.forEach((button, index) =>
+        button.classList.toggle("is-reached", index === 0),
+      );
+      let capRequest = 0;
+      function showCapability(index, immediate) {
+        capButtons.forEach((button, i) => {
+          button.classList.toggle("is-active", i === index);
+          button.classList.toggle("is-reached", i <= index);
+        });
+        const data = capData[index];
+        const request = ++capRequest;
+        gsap.killTweensOf([capImage, capKicker, capTitle, capCopy]);
+        capKicker.textContent = data.kicker;
+        capTitle.textContent = data.title;
+        capCopy.textContent = data.copy;
+        gsap.set([capKicker, capTitle, capCopy], { opacity: 1, y: 0 });
+        capImageLoads[index].then((source) => {
+          if (request !== capRequest) return;
+          capImage.src = source;
+          capMedia?.style.setProperty("--discipline-image", `url("${source}")`);
+          if (!immediate) {
+            gsap.fromTo(
+              capImage,
+              { opacity: .45, scale: 1.012 },
+              { opacity: 1, scale: 1, duration: .45, ease: "power2.out", overwrite: true },
+            );
+          } else {
+            gsap.set(capImage, { opacity: 1, scale: 1 });
+          }
+        });
+        if (!immediate) {
+          gsap.fromTo(
+            [capKicker, capTitle, capCopy],
+            { opacity: 0, y: 12 },
+            { opacity: 1, y: 0, duration: .38, stagger: .035, ease: "power2.out" },
+          );
+        }
+        activeCap = index;
+      }
+      function updateCapability(index) {
+        if (index !== activeCap) showCapability(index);
+      }
+      const mobileCapabilityScroll = matchMedia(
+        "(max-width: 600px), (max-height: 600px) and (pointer: coarse)",
+      ).matches;
+      if (capSection && (innerWidth > 900 || mobileCapabilityScroll)) {
+        const capSteps = capData.length;
+        const capabilityTrigger = ScrollTrigger.create({
+          trigger: capSection,
+          start: "top top",
+          end: "bottom bottom",
+          onUpdate: ({ progress }) =>
+            updateCapability(Math.min(capSteps - 1, Math.floor(progress * capSteps))),
+          invalidateOnRefresh: true,
+        });
+        capButtons.forEach((button, index) =>
+          button.addEventListener("click", () => {
+            /* Aim at the centre of the selected chapter, not its boundary.
+               ScrollTrigger derives six equal ranges with floor(progress * 6);
+               boundary targets could round back into the preceding item on
+               Safari and during Lenis interpolation (03 appeared as 02). */
+            const chapterProgress = (index + .5) / capSteps;
+            const scrollStart = capabilityTrigger.start;
+            const scrollEnd = capabilityTrigger.end;
+            const destination = scrollStart + (scrollEnd - scrollStart) * chapterProgress;
+            showCapability(index, true);
+            lenis.scrollTo(destination, {
+              duration: .85,
+              onComplete: () => showCapability(index, true),
+            });
+          }),
+        );
+      } else {
+        capButtons.forEach((button, index) => {
+          button.addEventListener("click", () => showCapability(index));
+          button.addEventListener("mouseenter", () => showCapability(index));
+        });
+      }
+
+      const chainSection = document.querySelector("[data-chain]");
+      const chainImages = [...document.querySelectorAll("[data-chain-image]")];
+      const chainNav = [...document.querySelectorAll("[data-chain-nav]")];
+      const chainIndex = document.querySelector("[data-chain-index]");
+      const chainKicker = document.querySelector("[data-chain-kicker]");
+      const chainTitle = document.querySelector("[data-chain-title]");
+      const chainCopy = document.querySelector("[data-chain-copy]");
+      const chainProgress = document.querySelector("[data-chain-progress]");
+      const chainState = document.querySelector("[data-chain-state]");
+      const chainPhoto = document.querySelector("[data-chain-photo]");
+      const chainData = [
+        ["ORIGIN / R&D", "Innovation", "Detection physics, operational requirements and proprietary ideas are translated into a viable system direction.", "IDEA → SYSTEM INTENT"],
+        ["ENGINEERING / CAD", "Design", "Mechanical architecture, interfaces and precision components are resolved before controlled production begins.", "INTENT → ENGINEERED DEFINITION"],
+        ["PRODUCTION / CNC", "Machining", "Critical metal components are produced to controlled tolerances for repeatable mechanical and analytical performance.", "DEFINITION → PRECISION COMPONENT"],
+        ["ENCLOSURE / FORMING", "Fabrication", "Protective structures and system panels are formed into robust, production-ready assemblies.", "MATERIAL → CONTROLLED FORM"],
+        ["SYSTEM / INTEGRATION", "Assembly", "Electronics, sampling paths, analytical modules and harnesses are integrated as one accountable system.", "MODULES → INTEGRATED SYSTEM"],
+        ["METROLOGY / QA", "Quality", "Dimensions, interfaces and build states are inspected where quality can still be controlled.", "BUILD → VERIFIED CONFORMANCE"],
+        ["PERFORMANCE / TEST", "Validation", "The completed system is tested against defined functional and operational acceptance criteria.", "SYSTEM → VALIDATED PERFORMANCE"],
+        ["RECORD / RELEASE", "Documented release", "Configuration, inspection state and release evidence are preserved before the system leaves controlled production.", "VALIDATION → CONTROLLED RELEASE"],
+      ];
+      let activeChain = 0;
+      function showChain(index) {
+        if (index === activeChain && chainImages[index].classList.contains("is-active")) return;
+        const previous = chainImages[activeChain];
+        const next = chainImages[index];
+        gsap.killTweensOf([...chainImages, chainTitle, chainCopy, chainKicker]);
+        chainImages.forEach((image, imageIndex) => {
+          if (imageIndex !== activeChain && imageIndex !== index) {
+            image.classList.remove("is-active");
+            gsap.set(image, { autoAlpha: 0, clearProps: "clipPath,transform" });
+          }
+        });
+        next.classList.add("is-active");
+        gsap.set(next, { zIndex: 2 });
+        gsap.fromTo(
+          next,
+          { autoAlpha: 1, clipPath: "inset(100% 0 0 0)", scale: 1.045 },
+          { clipPath: "inset(0% 0 0 0)", scale: 1, duration: .72, ease: "power3.inOut" },
+        );
+        if (previous && previous !== next) {
+          gsap.to(previous, {
+            autoAlpha: 0,
+            scale: .985,
+            duration: .38,
+            onComplete: () => previous.classList.remove("is-active"),
+          });
+        }
+        const data = chainData[index];
+        gsap.to([chainKicker, chainTitle, chainCopy, chainState], {
+          opacity: 0,
+          y: -12,
+          duration: .18,
+          onComplete: () => {
+            chainKicker.textContent = data[0];
+            chainTitle.textContent = data[1];
+            chainCopy.textContent = data[2];
+            chainState.textContent = data[3];
+            gsap.fromTo(
+              [chainKicker, chainTitle, chainCopy, chainState],
+              { opacity: 0, y: 14 },
+              { opacity: 1, y: 0, duration: .38, stagger: .035 },
+            );
+          },
+        });
+        chainIndex.textContent = String(index + 1).padStart(2, "0");
+        chainPhoto.textContent = `${String(index + 1).padStart(2, "0")} / ${data[1].toUpperCase()}`;
+        gsap.to(chainProgress, { scaleX: (index + 1) / 8, duration: .45 });
+        chainNav.forEach((button, buttonIndex) =>
+          button.classList.toggle("is-active", buttonIndex === index),
+        );
+        activeChain = index;
+      }
+      if (chainSection && innerWidth > 900) {
+        ScrollTrigger.create({
+          trigger: chainSection,
+          start: "top top",
+          end: "bottom bottom",
+          onUpdate: ({ progress }) =>
+            showChain(Math.min(7, Math.floor(progress * 8))),
+          snap: {
+            snapTo: (value) => Math.round(value * 7) / 7,
+            duration: { min: .18, max: .38 },
+            delay: .06,
+          },
+        });
+        chainNav.forEach((button, index) =>
+          button.addEventListener("click", () => {
+            const destination =
+              chainSection.offsetTop +
+              (chainSection.offsetHeight - innerHeight) * (index / 7);
+            lenis.scrollTo(destination, { duration: 1.05 });
+          }),
+        );
+      }
+
+      gsap.from(".facility-grid figure", {
+        scrollTrigger: { trigger: ".facility-grid", start: "top 78%" },
+        clipPath: "inset(0 0 100% 0)",
+        y: 40,
+        duration: 1,
+        stagger: .14,
+        ease: "power4.inOut",
+      });
+      gsap.from(".record", {
+        scrollTrigger: { trigger: ".trace-records", start: "top 72%" },
+        xPercent: innerWidth > 720 ? 16 : 0,
+        y: 55,
+        opacity: 0,
+        rotate: innerWidth > 720 ? 2 : 0,
+        duration: .95,
+        stagger: .16,
+        ease: "power3.out",
+      });
+      gsap.from(".quality-grid article", {
+        scrollTrigger: { trigger: ".quality-grid", start: "top 78%" },
+        y: 45,
+        opacity: 0,
+        duration: .65,
+        stagger: .1,
+      });
+      document.querySelectorAll('a[href^="#"]').forEach((link) =>
+        link.addEventListener("click", (event) => {
+          event.preventDefault();
+          lenis.scrollTo(link.getAttribute("href"), { duration: 1.25 });
+        }),
+      );
+    </script>
+  </body>
+</html>
