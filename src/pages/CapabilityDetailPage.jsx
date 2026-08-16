@@ -32,12 +32,12 @@ const SIGNAL_STAGES = [
 ]
 
 const PROBLEM_AREAS = [
-  [ShieldAlert, 'Security', 'Protect people from hazards they cannot see.', 'Chemical threats, explosives, narcotics and hazardous substances can be present before conventional awareness catches up.', 'Active chemical intelligence'],
-  [HeartPulse, 'Health', 'Access information the human body is already producing.', 'Breath contains chemical information. Sampling and analytical science can create new possibilities for non-invasive diagnostics.', 'VOC intelligence'],
-  [Factory, 'Industry', 'Understand chemical environments before consequences.', 'Industrial operations depend on chemistry. Better information can support safer operations and earlier response.', 'Chemical intelligence'],
-  [Droplets, 'Food + Water', 'Protect what sustains society.', 'Food and water systems require better ways to understand chemical conditions, contaminants and change.', 'Extend the sensing capability'],
-  [Building2, 'Infrastructure', 'Make critical places more aware.', 'Airports, ports, borders, facilities and cities depend on information from the environments around them.', 'Physical-world intelligence'],
-  [Landmark, 'National Security', 'Make better decisions when the threat is uncertain.', 'Strategic environments require technology that can turn difficult chemical information into usable understanding.', 'Sovereign capability'],
+  [ShieldAlert, 'Security', 'Protect people from hazards they cannot see.', 'Chemical threats, explosives, narcotics and hazardous substances can be present before conventional awareness catches up.', 'Active chemical intelligence', 'deeptech-problem-security.png'],
+  [HeartPulse, 'Health', 'Access information the human body is already producing.', 'Breath contains chemical information. Sampling and analytical science can create new possibilities for non-invasive diagnostics.', 'VOC intelligence', 'deeptech-problem-health.png'],
+  [Factory, 'Industry', 'Understand chemical environments before consequences.', 'Industrial operations depend on chemistry. Better information can support safer operations and earlier response.', 'Chemical intelligence', 'deeptech-problem-industry.png'],
+  [Droplets, 'Food + Water', 'Protect what sustains society.', 'Food and water systems require better ways to understand chemical conditions, contaminants and change.', 'Extend the sensing capability', 'deeptech-problem-food-water.png'],
+  [Building2, 'Infrastructure', 'Make critical places more aware.', 'Airports, ports, borders, facilities and cities depend on information from the environments around them.', 'Physical-world intelligence', 'deeptech-problem-infrastructure.png'],
+  [Landmark, 'National Security', 'Make better decisions when the threat is uncertain.', 'Strategic environments require technology that can turn difficult chemical information into usable understanding.', 'Sovereign capability', 'deeptech-problem-national-security.png'],
 ]
 
 const OPENING_PROBLEMS = [
@@ -398,10 +398,11 @@ function CapabilityDetailPage() {
               <p>They exist in airports, borders, hospitals, factories, military environments, cities, laboratories and the everyday world.</p>
             </header>
             <div className="cap-detail__problem-grid">
-              {PROBLEM_AREAS.map(([Icon, name, heading, copy, capability], index) => (
+              {PROBLEM_AREAS.map(([Icon, name, heading, copy, capability, image], index) => (
                 <article data-cap-reveal key={name}>
-                  <div><b>{String(index + 1).padStart(2, '0')}</b><Icon aria-hidden="true" strokeWidth={1.3} /></div>
-                  <small>{name}</small><h3>{heading}</h3><p>{copy}</p><footer>Anika / {capability}</footer>
+                  <figure><img src={assetUrl(image)} alt="" loading="lazy" /></figure>
+                  <div className="cap-detail__problem-card-head"><b>{String(index + 1).padStart(2, '0')}</b><Icon aria-hidden="true" strokeWidth={1.3} /></div>
+                  <div className="cap-detail__problem-card-copy"><small>{name}</small><h3>{heading}</h3><p>{copy}</p><footer>Anika / {capability}</footer></div>
                 </article>
               ))}
             </div>

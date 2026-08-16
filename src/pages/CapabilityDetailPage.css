@@ -288,6 +288,21 @@
 .cap-detail__problem-grid h3 { margin:14px 0 18px;font:500 clamp(25px,2vw,33px)/1.04 "Space Grotesk",sans-serif;letter-spacing:-.045em; }
 .cap-detail__problem-grid p { margin:0;color:#969d9f;font-size:14px;line-height:1.65; }
 .cap-detail__problem-grid footer { margin-top:auto;padding-top:22px;color:var(--cap-orange);border-top:1px solid rgba(255,106,0,.25);font:500 8px "Roboto Mono",monospace;letter-spacing:.12em;text-transform:uppercase; }
+
+/* Image-led problem cards */
+.cap-detail__problem-grid article { position:relative;min-height:520px;overflow:hidden;padding:0;background:#080c0e; }
+.cap-detail__problem-grid article > figure { position:absolute;z-index:0;inset:0 0 auto;height:49%;margin:0;overflow:hidden; }
+.cap-detail__problem-grid article > figure::after { position:absolute;inset:0;content:"";background:linear-gradient(180deg,rgba(5,9,12,.02) 32%,#080c0e 100%),linear-gradient(90deg,rgba(5,9,12,.15),transparent 60%); }
+.cap-detail__problem-grid article > figure img { width:100%;height:100%;object-fit:cover;filter:saturate(.76) contrast(1.1) brightness(.78);transition:transform .75s cubic-bezier(.2,.75,.2,1),filter .6s ease; }
+.cap-detail__problem-grid article:hover > figure img { transform:scale(1.045);filter:saturate(.92) contrast(1.08) brightness(.88); }
+.cap-detail__problem-card-head { position:relative;z-index:2;display:flex;justify-content:space-between;align-items:flex-start;padding:23px 24px 0;color:var(--cap-orange); }
+.cap-detail__problem-card-head b { font:500 14px "Roboto Mono",monospace; }
+.cap-detail__problem-card-head svg { width:48px;height:48px;padding:10px;border:1px solid rgba(255,106,0,.5);border-radius:50%;background:rgba(5,9,12,.62);backdrop-filter:blur(5px); }
+.cap-detail__problem-card-copy { position:relative;z-index:2;display:flex;min-height:520px;flex:1;flex-direction:column;justify-content:flex-start;padding:252px 24px 20px;color:#f3f2ee; }
+.cap-detail__problem-card-copy small { margin:0;color:#8e9697;font:600 8px "Roboto Mono",monospace;letter-spacing:.14em;text-transform:uppercase; }
+.cap-detail__problem-card-copy h3 { margin:11px 0 15px;color:var(--cap-orange);font-size:clamp(23px,1.65vw,29px);line-height:1.08; }
+.cap-detail__problem-card-copy p { color:#a0a6a7;font-size:13px;line-height:1.6; }
+.cap-detail__problem-card-copy footer { margin-top:auto;padding-top:16px; }
 .cap-detail__boundaries { background:#efeee9;color:#111820; }
 .cap-detail__boundaries > header p { color:#687072; }
 .cap-detail__domain-index { margin-top:75px;border-top:1px solid rgba(16,24,32,.2); }
@@ -318,6 +333,8 @@
   .cap-detail__problems > header h2,.cap-detail__boundaries > header h2,.cap-detail__future > header h2 { font-size:40px; }
   .cap-detail__problem-grid,.cap-detail__future-grid { grid-template-columns:1fr; }
   .cap-detail__problem-grid article { min-height:390px; }
+  .cap-detail__problem-grid article,.cap-detail__problem-card-copy { min-height:510px; }
+  .cap-detail__problem-card-copy { padding-top:245px; }
   .cap-detail__domain-index article { grid-template-columns:42px 1fr;gap:14px; }
   .cap-detail__domain-index h3,.cap-detail__domain-index p { grid-column:2; }
   .cap-detail__future aside { padding:28px; }
@@ -753,4 +770,75 @@
   .cap-detail__chain-simple .cap-detail__chain article > span,.cap-detail__chain-simple .cap-detail__chain article:nth-child(3) > span,.cap-detail__chain-simple .cap-detail__chain article:nth-child(n+4) > span { top:auto;right:50%;bottom:-20px;left:auto;transform:translateX(50%) rotate(90deg); }
   .cap-detail__chain-continuity { align-items:flex-start;font-size:13px;line-height:1.55; }
   .cap-detail__foundation-grid article,.cap-detail__foundation-grid article:nth-child(4) { min-height:430px;padding:30px 25px; }
+}
+
+
+/* Compact editorial proportions for the six problem cards. */
+@media (min-width:851px) {
+  .cap-detail__problem-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+}
+.cap-detail__problem-grid article { min-height:430px; }
+.cap-detail__problem-grid article > figure { height:50%; }
+.cap-detail__problem-card-head { padding:18px 20px 0; }
+.cap-detail__problem-card-head b { font-size:12px; }
+.cap-detail__problem-card-head svg { width:40px;height:40px;padding:8px; }
+.cap-detail__problem-card-copy { min-height:430px;padding:210px 20px 17px; }
+.cap-detail__problem-card-copy h3 { margin:8px 0 11px;font-size:clamp(19px,1.35vw,24px);line-height:1.05; }
+.cap-detail__problem-card-copy p { font-size:11px;line-height:1.55; }
+.cap-detail__problem-card-copy footer { padding-top:12px;font-size:7px; }
+@media (max-width:850px) {
+  .cap-detail__problem-grid { grid-template-columns:1fr 1fr; }
+  .cap-detail__problem-grid article,.cap-detail__problem-card-copy { min-height:450px; }
+  .cap-detail__problem-card-copy { padding-top:220px; }
+}
+@media (max-width:600px) {
+  .cap-detail__problem-grid { grid-template-columns:1fr; }
+  .cap-detail__problem-grid article,.cap-detail__problem-card-copy { min-height:455px; }
+  .cap-detail__problem-card-copy { padding-top:225px; }
+}
+
+/* Full-image overlay cards: the generated scenes remain clear and compact. */
+.cap-detail__problem-grid article { min-height:0;aspect-ratio:1.08/1; }
+.cap-detail__problem-grid article > figure { inset:0;height:100%; }
+.cap-detail__problem-grid article > figure::after { background:none; }
+.cap-detail__problem-grid article > figure img { filter:saturate(.82) contrast(1.08) brightness(.78); }
+.cap-detail__problem-grid article > .cap-detail__problem-card-copy { position:absolute;inset:0;min-height:0;justify-content:flex-start;padding:48% 20px 15px; }
+.cap-detail__problem-card-copy h3 { margin:7px 0 9px;color:#f3f2ee;font-size:clamp(18px,1.3vw,23px);line-height:1.04; }
+.cap-detail__problem-card-copy p { max-width:95%;font-size:10px;line-height:1.5; }
+.cap-detail__problem-card-copy footer { margin-top:auto;padding-top:10px; }
+@media (max-width:850px) {
+  .cap-detail__problem-grid article { min-height:0;aspect-ratio:1.02/1; }
+  .cap-detail__problem-card-copy { min-height:0;padding-top:49%; }
+}
+@media (max-width:600px) {
+  .cap-detail__problem-grid article { min-height:0;aspect-ratio:.94/1; }
+  .cap-detail__problem-card-copy { min-height:0;padding-top:51%; }
+}
+
+/* Short final card canvas; copy and footer no longer inherit tall minimums. */
+.cap-detail__problem-grid article { min-height:0;height:390px;aspect-ratio:auto; }
+.cap-detail__problem-grid article > figure { height:100%; }
+.cap-detail__problem-grid article > .cap-detail__problem-card-copy { min-height:0;height:100%;padding-top:45%; }
+@media (max-width:850px) {
+  .cap-detail__problem-grid article { min-height:0;height:405px;aspect-ratio:auto; }
+  .cap-detail__problem-grid article > .cap-detail__problem-card-copy { min-height:0;padding-top:47%; }
+}
+@media (max-width:600px) {
+  .cap-detail__problem-grid article { min-height:0;height:410px;aspect-ratio:auto; }
+  .cap-detail__problem-grid article > .cap-detail__problem-card-copy { min-height:0;padding-top:49%; }
+}
+
+
+/* Final compact problem-card sizing: content determines the card, not empty space. */
+.cap-detail__problem-grid article { min-height:400px; }
+.cap-detail__problem-grid article > figure { height:49%; }
+.cap-detail__problem-card-copy { min-height:400px;padding-top:195px;padding-bottom:16px; }
+.cap-detail__problem-card-copy footer { margin-top:18px;padding-top:11px; }
+@media (max-width:850px) {
+  .cap-detail__problem-grid article,.cap-detail__problem-card-copy { min-height:420px; }
+  .cap-detail__problem-card-copy { padding-top:205px; }
+}
+@media (max-width:600px) {
+  .cap-detail__problem-grid article,.cap-detail__problem-card-copy { min-height:410px; }
+  .cap-detail__problem-card-copy { padding-top:200px; }
 }

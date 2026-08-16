@@ -9,7 +9,6 @@ function Header({ compact = false, hideOverFooter = false }) {
   const isCapabilities = pathname.includes('/capabilities/') || pathname.endsWith('/capability.html')
   const isDeepTechnology = pathname.endsWith('/deep-technology') || pathname.endsWith('/deep-technology/')
   const [menuOpen, setMenuOpen] = useState(false)
-  const [openMobileSubmenu, setOpenMobileSubmenu] = useState(null)
   const [isCollapsed, setIsCollapsed] = useState(false)
   const [isOverFooter, setIsOverFooter] = useState(false)
   // The scroll-collapsing "Navigate" header is a desktop-only treatment; mobile
@@ -70,9 +69,8 @@ function Header({ compact = false, hideOverFooter = false }) {
     const closeFromPageTap = (event) => {
       // The toggle owns its open/close state. Every other tap—including an
       // unused area inside the panel—dismisses the mobile navigation.
-      if (event.target.closest('.mnav-toggle, .compact-nav-toggle, .mnav-submenu-toggle')) return
+      if (event.target.closest('.mnav-toggle, .compact-nav-toggle')) return
       setMenuOpen(false)
-      setOpenMobileSubmenu(null)
     }
 
     document.addEventListener('click', closeFromPageTap)
@@ -166,30 +164,9 @@ function Header({ compact = false, hideOverFooter = false }) {
       <nav>
         <a href={pageUrl('/index.html')}>Platform</a>
         <a className={isDeepTechnology ? 'is-active' : ''} aria-current={isDeepTechnology ? 'page' : undefined} href={pageUrl('/deep-technology')}>Deep Technology</a>
-        <div className="nav-menu">
-          <a className={isCapabilities ? 'is-active' : ''} aria-current={isCapabilities ? 'page' : undefined} href={pageUrl('/capability.html')}>Capabilities</a>
-          <div className="nav-submenu">
-            <div className="nav-submenu__intro"><span>02 / Capabilities</span><h2>Detection science,<br />engineered for certainty.</h2><p>Explore the disciplines behind rapid, defensible trace-threat identification.</p></div>
-            <div className="nav-submenu__links"><a href={pageUrl('/capabilities/deep-technology')}><b>01</b><span>Deep Technology</span><i>Science into capability</i></a><a href={pageUrl('/capability.html')}><b>02</b><span>Our Expertise</span><i>Explore our established capabilities</i></a></div>
-            <a className="nav-submenu__feature" href={pageUrl('/capabilities/deep-technology')}><img src={pageUrl('/nav-capabilities-science.png')} alt="Precision analytical science translating physical particles into a measurable signal" /><span>Inside the science</span><strong>Deep technology for the physical world</strong></a>
-          </div>
-        </div>
-        <div className="nav-menu">
-          <a className={pathname.endsWith('/solutions') || pathname.endsWith('/solutions/') ? 'is-active' : ''} aria-current={pathname.endsWith('/solutions') || pathname.endsWith('/solutions/') ? 'page' : undefined} href={pageUrl('/solutions/')}>Solutions</a>
-          <div className="nav-submenu">
-            <div className="nav-submenu__intro"><span>03 / Solutions</span><h2>One platform.<br />Critical environments.</h2><p>Discover deployable systems built for real-world security operations.</p></div>
-            <div className="nav-submenu__links"><a href={pageUrl('/index.html#applications')}><b>01</b><span>Application Domains</span><i>Where AACTS operates</i></a><a href={pageUrl('/solutions/')}><b>02</b><span>Products</span><i>Explore the product family</i></a></div>
-            <a className="nav-submenu__feature" href={pageUrl('/solutions/')}><img src={pageUrl('/nav-solutions-detection.png')} alt="Active trace-detection system inspecting a rugged cargo case" /><span>AACTS® platform</span><strong>See the detection systems</strong></a>
-          </div>
-        </div>
-        <div className="nav-menu">
-          <a className={pathname.endsWith('/about') || pathname.endsWith('/about/') ? 'is-active' : ''} aria-current={pathname.endsWith('/about') || pathname.endsWith('/about/') ? 'page' : undefined} href={pageUrl('/about/')}>About Us</a>
-          <div className="nav-submenu">
-            <div className="nav-submenu__intro"><span>04 / About</span><h2>Innovation with<br />protective intent.</h2><p>Meet the company advancing active chemical threat scanning.</p></div>
-            <div className="nav-submenu__links"><a href={pageUrl('/about/#vision-intent')}><b>01</b><span>Vision &amp; Intent</span><i>Why we build</i></a><a href={pageUrl('/about/')}><b>02</b><span>Our Company</span><i>Discover Anika Sterilis</i></a></div>
-            <a className="nav-submenu__feature" href={pageUrl('/about/')}><img src={pageUrl('/nav-about-engineers.png')} alt="Anika deep-technology engineers validating analytical equipment" /><span>Our purpose</span><strong>Technology that safeguards life</strong></a>
-          </div>
-        </div>
+        <a className={isCapabilities ? 'is-active' : ''} aria-current={isCapabilities ? 'page' : undefined} href={pageUrl('/capability.html')}>Capabilities</a>
+        <a className={pathname.endsWith('/solutions') || pathname.endsWith('/solutions/') ? 'is-active' : ''} aria-current={pathname.endsWith('/solutions') || pathname.endsWith('/solutions/') ? 'page' : undefined} href={pageUrl('/solutions/')}>Solutions</a>
+        <a className={pathname.endsWith('/about') || pathname.endsWith('/about/') ? 'is-active' : ''} aria-current={pathname.endsWith('/about') || pathname.endsWith('/about/') ? 'page' : undefined} href={pageUrl('/about/')}>About Us</a>
       </nav>
       <a className={`contact ${pathname.endsWith('/contact') || pathname.endsWith('/contact/') ? 'is-active' : ''}`} aria-current={pathname.endsWith('/contact') || pathname.endsWith('/contact/') ? 'page' : undefined} href={pageUrl('/contact/')}>
         Contact <span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M8 7h9v9" /></svg></span>
@@ -209,18 +186,9 @@ function Header({ compact = false, hideOverFooter = false }) {
         <nav>
           <a href={pageUrl('/index.html')}><b>01</b>Platform</a>
           <a className={isDeepTechnology ? 'is-active' : ''} href={pageUrl('/deep-technology')}><b>02</b>Deep Technology</a>
-          <div className={`mnav-group ${openMobileSubmenu === 'capabilities' ? 'is-expanded' : ''}`}>
-            <button className={`mnav-submenu-toggle ${isCapabilities ? 'is-active' : ''}`} type="button" aria-expanded={openMobileSubmenu === 'capabilities'} onClick={() => setOpenMobileSubmenu((item) => item === 'capabilities' ? null : 'capabilities')}><b>03</b><span>Capabilities</span><i aria-hidden="true">+</i></button>
-            <div className="mnav-submenu"><a href={pageUrl('/capabilities/deep-technology')}>Deep Technology</a><a href={pageUrl('/capability.html')}>Our Expertise</a></div>
-          </div>
-          <div className={`mnav-group ${openMobileSubmenu === 'solutions' ? 'is-expanded' : ''}`}>
-            <button className={`mnav-submenu-toggle ${pathname.endsWith('/solutions') || pathname.endsWith('/solutions/') ? 'is-active' : ''}`} type="button" aria-expanded={openMobileSubmenu === 'solutions'} onClick={() => setOpenMobileSubmenu((item) => item === 'solutions' ? null : 'solutions')}><b>04</b><span>Solutions</span><i aria-hidden="true">+</i></button>
-            <div className="mnav-submenu"><a href={pageUrl('/index.html#applications')}>Application Domains</a><a href={pageUrl('/solutions/')}>Products</a></div>
-          </div>
-          <div className={`mnav-group ${openMobileSubmenu === 'about' ? 'is-expanded' : ''}`}>
-            <button className={`mnav-submenu-toggle ${pathname.endsWith('/about') || pathname.endsWith('/about/') ? 'is-active' : ''}`} type="button" aria-expanded={openMobileSubmenu === 'about'} onClick={() => setOpenMobileSubmenu((item) => item === 'about' ? null : 'about')}><b>05</b><span>About Us</span><i aria-hidden="true">+</i></button>
-            <div className="mnav-submenu"><a href={pageUrl('/about/#vision-intent')}>Vision &amp; Intent</a><a href={pageUrl('/about/')}>Our Company</a></div>
-          </div>
+          <a className={isCapabilities ? 'is-active' : ''} href={pageUrl('/capability.html')}><b>03</b>Capabilities</a>
+          <a className={pathname.endsWith('/solutions') || pathname.endsWith('/solutions/') ? 'is-active' : ''} href={pageUrl('/solutions/')}><b>04</b>Solutions</a>
+          <a className={pathname.endsWith('/about') || pathname.endsWith('/about/') ? 'is-active' : ''} href={pageUrl('/about/')}><b>05</b>About Us</a>
           <a className={pathname.endsWith('/contact') || pathname.endsWith('/contact/') ? 'is-active' : ''} href={pageUrl('/contact/')}><b>06</b>Contact</a>
         </nav>
       </div>

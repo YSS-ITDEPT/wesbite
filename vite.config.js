@@ -69,6 +69,12 @@ function prepareCpanelBuild(deployBase) {
     'deeptech-discipline-engineering.png',
     'deeptech-discipline-intelligence.png',
     'deeptech-discipline-industrial.png',
+    'deeptech-problem-security.png',
+    'deeptech-problem-health.png',
+    'deeptech-problem-industry.png',
+    'deeptech-problem-food-water.png',
+    'deeptech-problem-infrastructure.png',
+    'deeptech-problem-national-security.png',
     'deep-technology-active-capture.png',
   ]
 
