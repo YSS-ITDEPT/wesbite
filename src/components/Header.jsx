@@ -162,8 +162,8 @@ function Header({ compact = false, hideOverFooter = false }) {
         </span>
       </a>
       <nav>
+        <a className={isDeepTechnology ? 'is-active' : ''} aria-current={isDeepTechnology ? 'page' : undefined} href={pageUrl('/deep-technology')}>Home</a>
         <a href={pageUrl('/index.html')}>Platform</a>
-        <a className={isDeepTechnology ? 'is-active' : ''} aria-current={isDeepTechnology ? 'page' : undefined} href={pageUrl('/deep-technology')}>Deep Technology</a>
         <a className={isCapabilities ? 'is-active' : ''} aria-current={isCapabilities ? 'page' : undefined} href={pageUrl('/capability.html')}>Capabilities</a>
         <a className={pathname.endsWith('/solutions') || pathname.endsWith('/solutions/') ? 'is-active' : ''} aria-current={pathname.endsWith('/solutions') || pathname.endsWith('/solutions/') ? 'page' : undefined} href={pageUrl('/solutions/')}>Solutions</a>
         <a className={pathname.endsWith('/about') || pathname.endsWith('/about/') ? 'is-active' : ''} aria-current={pathname.endsWith('/about') || pathname.endsWith('/about/') ? 'page' : undefined} href={pageUrl('/about/')}>About Us</a>
@@ -184,8 +184,8 @@ function Header({ compact = false, hideOverFooter = false }) {
       <div className={`mnav-panel ${menuOpen ? 'is-open' : ''}`} id="mobile-site-navigation">
         <span>Site navigation / 06</span>
         <nav>
-          <a href={pageUrl('/index.html')}><b>01</b>Platform</a>
-          <a className={isDeepTechnology ? 'is-active' : ''} href={pageUrl('/deep-technology')}><b>02</b>Deep Technology</a>
+          <a className={isDeepTechnology ? 'is-active' : ''} href={pageUrl('/deep-technology')}><b>01</b>Home</a>
+          <a href={pageUrl('/index.html')}><b>02</b>Platform</a>
           <a className={isCapabilities ? 'is-active' : ''} href={pageUrl('/capability.html')}><b>03</b>Capabilities</a>
           <a className={pathname.endsWith('/solutions') || pathname.endsWith('/solutions/') ? 'is-active' : ''} href={pageUrl('/solutions/')}><b>04</b>Solutions</a>
           <a className={pathname.endsWith('/about') || pathname.endsWith('/about/') ? 'is-active' : ''} href={pageUrl('/about/')}><b>05</b>About Us</a>

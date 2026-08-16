@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { Activity, Binary, Blocks, Building2, ChevronsRight, Crosshair, DraftingCompass, Droplets, Eye, Factory, HeartPulse, Landmark, Microscope, Radio, ScanLine, ShieldAlert, ShieldCheck, Target, Waves, Wind } from 'lucide-react'
+import { Atom, BrainCircuit, Building2, ChartNoAxesCombined, ChevronsRight, Cog, Crosshair, Droplets, Factory, Globe2, Grid2X2, HeartPulse, Landmark, Microscope, Network, ScanLine, ScanSearch, ShieldAlert, ShieldCheck, Target, TestTube2, Wind } from 'lucide-react'
 import Header from '../components/Header.jsx'
 import Footer from '../components/Footer.jsx'
 import { useScrollReveal } from '../hooks/useScrollReveal.js'
@@ -8,28 +8,6 @@ import './CapabilityDetailPage.css'
 const BASE_URL = import.meta.env.BASE_URL
 const pageUrl = (path) => `${BASE_URL}${path.replace(/^\//, '')}`
 const assetUrl = (path) => pageUrl(`/${path}`)
-
-const DEEP_TECH_ICONS = [Microscope, DraftingCompass, Binary, Blocks]
-const DEEP_TECH_IMAGES = ['deeptech-discipline-science.png', 'deeptech-discipline-engineering.png', 'deeptech-discipline-intelligence.png', 'nav-detection-lab.png']
-const DEEP_TECH_POINTS = [
-  ['Molecular understanding', 'Physical behaviour', 'What can be measured'],
-  ['System integration', 'Precision instrumentation', 'Reliable operation'],
-  ['Pattern recognition', 'Classification and correlation', 'Decision support'],
-  ['Manufacturing at scale', 'Validation and quality', 'Deployment and support'],
-]
-const CHAIN_POINTS = [
-  ['Identify the environment', 'Understand target behaviour', 'Assess conditions and variables'],
-  ['Select the appropriate sampler', 'Collect a representative sample', 'Ensure sample integrity'],
-  ['Condition and stabilise the sample', 'Transfer to analytical media', 'Maintain chain of integrity'],
-  ['Ionise and separate', 'Detect and measure', 'Generate analytical data'],
-  ['Process and clean signals', 'Match against libraries', 'Confirm compounds of interest'],
-  ['Evaluate and classify', 'Deliver an actionable result', 'Enable informed action'],
-]
-const SIGNAL_STAGES = [
-  [Wind, 'Capture', 'Vapour / particle'],
-  [Waves, 'Measure', 'Physical response'],
-  [Activity, 'Resolve', 'Usable signal'],
-]
 
 const PROBLEM_AREAS = [
   [ShieldAlert, 'Security', 'Protect people from hazards they cannot see.', 'Chemical threats, explosives, narcotics and hazardous substances can be present before conventional awareness catches up.', 'Active chemical intelligence', 'deeptech-problem-security.png'],
@@ -50,17 +28,22 @@ const OPENING_PROBLEMS = [
 ]
 
 const OPENING_OUTCOMES = [
-  [ScanLine, 'Measure', 'Reveal the signal.'],
-  [Target, 'Understand', 'Resolve meaning.'],
-  [ChevronsRight, 'Act', 'Support decisions.'],
+  [ScanLine, 'Measure', 'Physical measurement.'],
+  [Target, 'Understand', 'Chemical information.'],
+  [ChevronsRight, 'Act', 'Support action.'],
 ]
 
-const OPENING_APPROACH = [
-  [Crosshair, 'Our approach', 'Rooted in science. Driven by purpose. Built for impact.'],
-  [Eye, 'Real problems', 'We focus on problems that matter.'],
-  [Radio, 'Difficult signals', 'We extract what others cannot see.'],
-  [ShieldCheck, 'Dependable answers', 'We deliver intelligence you can depend on.'],
+const OPENING_FACTS = [
+  [ShieldAlert, 'AACTS®', 'Active chemical intelligence platform'],
+  [HeartPulse, 'IMS', 'Core analytical technology'],
+  [Factory, '30+', 'Application domains stated publicly'],
+  [ShieldCheck, '123,842', 'Sq. ft. facility stated publicly'],
+  [Building2, 'INDIA', 'Technology + manufacturing base'],
 ]
+
+const DISCIPLINE_PRESENTATION = [Microscope, Cog, BrainCircuit, Factory]
+const CHAIN_ICONS = [Globe2, Wind, TestTube2, ScanSearch, Network, Target]
+
 
 const CAPABILITY_DOMAINS = [
   ['Defense + CBRNE', 'Threat intelligence', 'Forward environments, base security, explosives, chemical agents and CBRNE response.'],
@@ -85,6 +68,17 @@ const FUTURE_CAPABILITIES = [
   ['Grow deployment and network.', 'Work with governments, institutions, industries, researchers and partners to place useful capability where it matters.'],
   ['Build for the problems that come next.', 'As new threats, health challenges, industrial environments and societal needs emerge, develop the technology to address them.'],
 ]
+
+const INSTITUTIONAL_POINTS = [
+  ['Scientific depth', 'Technology begins with physical measurement, chemistry and analytical science.'],
+  ['Engineering depth', 'Sampling, analysis, electronics, software and systems engineering are integrated around the problem.'],
+  ['Industrial capability', 'A real manufacturing base connects development to production and deployment.'],
+  ['Multi-domain applicability', 'The same scientific foundations can address security, health, industry and environmental problems.'],
+  ['AI as a multiplier', "Advanced intelligence can improve capability without becoming the company's identity."],
+  ['A mission with consequence', 'The end objective is not more technology. It is a safer, healthier and more resilient world.'],
+]
+
+const INSTITUTIONAL_ICONS = [Atom, Cog, Factory, Grid2X2, ChartNoAxesCombined, Crosshair]
 
 const PAGES = {
   deepTechnology: {
@@ -127,21 +121,15 @@ const PAGES = {
     intro: "Anika's public technical material describes a developed technology stack spanning active sampling, analytical physics, adaptive intelligence, application-specific libraries, manufacturing and multiple deployment domains.",
     label: 'What the technology capability has achieved',
     items: [
-      ['AACTS®', 'A complete active chemical intelligence ecosystem.', 'The AACTS® platform integrates active sampling, sample handling, IMS analysis and intelligent identification. The published ecosystem is positioned across defense, aviation, healthcare, industrial safety, borders, forensics and environmental applications.', 'AACTS® / Multi-domain platform'],
-      ['Analytical Physics', 'TRU-RAD dual-axial IMS and X-AIMS.', 'Public technical material describes a dual-axial drift-tube architecture with orthogonal ion pathways, forming the analytical core of the AACTS-3000.', 'IMS / Dual axial / X-AIMS'],
-      ['Active Sampling', 'Different sampling architectures for different environments.', 'Published systems include HVS high-volume sampling, HHS handheld sampling and BRX breath sampling. The architecture starts with the sample rather than treating sampling as an afterthought.', 'HVS · HHS · BRX'],
-      ['Adaptive Intelligence', 'DDMS brings adaptive control into detection.', 'The published DDMS architecture dynamically changes detection modes to balance sensitivity, selectivity and throughput without changing the core hardware.', 'DDMS / Adaptive detection'],
-      ['Healthcare', 'The same scientific foundation reaches diagnostics.', 'Public material describes non-invasive breath VOC work and a validated TB screening use case, demonstrating how the analytical platform can be applied outside conventional security.', 'Breath / VOC / TB screening'],
-      ['Industrial Capability', 'Technology has moved into manufacturing.', 'Anika publicly describes a 123,842 sq.ft. integrated facility at AMTZ Visakhapatnam supporting R&D, manufacturing, validation and deployment.', 'Anika One / Visakhapatnam'],
+      ['AACTS®', 'A complete active chemical intelligence ecosystem.', 'The AACTS® platform integrates active sampling, sample handling, IMS analysis and intelligent identification. The published ecosystem is positioned across defense, aviation, healthcare, industrial safety, borders, forensics and environmental applications.', 'AACTS® / MULTI-DOMAIN PLATFORM'],
+      ['ANALYTICAL PHYSICS', 'TRU-RAD dual-axial IMS and X-AIMS.', 'Public technical material describes a dual-axial drift-tube architecture with orthogonal ion pathways, forming the analytical core of the AACTS-3000.', 'IMS / DUAL AXIAL / X-AIMS'],
+      ['ACTIVE SAMPLING', 'Different sampling architectures for different environments.', 'Published systems include HVS high-volume sampling, HHS handheld sampling and BRX breath sampling. The architecture starts with the sample rather than treating sampling as an afterthought.', 'HVS · HHS · BRX'],
+      ['ADAPTIVE INTELLIGENCE', 'DDMS brings adaptive control into detection.', 'The published DDMS architecture dynamically changes detection modes to balance sensitivity, selectivity and throughput without changing the core hardware.', 'DDMS / ADAPTIVE DETECTION'],
+      ['HEALTHCARE', 'The same scientific foundation reaches diagnostics.', 'Public material describes non-invasive breath VOC work and a validated TB screening use case, demonstrating how the analytical platform can be applied outside conventional security.', 'BREATH / VOC / TB SCREENING'],
+      ['INDUSTRIAL CAPABILITY', 'Technology has moved into manufacturing.', 'Anika publicly describes a 123,842 sq.ft. integrated facility at AMTZ Visakhapatnam supporting R&D, manufacturing, validation and deployment.', 'ANIKA ONE / VISAKHAPATNAM'],
     ],
   },
 }
-
-const PAGE_LINKS = [
-  ['01', 'Deep Technology', '/capabilities/deep-technology'],
-  ['02', 'Technology Chain', '/capabilities/deep-technology#technology-chain'],
-  ['03', 'Technology Foundation', '/capabilities/deep-technology#technology-foundation'],
-]
 
 function CapabilityDetailPage() {
   const content = PAGES.deepTechnology
@@ -197,6 +185,12 @@ function CapabilityDetailPage() {
       if (!root) return
       const range = root.scrollHeight - window.innerHeight
       root.style.setProperty('--page-progress', Math.max(0, Math.min(1, window.scrollY / Math.max(range, 1))))
+      const opening = root.querySelector('.cap-detail__opening')
+      if (opening) {
+        const rect = opening.getBoundingClientRect()
+        const scrollable = Math.max(opening.offsetHeight - window.innerHeight, 1)
+        opening.style.setProperty('--opening-progress', Math.max(0, Math.min(1, -rect.top / scrollable)))
+      }
       root.querySelectorAll('[data-cap-parallax]').forEach((element) => {
         const rect = element.getBoundingClientRect()
         const position = (window.innerHeight - rect.top) / (window.innerHeight + rect.height)
@@ -214,232 +208,134 @@ function CapabilityDetailPage() {
   return (
     <>
       <Header hideOverFooter />
-      <main className="cap-detail cap-detail--complete" ref={mainRef}>
-        <section className="cap-detail__opening">
+      <main className="cap-detail cap-exact" ref={mainRef}>
+        <section className="cap-detail__opening cap-exact__opening">
+          <div className="cap-detail__opening-stage">
           <div className="cap-detail__opening-grid" aria-hidden="true" />
           <header data-cap-reveal>
-            <span>Anika Sterilis / Transformational Deep Technology</span>
-            <b>Physical world → operational answer</b>
+            <span>ANIKA STERILIS / TRANSFORMATIONAL DEEP TECHNOLOGY</span>
+            <b>Physical world · Real systems · Real decisions</b>
           </header>
           <div className="cap-detail__opening-layout">
             <div className="cap-detail__opening-copy">
-              <span data-cap-reveal>Problem-led innovation / 01</span>
-              <h1 data-cap-reveal>The world has<br /><strong>difficult problems.</strong><br /><em>We build the answers.</em></h1>
-              <p data-cap-reveal>Deep technology begins where the problem is real, the signal is difficult to obtain and an institution needs an answer it can depend on.</p>
-              <div className="cap-detail__opening-principle" data-cap-reveal><b>01</b><Target aria-hidden="true" strokeWidth={1.25} /><p>The problem determines the technology.<small>Never the other way around.</small></p></div>
+              <div className="cap-detail__opening-message cap-detail__opening-message--primary">
+                <span>TRANSFORMATIONAL DEEP TECHNOLOGY</span>
+                <h1>The world has<br /><strong>difficult problems.</strong><br /><em>We build the answers.</em></h1>
+                <p>Anika Sterilis is building transformational deep technology around problems that matter to human safety, health, security, industry and the environments on which society depends.</p>
+              </div>
+              <div className="cap-detail__opening-message cap-detail__opening-message--physical">
+                <span>01 / WHAT A REAL DEEP TECHNOLOGY COMPANY IS</span>
+                <h2>Deep technology<br />begins with the<br /><em>physical world.</em></h2>
+                <p>It is not a software layer looking for an application. It begins with science, difficult engineering and a problem that cannot be solved adequately with what already exists.</p>
+                <p>The outcome is not a demo. It is a capability that can be engineered, manufactured, deployed, improved and applied to problems beyond the one that started it.</p>
+                <div className="cap-detail__opening-principle cap-detail__opening-principle--system"><Crosshair aria-hidden="true" strokeWidth={1.25} /><p>Science · Engineering · Technology · Intelligence<small>Physical world · Real systems · Real decisions</small></p></div>
+              </div>
             </div>
             <div className="cap-detail__problem-engine" data-cap-reveal>
-              <div className="cap-detail__problem-engine-head"><span>Live problem field</span><b>06 inputs / 01 capability</b></div>
+              <div className="cap-detail__problem-engine-head"><span>THE PROBLEMS ANIKA CHOOSES</span><b>06 DOMAINS / 01 CAPABILITY</b></div>
               <div className="cap-detail__problem-inputs">
-                {OPENING_PROBLEMS.map(([Icon, name], index) => (
-                  <article key={name}><Icon aria-hidden="true" strokeWidth={1.25} /><span>{name}</span><small>S-{String(index + 1).padStart(2, '0')}</small></article>
-                ))}
+                {OPENING_PROBLEMS.map(([Icon, name], index) => <article key={name}><Icon aria-hidden="true" strokeWidth={1.25} /><span>{name}</span><small>{String(index + 1).padStart(2, '0')}</small></article>)}
               </div>
               <div className="cap-detail__technology-core">
-                <div><span>Physical input</span><small>Raw signals from<br />the real world.</small></div><i aria-hidden="true" /><b>Anika<br />technology<br />core</b><i aria-hidden="true" /><div><span>Usable answer</span><small>Actionable intelligence<br />for real decisions.</small></div>
+                <div><span>Environment</span><small>Physical world</small></div><i aria-hidden="true" /><b>Anika<br />technology<br />capability</b><i aria-hidden="true" /><div><span>Decision</span><small>Information that can support action</small></div>
               </div>
               <div className="cap-detail__answer-output" aria-label="Capability outcomes">
                 {OPENING_OUTCOMES.map(([Icon, name, copy], index) => <div key={name}><b>0{index + 1}</b><Icon aria-hidden="true" strokeWidth={1.25} /><p><span>{name}</span><small>{copy}</small></p></div>)}
               </div>
             </div>
           </div>
-          <div className="cap-detail__opening-approach" data-cap-reveal>
-            {OPENING_APPROACH.map(([Icon, name, copy]) => <article key={name}><Icon aria-hidden="true" strokeWidth={1.2} /><p><b>{name}</b><span>{copy}</span></p></article>)}
-          </div>
-          <div className="cap-detail__opening-status" aria-hidden="true"><i /><span>Problem field / active</span></div>
-        </section>
 
-        <section className="cap-detail__hero">
-          <div className="cap-detail__grid" aria-hidden="true" />
-          <div className="cap-detail__scroll-progress" aria-hidden="true"><i /><span>Physical world to decision</span></div>
-          <figure className="cap-detail__hero-media" aria-hidden="true" data-cap-parallax>
-            <img src={assetUrl('deeptech-matter-v2.png')} alt="" />
-            <figcaption><b>AACTS® 3000</b><span>Physical science / Engineered system</span></figcaption>
-          </figure>
-          <div className="cap-detail__hero-inner">
-            <div className="cap-detail__breadcrumb" data-cap-reveal>
-              <span>{content.index}</span><b>{content.eyebrow}</b>
-            </div>
-            <h1 data-cap-reveal>{content.title}</h1>
-            <div className="cap-detail__hero-copy" data-cap-reveal>
-              <p>{content.intro}</p>
-              <small>Science · Engineering · Technology · Intelligence<br />Physical world · Real systems · Real decisions</small>
-            </div>
-            <div className="cap-detail__hero-system" data-cap-reveal aria-label="Technology progression">
-              <div><b>01</b><span>Matter</span><small>Physical phenomenon</small></div>
-              <i aria-hidden="true" />
-              <div><b>02</b><span>Measurement</span><small>Engineered signal</small></div>
-              <i aria-hidden="true" />
-              <div><b>03</b><span>Decision</span><small>Information for action</small></div>
-            </div>
+          <div className="cap-detail__opening-facts" data-cap-reveal>
+            {OPENING_FACTS.map(([Icon, value, label]) => <article key={value}><i><Icon aria-hidden="true" strokeWidth={1.25} /></i><p><b>{value}</b><span>{label}</span></p></article>)}
+          </div>
+          <div className="cap-detail__opening-status" aria-hidden="true"><i /><span>Built to solve</span></div>
           </div>
         </section>
 
-        <nav className="cap-detail__switcher" aria-label="Capability pages">
-          {PAGE_LINKS.map(([number, label, href]) => (
-            <a className={number === content.index ? 'is-current' : ''} href={pageUrl(href)} key={href}>
-              <b>{number}</b><span>{label}</span><i aria-hidden="true">↗</i>
-            </a>
-          ))}
-        </nav>
 
-        <section className="cap-detail__chapter" id="deep-technology">
-          <div className="cap-detail__chapter-head" data-cap-reveal><b>01</b><span>Deep Technology</span><i>Science · Engineering · Intelligence · Industrialisation</i></div>
-          <section className="cap-detail__statement">
-              <div className="cap-detail__section-label" data-cap-reveal><span>01</span>{content.label}</div>
-              <div className="cap-detail__statement-grid">
-                <h2 data-cap-reveal>Science becomes capability when it can leave the laboratory.</h2>
-                <p data-cap-reveal>{content.supporting}</p>
-              </div>
-          </section>
-          <section className="cap-detail__science-window" data-cap-reveal data-cap-parallax>
-            <figure><img src={assetUrl('deeptech-pathway-v2.png')} alt="Cutaway of a precision sampling pathway translating particles into a measurable signal" /></figure>
-            <div className="cap-detail__science-copy">
-              <span>Physical phenomenon / 01</span>
-              <h2>Before intelligence,<br />there must be <em>a signal.</em></h2>
-              <p>The work begins where vapour, particles, materials and ion behaviour become measurable. Every layer that follows depends on the integrity of this first physical interaction.</p>
-              <div className="cap-detail__signal-path" aria-label="Physical signal sequence">
-                {SIGNAL_STAGES.map(([Icon, label, detail], index) => (
-                  <div key={label}>
-                    <span><Icon aria-hidden="true" strokeWidth={1.45} /></span>
-                    <p><b>{label}</b><small>{detail}</small></p>
-                    {index < SIGNAL_STAGES.length - 1 && <i aria-hidden="true" />}
-                  </div>
-                ))}
-              </div>
+        <section className="cap-exact__deep">
+          <div className="cap-exact__wrap">
+            <div className="cap-exact__manifesto cap-exact__manifesto--image" data-cap-reveal>
+              <figure data-cap-parallax><img src={assetUrl('deeptech-matter-v2.png')} alt="Physical matter being translated into a measurable scientific signal" /></figure>
+              <div><span>ANIKA / PROBLEM-LED TECHNOLOGY</span><p>At Anika, <em>the problem determines the technology.</em><br />The technology does not determine the problem.</p></div>
             </div>
-          </section>
-          <section className="cap-detail__acts">
-              <div className="cap-detail__acts-heading" data-cap-reveal>
-                <span>One capability / Four connected disciplines</span>
-                <b>Science becomes dependable only when every layer works together.</b>
-              </div>
+            <div className="cap-exact__discipline-board">
               {content.items.map(([name, heading, copy], index) => {
-                const DeepTechIcon = DEEP_TECH_ICONS[index]
-                return (
-                  <article data-cap-reveal data-cap-parallax key={name}>
-                    <div className="cap-detail__card-index"><b>{String(index + 1).padStart(2, '0')}</b><span>{name}</span></div>
-                    <figure className="cap-detail__act-media">
-                      <img src={assetUrl(DEEP_TECH_IMAGES[index])} alt="" loading="lazy" />
-                      <span aria-hidden="true"><DeepTechIcon strokeWidth={1.35} /></span>
-                    </figure>
-                    <div className="cap-detail__act-copy"><h3>{heading}</h3><p>{copy}</p><ul>{DEEP_TECH_POINTS[index].map((point) => <li key={point}>{point}</li>)}</ul></div>
-                    <footer>Foundation: {name}</footer>
-                  </article>
-                )
-              })}
-          </section>
-          <section className="cap-detail__factory">
-            <figure data-cap-reveal data-cap-parallax><img src={assetUrl('deeptech-operation-v2.png')} alt="Scientific detection system operating in critical infrastructure" /></figure>
-            <div data-cap-reveal><span>Industrial reality / 04</span><h2>The laboratory is only the beginning.</h2><p>Repeatability, validation and manufacturing turn a scientific result into infrastructure that institutions can trust.</p><small>From controlled measurement to operational consequence</small></div>
-          </section>
-          <section className="cap-detail__manifesto">
-              <p data-cap-reveal>At Anika, <em>the problem determines the technology.</em><br />The technology does not determine the problem.</p>
-          </section>
-        </section>
-
-        <section className="cap-detail__chapter" id="technology-chain">
-          <div className="cap-detail__chapter-head" data-cap-reveal><b>02</b><span>Technology Chain</span><i>Environment · Sampling · Analysis · Decision</i></div>
-          <section className="cap-detail__chain-intro">
-            <div data-cap-reveal><span>03 / The capability</span><h2>{chainContent.title}</h2></div>
-            <p data-cap-reveal>{chainContent.intro}</p>
-          </section>
-          <section className="cap-detail__chain-section">
-              <div className="cap-detail__section-label" data-cap-reveal><span>03</span>{chainContent.label}<i>Science → Engineering → Intelligence → Decision</i></div>
-              <div className="cap-detail__chain-simple" data-cap-reveal>
-                <div className="cap-detail__chain-phases" aria-hidden="true">
-                  <span>Physical world</span><i /><span>Analytical core</span><i /><span>Operational decision</span>
-                </div>
-                <div className="cap-detail__chain">
-                  {chainContent.items.map(([name, copy], index) => (
-                    <article key={name}>
-                      <b>{String(index + 1).padStart(2, '0')}</b>
-                      <div><small>{['Observe', 'Capture', 'Condition', 'Measure', 'Interpret', 'Act'][index]}</small><h3>{name}</h3><p>{copy}</p><ul>{CHAIN_POINTS[index].map((point) => <li key={point}>{point}</li>)}</ul></div>
-                      {index < chainContent.items.length - 1 && <span aria-hidden="true">→</span>}
-                    </article>
-                  ))}
-                </div>
-                <div className="cap-detail__chain-continuity"><i aria-hidden="true" />This is a continuous capability chain—from understanding the environment to delivering the right decision.</div>
-              </div>
-          </section>
-          <section className="cap-detail__ai">
-              {chainContent.ai.map(([heading, copy], index) => (
-                <article data-cap-reveal key={heading}><span>0{index + 1} / Intelligence principle</span><h2>{heading}</h2><p>{copy}</p></article>
-              ))}
-          </section>
-        </section>
-
-        <section className="cap-detail__chapter" id="technology-foundation">
-          <div className="cap-detail__chapter-head cap-detail__chapter-head--light" data-cap-reveal><b>03</b><span>Technology Foundation</span><i>Physics · Sampling · Intelligence · Manufacturing</i></div>
-          <section className="cap-detail__foundation">
-            <div className="cap-detail__foundation-intro">
-              <div data-cap-reveal><span>04 / What the technology capability has achieved</span><h2>{foundationContent.title}</h2></div>
-              <p data-cap-reveal>{foundationContent.intro}</p>
-            </div>
-            <div className="cap-detail__section-label" data-cap-reveal><span>04</span>{foundationContent.label}</div>
-            <div className="cap-detail__foundation-grid">
-              {foundationContent.items.map(([name, heading, copy, metric], index) => {
-                return (
-                  <article data-cap-reveal key={name}>
-                    <div className="cap-detail__card-index"><b>{String(index + 1).padStart(2, '0')}</b><span>{name}</span></div>
-                    <h2>{heading}</h2><p>{copy}</p><small>{metric}</small>
-                  </article>
-                )
-              })}
-            </div>
-          </section>
-        </section>
-
-        <section className="cap-detail__reference-extension">
-          <section className="cap-detail__problems">
-            <header data-cap-reveal>
-              <span>05 / The problems</span>
-              <h2>Important problems<br /><em>do not wait.</em></h2>
-              <p>They exist in airports, borders, hospitals, factories, military environments, cities, laboratories and the everyday world.</p>
-            </header>
-            <div className="cap-detail__problem-grid">
-              {PROBLEM_AREAS.map(([Icon, name, heading, copy, capability, image], index) => (
-                <article data-cap-reveal key={name}>
-                  <figure><img src={assetUrl(image)} alt="" loading="lazy" /></figure>
-                  <div className="cap-detail__problem-card-head"><b>{String(index + 1).padStart(2, '0')}</b><Icon aria-hidden="true" strokeWidth={1.3} /></div>
-                  <div className="cap-detail__problem-card-copy"><small>{name}</small><h3>{heading}</h3><p>{copy}</p><footer>Anika / {capability}</footer></div>
+                const Icon = DISCIPLINE_PRESENTATION[index]
+                return <article data-cap-reveal key={name}>
+                  <header><b>{String(index + 1).padStart(2, '0')}</b><span>{name}</span></header>
+                  <figure><i><Icon aria-hidden="true" strokeWidth={1.35} /></i></figure>
+                  <div><h3>{heading}</h3><p>{copy}</p></div>
+                  <footer>FOUNDATION: {name}</footer>
                 </article>
-              ))}
+              })}
             </div>
-          </section>
-
-          <section className="cap-detail__boundaries">
-            <header data-cap-reveal>
-              <span>06 / Where the capability goes</span>
-              <h2>The capability crosses boundaries<br /><em>because problems do.</em></h2>
-              <p>The same underlying science can create different answers when the environment, sampling strategy and operational question change.</p>
-            </header>
-            <div className="cap-detail__domain-index">
-              {CAPABILITY_DOMAINS.map(([domain, heading, copy], index) => (
-                <article data-cap-reveal key={domain}><b>{String(index + 1).padStart(2, '0')}</b><small>{domain}</small><h3>{heading}</h3><p>{copy}</p></article>
-              ))}
-            </div>
-          </section>
-
-          <section className="cap-detail__future">
-            <header data-cap-reveal>
-              <span>07 / Take the capability further</span>
-              <h2>Build for the problems<br /><em>that come next.</em></h2>
-              <p>No artificial timelines. No need to predict a particular future. The intent is to keep building the capabilities required by important problems.</p>
-            </header>
-            <div className="cap-detail__future-grid">
-              {FUTURE_CAPABILITIES.map(([heading, copy], index) => (
-                <article data-cap-reveal key={heading}><b>{String(index + 1).padStart(2, '0')}</b><div><h3>{heading}</h3><p>{copy}</p></div></article>
-              ))}
-            </div>
-            <aside data-cap-reveal><span>Why this matters at institutional scale</span><p>Deep technology becomes transformational when one capability keeps opening new problems. Anika's opportunity is not defined by one detector, one market or one application. It comes from the ability to combine science, engineering, manufacturing and intelligence around difficult physical-world problems.</p></aside>
-          </section>
+          </div>
         </section>
 
-        <section className="cap-detail__next">
-          <span data-cap-reveal>Capabilities / Continue exploring</span>
-          <h2 data-cap-reveal>One scientific foundation.<br /><em>Multiple paths to action.</em></h2>
-          <a data-cap-reveal href={pageUrl('/contact/')}>Start a conversation <b>↗</b></a>
+        <section className="cap-exact__problems">
+          <div className="cap-exact__wrap">
+            <div className="cap-exact__eyebrow" data-cap-reveal>02 / The problems Anika chooses</div>
+            <h2 data-cap-reveal>Important problems<br />do not wait.</h2>
+            <p className="cap-exact__lead" data-cap-reveal>They exist in airports, borders, hospitals, factories, military environments, cities, laboratories and the everyday world.</p>
+            <div className="cap-detail__problem-grid">
+              {PROBLEM_AREAS.map(([Icon, name, heading, copy, capability, image], index) => <article data-cap-reveal key={name}><figure><img src={assetUrl(image)} alt="" loading="lazy" /></figure><div className="cap-detail__problem-card-head"><b>{String(index + 1).padStart(2, '0')}</b><Icon aria-hidden="true" strokeWidth={1.3} /></div><div className="cap-detail__problem-card-copy"><small>{name}</small><h3>{heading}</h3><p>{copy}</p><footer><b>ANIKA</b> / {capability}</footer></div></article>)}
+            </div>
+          </div>
+        </section>
+
+        <section className="cap-exact__capability">
+          <div className="cap-exact__wrap">
+            <div className="cap-exact__split"><div><div className="cap-exact__eyebrow" data-cap-reveal>03 / The capability</div><h2 data-cap-reveal>From environment<br />to decision.</h2></div><div><p className="cap-exact__lead" data-cap-reveal>Anika's technology capability is not one instrument. It is a complete chain that begins with the physical environment and ends with information that can support action.</p></div></div>
+            <div className="cap-exact__architecture">
+              <header><h3>The Anika technology chain</h3><span>Science → Engineering → Intelligence → Decision</span></header>
+              <div className="cap-exact__chain">{chainContent.items.map(([name, copy], index) => { const Icon = CHAIN_ICONS[index]; return <article data-cap-reveal key={name}><b>{String(index + 1).padStart(2, '0')}</b><i><Icon aria-hidden="true" strokeWidth={1.25} /></i><h4>{name}</h4><span aria-hidden="true" /><p>{copy}</p></article> })}</div>
+              <div className="cap-exact__ai">{chainContent.ai.map(([heading, copy]) => <article data-cap-reveal key={heading}><h3>{heading}</h3><p>{copy}</p></article>)}</div>
+            </div>
+          </div>
+        </section>
+
+        <section className="cap-exact__achieved">
+          <div className="cap-exact__wrap">
+            <div className="cap-exact__eyebrow" data-cap-reveal>04 / What the technology capability has achieved</div>
+            <h2 data-cap-reveal>The evidence is<br />in the system.</h2>
+            <p className="cap-exact__lead" data-cap-reveal>Anika's public technical material describes a developed technology stack spanning active sampling, analytical physics, adaptive intelligence, application-specific libraries, manufacturing and multiple deployment domains.</p>
+            <div className="cap-exact__achieved-grid">{foundationContent.items.map(([name, heading, copy, metric], index) => <article data-cap-reveal key={name}><b>{String(index + 1).padStart(2, '0')} / {name}</b><h3>{heading}</h3><p>{copy}</p><small>{metric}</small></article>)}</div>
+          </div>
+        </section>
+
+        <section className="cap-exact__domains">
+          <div className="cap-exact__wrap">
+            <div className="cap-exact__eyebrow" data-cap-reveal>05 / The domains</div>
+            <h2 data-cap-reveal>The capability crosses<br />boundaries because problems do.</h2>
+            <p className="cap-exact__lead" data-cap-reveal>The same underlying science can create different answers when the environment, sampling strategy and operational question change.</p>
+            <div className="cap-exact__domain-grid">{CAPABILITY_DOMAINS.map(([domain, heading, copy], index) => <article data-cap-reveal key={domain}><b>{String(index + 1).padStart(2, '0')} / {domain}</b><h3>{heading}</h3><p>{copy}</p></article>)}</div>
+          </div>
+        </section>
+
+        <section className="cap-exact__future">
+          <div className="cap-exact__wrap">
+            <div className="cap-exact__eyebrow" data-cap-reveal>06 / What we intend to do</div>
+            <h2 data-cap-reveal>Take the capability<br />further.</h2>
+            <p className="cap-exact__lead" data-cap-reveal>No artificial timelines. No need to predict a particular future. The intent is to keep building the capabilities required by important problems.</p>
+            <div className="cap-exact__future-grid">{FUTURE_CAPABILITIES.map(([heading, copy], index) => <article data-cap-reveal key={heading}><span>{String(index + 1).padStart(2, '0')}</span><h3>{heading}</h3><p>{copy}</p></article>)}</div>
+            <div className="cap-exact__future-close" data-cap-reveal>We are not building around a technology trend.<br /><br /><em>We are building technology around the problems humanity cannot afford to ignore.</em></div>
+          </div>
+        </section>
+
+        <section className="cap-exact__institutional">
+          <div className="cap-exact__wrap cap-exact__institutional-grid">
+            <div><div className="cap-exact__eyebrow" data-cap-reveal>07 / Why this matters at institutional scale</div><h2 data-cap-reveal>Deep technology becomes <em>transformational</em> when one capability keeps opening <em>new problems.</em></h2><p data-cap-reveal>Anika's opportunity is not defined by one detector, one market or one application. It comes from the ability to combine science, engineering, manufacturing and intelligence around difficult physical-world problems.</p></div>
+            <div>{INSTITUTIONAL_POINTS.map(([heading, copy], index) => { const Icon = INSTITUTIONAL_ICONS[index]; return <article data-cap-reveal key={heading}><span>{String(index + 1).padStart(2, '0')}</span><i><Icon aria-hidden="true" strokeWidth={1.35} /></i><div><b>{heading}</b><small>{copy}</small></div><strong aria-hidden="true">›</strong></article> })}</div>
+          </div>
+        </section>
+
+        <section className="cap-exact__final">
+          <div className="cap-exact__wrap">
+            <div className="cap-exact__eyebrow" data-cap-reveal>08 / Anika Sterilis</div>
+            <h2 data-cap-reveal>SCIENCE IS THE FOUNDATION.<br />TECHNOLOGY IS THE CAPABILITY.<br />AI IS A TOOL.<br /><span>THE PROBLEM IS THE PURPOSE.</span></h2>
+            <div data-cap-reveal><p>We intend to keep building the technologies required to solve difficult problems — wherever they exist.</p><a href={pageUrl('/contact/')}>Start a conversation ↗</a></div>
+          </div>
         </section>
       </main>
       <Footer />
