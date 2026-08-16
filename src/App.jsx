@@ -26,6 +26,7 @@ function App() {
       <Route path="/privacy" element={<PrivacyPage />} />
       <Route path="/terms" element={<TermsPage />} />
       <Route path="/capabilities/deep-technology" element={<CapabilityDetailPage />} />
+      <Route path="/deep-technology" element={<CapabilityDetailPage />} />
     </Routes>
   )
 }

@@ -7,6 +7,7 @@ const pageUrl = (path) => `${BASE_URL}${path.replace(/^\//, '')}`
 function Header({ compact = false, hideOverFooter = false }) {
   const pathname = window.location.pathname
   const isCapabilities = pathname.includes('/capabilities/') || pathname.endsWith('/capability.html')
+  const isDeepTechnology = pathname.endsWith('/deep-technology') || pathname.endsWith('/deep-technology/')
   const [menuOpen, setMenuOpen] = useState(false)
   const [openMobileSubmenu, setOpenMobileSubmenu] = useState(null)
   const [isCollapsed, setIsCollapsed] = useState(false)
@@ -138,13 +139,14 @@ function Header({ compact = false, hideOverFooter = false }) {
         </button>
 
         <div className="compact-nav-panel" id="compact-site-navigation">
-          <span className="compact-nav-panel__eyebrow">Site navigation / 05</span>
+          <span className="compact-nav-panel__eyebrow">Site navigation / 06</span>
           <nav>
             <a href={pageUrl('/index.html')}><b>01</b><span>Platform</span></a>
-            <a href={pageUrl('/capability.html')}><b>02</b><span>Capabilities</span></a>
-            <a className="is-active" aria-current="page" href={pageUrl('/solutions/')}><b>03</b><span>Solutions</span></a>
-            <a href={pageUrl('/about/')}><b>04</b><span>About Us</span></a>
-            <a href={pageUrl('/contact/')}><b>05</b><span>Contact</span></a>
+            <a href={pageUrl('/deep-technology')}><b>02</b><span>Deep Technology</span></a>
+            <a href={pageUrl('/capability.html')}><b>03</b><span>Capabilities</span></a>
+            <a className="is-active" aria-current="page" href={pageUrl('/solutions/')}><b>04</b><span>Solutions</span></a>
+            <a href={pageUrl('/about/')}><b>05</b><span>About Us</span></a>
+            <a href={pageUrl('/contact/')}><b>06</b><span>Contact</span></a>
           </nav>
         </div>
         <div className="page-completion" aria-hidden="true"><i /></div>
@@ -163,6 +165,7 @@ function Header({ compact = false, hideOverFooter = false }) {
       </a>
       <nav>
         <a href={pageUrl('/index.html')}>Platform</a>
+        <a className={isDeepTechnology ? 'is-active' : ''} aria-current={isDeepTechnology ? 'page' : undefined} href={pageUrl('/deep-technology')}>Deep Technology</a>
         <div className="nav-menu">
           <a className={isCapabilities ? 'is-active' : ''} aria-current={isCapabilities ? 'page' : undefined} href={pageUrl('/capability.html')}>Capabilities</a>
           <div className="nav-submenu">
@@ -202,22 +205,23 @@ function Header({ compact = false, hideOverFooter = false }) {
         <i aria-hidden="true"><b /><b /></i>
       </button>
       <div className={`mnav-panel ${menuOpen ? 'is-open' : ''}`} id="mobile-site-navigation">
-        <span>Site navigation / 05</span>
+        <span>Site navigation / 06</span>
         <nav>
           <a href={pageUrl('/index.html')}><b>01</b>Platform</a>
+          <a className={isDeepTechnology ? 'is-active' : ''} href={pageUrl('/deep-technology')}><b>02</b>Deep Technology</a>
           <div className={`mnav-group ${openMobileSubmenu === 'capabilities' ? 'is-expanded' : ''}`}>
-            <button className={`mnav-submenu-toggle ${isCapabilities ? 'is-active' : ''}`} type="button" aria-expanded={openMobileSubmenu === 'capabilities'} onClick={() => setOpenMobileSubmenu((item) => item === 'capabilities' ? null : 'capabilities')}><b>02</b><span>Capabilities</span><i aria-hidden="true">+</i></button>
+            <button className={`mnav-submenu-toggle ${isCapabilities ? 'is-active' : ''}`} type="button" aria-expanded={openMobileSubmenu === 'capabilities'} onClick={() => setOpenMobileSubmenu((item) => item === 'capabilities' ? null : 'capabilities')}><b>03</b><span>Capabilities</span><i aria-hidden="true">+</i></button>
             <div className="mnav-submenu"><a href={pageUrl('/capabilities/deep-technology')}>Deep Technology</a><a href={pageUrl('/capability.html')}>Our Expertise</a></div>
           </div>
           <div className={`mnav-group ${openMobileSubmenu === 'solutions' ? 'is-expanded' : ''}`}>
-            <button className={`mnav-submenu-toggle ${pathname.endsWith('/solutions') || pathname.endsWith('/solutions/') ? 'is-active' : ''}`} type="button" aria-expanded={openMobileSubmenu === 'solutions'} onClick={() => setOpenMobileSubmenu((item) => item === 'solutions' ? null : 'solutions')}><b>03</b><span>Solutions</span><i aria-hidden="true">+</i></button>
+            <button className={`mnav-submenu-toggle ${pathname.endsWith('/solutions') || pathname.endsWith('/solutions/') ? 'is-active' : ''}`} type="button" aria-expanded={openMobileSubmenu === 'solutions'} onClick={() => setOpenMobileSubmenu((item) => item === 'solutions' ? null : 'solutions')}><b>04</b><span>Solutions</span><i aria-hidden="true">+</i></button>
             <div className="mnav-submenu"><a href={pageUrl('/index.html#applications')}>Application Domains</a><a href={pageUrl('/solutions/')}>Products</a></div>
           </div>
           <div className={`mnav-group ${openMobileSubmenu === 'about' ? 'is-expanded' : ''}`}>
-            <button className={`mnav-submenu-toggle ${pathname.endsWith('/about') || pathname.endsWith('/about/') ? 'is-active' : ''}`} type="button" aria-expanded={openMobileSubmenu === 'about'} onClick={() => setOpenMobileSubmenu((item) => item === 'about' ? null : 'about')}><b>04</b><span>About Us</span><i aria-hidden="true">+</i></button>
+            <button className={`mnav-submenu-toggle ${pathname.endsWith('/about') || pathname.endsWith('/about/') ? 'is-active' : ''}`} type="button" aria-expanded={openMobileSubmenu === 'about'} onClick={() => setOpenMobileSubmenu((item) => item === 'about' ? null : 'about')}><b>05</b><span>About Us</span><i aria-hidden="true">+</i></button>
             <div className="mnav-submenu"><a href={pageUrl('/about/#vision-intent')}>Vision &amp; Intent</a><a href={pageUrl('/about/')}>Our Company</a></div>
           </div>
-          <a className={pathname.endsWith('/contact') || pathname.endsWith('/contact/') ? 'is-active' : ''} href={pageUrl('/contact/')}><b>05</b>Contact</a>
+          <a className={pathname.endsWith('/contact') || pathname.endsWith('/contact/') ? 'is-active' : ''} href={pageUrl('/contact/')}><b>06</b>Contact</a>
         </nav>
       </div>
       <div className="page-completion" aria-hidden="true"><i /></div>

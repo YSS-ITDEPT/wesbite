@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { Activity, Binary, Blocks, DraftingCompass, Microscope, Waves, Wind } from 'lucide-react'
+import { Activity, Binary, Blocks, Building2, ChevronsRight, Crosshair, DraftingCompass, Droplets, Eye, Factory, HeartPulse, Landmark, Microscope, Radio, ScanLine, ShieldAlert, ShieldCheck, Target, Waves, Wind } from 'lucide-react'
 import Header from '../components/Header.jsx'
 import Footer from '../components/Footer.jsx'
 import { useScrollReveal } from '../hooks/useScrollReveal.js'
@@ -29,6 +29,61 @@ const SIGNAL_STAGES = [
   [Wind, 'Capture', 'Vapour / particle'],
   [Waves, 'Measure', 'Physical response'],
   [Activity, 'Resolve', 'Usable signal'],
+]
+
+const PROBLEM_AREAS = [
+  [ShieldAlert, 'Security', 'Protect people from hazards they cannot see.', 'Chemical threats, explosives, narcotics and hazardous substances can be present before conventional awareness catches up.', 'Active chemical intelligence'],
+  [HeartPulse, 'Health', 'Access information the human body is already producing.', 'Breath contains chemical information. Sampling and analytical science can create new possibilities for non-invasive diagnostics.', 'VOC intelligence'],
+  [Factory, 'Industry', 'Understand chemical environments before consequences.', 'Industrial operations depend on chemistry. Better information can support safer operations and earlier response.', 'Chemical intelligence'],
+  [Droplets, 'Food + Water', 'Protect what sustains society.', 'Food and water systems require better ways to understand chemical conditions, contaminants and change.', 'Extend the sensing capability'],
+  [Building2, 'Infrastructure', 'Make critical places more aware.', 'Airports, ports, borders, facilities and cities depend on information from the environments around them.', 'Physical-world intelligence'],
+  [Landmark, 'National Security', 'Make better decisions when the threat is uncertain.', 'Strategic environments require technology that can turn difficult chemical information into usable understanding.', 'Sovereign capability'],
+]
+
+const OPENING_PROBLEMS = [
+  [ShieldAlert, 'Security'],
+  [HeartPulse, 'Health'],
+  [Factory, 'Industry'],
+  [ShieldCheck, 'Defence'],
+  [Building2, 'Infrastructure'],
+  [Landmark, 'National Security'],
+]
+
+const OPENING_OUTCOMES = [
+  [ScanLine, 'Measure', 'Reveal the signal.'],
+  [Target, 'Understand', 'Resolve meaning.'],
+  [ChevronsRight, 'Act', 'Support decisions.'],
+]
+
+const OPENING_APPROACH = [
+  [Crosshair, 'Our approach', 'Rooted in science. Driven by purpose. Built for impact.'],
+  [Eye, 'Real problems', 'We focus on problems that matter.'],
+  [Radio, 'Difficult signals', 'We extract what others cannot see.'],
+  [ShieldCheck, 'Dependable answers', 'We deliver intelligence you can depend on.'],
+]
+
+const CAPABILITY_DOMAINS = [
+  ['Defense + CBRNE', 'Threat intelligence', 'Forward environments, base security, explosives, chemical agents and CBRNE response.'],
+  ['Aviation + Ports', 'High-throughput security', 'Passenger, baggage, cargo, aircraft, vehicles and maritime logistics environments.'],
+  ['Borders + Customs', 'Checkpoint intelligence', 'Vehicles, parcels, personnel and cargo at borders, ports and courier hubs.'],
+  ['Narcotics', 'Illicit substance detection', 'Trace detection of narcotics in security and law-enforcement environments.'],
+  ['Healthcare', 'Breath diagnostics', 'Non-invasive VOC sampling and analysis for clinical research and validated applications.'],
+  ['Industrial', 'Chemical safety', 'Toxic industrial chemicals, workplace exposure and chemical leak identification.'],
+  ['Forensics', 'Evidence and trace profiling', 'Post-blast residue, drug traces and evidence-oriented chemical identification.'],
+  ['Environment', 'Environmental intelligence', 'VOC monitoring, hazardous chemical identification and broader physical-world awareness.'],
+  ['Ordnance', 'Condition understanding', 'Applying chemical intelligence to the safety and condition of stored or ageing energetic materials.'],
+  ['Critical Infrastructure', 'Place-based security', 'Extending chemical intelligence into the environments surrounding critical assets.'],
+  ['Research', 'New scientific applications', 'Using the platform as a scientific instrument where chemical information is difficult to obtain.'],
+  ['What comes next', 'New problems', 'The category expands wherever the underlying science can produce a materially better answer.'],
+]
+
+const FUTURE_CAPABILITIES = [
+  ['Measure more of the physical world.', 'Expand what can be sampled, analysed and understood in real environments.'],
+  ['Advance the underlying science.', 'Continue developing chemistry, physics, instrumentation, sampling and analytical methods.'],
+  ['Make intelligence deeper.', 'Use computation and AI to extract more meaning from complex scientific signals without losing the physical foundation.'],
+  ['Turn capabilities into platforms.', 'Build reusable scientific and engineering foundations that can serve multiple domains rather than isolated products.'],
+  ['Grow deployment and network.', 'Work with governments, institutions, industries, researchers and partners to place useful capability where it matters.'],
+  ['Build for the problems that come next.', 'As new threats, health challenges, industrial environments and societal needs emerge, develop the technology to address them.'],
 ]
 
 const PAGES = {
@@ -100,6 +155,7 @@ function CapabilityDetailPage() {
     headingScrub: 0.55,
     introHeadings: ['.cap-detail__hero h1'],
     headings: [
+      '.cap-detail__opening h1',
       '.cap-detail__statement h2',
       '.cap-detail__science-copy h2',
       '.cap-detail__acts h3',
@@ -108,6 +164,9 @@ function CapabilityDetailPage() {
       '.cap-detail__chain-intro h2',
       '.cap-detail__ai h2',
       '.cap-detail__foundation-intro h2',
+      '.cap-detail__problems h2',
+      '.cap-detail__boundaries h2',
+      '.cap-detail__future h2',
       '.cap-detail__next h2',
     ],
   })
@@ -156,6 +215,40 @@ function CapabilityDetailPage() {
     <>
       <Header hideOverFooter />
       <main className="cap-detail cap-detail--complete" ref={mainRef}>
+        <section className="cap-detail__opening">
+          <div className="cap-detail__opening-grid" aria-hidden="true" />
+          <header data-cap-reveal>
+            <span>Anika Sterilis / Transformational Deep Technology</span>
+            <b>Physical world → operational answer</b>
+          </header>
+          <div className="cap-detail__opening-layout">
+            <div className="cap-detail__opening-copy">
+              <span data-cap-reveal>Problem-led innovation / 01</span>
+              <h1 data-cap-reveal>The world has<br /><strong>difficult problems.</strong><br /><em>We build the answers.</em></h1>
+              <p data-cap-reveal>Deep technology begins where the problem is real, the signal is difficult to obtain and an institution needs an answer it can depend on.</p>
+              <div className="cap-detail__opening-principle" data-cap-reveal><b>01</b><Target aria-hidden="true" strokeWidth={1.25} /><p>The problem determines the technology.<small>Never the other way around.</small></p></div>
+            </div>
+            <div className="cap-detail__problem-engine" data-cap-reveal>
+              <div className="cap-detail__problem-engine-head"><span>Live problem field</span><b>06 inputs / 01 capability</b></div>
+              <div className="cap-detail__problem-inputs">
+                {OPENING_PROBLEMS.map(([Icon, name], index) => (
+                  <article key={name}><Icon aria-hidden="true" strokeWidth={1.25} /><span>{name}</span><small>S-{String(index + 1).padStart(2, '0')}</small></article>
+                ))}
+              </div>
+              <div className="cap-detail__technology-core">
+                <div><span>Physical input</span><small>Raw signals from<br />the real world.</small></div><i aria-hidden="true" /><b>Anika<br />technology<br />core</b><i aria-hidden="true" /><div><span>Usable answer</span><small>Actionable intelligence<br />for real decisions.</small></div>
+              </div>
+              <div className="cap-detail__answer-output" aria-label="Capability outcomes">
+                {OPENING_OUTCOMES.map(([Icon, name, copy], index) => <div key={name}><b>0{index + 1}</b><Icon aria-hidden="true" strokeWidth={1.25} /><p><span>{name}</span><small>{copy}</small></p></div>)}
+              </div>
+            </div>
+          </div>
+          <div className="cap-detail__opening-approach" data-cap-reveal>
+            {OPENING_APPROACH.map(([Icon, name, copy]) => <article key={name}><Icon aria-hidden="true" strokeWidth={1.2} /><p><b>{name}</b><span>{copy}</span></p></article>)}
+          </div>
+          <div className="cap-detail__opening-status" aria-hidden="true"><i /><span>Problem field / active</span></div>
+        </section>
+
         <section className="cap-detail__hero">
           <div className="cap-detail__grid" aria-hidden="true" />
           <div className="cap-detail__scroll-progress" aria-hidden="true"><i /><span>Physical world to decision</span></div>
@@ -294,6 +387,51 @@ function CapabilityDetailPage() {
                 )
               })}
             </div>
+          </section>
+        </section>
+
+        <section className="cap-detail__reference-extension">
+          <section className="cap-detail__problems">
+            <header data-cap-reveal>
+              <span>05 / The problems</span>
+              <h2>Important problems<br /><em>do not wait.</em></h2>
+              <p>They exist in airports, borders, hospitals, factories, military environments, cities, laboratories and the everyday world.</p>
+            </header>
+            <div className="cap-detail__problem-grid">
+              {PROBLEM_AREAS.map(([Icon, name, heading, copy, capability], index) => (
+                <article data-cap-reveal key={name}>
+                  <div><b>{String(index + 1).padStart(2, '0')}</b><Icon aria-hidden="true" strokeWidth={1.3} /></div>
+                  <small>{name}</small><h3>{heading}</h3><p>{copy}</p><footer>Anika / {capability}</footer>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section className="cap-detail__boundaries">
+            <header data-cap-reveal>
+              <span>06 / Where the capability goes</span>
+              <h2>The capability crosses boundaries<br /><em>because problems do.</em></h2>
+              <p>The same underlying science can create different answers when the environment, sampling strategy and operational question change.</p>
+            </header>
+            <div className="cap-detail__domain-index">
+              {CAPABILITY_DOMAINS.map(([domain, heading, copy], index) => (
+                <article data-cap-reveal key={domain}><b>{String(index + 1).padStart(2, '0')}</b><small>{domain}</small><h3>{heading}</h3><p>{copy}</p></article>
+              ))}
+            </div>
+          </section>
+
+          <section className="cap-detail__future">
+            <header data-cap-reveal>
+              <span>07 / Take the capability further</span>
+              <h2>Build for the problems<br /><em>that come next.</em></h2>
+              <p>No artificial timelines. No need to predict a particular future. The intent is to keep building the capabilities required by important problems.</p>
+            </header>
+            <div className="cap-detail__future-grid">
+              {FUTURE_CAPABILITIES.map(([heading, copy], index) => (
+                <article data-cap-reveal key={heading}><b>{String(index + 1).padStart(2, '0')}</b><div><h3>{heading}</h3><p>{copy}</p></div></article>
+              ))}
+            </div>
+            <aside data-cap-reveal><span>Why this matters at institutional scale</span><p>Deep technology becomes transformational when one capability keeps opening new problems. Anika's opportunity is not defined by one detector, one market or one application. It comes from the ability to combine science, engineering, manufacturing and intelligence around difficult physical-world problems.</p></aside>
           </section>
         </section>
 
