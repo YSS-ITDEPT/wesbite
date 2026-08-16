@@ -208,6 +208,18 @@ if (mnavToggle && mnavPanel) {
     mnavToggle.setAttribute("aria-expanded", String(!open));
     mnavPanel.classList.toggle("is-open", !open);
   });
+  mnavPanel.querySelectorAll(".mnav-submenu-toggle").forEach((toggle) => {
+    toggle.addEventListener("click", () => {
+      const group = toggle.closest(".mnav-group");
+      const expand = !group.classList.contains("is-expanded");
+      mnavPanel.querySelectorAll(".mnav-group").forEach((item) => {
+        item.classList.remove("is-expanded");
+        item.querySelector(".mnav-submenu-toggle")?.setAttribute("aria-expanded", "false");
+      });
+      group.classList.toggle("is-expanded", expand);
+      toggle.setAttribute("aria-expanded", String(expand));
+    });
+  });
   mnavPanel.addEventListener("click", (event) => {
     if (event.target.closest("a")) closeMnav();
   });
