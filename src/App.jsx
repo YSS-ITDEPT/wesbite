@@ -27,6 +27,7 @@ function App() {
       <Route path="/terms" element={<TermsPage />} />
       <Route path="/capabilities/deep-technology" element={<CapabilityDetailPage />} />
       <Route path="/deep-technology" element={<CapabilityDetailPage />} />
+      <Route path="/deep-tech" element={<CapabilityDetailPage />} />
     </Routes>
   )
 }

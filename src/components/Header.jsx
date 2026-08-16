@@ -7,7 +7,7 @@ const pageUrl = (path) => `${BASE_URL}${path.replace(/^\//, '')}`
 function Header({ compact = false, hideOverFooter = false }) {
   const pathname = window.location.pathname
   const isCapabilities = pathname.includes('/capabilities/') || pathname.endsWith('/capability.html')
-  const isDeepTechnology = pathname.endsWith('/deep-technology') || pathname.endsWith('/deep-technology/')
+  const isDeepTechnology = pathname.endsWith('/deep-tech') || pathname.endsWith('/deep-tech/') || pathname.endsWith('/deep-technology') || pathname.endsWith('/deep-technology/')
   const [menuOpen, setMenuOpen] = useState(false)
   const [isCollapsed, setIsCollapsed] = useState(false)
   const [isOverFooter, setIsOverFooter] = useState(false)

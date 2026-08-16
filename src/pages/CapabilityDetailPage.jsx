@@ -134,7 +134,6 @@ const PAGES = {
 function CapabilityDetailPage() {
   const content = PAGES.deepTechnology
   const chainContent = PAGES.technologyChain
-  const foundationContent = PAGES.technologyFoundation
   const mainRef = useRef(null)
 
   useScrollReveal(mainRef, {
@@ -292,15 +291,6 @@ function CapabilityDetailPage() {
               <div className="cap-exact__chain">{chainContent.items.map(([name, copy], index) => { const Icon = CHAIN_ICONS[index]; return <article data-cap-reveal key={name}><b>{String(index + 1).padStart(2, '0')}</b><i><Icon aria-hidden="true" strokeWidth={1.25} /></i><h4>{name}</h4><span aria-hidden="true" /><p>{copy}</p></article> })}</div>
               <div className="cap-exact__ai">{chainContent.ai.map(([heading, copy]) => <article data-cap-reveal key={heading}><h3>{heading}</h3><p>{copy}</p></article>)}</div>
             </div>
-          </div>
-        </section>
-
-        <section className="cap-exact__achieved">
-          <div className="cap-exact__wrap">
-            <div className="cap-exact__eyebrow" data-cap-reveal>04 / What the technology capability has achieved</div>
-            <h2 data-cap-reveal>The evidence is<br />in the system.</h2>
-            <p className="cap-exact__lead" data-cap-reveal>Anika's public technical material describes a developed technology stack spanning active sampling, analytical physics, adaptive intelligence, application-specific libraries, manufacturing and multiple deployment domains.</p>
-            <div className="cap-exact__achieved-grid">{foundationContent.items.map(([name, heading, copy, metric], index) => <article data-cap-reveal key={name}><b>{String(index + 1).padStart(2, '0')} / {name}</b><h3>{heading}</h3><p>{copy}</p><small>{metric}</small></article>)}</div>
           </div>
         </section>
 
