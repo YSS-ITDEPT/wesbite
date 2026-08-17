@@ -174,17 +174,24 @@
   .hero__content {
     padding: 0 16px;
     justify-content: flex-start;
-    padding-top: 140px;
+    padding-top: 58px;
   }
 
   .hero__headline {
     max-width: 100%;
+    line-height: 1.02;
+  }
+
+  .hero__divider {
+    margin-top: 12px;
+    width: 72px;
+    height: 3px;
   }
 
   .hero__copy {
     position: static;
     max-width: 100%;
     text-align: left;
-    margin-top: 32px;
+    margin-top: 14px;
   }
 }

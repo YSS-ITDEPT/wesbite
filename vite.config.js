@@ -4,7 +4,7 @@ import { resolve } from 'node:path'
 import { readFile } from 'node:fs/promises'
 import { mkdir, writeFile } from 'node:fs/promises'
 
-const reactRoutes = new Set(['/solutions', '/sol', '/testsol', '/testsol1', '/testsol2', '/about', '/contact', '/privacy', '/terms'])
+const reactRoutes = new Set(['/solutions', '/sol', '/testsol', '/testsol1', '/testsol2', '/about', '/contact', '/privacy', '/terms', '/home', '/deep-tech', '/deep-tech-test', '/deep-tech-video-test', '/deep-technology', '/capabilities/deep-technology'])
 
 function routeStaticAndReactPages() {
   return {
@@ -52,6 +52,7 @@ function prepareCpanelBuild(deployBase) {
     'contact',
     'privacy',
     'terms',
+    'home',
     'index-chrome.css',
     'page-transition.js',
     'site-crosshair.js',
@@ -81,7 +82,7 @@ function prepareCpanelBuild(deployBase) {
 
       const reactEntry = resolve(dist, 'react.html')
       const reactHtml = await readFile(reactEntry, 'utf8')
-      for (const route of ['solutions', 'sol', 'testsol', 'testsol1', 'testsol2', 'about', 'contact', 'privacy', 'terms']) {
+      for (const route of ['solutions', 'sol', 'testsol', 'testsol1', 'testsol2', 'about', 'contact', 'privacy', 'terms', 'home', 'deep-tech', 'deep-tech-test', 'deep-tech-video-test', 'deep-technology', 'capabilities/deep-technology']) {
         const routeDirectory = resolve(dist, route)
         await mkdir(routeDirectory, { recursive: true })
         await writeFile(resolve(routeDirectory, 'index.html'), reactHtml)

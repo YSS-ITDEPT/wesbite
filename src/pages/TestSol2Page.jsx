@@ -48,7 +48,7 @@ const products = [
     copy: 'A reusable fine-wire collection surface engineered to capture microscopic particles and vapours, then transfer the sample into the analytical workflow without unnecessary handling.',
     facts: [['SPME', 'treated mesh'], ['Reusable', 'field cycle'], ['Trace', 'particle capture']],
     specs: [
-      ['Material', 'Fine wire mesh treated with patented SPME for effective adsorption'],
+      ['Material', 'Fine wire mesh treated with SPME for effective adsorption'],
       ['Design', 'Heat-resistant handle moulded to the mesh for easy handling'],
       ['Reusability', 'Can be cleaned and reused after each sampling cycle'],
       ['Sample capture', 'Adsorbs microscopic airborne particles and vapour samples'],

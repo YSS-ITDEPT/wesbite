@@ -6,6 +6,8 @@ const pageUrl = (path) => `${BASE_URL}${path.replace(/^\//, '')}`
 
 function Header({ compact = false, hideOverFooter = false }) {
   const pathname = window.location.pathname
+  const isHome = pathname.endsWith('/home') || pathname.endsWith('/home/')
+  const isCapabilities = pathname.includes('/capabilities/') || pathname.endsWith('/capability.html')
   const [menuOpen, setMenuOpen] = useState(false)
   const [isCollapsed, setIsCollapsed] = useState(false)
   const [isOverFooter, setIsOverFooter] = useState(false)
@@ -135,13 +137,14 @@ function Header({ compact = false, hideOverFooter = false }) {
         </button>
 
         <div className="compact-nav-panel" id="compact-site-navigation">
-          <span className="compact-nav-panel__eyebrow">Site navigation / 05</span>
+          <span className="compact-nav-panel__eyebrow">Site navigation / 06</span>
           <nav>
-            <a href={pageUrl('/index.html')}><b>01</b><span>Platform</span></a>
-            <a href={pageUrl('/capability.html')}><b>02</b><span>Capabilities</span></a>
-            <a className="is-active" aria-current="page" href={pageUrl('/solutions/')}><b>03</b><span>Solutions</span></a>
-            <a href={pageUrl('/about/')}><b>04</b><span>About Us</span></a>
-            <a href={pageUrl('/contact/')}><b>05</b><span>Contact</span></a>
+            <a href={pageUrl('/home/')}><b>01</b><span>Home</span></a>
+            <a href={pageUrl('/index.html')}><b>02</b><span>Platform</span></a>
+            <a href={pageUrl('/capability.html')}><b>03</b><span>Capabilities</span></a>
+            <a className="is-active" aria-current="page" href={pageUrl('/solutions/')}><b>04</b><span>Solutions</span></a>
+            <a href={pageUrl('/about/')}><b>05</b><span>About Us</span></a>
+            <a href={pageUrl('/contact/')}><b>06</b><span>Contact</span></a>
           </nav>
         </div>
         <div className="page-completion" aria-hidden="true"><i /></div>
@@ -159,6 +162,7 @@ function Header({ compact = false, hideOverFooter = false }) {
         </span>
       </a>
       <nav>
+        <a className={isHome ? 'is-active' : ''} aria-current={isHome ? 'page' : undefined} href={pageUrl('/home/')}>Home</a>
         <a href={pageUrl('/index.html')}>Platform</a>
         <a href={pageUrl('/capability.html')}>Capabilities</a>
         <a className={pathname.endsWith('/solutions') || pathname.endsWith('/solutions/') ? 'is-active' : ''} aria-current={pathname.endsWith('/solutions') || pathname.endsWith('/solutions/') ? 'page' : undefined} href={pageUrl('/solutions/')}>Solutions</a>
@@ -178,13 +182,14 @@ function Header({ compact = false, hideOverFooter = false }) {
         <i aria-hidden="true"><b /><b /></i>
       </button>
       <div className={`mnav-panel ${menuOpen ? 'is-open' : ''}`} id="mobile-site-navigation">
-        <span>Site navigation / 05</span>
+        <span>Site navigation / 06</span>
         <nav>
-          <a href={pageUrl('/index.html')}><b>01</b>Platform</a>
-          <a href={pageUrl('/capability.html')}><b>02</b>Capabilities</a>
-          <a className={pathname.endsWith('/solutions') || pathname.endsWith('/solutions/') ? 'is-active' : ''} href={pageUrl('/solutions/')}><b>03</b>Solutions</a>
-          <a className={pathname.endsWith('/about') || pathname.endsWith('/about/') ? 'is-active' : ''} href={pageUrl('/about/')}><b>04</b>About Us</a>
-          <a className={pathname.endsWith('/contact') || pathname.endsWith('/contact/') ? 'is-active' : ''} href={pageUrl('/contact/')}><b>05</b>Contact</a>
+          <a className={isHome ? 'is-active' : ''} href={pageUrl('/home/')}><b>01</b>Home</a>
+          <a href={pageUrl('/index.html')}><b>02</b>Platform</a>
+          <a className={isCapabilities ? 'is-active' : ''} href={pageUrl('/capability.html')}><b>03</b>Capabilities</a>
+          <a className={pathname.endsWith('/solutions') || pathname.endsWith('/solutions/') ? 'is-active' : ''} href={pageUrl('/solutions/')}><b>04</b>Solutions</a>
+          <a className={pathname.endsWith('/about') || pathname.endsWith('/about/') ? 'is-active' : ''} href={pageUrl('/about/')}><b>05</b>About Us</a>
+          <a className={pathname.endsWith('/contact') || pathname.endsWith('/contact/') ? 'is-active' : ''} href={pageUrl('/contact/')}><b>06</b>Contact</a>
         </nav>
       </div>
       <div className="page-completion" aria-hidden="true"><i /></div>

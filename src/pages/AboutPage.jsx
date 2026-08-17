@@ -362,7 +362,7 @@ function AboutPage() {
                   Threat Scanning (
                   <span className="about-closing__highlight">AACTS®</span>)
                   technologies, delivering next-generation security solutions. Our
-                  patented systems detect hazardous vapors and particles with
+                  systems protected by granted global patents detect hazardous vapors and particles with
                   exceptional precision for proactive threat identification.
                 </p>
                 <p>

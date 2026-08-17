@@ -9,6 +9,7 @@ import AboutPage from './pages/AboutPage.jsx'
 import ContactPage from './pages/ContactPage.jsx'
 import PrivacyPage from './pages/PrivacyPage.jsx'
 import TermsPage from './pages/TermsPage.jsx'
+import CapabilityDetailPage from './pages/CapabilityDetailPage.jsx'
 import './App.css'
 
 function App() {
@@ -24,6 +25,12 @@ function App() {
       <Route path="/contact" element={<ContactPage />} />
       <Route path="/privacy" element={<PrivacyPage />} />
       <Route path="/terms" element={<TermsPage />} />
+      <Route path="/home" element={<CapabilityDetailPage testHero />} />
+      <Route path="/capabilities/deep-technology" element={<CapabilityDetailPage />} />
+      <Route path="/deep-technology" element={<CapabilityDetailPage />} />
+      <Route path="/deep-tech" element={<CapabilityDetailPage />} />
+      <Route path="/deep-tech-test" element={<CapabilityDetailPage testHero />} />
+      <Route path="/deep-tech-video-test" element={<CapabilityDetailPage testHeroVideo />} />
     </Routes>
   )
 }
