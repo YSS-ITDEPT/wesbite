@@ -255,14 +255,17 @@ function CapabilityDetailPage({ testHero = false, testHeroVideo = false }) {
             </div>
             {testHero || testHeroVideo ? <BlackHoleCapabilityInstrument video={testHeroVideo} /> : <div className="cap-detail__problem-engine" data-cap-reveal>
               <div className="cap-detail__problem-engine-head"><span>THE PROBLEMS ANIKA CHOOSES</span><b>06 DOMAINS / 01 CAPABILITY</b></div>
-              <div className="cap-detail__problem-inputs">
-                {OPENING_PROBLEMS.map(([Icon, name], index) => <article key={name}><Icon aria-hidden="true" strokeWidth={1.25} /><span>{name}</span><small>{String(index + 1).padStart(2, '0')}</small></article>)}
-              </div>
               <div className="cap-detail__technology-core">
+                <img className="cap-detail__technology-core-image" src={assetUrl('deeptech-gargantua-core.png')} alt="" aria-hidden="true" />
                 <div><span>Environment</span><small>Physical world</small></div><i aria-hidden="true" /><b>Anika<br />technology<br />capability</b><i aria-hidden="true" /><div><span>Decision</span><small>Information that can support action</small></div>
               </div>
-              <div className="cap-detail__answer-output" aria-label="Capability outcomes">
-                {OPENING_OUTCOMES.map(([Icon, name, copy], index) => <div key={name}><b>0{index + 1}</b><Icon aria-hidden="true" strokeWidth={1.25} /><p><span>{name}</span><small>{copy}</small></p></div>)}
+              <div className="cap-detail__answer-stack">
+                <div className="cap-detail__problem-inputs">
+                  {OPENING_PROBLEMS.map(([Icon, name], index) => <article key={name}><Icon aria-hidden="true" strokeWidth={1.25} /><span>{name}</span><small>{String(index + 1).padStart(2, '0')}</small></article>)}
+                </div>
+                <div className="cap-detail__answer-output" aria-label="Capability outcomes">
+                  {OPENING_OUTCOMES.map(([Icon, name, copy], index) => <div key={name}><b>0{index + 1}</b><Icon aria-hidden="true" strokeWidth={1.25} /><p><span>{name}</span><small>{copy}</small></p></div>)}
+                </div>
               </div>
             </div>}
           </div>
@@ -319,7 +322,7 @@ function CapabilityDetailPage({ testHero = false, testHeroVideo = false }) {
 
         <section className="cap-exact__domains">
           <div className="cap-exact__wrap">
-            <div className="cap-exact__eyebrow" data-cap-reveal>05 / The domains</div>
+            <div className="cap-exact__eyebrow" data-cap-reveal>04 / The domains</div>
             <h2 data-cap-reveal>The capability crosses<br />boundaries because problems do.</h2>
             <p className="cap-exact__lead" data-cap-reveal>The same underlying science can create different answers when the environment, sampling strategy and operational question change.</p>
             <div className="cap-exact__domain-grid">{CAPABILITY_DOMAINS.map(([domain, heading, copy], index) => <article data-cap-reveal key={domain}><b>{String(index + 1).padStart(2, '0')} / {domain}</b><h3>{heading}</h3><p>{copy}</p></article>)}</div>
@@ -328,7 +331,7 @@ function CapabilityDetailPage({ testHero = false, testHeroVideo = false }) {
 
         <section className="cap-exact__future">
           <div className="cap-exact__wrap">
-            <div className="cap-exact__eyebrow" data-cap-reveal>06 / What we intend to do</div>
+            <div className="cap-exact__eyebrow" data-cap-reveal>05 / What we intend to do</div>
             <h2 data-cap-reveal>Take the capability<br />further.</h2>
             <p className="cap-exact__lead" data-cap-reveal>No artificial timelines. No need to predict a particular future. The intent is to keep building the capabilities required by important problems.</p>
             <div className="cap-exact__future-grid">{FUTURE_CAPABILITIES.map(([heading, copy], index) => <article data-cap-reveal key={heading}><span>{String(index + 1).padStart(2, '0')}</span><h3>{heading}</h3><p>{copy}</p></article>)}</div>
@@ -338,14 +341,14 @@ function CapabilityDetailPage({ testHero = false, testHeroVideo = false }) {
 
         <section className="cap-exact__institutional">
           <div className="cap-exact__wrap cap-exact__institutional-grid">
-            <div><div className="cap-exact__eyebrow" data-cap-reveal>07 / Why this matters at institutional scale</div><h2 data-cap-reveal>Deep technology becomes <em>transformational</em> when one capability keeps opening <em>new problems.</em></h2><p data-cap-reveal>Anika's opportunity is not defined by one detector, one market or one application. It comes from the ability to combine science, engineering, manufacturing and intelligence around difficult physical-world problems.</p></div>
+            <div><div className="cap-exact__eyebrow" data-cap-reveal>06 / Why this matters at institutional scale</div><h2 data-cap-reveal>Deep technology becomes <em>transformational</em> when one capability keeps opening <em>new problems.</em></h2><p data-cap-reveal>Anika's opportunity is not defined by one detector, one market or one application. It comes from the ability to combine science, engineering, manufacturing and intelligence around difficult physical-world problems.</p></div>
             <div>{INSTITUTIONAL_POINTS.map(([heading, copy], index) => { const Icon = INSTITUTIONAL_ICONS[index]; return <article data-cap-reveal key={heading}><span>{String(index + 1).padStart(2, '0')}</span><i><Icon aria-hidden="true" strokeWidth={1.35} /></i><div><b>{heading}</b><small>{copy}</small></div><strong aria-hidden="true">›</strong></article> })}</div>
           </div>
         </section>
 
         <section className="cap-exact__final">
           <div className="cap-exact__wrap">
-            <div className="cap-exact__eyebrow" data-cap-reveal>08 / Anika Sterilis</div>
+            <div className="cap-exact__eyebrow" data-cap-reveal>07 / Anika Sterilis</div>
             <h2 data-cap-reveal>SCIENCE IS THE FOUNDATION.<br />TECHNOLOGY IS THE CAPABILITY.<br />AI IS A TOOL.<br /><span>THE PROBLEM IS THE PURPOSE.</span></h2>
             <div data-cap-reveal><p>We intend to keep building the technologies required to solve difficult problems — wherever they exist.</p><a href={pageUrl('/contact/')}>Start a conversation ↗</a></div>
           </div>
