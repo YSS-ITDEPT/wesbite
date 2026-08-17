@@ -8,6 +8,7 @@ import './CapabilityDetailPage.css'
 const BASE_URL = import.meta.env.BASE_URL
 const pageUrl = (path) => `${BASE_URL}${path.replace(/^\//, '')}`
 const assetUrl = (path) => pageUrl(`/${path}`)
+const BLACK_HOLE_VIDEO = 'https://ik.imagekit.io/f01kcbjdo/Create_black_hole_animation_4K_202608161806_gwr_video_mvp.mp4'
 
 const PROBLEM_AREAS = [
   [ShieldAlert, 'Security', 'Protect people from hazards they cannot see.', 'Chemical threats, explosives, narcotics and hazardous substances can be present before conventional awareness catches up.', 'Active chemical intelligence', 'deeptech-problem-security.png'],
@@ -131,9 +132,31 @@ const PAGES = {
   },
 }
 
-function CapabilityDetailPage() {
+function BlackHoleCapabilityInstrument({ video = false }) {
+  return (
+    <div className={`cap-gravity${video ? ' cap-gravity--video' : ''}`} data-cap-reveal>
+      <div className="cap-gravity__field">
+        {video
+          ? <video src={BLACK_HOLE_VIDEO} autoPlay loop muted playsInline preload="auto" aria-label="Animated luminous accretion disc surrounding a black event horizon" />
+          : <img src="https://ik.imagekit.io/f01kcbjdo/blackhole.png" alt="Anika technology capability connecting the physical environment to actionable information" />}
+      </div>
+      <div className="cap-gravity__head"><span>The problems Anika chooses</span><b>06 domains / 01 capability</b></div>
+      <div className="cap-gravity__inputs">
+        {OPENING_PROBLEMS.map(([Icon, name], index) => (
+          <article key={name} style={{ '--gravity-delay': `${index * 70}ms`, '--gravity-start': index / 6 }}>
+            <Icon aria-hidden="true" strokeWidth={1.35} />
+            <p><b>{name}</b><small>{String(index + 1).padStart(2, '0')}</small></p>
+          </article>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function CapabilityDetailPage({ testHero = false, testHeroVideo = false }) {
   const content = PAGES.deepTechnology
   const chainContent = PAGES.technologyChain
+  const openingFacts = testHero ? [...OPENING_FACTS, [ScanSearch, '25', 'Granted Global Patents']] : OPENING_FACTS
   const mainRef = useRef(null)
 
   useScrollReveal(mainRef, {
@@ -207,7 +230,7 @@ function CapabilityDetailPage() {
   return (
     <>
       <Header hideOverFooter />
-      <main className="cap-detail cap-exact" ref={mainRef}>
+      <main className={`cap-detail cap-exact${testHero ? ' cap-exact--gravity' : ''}`} ref={mainRef}>
         <section className="cap-detail__opening cap-exact__opening">
           <div className="cap-detail__opening-stage">
           <div className="cap-detail__opening-grid" aria-hidden="true" />
@@ -230,7 +253,7 @@ function CapabilityDetailPage() {
                 <div className="cap-detail__opening-principle cap-detail__opening-principle--system"><Crosshair aria-hidden="true" strokeWidth={1.25} /><p>Science · Engineering · Technology · Intelligence<small>Physical world · Real systems · Real decisions</small></p></div>
               </div>
             </div>
-            <div className="cap-detail__problem-engine" data-cap-reveal>
+            {testHero || testHeroVideo ? <BlackHoleCapabilityInstrument video={testHeroVideo} /> : <div className="cap-detail__problem-engine" data-cap-reveal>
               <div className="cap-detail__problem-engine-head"><span>THE PROBLEMS ANIKA CHOOSES</span><b>06 DOMAINS / 01 CAPABILITY</b></div>
               <div className="cap-detail__problem-inputs">
                 {OPENING_PROBLEMS.map(([Icon, name], index) => <article key={name}><Icon aria-hidden="true" strokeWidth={1.25} /><span>{name}</span><small>{String(index + 1).padStart(2, '0')}</small></article>)}
@@ -241,11 +264,11 @@ function CapabilityDetailPage() {
               <div className="cap-detail__answer-output" aria-label="Capability outcomes">
                 {OPENING_OUTCOMES.map(([Icon, name, copy], index) => <div key={name}><b>0{index + 1}</b><Icon aria-hidden="true" strokeWidth={1.25} /><p><span>{name}</span><small>{copy}</small></p></div>)}
               </div>
-            </div>
+            </div>}
           </div>
 
-          <div className="cap-detail__opening-facts" data-cap-reveal>
-            {OPENING_FACTS.map(([Icon, value, label]) => <article key={value}><i><Icon aria-hidden="true" strokeWidth={1.25} /></i><p><b>{value}</b><span>{label}</span></p></article>)}
+          <div className={`cap-detail__opening-facts${testHero ? ' is-visible' : ''}`} data-cap-reveal>
+            {openingFacts.map(([Icon, value, label]) => <article key={value}><i><Icon aria-hidden="true" strokeWidth={1.25} /></i><p><b>{value}</b><span>{label}</span></p></article>)}
           </div>
           <div className="cap-detail__opening-status" aria-hidden="true"><i /><span>Built to solve</span></div>
           </div>
@@ -254,7 +277,7 @@ function CapabilityDetailPage() {
 
         <section className="cap-exact__deep">
           <div className="cap-exact__wrap">
-            <div className="cap-exact__manifesto cap-exact__manifesto--image" data-cap-reveal>
+            <div className="cap-exact__manifesto cap-exact__manifesto--image">
               <figure data-cap-parallax><img src={assetUrl('deeptech-matter-v2.png')} alt="Physical matter being translated into a measurable scientific signal" /></figure>
               <div><span>ANIKA / PROBLEM-LED TECHNOLOGY</span><p>At Anika, <em>the problem determines the technology.</em><br />The technology does not determine the problem.</p></div>
             </div>

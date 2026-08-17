@@ -18,7 +18,7 @@ const HEADLINE_WORD_COUNT = HEADLINE_LINES.reduce(
 )
 
 const COPY_WORDS =
-  'Redefining security with Advanced Active Chemical Threat Scanning (AACTS®) systems, our patented technology provides unmatched accuracy and real-time threat detection. Committed to safeguarding lives and assets, we set new benchmarks for safety and security in critical environments.'.split(
+  'Redefining security with Advanced Active Chemical Threat Scanning (AACTS®) systems, our technology, protected by granted global patents, provides unmatched accuracy and real-time threat detection. Committed to safeguarding lives and assets, we set new benchmarks for safety and security in critical environments.'.split(
     ' ',
   )
 

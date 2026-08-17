@@ -12,7 +12,7 @@ const SECTIONS = [
   {
     heading: 'Copyright and Trademarks',
     body: [
-      'All content available on this website is owned or licensed by Anika Sterilis and is protected under applicable copyright laws. You may download, email, or print materials from this website solely for personal, non-commercial use. All copyright notices and proprietary information must remain intact in any distributed material.',
+      'All content available on this website is owned or licensed by Anika Sterilis and is protected under applicable copyright laws. You may download, email, or print materials from this website solely for personal, non-commercial use. All copyright notices and ownership information must remain intact in any distributed material.',
       'Anika Sterilis owns all trademarks associated with its products and services. You must not use any logos, marks, or branding found on this site without prior written consent from Anika Sterilis.',
       'Special terms may apply to the usage of certain content on specific sections of this website, which will be clearly stated.',
       'Unauthorized usage of website materials, trademarks, or content will result in the termination of your rights to access this website and may lead to legal action.',
@@ -34,7 +34,7 @@ const SECTIONS = [
   {
     heading: 'Submitted Feedback and Ideas',
     body: [
-      'While we welcome feedback and suggestions from our users, any information you share through this website will be considered non-confidential and non-proprietary unless otherwise specified. By submitting content, ideas, or suggestions to us, you grant Anika Sterilis a royalty-free, perpetual license to use, distribute, and modify the material as we see fit without obligation.',
+      'While we welcome feedback and suggestions from our users, any information you share through this website will be considered non-confidential unless otherwise specified. By submitting content, ideas, or suggestions to us, you grant Anika Sterilis a royalty-free, perpetual license to use, distribute, and modify the material as we see fit without obligation.',
     ],
   },
   {

@@ -209,7 +209,7 @@ const SPECS = [
 const SAMPLE_CARD_DETAILS = [
   {
     title: 'Material',
-    text: 'Fine wire mesh treated with patented SPME (Solid Phase Microextraction) for effective adsorption.',
+    text: 'Fine wire mesh treated with SPME (Solid Phase Microextraction) for effective adsorption.',
   },
   {
     title: 'Design',
