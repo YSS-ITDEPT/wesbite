@@ -138,7 +138,7 @@ function BlackHoleCapabilityInstrument({ video = false }) {
       <div className="cap-gravity__field">
         {video
           ? <video src={BLACK_HOLE_VIDEO} autoPlay loop muted playsInline preload="auto" aria-label="Animated luminous accretion disc surrounding a black event horizon" />
-          : <img src="https://ik.imagekit.io/f01kcbjdo/blackhole.png" alt="Anika technology capability connecting the physical environment to actionable information" />}
+          : <img src="https://ik.imagekit.io/jxuol7kjt/ChatGPT%20Image%20Aug%2017,%202026,%2001_11_33%20PM.png" alt="Anika technology capability connecting the physical environment to actionable information" />}
       </div>
       <div className="cap-gravity__head"><span>The problems Anika chooses</span><b>06 domains / 01 capability</b></div>
       <div className="cap-gravity__inputs">
@@ -149,6 +149,10 @@ function BlackHoleCapabilityInstrument({ video = false }) {
           </article>
         ))}
       </div>
+      <div className="cap-gravity__principle">
+        <Crosshair aria-hidden="true" strokeWidth={1.25} />
+        <p>Science / Engineering / Technology / Intelligence<small>Physical world / Real systems / Real decisions</small></p>
+      </div>
     </div>
   )
 }
@@ -156,7 +160,7 @@ function BlackHoleCapabilityInstrument({ video = false }) {
 function CapabilityDetailPage({ testHero = false, testHeroVideo = false }) {
   const content = PAGES.deepTechnology
   const chainContent = PAGES.technologyChain
-  const openingFacts = testHero ? [...OPENING_FACTS, [ScanSearch, '25', 'Granted Global Patents']] : OPENING_FACTS
+  const openingFacts = testHero ? [...OPENING_FACTS, [ScanSearch, '25+', 'Granted Global Patents']] : OPENING_FACTS
   const mainRef = useRef(null)
 
   useScrollReveal(mainRef, {
@@ -165,7 +169,6 @@ function CapabilityDetailPage({ testHero = false, testHeroVideo = false }) {
     headingScrub: 0.55,
     introHeadings: ['.cap-detail__hero h1'],
     headings: [
-      '.cap-detail__opening h1',
       '.cap-detail__statement h2',
       '.cap-detail__science-copy h2',
       '.cap-detail__acts h3',
@@ -241,13 +244,13 @@ function CapabilityDetailPage({ testHero = false, testHeroVideo = false }) {
           <div className="cap-detail__opening-layout">
             <div className="cap-detail__opening-copy">
               <div className="cap-detail__opening-message cap-detail__opening-message--primary">
-                <span>TRANSFORMATIONAL DEEP TECHNOLOGY</span>
+                <span>DEEP-TECH</span>
                 <h1>The world has<br /><strong>difficult problems.</strong><br /><em>We build the answers.</em></h1>
                 <p>Anika Sterilis is building transformational deep technology around problems that matter to human safety, health, security, industry and the environments on which society depends.</p>
               </div>
               <div className="cap-detail__opening-message cap-detail__opening-message--physical">
                 <span>01 / WHAT A REAL DEEP TECHNOLOGY COMPANY IS</span>
-                <h2>Deep technology<br />begins with the<br /><em>physical world.</em></h2>
+                <h2>Deep-Tech<br />begins with the<br /><em>physical world.</em></h2>
                 <p>It is not a software layer looking for an application. It begins with science, difficult engineering and a problem that cannot be solved adequately with what already exists.</p>
                 <p>The outcome is not a demo. It is a capability that can be engineered, manufactured, deployed, improved and applied to problems beyond the one that started it.</p>
                 <div className="cap-detail__opening-principle cap-detail__opening-principle--system"><Crosshair aria-hidden="true" strokeWidth={1.25} /><p>Science · Engineering · Technology · Intelligence<small>Physical world · Real systems · Real decisions</small></p></div>
@@ -278,7 +281,12 @@ function CapabilityDetailPage({ testHero = false, testHeroVideo = false }) {
         <section className="cap-exact__deep">
           <div className="cap-exact__wrap">
             <div className="cap-exact__manifesto cap-exact__manifesto--image">
-              <figure data-cap-parallax><img src={assetUrl('deeptech-matter-v2.png')} alt="Physical matter being translated into a measurable scientific signal" /></figure>
+              <figure data-cap-parallax>
+                <picture>
+                  <source media="(max-width: 700px)" srcSet="https://ik.imagekit.io/jxuol7kjt/deeptech-mobile.png" />
+                  <img src={assetUrl('deeptech-matter-v2.png')} alt="Physical matter being translated into a measurable scientific signal" />
+                </picture>
+              </figure>
               <div><span>ANIKA / PROBLEM-LED TECHNOLOGY</span><p>At Anika, <em>the problem determines the technology.</em><br />The technology does not determine the problem.</p></div>
             </div>
             <div className="cap-exact__discipline-board">
@@ -319,7 +327,7 @@ function CapabilityDetailPage({ testHero = false, testHeroVideo = false }) {
 
         <section className="cap-exact__domains">
           <div className="cap-exact__wrap">
-            <div className="cap-exact__eyebrow" data-cap-reveal>05 / The domains</div>
+            <div className="cap-exact__eyebrow" data-cap-reveal>04 / The domains</div>
             <h2 data-cap-reveal>The capability crosses<br />boundaries because problems do.</h2>
             <p className="cap-exact__lead" data-cap-reveal>The same underlying science can create different answers when the environment, sampling strategy and operational question change.</p>
             <div className="cap-exact__domain-grid">{CAPABILITY_DOMAINS.map(([domain, heading, copy], index) => <article data-cap-reveal key={domain}><b>{String(index + 1).padStart(2, '0')} / {domain}</b><h3>{heading}</h3><p>{copy}</p></article>)}</div>
@@ -328,7 +336,7 @@ function CapabilityDetailPage({ testHero = false, testHeroVideo = false }) {
 
         <section className="cap-exact__future">
           <div className="cap-exact__wrap">
-            <div className="cap-exact__eyebrow" data-cap-reveal>06 / What we intend to do</div>
+            <div className="cap-exact__eyebrow" data-cap-reveal>05 / What we intend to do</div>
             <h2 data-cap-reveal>Take the capability<br />further.</h2>
             <p className="cap-exact__lead" data-cap-reveal>No artificial timelines. No need to predict a particular future. The intent is to keep building the capabilities required by important problems.</p>
             <div className="cap-exact__future-grid">{FUTURE_CAPABILITIES.map(([heading, copy], index) => <article data-cap-reveal key={heading}><span>{String(index + 1).padStart(2, '0')}</span><h3>{heading}</h3><p>{copy}</p></article>)}</div>
@@ -338,14 +346,14 @@ function CapabilityDetailPage({ testHero = false, testHeroVideo = false }) {
 
         <section className="cap-exact__institutional">
           <div className="cap-exact__wrap cap-exact__institutional-grid">
-            <div><div className="cap-exact__eyebrow" data-cap-reveal>07 / Why this matters at institutional scale</div><h2 data-cap-reveal>Deep technology becomes <em>transformational</em> when one capability keeps opening <em>new problems.</em></h2><p data-cap-reveal>Anika's opportunity is not defined by one detector, one market or one application. It comes from the ability to combine science, engineering, manufacturing and intelligence around difficult physical-world problems.</p></div>
+            <div><div className="cap-exact__eyebrow" data-cap-reveal>06 / Why this matters at institutional scale</div><h2 data-cap-reveal>Deep technology becomes <em>transformational</em> when one capability keeps opening <em>new problems.</em></h2><p data-cap-reveal>Anika's opportunity is not defined by one detector, one market or one application. It comes from the ability to combine science, engineering, manufacturing and intelligence around difficult physical-world problems.</p></div>
             <div>{INSTITUTIONAL_POINTS.map(([heading, copy], index) => { const Icon = INSTITUTIONAL_ICONS[index]; return <article data-cap-reveal key={heading}><span>{String(index + 1).padStart(2, '0')}</span><i><Icon aria-hidden="true" strokeWidth={1.35} /></i><div><b>{heading}</b><small>{copy}</small></div><strong aria-hidden="true">›</strong></article> })}</div>
           </div>
         </section>
 
         <section className="cap-exact__final">
           <div className="cap-exact__wrap">
-            <div className="cap-exact__eyebrow" data-cap-reveal>08 / Anika Sterilis</div>
+            <div className="cap-exact__eyebrow" data-cap-reveal>07 / Anika Sterilis</div>
             <h2 data-cap-reveal>SCIENCE IS THE FOUNDATION.<br />TECHNOLOGY IS THE CAPABILITY.<br />AI IS A TOOL.<br /><span>THE PROBLEM IS THE PURPOSE.</span></h2>
             <div data-cap-reveal><p>We intend to keep building the technologies required to solve difficult problems — wherever they exist.</p><a href={pageUrl('/contact/')}>Start a conversation ↗</a></div>
           </div>

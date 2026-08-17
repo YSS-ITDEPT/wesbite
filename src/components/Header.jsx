@@ -119,7 +119,7 @@ function Header({ compact = false, hideOverFooter = false }) {
   if (compact && isCollapsed && !isMobile) {
     return (
       <header className={`index-header index-header--compact ${menuOpen ? 'has-open-menu' : ''} ${isOverFooter ? 'is-over-footer' : ''}`}>
-        <a className="brand compact-brand" href={pageUrl('/index.html')}>
+        <a className="brand compact-brand" href={pageUrl('/home/')}>
           <img src={LOGO_URL} alt="Anika Sterilis corporate logo" />
           <span><b>ANIKA STERILIS</b><small>PRIVATE LIMITED</small></span>
         </a>
@@ -154,7 +154,7 @@ function Header({ compact = false, hideOverFooter = false }) {
 
   return (
     <header className={`index-header ${compact ? 'index-header--solutions-full' : ''} ${isOverFooter ? 'is-over-footer' : ''}`}>
-      <a className="brand" href={pageUrl('/index.html')}>
+      <a className="brand" href={pageUrl('/home/')}>
         <img src={LOGO_URL} alt="Anika Sterilis corporate logo" />
         <span>
           <b>ANIKA STERILIS</b>
