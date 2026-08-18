@@ -8,11 +8,11 @@ import './CapabilityDetailPage.css'
 const BASE_URL = import.meta.env.BASE_URL
 const pageUrl = (path) => `${BASE_URL}${path.replace(/^\//, '')}`
 const assetUrl = (path) => pageUrl(`/${path}`)
-const BLACK_HOLE_VIDEO = 'https://ik.imagekit.io/y0yf2c1cwp/watermark-removed-Black_hole_art_direction_guidelines_202608171802.mp4?updatedAt=1787038813535'
-const BLACK_HOLE_MOBILE_VIDEO = 'https://ik.imagekit.io/y0yf2c1cwp/watermark-removed-Black_hole_art_direction_guidelines_202608171802.mp4?updatedAt=1787038813535'
-const MATTER_PARTICLES_VIDEO = 'https://ik.imagekit.io/y0yf2c1cwp/watermark-removed-golden_particles_faster.mp4'
+const BLACK_HOLE_VIDEO = 'https://ik.imagekit.io/7oaqyvwnm/black-hole_apo8_prob4.mp4'
+const BLACK_HOLE_MOBILE_VIDEO = BLACK_HOLE_VIDEO
+const MATTER_PARTICLES_VIDEO = 'https://ik.imagekit.io/7oaqyvwnm/golden_particles.mp4'
 const MATTER_PARTICLES_MOBILE_VIDEO = 'https://ik.imagekit.io/y0yf2c1cwp/golden_particles_mobile_9x16.mp4'
-const ACCRETION_PLASMA_VIDEO = 'https://ik.imagekit.io/y0yf2c1cwp/watermark-removed-Black_hole_art_direction_guidelines_202608171802.mp4?updatedAt=1787038813535'
+const ACCRETION_PLASMA_VIDEO = BLACK_HOLE_VIDEO
 
 const PROBLEM_AREAS = [
   [ShieldAlert, 'Security', 'Protect people from hazards they cannot see.', 'Chemical threats, explosives, narcotics and hazardous substances can be present before conventional awareness catches up.', 'Active chemical intelligence', 'deeptech-problem-security.png'],
@@ -149,26 +149,67 @@ const keepInlineVideoPlaying = (element) => {
   element.play?.().catch(() => {})
 }
 
-function BlackHoleCapabilityInstrument({ video = false }) {
+function BlackHoleCapabilityInstrument({ video = false, facts = OPENING_FACTS }) {
+  const mobileVideoRef = useRef(null)
+
+  useEffect(() => {
+    const mobileVideo = mobileVideoRef.current
+    if (!mobileVideo) return undefined
+
+    mobileVideo.muted = true
+    mobileVideo.defaultMuted = true
+    mobileVideo.playsInline = true
+    mobileVideo.setAttribute('muted', '')
+    mobileVideo.setAttribute('playsinline', '')
+    mobileVideo.setAttribute('webkit-playsinline', '')
+
+    const attemptPlayback = () => {
+      if (document.visibilityState === 'hidden') return
+      mobileVideo.play().catch(() => {
+        // Safari may legitimately block autoplay; the poster remains visible.
+      })
+    }
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') attemptPlayback()
+    }
+
+    mobileVideo.addEventListener('canplay', attemptPlayback)
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+    attemptPlayback()
+
+    return () => {
+      mobileVideo.removeEventListener('canplay', attemptPlayback)
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
+    }
+  }, [])
+
   return (
     <div className="cap-gravity cap-gravity--video" data-cap-reveal>
       <div className="cap-gravity__field">
         {video
           ? <>
               <video ref={keepInlineVideoPlaying} onLoadedData={(event) => keepInlineVideoPlaying(event.currentTarget)} onCanPlay={(event) => keepInlineVideoPlaying(event.currentTarget)} className="cap-gravity__video cap-gravity__video--desktop" src={BLACK_HOLE_VIDEO} poster={assetUrl('deeptech-black-hole-gargantua.png')} autoPlay loop muted playsInline preload="auto" controls={false} disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" aria-label="Animated luminous accretion disc surrounding a black event horizon" />
-              <video ref={keepInlineVideoPlaying} onLoadedData={(event) => keepInlineVideoPlaying(event.currentTarget)} onCanPlay={(event) => keepInlineVideoPlaying(event.currentTarget)} className="cap-gravity__video cap-gravity__video--mobile" src={BLACK_HOLE_MOBILE_VIDEO} poster={assetUrl('deeptech-black-hole-gargantua.png')} autoPlay loop muted playsInline preload="auto" controls={false} disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" aria-label="Animated luminous accretion disc surrounding a black event horizon" />
+              <video ref={mobileVideoRef} className="cap-gravity__video cap-gravity__video--mobile" src={BLACK_HOLE_MOBILE_VIDEO} poster={assetUrl('deeptech-black-hole-gargantua.png')} autoPlay loop muted playsInline preload="auto" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" aria-hidden="true" />
             </>
           : <>
               <video ref={keepInlineVideoPlaying} onLoadedData={(event) => keepInlineVideoPlaying(event.currentTarget)} onCanPlay={(event) => keepInlineVideoPlaying(event.currentTarget)} className="cap-gravity__video cap-gravity__video--desktop" src={ACCRETION_PLASMA_VIDEO} poster={assetUrl('deeptech-black-hole-gargantua.png')} autoPlay loop muted playsInline preload="auto" controls={false} disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" aria-label="Anika technology capability connecting the physical environment to actionable information" />
-              <video ref={keepInlineVideoPlaying} onLoadedData={(event) => keepInlineVideoPlaying(event.currentTarget)} onCanPlay={(event) => keepInlineVideoPlaying(event.currentTarget)} className="cap-gravity__video cap-gravity__video--mobile" src={BLACK_HOLE_MOBILE_VIDEO} poster={assetUrl('deeptech-black-hole-gargantua.png')} autoPlay loop muted playsInline preload="auto" controls={false} disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" aria-label="Anika technology capability connecting the physical environment to actionable information" />
+              <video ref={mobileVideoRef} className="cap-gravity__video cap-gravity__video--mobile" src={BLACK_HOLE_MOBILE_VIDEO} poster={assetUrl('deeptech-black-hole-gargantua.png')} autoPlay loop muted playsInline preload="auto" disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" aria-hidden="true" />
             </>}
       </div>
-      <div className="cap-gravity__head"><span>The problems Anika chooses</span><b>06 domains / 01 capability</b></div>
-      <div className="cap-gravity__inputs">
+      <div className="cap-gravity__head cap-mobile-problem-data__head cap-mobile-problem-data__head--inline"><span>The problems Anika chooses</span><b>06 domains / 01 capability</b></div>
+      <div className="cap-gravity__inputs cap-mobile-problem-data__domains cap-mobile-problem-data__domains--inline">
         {OPENING_PROBLEMS.map(([Icon, name], index) => (
           <article key={name} style={{ '--gravity-delay': `${index * 70}ms`, '--gravity-start': index / 6 }}>
             <Icon aria-hidden="true" strokeWidth={1.35} />
             <p><b>{name}</b><small>{String(index + 1).padStart(2, '0')}</small></p>
+          </article>
+        ))}
+      </div>
+      <div className="cap-mobile-problem-data__facts cap-mobile-problem-data__facts--inline">
+        {facts.map(([Icon, value, label]) => (
+          <article key={value}>
+            <i><Icon aria-hidden="true" strokeWidth={1.25} /></i>
+            <p><b>{value}</b><span>{label}</span></p>
           </article>
         ))}
       </div>
@@ -300,7 +341,7 @@ function CapabilityDetailPage({ testHero = false, testHeroVideo = false }) {
                 <div className="cap-detail__opening-principle cap-detail__opening-principle--system"><Crosshair aria-hidden="true" strokeWidth={1.25} /><p>Science · Engineering · Technology · Intelligence<small>Physical world · Real systems · Real decisions</small></p></div>
               </div>
             </div>
-            {testHero || testHeroVideo ? <BlackHoleCapabilityInstrument video={testHeroVideo} /> : <div className="cap-detail__problem-engine" data-cap-reveal>
+            {testHero || testHeroVideo ? <BlackHoleCapabilityInstrument video={testHeroVideo} facts={openingFacts} /> : <div className="cap-detail__problem-engine" data-cap-reveal>
               <div className="cap-detail__problem-engine-head"><span>THE PROBLEMS ANIKA CHOOSES</span><b>06 DOMAINS / 01 CAPABILITY</b></div>
               <div className="cap-detail__problem-inputs">
                 {OPENING_PROBLEMS.map(([Icon, name], index) => <article key={name}><Icon aria-hidden="true" strokeWidth={1.25} /><span>{name}</span><small>{String(index + 1).padStart(2, '0')}</small></article>)}
@@ -348,7 +389,7 @@ function CapabilityDetailPage({ testHero = false, testHeroVideo = false }) {
           <div className="cap-exact__wrap">
             <div className="cap-exact__manifesto cap-exact__manifesto--image">
               <figure data-cap-parallax>
-                <video className="cap-exact__manifesto-video" src={MATTER_PARTICLES_VIDEO} autoPlay loop muted playsInline preload="auto" aria-label="Golden particles moving through a dark analytical field" />
+                <video ref={keepInlineVideoPlaying} onLoadedData={(event) => keepInlineVideoPlaying(event.currentTarget)} onCanPlay={(event) => keepInlineVideoPlaying(event.currentTarget)} className="cap-exact__manifesto-video" src={MATTER_PARTICLES_VIDEO} autoPlay loop muted playsInline preload="auto" controls={false} disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" aria-label="Golden particles moving through a dark analytical field" />
                 <video className="cap-exact__manifesto-video-mobile" src={MATTER_PARTICLES_MOBILE_VIDEO} autoPlay loop muted playsInline preload="auto" aria-label="Golden particles moving through a vertical analytical field" />
               </figure>
               <div><span>ANIKA / PROBLEM-LED TECHNOLOGY</span><p>At Anika, <br></br><em>the problem <br /> determines the <br/>technology.</em><p className="cap_p">The technology does not determine the problem.</p></p></div>

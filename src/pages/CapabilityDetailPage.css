@@ -1948,6 +1948,10 @@
   display:none;
 }
 
+.cap-mobile-problem-data__facts--inline {
+  display:none;
+}
+
 @media (max-width:700px) {
   .cap-detail.cap-exact.cap-exact--gravity {
     overflow:visible;
@@ -2875,6 +2879,9 @@
 /* Mobile black-hole video: use the dedicated vertical asset and remove dead spacing */
 .cap-gravity__video--mobile {
   display:none !important;
+  pointer-events:none;
+  user-select:none;
+  -webkit-user-select:none;
 }
 
 @media (max-width:700px) {
@@ -4192,7 +4199,7 @@
     flex:0 0 auto !important;
     width:100vw !important;
     height:auto !important;
-    grid-template-rows:auto auto auto !important;
+    grid-template-rows:auto auto auto auto !important;
     margin-inline:calc(50% - 50vw) !important;
     overflow:visible !important;
   }
@@ -4367,17 +4374,32 @@
   }
 }
 
-/* Mobile: use the single, freely scrolling domain/data section after the hero. */
+/* Mobile: place the domain grid directly after the film; keep only facts below the hero. */
 @media (max-width:700px) {
-  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__head,
-  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__inputs {
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__head.cap-mobile-problem-data__head--inline {
+    display:flex !important;
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__inputs.cap-mobile-problem-data__domains--inline {
+    display:grid !important;
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    grid-template-rows:repeat(2,auto) !important;
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-mobile-problem-data__facts--inline {
+    display:grid !important;
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+    gap:1px !important;
+    margin:0 !important;
+    padding:0 !important;
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-mobile-problem-data > .cap-mobile-problem-data__head,
+  .cap-detail.cap-exact.cap-exact--gravity .cap-mobile-problem-data > .cap-mobile-problem-data__domains {
     display:none !important;
   }
 
-  .cap-detail.cap-exact.cap-exact--gravity .cap-mobile-problem-data {
-    position:relative !important;
-    z-index:2 !important;
-    inset:auto !important;
-    transform:none !important;
+  .cap-detail.cap-exact.cap-exact--gravity > .cap-mobile-problem-data {
+    display:none !important;
   }
 }
