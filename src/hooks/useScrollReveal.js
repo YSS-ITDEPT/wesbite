@@ -98,7 +98,7 @@ export function useScrollReveal(
       headings.forEach((selector) => {
         q(selector).forEach((heading) => {
           const split = new SplitText(heading, { type: 'lines,words' })
-          // Match index.html: words remain visible while rising and resolving
+          // Match platform.html: words remain visible while rising and resolving
           // from brand orange to their authored final colour.
           gsap.set(split.lines, {
             overflow: 'visible',

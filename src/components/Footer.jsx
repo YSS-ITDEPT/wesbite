@@ -127,7 +127,7 @@ function Footer() {
         </div>
 
         <div className="footer-seal" aria-label="Anika Sterilis identity">
-          <span>ANIKA STERILIS / PRIVATE LIMITED</span>
+          <span>ANIKA STERILIS  PRIVATE LIMITED</span>
           <div><i className="footer-seal__sweep" ref={sweepRef} /><img src={LOGO_URL} alt="Anika Sterilis" /></div>
           <small>PLATFORM PROTECTED BY GRANTED GLOBAL PATENTS / 3000</small>
         </div>
@@ -136,9 +136,9 @@ function Footer() {
           <div>
             <span>Platform</span>
             <a href={pageUrl('/solutions/')}>AACTS® 3000</a>
-            <a href={`${pageUrl('/index.html')}#products`}>Product platform</a>
+            <a href={`${pageUrl('/platform.html')}#products`}>Product platform</a>
             <a href={pageUrl('/capability.html')}>Capabilities</a>
-            <a href={`${pageUrl('/index.html')}#applications`}>Applications</a>
+            <a href={`${pageUrl('/platform.html')}#applications`}>Applications</a>
           </div>
           <div>
             <span>Company</span>

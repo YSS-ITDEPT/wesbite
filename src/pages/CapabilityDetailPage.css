@@ -830,6 +830,16 @@
 .cap-detail__problem-grid article { min-height:0;height:390px;aspect-ratio:auto; }
 .cap-detail__problem-grid article > figure { height:100%; }
 .cap-detail__problem-grid article > .cap-detail__problem-card-copy { min-height:0;height:100%;padding-top:45%; }
+.cap-exact .cap-detail__problem-grid article > .cap-detail__problem-card-copy {
+  display:grid;
+  grid-template-rows:auto minmax(56px,auto) minmax(48px,1fr) auto;
+  align-content:stretch;
+}
+.cap-exact .cap-detail__problem-card-copy footer { align-self:stretch;width:100%;margin-top:0; }
+.cap-exact .cap-detail__problem-card-copy h3 { max-width:100%; }
+.cap-exact .cap-detail__problem-grid article:nth-child(6) .cap-detail__problem-card-copy h3 { font-size:clamp(17px,1.18vw,21px);line-height:1.02; }
+.cap-exact .cap-detail__problem-card-copy p { font-size:clamp(10.5px,.78vw,12.5px);line-height:1.5; }
+.cap-exact .cap-detail__problem-grid article:nth-child(6) .cap-detail__problem-card-copy p { font-size:clamp(10px,.72vw,11.5px);line-height:1.42; }
 @media (max-width:850px) {
   .cap-detail__problem-grid article { min-height:0;height:405px;aspect-ratio:auto; }
   .cap-detail__problem-grid article > .cap-detail__problem-card-copy { min-height:0;padding-top:47%; }
@@ -843,7 +853,10 @@
 .cap-exact { color:#f2f0ea;background:#090b0c; }
 .cap-exact__wrap { width:min(1460px,calc(100% - 48px));margin-inline:auto; }
 .cap-exact__eyebrow { color:var(--cap-orange);font:600 9px "Roboto Mono",monospace;letter-spacing:.16em;text-transform:uppercase; }
-.cap-exact h2 { margin:24px 0;font:500 clamp(44px,5.2vw,82px)/.94 "Space Grotesk",sans-serif;letter-spacing:-.065em; }
+/* `overflow-wrap` here (not only in the large-screen tier) so a long single
+   word such as "transformational" can never spill out of a narrow heading
+   column at any viewport width. */
+.cap-exact h2 { margin:24px 0;font:500 clamp(44px,5.2vw,82px)/.94 "Space Grotesk",sans-serif;letter-spacing:-.065em;overflow-wrap:break-word; }
 .cap-exact h2 span,.cap-exact em { color:var(--cap-orange);font-style:normal; }
 .cap-exact__lead { max-width:900px;color:#9ba2a3;font-size:clamp(17px,1.45vw,22px);line-height:1.6; }
 .cap-exact__hero { position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;padding:140px 0 80px;background:radial-gradient(circle at 82% 50%,rgba(255,106,0,.14),transparent 28%),#07090a; }
@@ -861,7 +874,7 @@
 .cap-exact__facts span { margin-top:9px;color:#757d7f;font-size:10px;text-transform:uppercase;letter-spacing:.09em; }
 .cap-exact__deep,.cap-exact__problems,.cap-exact__capability,.cap-exact__achieved,.cap-exact__domains,.cap-exact__future,.cap-exact__institutional,.cap-exact__final { padding:130px 0; }
 .cap-exact__problems { padding-bottom:30px; }
-.cap-exact__capability { padding-top:55px; }
+.cap-exact__capability { padding-top:55px;padding-bottom:35px; }
 .cap-exact__split { display:grid;grid-template-columns:1.15fr .85fr;gap:8vw;margin-top:25px; }
 .cap-exact__split > div > p { color:#989fa0;font-size:clamp(17px,1.35vw,21px);line-height:1.65; }
 .cap-exact__split > div:last-child { align-self:end;padding-left:30px;border-left:1px solid var(--cap-orange); }
@@ -896,7 +909,7 @@
 .cap-exact__achieved-grid article { display:flex;min-height:440px;flex-direction:column;padding:30px;border:1px solid rgba(16,24,32,.16);background:#f8f8f4; }
 .cap-exact__achieved-grid h3 { margin:80px 0 20px;font-size:clamp(25px,2vw,34px);line-height:1.05; }
 .cap-exact__achieved-grid small { margin-top:auto;padding-top:20px;color:var(--cap-orange);border-top:1px solid rgba(255,106,0,.45);font:600 8px "Roboto Mono",monospace;letter-spacing:.11em;text-transform:uppercase; }
-.cap-exact__domain-grid { display:grid;grid-template-columns:repeat(3,1fr);margin-top:70px;border-top:1px solid rgba(16,24,32,.17);border-left:1px solid rgba(16,24,32,.17); }
+.cap-exact__domain-grid { display:grid;grid-template-columns:repeat(3,1fr);margin-top:70px;border:1px solid rgba(16,24,32,.17); }
 .cap-exact__domain-grid article { min-height:260px;padding:28px;border-right:1px solid rgba(16,24,32,.17);border-bottom:1px solid rgba(16,24,32,.17); }
 .cap-exact__domain-grid h3 { margin:65px 0 16px;font-size:26px; }
 .cap-exact__future-grid { margin-top:65px;border-top:1px solid rgba(255,255,255,.13); }
@@ -1023,9 +1036,9 @@
 }
 
 /* Full-width AI position statement */
-.cap-exact__architecture > .cap-exact__ai { position:relative;left:50%;display:grid;width:100vw;grid-template-columns:1fr 1fr;overflow:visible;margin-left:-50vw;border-top:1px solid rgba(255,255,255,.14); }
-.cap-exact__architecture > .cap-exact__ai::after { position:absolute;z-index:4;top:50%;left:50%;display:grid;width:128px;height:128px;place-items:center;content:"AI";color:#0b0d0e;border:1px solid rgba(255,255,255,.8);border-radius:50%;background:var(--cap-orange);box-shadow:0 0 0 18px rgba(255,106,0,.1);transform:translate(-50%,-50%);font:600 21px "Roboto Mono",monospace;letter-spacing:.08em; }
-.cap-exact__architecture > .cap-exact__ai article { box-sizing:border-box;display:flex;min-height:650px;flex-direction:column;justify-content:center;padding:90px clamp(64px,5vw,105px);border:0; }
+.cap-exact__architecture > .cap-exact__ai { position:relative;left:50%;display:grid;width:100vw;grid-template-columns:1fr 1fr;overflow:visible;margin-left:-50vw;border-top:1px solid rgba(255,255,255,.14);border-bottom:1px solid rgba(255,255,255,.14); }
+.cap-exact__architecture > .cap-exact__ai::after { position:absolute;z-index:4;top:56%;left:50%;display:grid;width:128px;height:128px;place-items:center;content:"AI";color:#0b0d0e;border:1px solid rgba(255,255,255,.8);border-radius:50%;background:var(--cap-orange);box-shadow:0 0 0 18px rgba(255,106,0,.1);transform:translate(-50%,-50%);font:600 21px "Roboto Mono",monospace;letter-spacing:.08em; }
+.cap-exact__architecture > .cap-exact__ai article { box-sizing:border-box;display:flex;min-height:590px;flex-direction:column;justify-content:center;padding:88px clamp(64px,5vw,105px) 108px;border:0; }
 .cap-exact__architecture > .cap-exact__ai article:first-child { color:#f1f2ee;background:#101415; }
 .cap-exact__architecture > .cap-exact__ai article:last-child { color:#151817;background:#efeee9; }
 .cap-exact__architecture > .cap-exact__ai h3 { max-width:680px;margin:0 0 34px;font:500 clamp(44px,4vw,70px)/.98 "Space Grotesk",sans-serif;letter-spacing:-.055em; }
@@ -1046,6 +1059,28 @@
   .cap-exact__architecture > .cap-exact__ai h3 { font-size:38px; }
   .cap-exact__architecture > .cap-exact__ai article:first-child { padding-bottom:105px; }
   .cap-exact__architecture > .cap-exact__ai article:last-child { padding-top:105px; }
+}
+
+/* Keep the AI position statement inside the Anika technology chain box. */
+.cap-exact__architecture > .cap-exact__ai { left:auto;width:auto;margin-left:0;overflow:hidden;border-top:1px solid rgba(255,255,255,.13);border-bottom:0; }
+.cap-exact__architecture > .cap-exact__ai::after { top:50%;width:76px;height:76px;box-shadow:0 0 0 12px rgba(255,106,0,.08);font-size:15px; }
+.cap-exact__architecture > .cap-exact__ai article { min-height:330px;padding:52px clamp(34px,3.5vw,66px); }
+.cap-exact__architecture > .cap-exact__ai article:first-child { background:#101415; }
+.cap-exact__architecture > .cap-exact__ai article:last-child { background:#efeee9; }
+.cap-exact__architecture > .cap-exact__ai h3 { max-width:520px;margin:0 0 20px;font-size:clamp(28px,2.35vw,42px);line-height:1; }
+.cap-exact__architecture > .cap-exact__ai p { max-width:560px;font-size:clamp(14px,1.05vw,17px);line-height:1.62; }
+
+@media (max-width:900px) {
+  .cap-exact__architecture > .cap-exact__ai { grid-template-columns:1fr; }
+  .cap-exact__architecture > .cap-exact__ai::after { top:50%; }
+  .cap-exact__architecture > .cap-exact__ai article { min-height:300px;padding:48px clamp(26px,6vw,52px); }
+}
+@media (max-width:700px) {
+  .cap-exact__architecture > .cap-exact__ai::after { width:58px;height:58px;font-size:12px; }
+  .cap-exact__architecture > .cap-exact__ai article { min-height:280px;padding:42px 22px; }
+  .cap-exact__architecture > .cap-exact__ai article:first-child { padding-bottom:72px; }
+  .cap-exact__architecture > .cap-exact__ai article:last-child { padding-top:72px; }
+  .cap-exact__architecture > .cap-exact__ai h3 { font-size:30px; }
 }
 
 /* Compact discipline cards and icon-led technology chain */
@@ -1128,9 +1163,17 @@
 .cap-exact__institutional { position:relative;overflow:hidden;color:#0b2343;background:linear-gradient(145deg,#fff 0%,#f8f9f8 55%,#f1f3f2 100%); }
 .cap-exact__institutional::after { position:absolute;right:48%;bottom:-95px;left:-8%;height:260px;content:"";pointer-events:none;opacity:.42;background:radial-gradient(ellipse at 50% 100%,transparent 0 46%,rgba(255,106,0,.22) 46.4% 46.8%,transparent 47.2%),repeating-linear-gradient(8deg,transparent 0 15px,rgba(25,63,93,.08) 16px,transparent 17px);mask-image:linear-gradient(0deg,#000,transparent 88%); }
 .cap-exact__institutional-grid { position:relative;z-index:2;grid-template-columns:minmax(0,.82fr) minmax(560px,1.18fr);gap:clamp(50px,7vw,120px);align-items:center; }
+/* Grid items default to min-width:auto, so an unbreakable long word
+   ("transformational") sets the track's min-content floor and widens the
+   column past its 1.1fr share — the section's overflow:hidden then clips
+   the word. min-width:0 lets the track keep its intended share, and
+   `anywhere` (unlike `break-word`) also lowers the intrinsic min-content
+   contribution so the word wraps instead of forcing the overflow. */
+.cap-exact__institutional-grid > div { min-width:0; }
+.cap-exact__institutional-grid h2 { overflow-wrap:anywhere; }
 .cap-exact__institutional-grid > div:first-child { padding-right:10px; }
 .cap-exact__institutional .cap-exact__eyebrow { color:var(--cap-orange); }
-.cap-exact__institutional-grid h2 { margin:38px 0 42px;color:#0b2343;font-size:clamp(48px,4.6vw,76px);line-height:.95;letter-spacing:-.06em; }
+.cap-exact__institutional-grid h2 { box-sizing:border-box;max-width:min(100%,760px);margin:34px 0 38px;overflow:visible;color:#0b2343;font-size:clamp(42px,3.9vw,64px);line-height:1.02;letter-spacing:-.035em; }
 .cap-exact__institutional-grid h2 em { color:var(--cap-orange);font-style:normal; }
 .cap-exact__institutional-grid > div:first-child > p { max-width:620px;color:#45556a;font-size:clamp(16px,1.25vw,20px);line-height:1.62; }
 .cap-exact__institutional-grid > div:last-child { display:grid;gap:8px; }
@@ -1150,7 +1193,7 @@
   .cap-exact__institutional::after { right:0; }
 }
 @media (max-width:700px) {
-  .cap-exact__institutional-grid h2 { font-size:43px; }
+  .cap-exact__institutional-grid h2 { max-width:100%;font-size:clamp(34px,9.2vw,43px);line-height:1.04;letter-spacing:-.025em; }
   .cap-exact__institutional-grid article { grid-template-columns:46px 45px 1fr 12px;gap:12px;padding:14px; }
   .cap-exact__institutional-grid article > span { width:42px;height:42px;font-size:13px; }
   .cap-exact__institutional-grid article > i { width:42px;height:42px;border:0; }
@@ -1190,9 +1233,9 @@
 
 /* Pinned two-step hero: first scroll changes copy, next scroll releases the page. */
 .cap-detail.cap-exact { overflow:visible; }
-.cap-detail__opening { --opening-progress:0;display:block;height:200svh;min-height:0;padding:0;overflow:visible; }
-.cap-detail__opening-stage { position:sticky;top:0;display:grid;box-sizing:border-box;height:100svh;grid-template-rows:auto minmax(0,1fr) auto;overflow:hidden;padding:112px clamp(24px,5vw,86px) 24px;color:#f4f1eb;background:#07090a; }
-.cap-detail__opening-stage::before { position:absolute;z-index:0;right:-8vw;bottom:-18vw;width:48vw;aspect-ratio:1;content:"";opacity:.55;background:radial-gradient(circle,rgba(255,106,0,.2) 0 1px,transparent 2px),radial-gradient(circle,rgba(255,106,0,.09),transparent 64%);background-size:22px 22px,auto;mask-image:linear-gradient(135deg,transparent 10%,#000 62%); }
+.cap-detail__opening { --opening-progress:0;display:block;height:200vh;height:200svh;min-height:0;padding:0;overflow:visible; }
+.cap-detail__opening-stage { position:sticky;top:0;display:grid;box-sizing:border-box;height:100vh;height:100svh;grid-template-rows:auto minmax(0,1fr) auto;overflow:hidden;padding:112px clamp(24px,5vw,86px) 24px;color:#f4f1eb;background:#030303; }
+.cap-detail__opening-stage::before { position:absolute;z-index:0;right:-8vw;bottom:-18vw;width:48vw;aspect-ratio:1;content:"";opacity:.55;background:radial-gradient(circle,rgba(255,106,0,.2) 0 1px,transparent 2px),radial-gradient(circle,rgba(255,106,0,.09),transparent 64%);background-size:22px 22px,auto;-webkit-mask-image:linear-gradient(135deg,transparent 10%,#000 62%);mask-image:linear-gradient(135deg,transparent 10%,#000 62%); }
 .cap-detail__opening-stage > header { position:relative;z-index:5;display:flex;justify-content:space-between;gap:30px;color:var(--cap-orange);font:600 8px "Roboto Mono",monospace;letter-spacing:.18em;text-transform:uppercase; }
 .cap-detail__opening-stage > header b { color:#697174;font-weight:500; }
 .cap-detail__opening-stage .cap-detail__opening-grid { position:absolute; }
@@ -1201,11 +1244,11 @@
 .cap-detail__opening-message { position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;pointer-events:none;will-change:opacity,transform; }
 .cap-detail__opening-message > span { display:block;margin-bottom:20px;color:#757d7f;font:600 8px "Roboto Mono",monospace;letter-spacing:.16em;text-transform:uppercase; }
 .cap-detail__opening-message > p { max-width:570px;margin:28px 0 0;padding-left:22px;color:#9da4a5;border-left:1px solid var(--cap-orange);font-size:clamp(14px,1.02vw,17px);line-height:1.58; }
-.cap-detail__opening-message--primary { opacity:clamp(0,calc(1 - var(--opening-progress) * 2.9),1);transform:translateY(calc(var(--opening-progress) * -35px)); }
+.cap-detail__opening-message--primary { opacity:clamp(0,calc(1 - var(--opening-progress) * 2.05),1);transform:translateY(calc(var(--opening-progress) * -24px)); }
 .cap-detail__opening-message--primary h1 { max-width:720px;margin:0;font:500 clamp(48px,5.4vw,92px)/.9 "Space Grotesk",sans-serif;letter-spacing:-.065em;text-transform:none; }
 .cap-detail__opening-message--primary h1 strong { display:inline;color:#f4f1eb;font-weight:500; }
 .cap-detail__opening-message--primary h1 em { display:inline;color:var(--cap-orange);font-style:normal; }
-.cap-detail__opening-message--physical { opacity:clamp(0,calc((var(--opening-progress) - .28) * 3.6),1);transform:translateY(calc((1 - var(--opening-progress)) * 40px)); }
+.cap-detail__opening-message--physical { opacity:clamp(0,calc((var(--opening-progress) - .36) * 3.4),1);transform:translateY(calc((1 - var(--opening-progress)) * 32px)); }
 .cap-detail__opening-message--physical h2 { max-width:700px;margin:0;color:#f3f2ec;font:500 clamp(46px,4.7vw,78px)/.89 "Space Grotesk",sans-serif;letter-spacing:-.065em; }
 .cap-detail__opening-message--physical h2 em { color:var(--cap-orange);font-style:normal; }
 .cap-detail__opening-message--physical > p { margin-top:18px;font-size:clamp(13px,.92vw,16px); }
@@ -1222,6 +1265,7 @@
 .cap-exact__manifesto--image { position:relative;width:100%;min-height:720px;margin:0;overflow:hidden;padding:0;border:0;isolation:isolate; }
 .cap-exact__manifesto--image figure { position:absolute;z-index:0;inset:0;margin:0; }
 .cap-exact__manifesto--image figure::after { position:absolute;inset:0;content:"";background:linear-gradient(90deg,rgba(5,7,8,.97),rgba(5,7,8,.57) 54%,rgba(5,7,8,.14)),linear-gradient(0deg,rgba(5,7,8,.72),transparent 48%); }
+.cap-exact__manifesto--image picture { display:block;width:100%;height:100%; }
 .cap-exact__manifesto--image img { width:100%;height:100%;object-fit:cover;object-position:center right;transform:scale(1.035) translate3d(0,calc((var(--parallax,.5) - .5) * 32px),0);filter:saturate(.82) contrast(1.14) brightness(.82); }
 .cap-exact__manifesto--image > div { position:relative;z-index:2;display:flex;box-sizing:border-box;width:100%;min-height:720px;flex-direction:column;justify-content:center;padding:90px clamp(45px,6vw,115px); }
 .cap-exact__manifesto--image span { margin-bottom:35px;color:var(--cap-orange);font:600 8px "Roboto Mono",monospace;letter-spacing:.16em; }
@@ -1254,7 +1298,7 @@
 }
 @media (max-width:1100px) {
   .cap-detail__opening { height:auto; }
-  .cap-detail__opening-stage { position:relative;height:auto;min-height:100svh;grid-template-rows:auto auto auto;overflow:hidden; }
+  .cap-detail__opening-stage { position:relative;height:auto;min-height:100vh;min-height:100svh;grid-template-rows:auto auto auto;overflow:hidden; }
   .cap-detail__opening-stage .cap-detail__opening-layout { grid-template-columns:1fr;padding-top:65px; }
   .cap-detail__opening-stage .cap-detail__opening-copy { min-height:auto; }
   .cap-detail__opening-message { position:relative;inset:auto;opacity:1;transform:none; }
@@ -1270,7 +1314,9 @@
   .cap-detail__opening-message--primary h1,.cap-detail__opening-message--physical h2 { font-size:clamp(42px,12vw,60px); }
   .cap-detail__opening-stage .cap-detail__problem-engine { min-height:auto; }
   .cap-exact__manifesto--image,.cap-exact__manifesto--image > div { min-height:650px; }
-  .cap-exact__manifesto--image > div { justify-content:flex-end;padding:70px 20px; }
+  .cap-exact__manifesto--image figure::after { background:linear-gradient(0deg,rgba(5,7,8,.78),rgba(5,7,8,.18) 44%,rgba(5,7,8,.5)); }
+  .cap-exact__manifesto--image img { object-position:center top;transform:scale(1.12) translate3d(0,-8%,0); }
+  .cap-exact__manifesto--image > div { justify-content:center;padding:54px 20px 62px; }
   .cap-exact__manifesto--image p { font-size:43px; }
 }
 
@@ -1287,7 +1333,7 @@
   box-shadow:0 28px 80px rgba(0,0,0,.42),inset 0 1px rgba(255,255,255,.035);
   isolation:isolate;
 }
-.cap-gravity:not(.cap-gravity--video) { overflow:hidden;border:0;background:#07090a;box-shadow:none; }
+.cap-gravity:not(.cap-gravity--video) { overflow:hidden;border:0;background:#030303;box-shadow:none; }
 .cap-gravity:not(.cap-gravity--video)::before { display:none; }
 /* The outer stage grid gives its middle row (this two-column layout) a
    minmax(0,1fr) track, so it always eats every leftover pixel of the
@@ -1311,9 +1357,9 @@
    display scaling, or an unmaximized window on any OS) was landing on the
    wrong side of a max-height:900px/650px cliff and reading as too small
    even though there was plenty of horizontal room to use. */
-.cap-exact--gravity .cap-detail__opening-message--primary h1 { font-size:clamp(34px,2.5vw + 3.8vh,76px); }
+.cap-exact--gravity .cap-detail__opening-message--primary h1 { font-size:clamp(34px,2.5vw + 3.8vh,68px); }
 .cap-exact--gravity .cap-detail__opening-message--primary > p { font-size:clamp(12px,.5vw + .95vh,16px); }
-.cap-exact--gravity .cap-detail__opening-message--physical h2 { font-size:clamp(32px,2.1vw + 3.2vh,66px); }
+.cap-exact--gravity .cap-detail__opening-message--physical h2 { font-size:clamp(32px,2.1vw + 3.2vh,58px); }
 .cap-exact--gravity .cap-detail__opening-message--physical > p { font-size:clamp(12px,.5vw + .95vh,16px); }
 .cap-exact--gravity .cap-gravity { z-index:4;width:100%;filter:drop-shadow(0 34px 55px rgba(0,0,0,.42)); }
 .cap-exact--gravity .cap-gravity__endpoint { gap:8px;max-width:210px;text-shadow:0 2px 12px #000,0 0 18px #000; }
@@ -1321,25 +1367,36 @@
 .cap-exact--gravity .cap-gravity__endpoint span { color:#eeece6;font-size:12px;line-height:1.35; }
 .cap-exact--gravity .cap-gravity__endpoint--environment { left:20px; }
 .cap-exact--gravity .cap-gravity__endpoint--decision { right:20px; }
-.cap-gravity:not(.cap-gravity--video) .cap-gravity__field { width:100%;min-height:0;aspect-ratio:3/2;margin:0;overflow:hidden;border:0;background:transparent; }
+.cap-gravity:not(.cap-gravity--video) .cap-gravity__field { width:100%;min-height:0;aspect-ratio:3/2;margin:0;overflow:hidden;border:0;background:#030303; }
 .cap-gravity:not(.cap-gravity--video) .cap-gravity__field::before { display:none; }
 .cap-gravity:not(.cap-gravity--video) .cap-gravity__field img { inset:0;width:100%;height:100%;object-fit:contain;object-position:center;opacity:1;filter:none;transform:none;animation:none;-webkit-mask-image:none;mask-image:none; }
-.cap-exact--gravity .cap-gravity__head { position:relative;min-height:42px;padding:12px 2px 8px;border:0;background:#07090a; }
+.cap-exact--gravity .cap-gravity__head { position:relative;min-height:42px;padding:12px 2px 8px;border:0;background:#030303; }
 .cap-exact--gravity .cap-gravity__head::after { position:absolute;right:0;bottom:0;left:0;height:1px;content:"";background:linear-gradient(90deg,var(--gravity-orange),rgba(255,106,0,.18) 18%,rgba(255,255,255,.08) 62%,transparent); }
-.cap-exact--gravity .cap-gravity__inputs { position:relative;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));padding:18px 0 8px;border:0;background:#07090a; }
-.cap-exact--gravity .cap-gravity__inputs::before,.cap-exact--gravity .cap-gravity__inputs::after { position:absolute;top:42px;right:6%;left:6%;height:2px;content:"";transform-origin:left center; }
+.cap-exact--gravity .cap-gravity__inputs { --gravity-line-y:42px;--gravity-input-pad-top:18px;position:relative;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));padding:var(--gravity-input-pad-top) 0 8px;border:0;background:#030303; }
+.cap-exact--gravity .cap-gravity__inputs::before,.cap-exact--gravity .cap-gravity__inputs::after { position:absolute;z-index:0;top:var(--gravity-line-y);right:calc(100% / 12);left:calc(100% / 12);height:2px;content:"";transform-origin:left center; }
 .cap-exact--gravity .cap-gravity__inputs::before { background:rgba(255,255,255,.12); }
 .cap-exact--gravity .cap-gravity__inputs::after { background:linear-gradient(90deg,#ff6a00,#ff9147);box-shadow:0 0 10px rgba(255,106,0,.5),0 0 24px rgba(255,106,0,.2);transform:scaleX(var(--opening-progress)); }
-.cap-exact--gravity .cap-gravity__inputs article { position:relative;display:flex;min-height:98px;flex-direction:column;align-items:center;justify-content:flex-start;gap:10px;padding:0 6px;border:0;background:transparent;text-align:center; }
+.cap-exact--gravity .cap-gravity__inputs article { position:relative;z-index:1;display:flex;min-height:98px;flex-direction:column;align-items:center;justify-content:flex-start;gap:10px;padding:0 6px;border:0;background:transparent;text-align:center; }
 .cap-exact--gravity .cap-gravity.is-visible .cap-gravity__inputs article { --gravity-node:clamp(0,calc((var(--opening-progress) - var(--gravity-start)) * 18),1);opacity:1;transform:none;transition:none; }
-.cap-exact--gravity .cap-gravity__inputs article::after { position:absolute;top:22px;right:-3px;width:6px;height:6px;content:"";border-top:1px solid rgba(255,106,0,.5);border-right:1px solid rgba(255,106,0,.5);transform:rotate(45deg); }
+.cap-exact--gravity .cap-gravity__inputs article::after { position:absolute;top:calc(var(--gravity-line-y) - var(--gravity-input-pad-top));right:-3px;width:6px;height:6px;content:"";border-top:1px solid rgba(255,106,0,.5);border-right:1px solid rgba(255,106,0,.5);transform:translate(-50%,-50%) rotate(45deg);transform-origin:center; }
 .cap-exact--gravity .cap-gravity__inputs article:last-child::after { display:none; }
 .cap-exact--gravity .cap-gravity__inputs article:hover { background:transparent; }
-.cap-exact--gravity .cap-gravity__inputs svg { position:relative;z-index:2;box-sizing:border-box;width:48px;height:48px;padding:12px;border:1px solid rgba(255,106,0,.55);border-radius:50%;background:#07090a;box-shadow:0 0 0 calc(var(--gravity-node) * 7px) rgba(255,106,0,.07),0 0 calc(8px + var(--gravity-node) * 22px) rgba(255,106,0,.3);opacity:calc(.5 + var(--gravity-node) * .5);transition:none; }
+.cap-exact--gravity .cap-gravity__inputs article > svg::before { display:none; }
+.cap-exact--gravity .cap-gravity__inputs article::before { position:absolute;z-index:1;top:calc(var(--gravity-line-y) - var(--gravity-input-pad-top));left:50%;width:calc(var(--gravity-icon-size,48px) + 6px);height:calc(var(--gravity-icon-size,48px) + 6px);content:"";border-radius:50%;background:#07090a;transform:translate(-50%,-50%); }
+.cap-exact--gravity .cap-gravity__inputs svg { position:relative;z-index:2;box-sizing:border-box;width:var(--gravity-icon-size,48px);height:var(--gravity-icon-size,48px);padding:12px;border:1px solid rgba(255,106,0,.55);border-radius:50%;background:#07090a;box-shadow:inset 0 0 0 999px #07090a,0 0 0 calc(var(--gravity-node) * 7px) rgba(255,106,0,.07),0 0 calc(8px + var(--gravity-node) * 22px) rgba(255,106,0,.3);opacity:calc(.5 + var(--gravity-node) * .5);transition:none; }
 .cap-exact--gravity .cap-gravity__inputs article:hover svg { color:#ffd2b0;border-color:var(--gravity-orange);box-shadow:0 0 0 8px rgba(255,106,0,.05),0 0 28px rgba(255,106,0,.24);transform:translateY(-3px); }
 .cap-exact--gravity .cap-gravity__inputs p { align-items:center;color:#f0eee8;font-size:11px;line-height:1.2;opacity:calc(.46 + var(--gravity-node) * .54); }
 .cap-exact--gravity .cap-gravity__inputs small { order:-1;margin:0 0 2px;color:var(--gravity-orange);font-size:6px;letter-spacing:.17em; }
+.cap-exact--gravity .cap-gravity__principle { display:none; }
 @media (min-width:1101px) {
+  /* Let the instrument absorb the viewport's flexible height. Its domain
+     rail remains inside the stretched instrument, directly above the facts,
+     so spare space becomes useful visual canvas instead of a blank band. */
+  .cap-exact--gravity .cap-detail__opening-stage {
+    grid-template-rows:auto minmax(0,1fr) auto;
+    align-content:stretch;
+    padding-bottom:0;
+  }
   /* With the stage row now content-sized (see .cap-detail__opening-stage
      above), this row's height naturally follows its tallest column instead
      of an imposed 1fr. The image gets a real, viewport-clamped size instead
@@ -1348,13 +1405,281 @@
      source art. The text column then stretches to match that same
      content-driven row and top-anchors, so any leftover height below short
      copy stays small and proportional instead of ballooning with screen size. */
-  .cap-exact--gravity .cap-detail__opening-stage .cap-detail__opening-layout { align-items:stretch;overflow:visible; }
+  .cap-exact--gravity .cap-detail__opening-stage .cap-detail__opening-layout { height:100%;align-items:stretch;overflow:visible; }
   .cap-exact--gravity .cap-detail__opening-copy { min-height:0;height:100%;overflow:visible; }
   .cap-exact--gravity .cap-detail__opening-message--primary,
   .cap-exact--gravity .cap-detail__opening-message--physical { justify-content:flex-start;padding-top:clamp(18px,3vh,34px); }
-  .cap-exact--gravity .cap-gravity { display:grid;height:auto;min-height:0;align-self:start;grid-template-rows:clamp(285px,45vh,405px) auto auto; }
+  .cap-exact--gravity .cap-detail__opening-message--physical .cap-detail__opening-principle--system { display:none; }
+  .cap-exact--gravity .cap-gravity { display:grid;height:100%;min-height:0;align-self:stretch;grid-template-rows:minmax(235px,1fr) auto auto auto; }
+  .cap-exact--gravity .cap-detail__opening-facts { margin-top:0; }
   .cap-exact--gravity .cap-gravity:not(.cap-gravity--video) .cap-gravity__field { height:100%;min-height:0; }
   .cap-exact--gravity .cap-gravity__inputs article { min-height:82px; }
+  .cap-exact--gravity .cap-gravity__head { min-height:28px;padding:5px 2px 4px; }
+  .cap-exact--gravity .cap-gravity__inputs { --gravity-input-pad-top:5px;padding-top:var(--gravity-input-pad-top);padding-bottom:4px; }
+  .cap-exact--gravity .cap-gravity__inputs { --gravity-line-y:27px; }
+  .cap-exact--gravity .cap-gravity__principle { position:relative;display:flex;width:min(620px,100%);align-items:center;justify-content:center;gap:14px;min-height:54px;margin:0 auto;padding:9px 16px;border-top:1px solid rgba(255,255,255,.12);background:#030303;color:#d6d9d7;text-align:left; }
+  .cap-exact--gravity .cap-gravity__principle svg { width:34px;height:34px;flex:0 0 auto;padding:8px;color:var(--cap-orange);border:1px solid rgba(255,106,0,.34);border-radius:50%; }
+  .cap-exact--gravity .cap-gravity__principle p { margin:0;font:500 13px/1.15 "Space Grotesk",sans-serif; }
+  .cap-exact--gravity .cap-gravity__principle small { display:block;margin-top:4px;color:#6f7779;font:600 7px "Roboto Mono",monospace;letter-spacing:.12em;text-transform:uppercase; }
+}
+@media (min-width:1101px) {
+  .cap-exact--gravity .cap-detail__opening-message--primary { padding-top:clamp(28px,5.4vh,76px); }
+  .cap-exact--gravity .cap-detail__opening-message--primary > span { margin-bottom:clamp(14px,2.4vh,30px); }
+  .cap-exact--gravity .cap-detail__opening-message--primary h1 {
+    max-width:min(760px,100%);
+    font-size:clamp(60px,4.7vw + 1.8vh,104px);
+    line-height:.84;
+  }
+  .cap-exact--gravity .cap-detail__opening-message--primary > p {
+    max-width:680px;
+    margin-top:clamp(22px,3vh,36px);
+    font-size:clamp(15px,.85vw + .35vh,20px);
+    line-height:1.48;
+  }
+  .cap-exact--gravity .cap-detail__opening-message--physical { padding-top:clamp(28px,5.2vh,72px); }
+  .cap-exact--gravity .cap-detail__opening-message--physical > span { margin-bottom:clamp(14px,2.2vh,28px); }
+  .cap-exact--gravity .cap-detail__opening-message--physical h2 {
+    max-width:min(790px,100%);
+    font-size:clamp(58px,4.35vw + 1.6vh,98px);
+    line-height:.84;
+  }
+  .cap-exact--gravity .cap-detail__opening-message--physical > p {
+    max-width:700px;
+    margin-top:clamp(18px,2.4vh,28px);
+    font-size:clamp(15px,.82vw + .32vh,19px);
+    line-height:1.44;
+  }
+  .cap-exact--gravity .cap-detail__opening-message--physical .cap-detail__opening-principle--system {
+    margin-top:clamp(18px,2.8vh,34px);
+  }
+}
+@media (min-width:1500px) and (min-height:720px) {
+  .cap-exact--gravity .cap-detail__opening-stage .cap-detail__opening-layout {
+    grid-template-columns:minmax(390px,.66fr) minmax(720px,1.34fr);
+    gap:clamp(28px,3vw,58px);
+  }
+  .cap-exact--gravity .cap-detail__opening-message--primary h1 {
+    max-width:780px;
+    font-size:clamp(78px,5.1vw,90px);
+    line-height:.83;
+  }
+  .cap-exact--gravity .cap-detail__opening-message--primary > p {
+    max-width:680px;
+    margin-top:clamp(20px,2.5vh,30px);
+    font-size:clamp(16px,.96vw,20px);
+    line-height:1.45;
+  }
+  .cap-exact--gravity .cap-detail__opening-message--physical h2 {
+    max-width:800px;
+    font-size:clamp(76px,4.8vw,88px);
+    line-height:.83;
+  }
+  .cap-exact--gravity .cap-detail__opening-message--physical > p {
+    max-width:720px;
+    font-size:clamp(16px,.94vw,20px);
+    line-height:1.43;
+  }
+  .cap-exact--gravity .cap-gravity {
+    grid-template-rows:minmax(0,clamp(360px,50vh,520px)) auto auto auto;
+  }
+  .cap-exact--gravity .cap-gravity:not(.cap-gravity--video) .cap-gravity__field {
+    height:clamp(360px,50vh,520px);
+  }
+  .cap-exact--gravity .cap-gravity:not(.cap-gravity--video) .cap-gravity__field img {
+    object-fit:contain;
+    object-position:center;
+    transform:none;
+  }
+  .cap-exact--gravity .cap-gravity__head {
+    margin-top:-1px;
+  }
+}
+/* Large-desktop tier: fluid on vw+vh (not flat breakpoint jumps) so sizing
+   keeps scaling correctly across iMac (2560x1440), ultrawide (3440x1440,
+   same height as the iMac but far more width) and 4K (3840x2160, both
+   dimensions large) instead of landing on the same values for all three. */
+@media (min-width:1900px), (min-width:1600px) and (min-resolution:2dppx) {
+  .cap-exact__wrap { width:min(92vw,1700px); }
+  .cap-exact--gravity .cap-detail__opening-stage .cap-detail__opening-layout {
+    width:100%;
+    max-width:min(92vw,2200px);
+    margin-inline:auto;
+    grid-template-columns:clamp(620px,24vw + 6vh,1040px) 1fr;
+    gap:clamp(48px,3vw + 2vh,90px);
+  }
+  .cap-exact--gravity .cap-detail__opening-message--primary { padding-top:clamp(30px,3.2vh + .6vw,90px); }
+  .cap-exact--gravity .cap-detail__opening-message--primary > span { margin-bottom:clamp(16px,1.6vh + .6vw,46px);font-size:clamp(11px,.55vw + .4vh,17px); }
+  .cap-exact--gravity .cap-detail__opening-message--primary h1 {
+    max-width:none;
+    font-size:clamp(90px,1.5vw + 6vh,170px);
+    line-height:.9;
+  }
+  .cap-exact--gravity .cap-detail__opening-message--primary > p {
+    max-width:none;
+    margin-top:clamp(22px,1.6vh + .8vw,54px);
+    font-size:clamp(19px,.55vw + 1vh,32px);
+    line-height:1.5;
+  }
+  .cap-exact--gravity .cap-detail__opening-message--physical { padding-top:clamp(30px,3vh + .6vw,84px); }
+  .cap-exact--gravity .cap-detail__opening-message--physical > span { margin-bottom:clamp(16px,1.5vh + .55vw,44px);font-size:clamp(11px,.55vw + .4vh,17px); }
+  .cap-exact--gravity .cap-detail__opening-message--physical h2 {
+    max-width:none;
+    font-size:clamp(86px,1.4vw + 5.6vh,162px);
+    line-height:.9;
+  }
+  .cap-exact--gravity .cap-detail__opening-message--physical > p {
+    max-width:none;
+    font-size:clamp(19px,.55vw + 1vh,32px);
+    line-height:1.46;
+  }
+  .cap-exact--gravity .cap-detail__opening-message--physical .cap-detail__opening-principle--system {
+    width:min(760px,100%);
+    margin-top:clamp(20px,1.8vh + .6vw,52px);
+    padding-block:clamp(14px,1.4vh,26px);
+  }
+  .cap-exact--gravity .cap-detail__opening-message--physical .cap-detail__opening-principle--system > svg { width:clamp(48px,3.4vh,70px);height:clamp(48px,3.4vh,70px);padding:14px; }
+  .cap-exact--gravity .cap-detail__opening-message--physical .cap-detail__opening-principle--system p { font-size:clamp(16px,1.3vh + .3vw,24px); }
+  .cap-exact--gravity .cap-detail__opening-message--physical .cap-detail__opening-principle--system small { font-size:clamp(9px,.75vh,12px); }
+
+  .cap-exact--gravity .cap-gravity {
+    grid-template-rows:minmax(0,clamp(380px,34vh + 4vw,680px)) auto auto auto;
+    max-width:none;
+  }
+  .cap-exact--gravity .cap-gravity:not(.cap-gravity--video) .cap-gravity__field {
+    height:clamp(380px,34vh + 4vw,680px);
+  }
+  .cap-exact--gravity .cap-gravity__head { min-height:clamp(42px,4.5vh,64px);padding:clamp(10px,1.4vh,18px) 4px clamp(8px,1vh,14px); }
+  .cap-exact--gravity .cap-gravity__head span { font-size:clamp(11px,.6vw + .4vh,17px); }
+  .cap-exact--gravity .cap-gravity__head b { font-size:clamp(13px,.65vw + .5vh,19px); }
+  .cap-exact--gravity .cap-gravity__inputs { --gravity-icon-size:clamp(48px,3.2vh + 1vw,72px);--gravity-line-y:clamp(27px,3.4vh,42px); }
+  .cap-exact--gravity .cap-gravity__inputs article { min-height:clamp(82px,9vh,132px);gap:clamp(10px,1.2vh,16px); }
+  .cap-exact--gravity .cap-gravity__inputs p { font-size:clamp(13px,.7vw + .5vh,19px); }
+  .cap-exact--gravity .cap-gravity__inputs small { font-size:clamp(7px,.5vh,10px); }
+  .cap-exact--gravity .cap-gravity__principle { width:min(760px,100%);min-height:clamp(54px,6vh,80px);gap:clamp(14px,1.2vw,22px);padding:clamp(9px,1.2vh,18px) clamp(16px,1.4vw,26px); }
+  .cap-exact--gravity .cap-gravity__principle svg { width:clamp(34px,3.4vh,48px);height:clamp(34px,3.4vh,48px);padding:clamp(8px,.9vh,12px); }
+  .cap-exact--gravity .cap-gravity__principle p { font-size:clamp(16px,.9vw + .5vh,22px);line-height:1.25; }
+  .cap-exact--gravity .cap-gravity__principle small { margin-top:clamp(4px,.6vh,8px);font-size:clamp(9px,.7vh,12px); }
+
+  .cap-exact--gravity .cap-detail__opening-facts { margin-top:clamp(14px,2vh,30px); }
+  .cap-exact--gravity .cap-detail__opening-facts article { min-height:clamp(90px,9vh,140px);padding:clamp(14px,1.6vh,24px) clamp(14px,1.2vw,26px);gap:clamp(14px,1.2vw,22px); }
+  .cap-exact--gravity .cap-detail__opening-facts article > i { width:clamp(44px,4.8vh,64px);height:clamp(44px,4.8vh,64px); }
+  .cap-exact--gravity .cap-detail__opening-facts article > i svg { width:clamp(22px,2.4vh,32px);height:clamp(22px,2.4vh,32px); }
+  .cap-exact--gravity .cap-detail__opening-facts b { font-size:clamp(13px,.8vh + .3vw,19px); }
+  .cap-exact--gravity .cap-detail__opening-facts span { max-width:none;font-size:clamp(12px,.75vh + .25vw,17px); }
+
+  .cap-exact--gravity .cap-detail__opening-stage > header { font-size:clamp(8px,.4vw + .3vh,11px); }
+  .cap-exact--gravity .cap-detail__opening-stage > header b { font-size:clamp(9px,.45vw + .32vh,12px); }
+  .cap-exact--gravity .cap-detail__opening-status { font-size:clamp(8px,.4vh,10px); }
+
+  .cap-exact--gravity .cap-exact__manifesto--image,
+  .cap-exact--gravity .cap-exact__manifesto--image > div { min-height:calc(100svh - clamp(72px,8vh,120px)); }
+  .cap-exact--gravity .cap-exact__manifesto--image > div { padding-top:clamp(40px,5vh,72px); }
+  .cap-exact--gravity .cap-exact__manifesto--image span { font-size:clamp(11px,.5vw + .4vh,17px);margin-bottom:clamp(20px,3vh,44px); }
+  .cap-exact--gravity .cap-exact__manifesto--image p { font-size:clamp(56px,4vw + 2.6vh,132px); }
+
+  /* Page-wide: every section below the hero reuses these shared classes for
+     its header (eyebrow/h2/lead) and its own body copy, so widening the
+     hero alone left the rest of the page looking small and narrow by
+     comparison. Body copy, mono labels, captions and footers all scale —
+     not just the headings. */
+  .cap-exact__wrap { width:min(90vw,2100px); }
+  .cap-exact__eyebrow { font-size:clamp(11px,.5vw + .4vh,15px); }
+  .cap-exact h2 { font-size:clamp(56px,3.2vw + 2.2vh,128px);overflow-wrap:break-word; }
+  /* This section's heading sits in the narrower 1.1fr column and contains
+     long single words ("transformational"), which overflow at the full
+     page-wide ceiling — size it to its own column instead. */
+  .cap-exact__institutional h2 { font-size:clamp(48px,2.2vw + 1.5vh,84px); }
+  .cap-exact__lead { max-width:1400px;font-size:clamp(19px,.7vw + 1vh,30px); }
+
+  /* 01 — four-discipline board */
+  .cap-exact__discipline-board article { min-height:clamp(700px,52vh,860px); }
+  .cap-exact__discipline-board header span { font-size:clamp(11px,.5vw + .4vh,17px); }
+  .cap-exact__discipline-board p { font-size:clamp(15px,.55vw + .55vh,21px);line-height:1.6; }
+  .cap-exact__discipline-board footer { padding:clamp(18px,1.6vh,28px) clamp(28px,2vw,40px);font-size:clamp(11px,.5vw + .4vh,17px); }
+
+  /* 02 — problem cards. A fixed card height plus absolutely-positioned
+     copy (the base design, meant for short fixed-size copy) cannot flex
+     for longer wrapped text at bigger large-screen font sizes — any hard
+     height ceiling eventually overflows a 3-line paragraph and collides
+     with the footer. So here the image becomes a normal-flow block with
+     an explicit height, and the copy flows naturally below it and grows
+     with its content — no ceiling left to overflow. */
+  .cap-detail__problem-grid { gap:clamp(12px,1vw,24px); }
+  .cap-detail__problem-grid article { height:auto;min-height:clamp(400px,28vh,560px);display:flex;flex-direction:column; }
+  .cap-detail__problem-grid article > figure { position:relative;inset:auto;flex:0 0 auto;height:clamp(196px,13.72vh,274px); }
+  .cap-detail__problem-card-head { position:absolute;inset:0 0 auto;padding:clamp(18px,1.6vw,30px) clamp(20px,1.8vw,32px) 0; }
+  /* `.cap-detail__problem-grid article > div b` (0,1,3) outranks a plain
+     `.cap-detail__problem-card-head b`, so match it with more weight. */
+  .cap-exact .cap-detail__problem-grid article > div b { font-size:clamp(13px,.6vw + .4vh,18px); }
+  .cap-detail__problem-card-head svg { width:clamp(40px,2.6vw,56px);height:clamp(40px,2.6vw,56px);padding:clamp(8px,.6vw,12px); }
+  .cap-exact .cap-detail__problem-grid article > .cap-detail__problem-card-copy { display:flex;flex-direction:column;position:relative;inset:auto;flex:1 1 auto;height:auto;min-height:0; }
+  .cap-detail__problem-grid article > .cap-detail__problem-card-copy { padding:clamp(18px,1.8vh,28px) clamp(20px,1.8vw,32px) clamp(16px,1.2vw,24px); }
+  .cap-detail__problem-card-copy small { font-size:clamp(11px,.5vw + .4vh,17px); }
+  .cap-detail__problem-card-copy h3 { font-size:clamp(22px,1.1vw + 1vh,32px); }
+  .cap-exact .cap-detail__problem-card-copy p { font-size:clamp(15px,.55vw + .55vh,22px);line-height:1.58; }
+  .cap-exact .cap-detail__problem-grid article:nth-child(6) .cap-detail__problem-card-copy h3 { font-size:clamp(20px,1vw + .9vh,29px); }
+  .cap-exact .cap-detail__problem-grid article:nth-child(6) .cap-detail__problem-card-copy p { font-size:clamp(14px,.5vw + .5vh,20px); }
+  .cap-detail__problem-card-copy footer { font-size:clamp(10px,.45vw + .32vh,14px); }
+
+  /* 03 — capability, technology chain, AI */
+  .cap-exact__split > div > p { font-size:clamp(18px,.65vw + .9vh,27px);line-height:1.6; }
+  .cap-exact__architecture > header { padding:clamp(25px,2.2vh,40px) clamp(30px,2.2vw,46px); }
+  .cap-exact__architecture > header h3 { font-size:clamp(20px,.9vw + .7vh,30px); }
+  .cap-exact__architecture > header span { font-size:clamp(11px,.5vw + .4vh,17px); }
+  .cap-exact__chain article { min-height:clamp(300px,24vh,400px);padding:clamp(28px,1.5vw,34px) clamp(20px,1.1vw,26px); }
+  .cap-exact__chain article > b { font-size:clamp(14px,.6vw + .45vh,19px); }
+  .cap-exact__chain h4 { font-size:clamp(24px,1vw + .9vh,34px); }
+  .cap-exact__chain p,.cap-exact__ai p { font-size:clamp(15px,.55vw + .55vh,21px);line-height:1.58; }
+  /* `.cap-exact__architecture > .cap-exact__ai p` (0,2,1) caps the AI copy
+     at 17px and outranks the shared rule above — restate it with weight. */
+  .cap-exact .cap-exact__architecture > .cap-exact__ai p { font-size:clamp(15px,.55vw + .55vh,21px);line-height:1.58; }
+  .cap-exact__ai article { min-height:clamp(300px,24vh,400px);padding:clamp(45px,3vw,66px); }
+  .cap-exact__ai h3 { font-size:clamp(32px,1.5vw + 1.2vh,46px); }
+
+  /* 04 — domains */
+  .cap-exact__domain-grid article { min-height:clamp(260px,20vh,360px);padding:clamp(28px,2vw,42px); }
+  .cap-exact__cards article > b,.cap-exact__achieved-grid article > b,.cap-exact__domain-grid article > b { font-size:clamp(11px,.5vw + .4vh,18px); }
+  .cap-exact__domain-grid h3 { font-size:clamp(27px,1.15vw + 1vh,38px); }
+  .cap-exact__cards p,.cap-exact__achieved-grid p,.cap-exact__domain-grid p { font-size:clamp(15px,.55vw + .55vh,22px);line-height:1.6; }
+
+  /* 05 — what we intend to do */
+  .cap-exact__future-grid article { min-height:clamp(150px,13vh,220px);gap:clamp(35px,3vw,60px); }
+  .cap-exact__future-grid span { font-size:clamp(14px,.6vw + .45vh,19px); }
+  .cap-exact__future-grid h3 { font-size:clamp(27px,1.15vw + 1vh,38px); }
+  .cap-exact__future-grid p { font-size:clamp(15px,.55vw + .55vh,22px);line-height:1.58; }
+  .cap-exact__future-close { padding:clamp(55px,4vw,84px);font-size:clamp(30px,1.7vw + 1.4vh,64px); }
+
+  /* 06 — institutional scale */
+  .cap-exact__institutional-grid > div:first-child > p { font-size:clamp(19px,.7vw + .95vh,28px);line-height:1.6; }
+  .cap-exact__institutional-grid article { grid-template-columns:clamp(66px,4vw,84px) clamp(64px,4.2vw,86px) 1fr clamp(20px,1.5vw,28px);min-height:clamp(108px,9vh,140px);padding:clamp(24px,2.2vh,38px) clamp(24px,1.8vw,36px);gap:clamp(20px,1.6vw,32px); }
+  .cap-exact__institutional-grid article > span { width:clamp(52px,3.4vw,68px);height:clamp(52px,3.4vw,68px);font-size:clamp(12px,.55vw + .4vh,18px); }
+  .cap-exact__institutional-grid article > i { width:clamp(58px,3.8vw,76px);height:clamp(58px,3.8vw,76px); }
+  .cap-exact__institutional-grid article > i svg { width:clamp(38px,2.6vw,50px);height:clamp(38px,2.6vw,50px); }
+  .cap-exact__institutional-grid article b { font-size:clamp(18px,.75vw + .7vh,26px); }
+  .cap-exact__institutional-grid article small { margin-top:clamp(7px,.8vh,12px);font-size:clamp(14px,.5vw + .5vh,20px);line-height:1.5; }
+
+  /* 07 — closing statement */
+  .cap-exact__final p { max-width:1000px;font-size:clamp(20px,.75vw + 1vh,30px);line-height:1.58; }
+  .cap-exact__final a { font-size:clamp(12px,.55vw + .4vh,17px); }
+}
+/* Ultrawide correction: 3440x1440-class screens share the iMac tier's
+   vertical room but have far more width, so cap how wide the two-column
+   layout stretches and let the extra space become side breathing room
+   instead of an oversized image column. */
+@media (min-width:3000px) and (max-height:1600px) {
+  .cap-exact--gravity .cap-detail__opening-stage .cap-detail__opening-layout { max-width:2000px; }
+}
+/* 4K-class tall screens (2160px+) have far more vertical room than the
+   hero's content needs even at the enlarged sizing above. Top-anchored
+   content would leave a dead band of black beneath it, so center both
+   columns in the available height instead, and let the graphic's internal
+   rows spread out to use the space rather than leaving it unused. */
+@media (min-height:1800px) {
+  .cap-exact--gravity .cap-detail__opening-message--primary,
+  .cap-exact--gravity .cap-detail__opening-message--physical { justify-content:center; }
+  .cap-exact--gravity .cap-gravity { align-self:center;height:auto;max-height:100%;grid-template-rows:minmax(0,clamp(380px,34vh + 4vw,680px)) auto 1fr auto;row-gap:clamp(20px,3vh,48px); }
+  .cap-exact--gravity .cap-gravity__inputs { align-content:center; }
+  .cap-exact--gravity .cap-gravity__principle { margin-top:auto; }
 }
 @media (max-width:1350px) and (min-width:1101px) {
   .cap-exact--gravity .cap-detail__opening-stage { padding-inline:clamp(22px,2.5vw,34px); }
@@ -1383,11 +1708,11 @@
   /* Short desktop viewports must not stretch the source artwork's dark lower
      field. Keep the instrument content-sized and crop it as a cinematic band
      so the domain rail follows the black hole without a dead zone. */
-  .cap-exact--gravity .cap-detail__opening-stage .cap-detail__opening-layout { align-items:center; }
+  .cap-exact--gravity .cap-detail__opening-stage .cap-detail__opening-layout { align-items:stretch; }
   .cap-exact--gravity .cap-gravity {
-    height:auto;
-    align-self:center;
-    grid-template-rows:clamp(285px,45vh,405px) auto auto;
+    height:100%;
+    align-self:stretch;
+    grid-template-rows:minmax(205px,1fr) auto auto auto;
   }
   .cap-exact--gravity .cap-gravity:not(.cap-gravity--video) .cap-gravity__field {
     height:100%;
@@ -1399,6 +1724,7 @@
   position:absolute;inset:0;z-index:-1;content:"";pointer-events:none;
   background:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
   background-size:44px 44px;
+  -webkit-mask-image:linear-gradient(to bottom,#000,transparent 82%);
   mask-image:linear-gradient(to bottom,#000,transparent 82%);
 }
 .cap-gravity__head { display:flex;min-height:48px;align-items:center;justify-content:space-between;gap:20px;padding:0 18px;border-bottom:1px solid var(--gravity-line);font:600 7px "Roboto Mono",monospace;letter-spacing:.15em;text-transform:uppercase; }
@@ -1452,11 +1778,11 @@
   .cap-exact--gravity .cap-detail__opening-stage .cap-detail__opening-layout { grid-template-columns:minmax(330px,.72fr) minmax(610px,1.28fr); }
   .cap-gravity:not(.cap-gravity--video) .cap-gravity__field { min-height:180px;aspect-ratio:auto; }
   .cap-exact--gravity .cap-gravity__head { min-height:34px;padding-block:7px 5px; }
-  .cap-exact--gravity .cap-gravity__inputs { padding-block:10px 3px; }
-  .cap-exact--gravity .cap-gravity__inputs::before,.cap-exact--gravity .cap-gravity__inputs::after { top:31px; }
+  .cap-exact--gravity .cap-gravity__inputs { --gravity-input-pad-top:10px;padding-block:var(--gravity-input-pad-top) 3px; }
+  .cap-exact--gravity .cap-gravity__inputs { --gravity-line-y:31px; }
   .cap-exact--gravity .cap-gravity__inputs article { min-height:66px;gap:5px; }
-  .cap-exact--gravity .cap-gravity__inputs article::after { top:17px; }
-  .cap-exact--gravity .cap-gravity__inputs svg { width:38px;height:38px;padding:9px; }
+  .cap-exact--gravity .cap-gravity__inputs { --gravity-icon-size:38px; }
+  .cap-exact--gravity .cap-gravity__inputs svg { padding:9px; }
 }
 @media (max-height:650px) and (min-width:1101px) {
   .cap-exact--gravity .cap-detail__opening-stage { padding-top:70px;padding-bottom:7px; }
@@ -1465,9 +1791,10 @@
   .cap-exact--gravity .cap-detail__opening-message--primary > p,
   .cap-exact--gravity .cap-detail__opening-message--physical > p { margin-top:8px;line-height:1.28; }
   .cap-exact--gravity .cap-detail__opening-message--physical .cap-detail__opening-principle--system { margin-top:4px;padding-block:4px; }
-  .cap-exact--gravity .cap-gravity { grid-template-rows:clamp(215px,39vh,255px) auto auto; }
+  .cap-exact--gravity .cap-gravity { grid-template-rows:minmax(165px,1fr) auto auto auto; }
   .cap-exact--gravity .cap-gravity__inputs article { min-height:56px; }
-  .cap-exact--gravity .cap-gravity__inputs svg { width:32px;height:32px;padding:7px; }
+  .cap-exact--gravity .cap-gravity__inputs { --gravity-icon-size:32px; }
+  .cap-exact--gravity .cap-gravity__inputs svg { padding:7px; }
   .cap-exact--gravity .cap-detail__opening-facts article { min-height:54px;padding-block:5px; }
   .cap-exact--gravity .cap-detail__opening-facts article > i { width:30px;height:30px; }
 }
@@ -1485,6 +1812,14 @@
   .cap-gravity__outputs article { min-height:108px; }
 }
 @media (max-width:700px) {
+  .cap-exact--gravity .cap-detail__opening-stage .cap-detail__opening-layout {
+    padding-top:22px;
+  }
+  .cap-exact--gravity .cap-detail__opening-message--primary {
+    min-height:0;
+    justify-content:flex-start;
+    padding:18px 0 54px;
+  }
   .cap-gravity__head { min-height:52px;padding-inline:12px; }
   .cap-gravity__head b { max-width:120px;text-align:right; }
   .cap-gravity__inputs { grid-template-columns:repeat(2,1fr); }
@@ -1496,13 +1831,18 @@
   .cap-gravity__field { min-height:390px; }
   .cap-gravity:not(.cap-gravity--video) .cap-gravity__field { width:100%;margin:0; }
   .cap-gravity:not(.cap-gravity--video) .cap-gravity__field { min-height:0;aspect-ratio:1/1; }
-  .cap-exact--gravity .cap-gravity__inputs { grid-template-columns:repeat(2,1fr);gap:0 14px;padding-top:12px; }
+  .cap-exact--gravity .cap-gravity__inputs { grid-template-columns:repeat(2,minmax(0,1fr));gap:0;padding:12px 0 0;overflow:visible;border-top:1px solid rgba(255,106,0,.22); }
   .cap-exact--gravity .cap-gravity__inputs::before { display:none; }
   .cap-exact--gravity .cap-gravity__inputs::after { display:none; }
-  .cap-exact--gravity .cap-gravity__inputs article { min-height:86px;flex-direction:row;justify-content:flex-start;gap:10px;padding:9px 2px;text-align:left;border-bottom:1px solid rgba(255,255,255,.08); }
+  .cap-exact--gravity .cap-gravity.is-visible .cap-gravity__inputs article { --gravity-node:1; }
+  .cap-exact--gravity .cap-gravity__inputs article { box-sizing:border-box;min-height:86px;flex-direction:row;justify-content:flex-start;gap:10px;padding:10px 10px 10px 0;text-align:left;border-bottom:1px solid rgba(255,255,255,.12); }
+  .cap-exact--gravity .cap-gravity__inputs article:nth-child(odd) { padding-left:12px;border-right:1px solid rgba(255,255,255,.12); }
+  .cap-exact--gravity .cap-gravity__inputs article:nth-child(even) { padding-left:18px;padding-right:0;border-right:0; }
+  .cap-exact--gravity .cap-gravity__inputs article::before { display:none; }
   .cap-exact--gravity .cap-gravity__inputs article::after { display:none; }
   .cap-exact--gravity .cap-gravity__inputs svg { width:38px;height:38px;flex:0 0 auto;padding:9px; }
-  .cap-exact--gravity .cap-gravity__inputs p { align-items:flex-start;text-align:left; }
+  .cap-exact--gravity .cap-gravity__inputs p { align-items:flex-start;color:#f2f0eb;text-align:left;opacity:1; }
+  .cap-exact--gravity .cap-gravity__inputs small { color:var(--cap-orange);opacity:1; }
   .cap-exact--gravity .cap-detail__opening-message--physical { min-height:auto;padding:56px 0 35px; }
   .cap-exact--gravity .cap-detail__opening-message--physical h2 { font-size:clamp(38px,11vw,52px);line-height:.92; }
   .cap-exact--gravity .cap-detail__opening-message--physical > p { margin-top:16px;padding-left:15px;font-size:14px;line-height:1.48; }
@@ -1530,6 +1870,47 @@
   .cap-exact--gravity .cap-gravity__endpoint span { font-size:10px; }
   .cap-exact--gravity .cap-gravity__head { padding-inline:0; }
   .cap-exact--gravity .cap-gravity__head b { max-width:105px;font-size:6px; }
+}
+
+/* Mobile containment for the editorial chapters. Keep every regular
+   cap-exact wrapper inside the visual viewport, including older iOS Safari
+   versions that parse nested CSS math functions inconsistently. */
+@media (max-width:700px) {
+  .cap-exact__wrap {
+    box-sizing:border-box;
+    width:calc(100% - 28px);
+    max-width:1460px;
+    min-width:0;
+    margin-inline:auto;
+  }
+  .cap-exact__wrap > *,
+  .cap-exact__split > *,
+  .cap-exact__architecture,
+  .cap-exact__institutional-grid > *,
+  .cap-detail__problem-grid,
+  .cap-detail__problem-grid article {
+    box-sizing:border-box;
+    min-width:0;
+    max-width:100%;
+  }
+  .cap-exact__problems .cap-detail__problem-grid,
+  .cap-exact__achieved-grid,
+  .cap-exact__domain-grid,
+  .cap-exact__future-grid {
+    width:100%;
+  }
+  .cap-exact h2,
+  .cap-exact h3,
+  .cap-exact p {
+    overflow-wrap:anywhere;
+  }
+  .cap-exact__architecture {
+    overflow:hidden;
+  }
+  .cap-exact__deep > .cap-exact__wrap {
+    width:100%;
+    max-width:none;
+  }
 }
 @media (prefers-reduced-motion:reduce) {
   .cap-gravity__field img,.cap-gravity__core::before,.cap-gravity__core::after { animation:none; }

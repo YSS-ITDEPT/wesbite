@@ -225,7 +225,7 @@ function AboutPage() {
                 uncompromising protection.
               </p>
               <div className="about-hero__button-frame">
-                <a className="about-hero__button" href={`${pageUrl('/index.html')}#products`}>
+                <a className="about-hero__button" href={`${pageUrl('/platform.html')}#products`}>
                   Explore Our Technology
                 </a>
               </div>

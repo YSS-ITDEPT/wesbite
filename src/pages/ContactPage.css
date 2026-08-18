@@ -66,7 +66,7 @@
   margin: clamp(1.25rem, 3vh, 2rem) 0 0;
   width: 1000px;
   color: rgba(255, 255, 255, 0.82);
-  font-size: clamp(1rem, 1.2vw, 1.2rem);
+  font-size: clamp(1.1rem, 1.5vw, 1.45rem);
   font-weight: 400;
   line-height: 1.7;
 }
@@ -889,4 +889,42 @@
   .contact-locations__card { flex: 1 1 0; }
   .contact-locations__media { display: none; }
   .contact-world { padding-block: 3.5rem; }
+}
+
+/* Large-desktop tier (iMac/ultrawide/4K-class screens). Both the locations
+   grid and the inquiry form shell were capped at a fixed max-width
+   (1600px / 1720px) with fixed-basis flex children and rem-only font
+   sizes — none of which scale past that cap, so on a much wider viewport
+   everything reads as small and centered with large empty side margins. */
+@media (min-width: 1900px), (min-width: 1600px) and (min-resolution: 2dppx) {
+  .contact-hero__lead { font-size: clamp(1.2rem, .5vw + .55vh, 1.9rem); }
+  .contact-locations__grid { max-width: min(92vw, 2200px); gap: clamp(2.25rem, 3vw, 4rem); }
+  .contact-locations__card { flex-basis: clamp(420px, 26vw, 560px); padding: clamp(2rem, 2vw + 1.4vh, 3.5rem); }
+  .contact-locations__media { flex-basis: clamp(460px, 28vw, 620px); }
+  /* IndiaDotMap sets an inline `width:520` (a fixed px, not a max) via its
+     `size` prop, so it can't grow on its own even though the flex-basis
+     above widened its container — override the inline style directly. */
+  .contact-locations__media .idm-root { width: clamp(460px, 28vw, 620px) !important; }
+  .contact-locations__header { max-width: min(90%, 960px); }
+  .contact-locations__title { font-size: clamp(2.1rem, 1.6vw + 1.6vh, 4.4rem); }
+  .contact-locations__subtitle { font-size: clamp(0.95rem, .5vw + .5vh, 1.5rem); }
+  .contact-locations__name { font-size: clamp(1.35rem, .9vw + .8vh, 2.2rem); }
+  .contact-locations__details li { font-size: clamp(0.95rem, .4vw + .45vh, 1.35rem); }
+  .contact-locations__icon { width: clamp(4rem, 3vw, 5.4rem); height: clamp(4rem, 3vw, 5.4rem); }
+  .contact-locations__icon svg { width: clamp(1.9rem, 1.4vw, 2.6rem); height: clamp(1.9rem, 1.4vw, 2.6rem); }
+  .contact-locations__button { font-size: clamp(0.95rem, .4vw + .4vh, 1.3rem); padding: clamp(0.9rem, .8vw, 1.3rem) clamp(1.4rem, 1.2vw, 2rem); }
+
+  .contact-inquiry__shell { width: min(92vw, 2200px); min-height: clamp(560px, 62vh, 900px); }
+  .contact-inquiry__copy { max-width: min(90%, 520px); }
+  .contact-inquiry__eyebrow { font-size: clamp(0.72rem, .3vw + .3vh, 1.05rem); }
+  .contact-inquiry__title { font-size: clamp(2.1rem, 1.6vw + 1.6vh, 4.6rem); }
+  .contact-inquiry__lead { font-size: clamp(0.92rem, .45vw + .45vh, 1.4rem); }
+  .contact-inquiry__form { gap: clamp(1rem, 1vw + .5vh, 2rem); padding: clamp(2rem, 2vw + 1.4vh, 4rem); }
+  .contact-inquiry__field { min-height: clamp(3.65rem, 2vw + 2vh, 5.5rem); }
+  .contact-inquiry__field input,
+  .contact-inquiry__field textarea,
+  .contact-inquiry__field select { font-size: clamp(0.98rem, .45vw + .4vh, 1.4rem); }
+  .contact-inquiry__field svg { width: clamp(1.25rem, 1vw, 1.7rem); height: clamp(1.25rem, 1vw, 1.7rem); }
+  .contact-inquiry__button { font-size: clamp(0.9rem, .35vw + .35vh, 1.2rem); padding: clamp(0.9rem, .8vw, 1.3rem) clamp(2rem, 1.6vw, 2.8rem); min-height: clamp(3.1rem, 2vw + 1vh, 4.2rem); }
+  .contact-inquiry__note { font-size: clamp(0.85rem, .35vw + .3vh, 1.15rem); }
 }

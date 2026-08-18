@@ -1991,10 +1991,11 @@
       .trace-records {
         grid-column: 2;
         grid-row: 1;
+        align-self: center;
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
         grid-template-rows: none;
-        align-content: stretch;
+        align-content: center;
         gap: clamp(14px, 1.25vw, 22px);
         padding: 0;
         overflow: visible;
@@ -2403,6 +2404,181 @@
         .position-statement { gap: 12px; align-items: flex-start; }
         .position-statement i { min-width: 26px; margin-top: 8px; }
       }
+
+      /* ----------------------------------------------------------------
+         Large-desktop / iMac typography pass, staged in three explicit
+         tiers. Placed at the very end of the stylesheet on purpose: this
+         file redeclares some of these selectors more than once at the
+         same (unconditional, non-media) specificity — e.g. `.quality-grid`
+         has an older definition around line 757 and a newer one around
+         line 2202 that already wins today only because it comes later.
+         CSS resolves same-specificity ties by source order, not by which
+         rule "looks newer", so anything added here has to sit after every
+         existing declaration to reliably win. Layout, alignment, colors
+         and every existing mobile/tablet media query above are untouched.
+
+         Container fixes included alongside font-size, not just font-size
+         alone: `.trace-records .record` carries an explicit width (not
+         only max-width), `.media-caption h3/p` and `.hero-copy .copy`
+         both have fixed max-width caps, and `.quality-grid article` has a
+         fixed min-height — all of which would otherwise clip or wrap a
+         bigger font exactly like the Platform-page regression earlier. */
+      @media (min-width: 1600px) {
+        .hero-copy h1 { font-size: clamp(92px, 4.4vw, 120px); }
+        .hero-copy .copy { font-size: clamp(18px, 1vw, 21px); max-width: 760px; }
+        .link-line { width: min(360px, 100%); font-size: clamp(11px, .4vw, 13px); }
+        .link-line b { font-size: clamp(17px, .6vw, 20px); }
+
+        .proof-strip article { min-height: clamp(160px, 10vh, 190px); }
+        .proof-strip b { font-size: clamp(40px, 2.6vw, 50px); }
+        .proof-strip span { font-size: clamp(9px, .4vw, 11px); }
+
+        .discipline-list h2 { font-size: clamp(78px, 4.2vw, 98px); }
+        .discipline-list button span { font-size: clamp(24px, 1.6vw, 29px); }
+        .discipline-list button b { font-size: clamp(9px, .4vw, 11px); }
+
+        .media-caption h3 { font-size: clamp(52px, 3.4vw, 68px); max-width: 780px; }
+        .media-caption small { font-size: clamp(9px, .4vw, 11px); }
+        .media-caption p { font-size: clamp(18px, 1vw, 21px); max-width: 700px; }
+
+        .trace-copy h2 { font-size: clamp(68px, 4.4vw, 86px); }
+        .trace-copy .copy { font-size: clamp(18px, 1vw, 21px); max-width: 600px; }
+
+        .trace-records .record,
+        .trace-records .record:nth-child(1),
+        .trace-records .record:nth-child(2),
+        .trace-records .record:nth-child(3) { width: min(100%, 820px); }
+        .trace-records .record h3 { font-size: clamp(26px, 1.9vw, 32px); }
+        .trace-records .record p,
+        .record p { font-size: clamp(14px, .9vw, 16px); }
+        .record-head { font-size: clamp(9px, .35vw, 11px); }
+
+        .difference-apart > h3 { font-size: clamp(15px, .6vw, 17px); }
+        .difference-apart-grid h4 { font-size: clamp(11px, .45vw, 13px); }
+        .difference-apart-grid p { font-size: clamp(11px, .45vw, 13px); }
+        .difference-statement { font-size: clamp(15px, .6vw, 17px); }
+
+        .quality-grid article { min-height: clamp(280px, 30vh, 340px); }
+        .quality-grid h3 { font-size: clamp(27px, 1.9vw, 33px); }
+        .quality-grid p { font-size: clamp(14px, 1vw, 17px); max-width: 480px; }
+        .quality-grid b { font-size: clamp(40px, 2.6vw, 48px); }
+
+        .position-band h3 { font-size: clamp(11px, .45vw, 13px); }
+        .position-band p { font-size: clamp(12px, .5vw, 14px); }
+        .position-band span { font-size: clamp(33px, 1.4vw, 38px); }
+      }
+
+      @media (min-width: 1920px) {
+        .hero-copy h1 { font-size: clamp(115px, 5vw, 140px); }
+        .hero-copy .copy { font-size: clamp(20px, 1.05vw, 23px); max-width: 860px; }
+        .link-line { width: min(400px, 100%); font-size: clamp(12px, .42vw, 14px); }
+        .link-line b { font-size: clamp(19px, .65vw, 22px); }
+
+        .proof-strip article { min-height: clamp(180px, 11vh, 210px); }
+        .proof-strip b { font-size: clamp(48px, 2.8vw, 58px); }
+        .proof-strip span { font-size: clamp(10px, .42vw, 12px); }
+
+        .discipline-list h2 { font-size: clamp(96px, 4.6vw, 112px); }
+        .discipline-list button span { font-size: clamp(28px, 1.7vw, 33px); }
+        .discipline-list button b { font-size: clamp(10px, .42vw, 12px); }
+
+        .media-caption h3 { font-size: clamp(64px, 3.7vw, 78px); max-width: 880px; }
+        .media-caption small { font-size: clamp(10px, .42vw, 12px); }
+        .media-caption p { font-size: clamp(20px, 1.05vw, 23px); max-width: 800px; }
+
+        .trace-copy h2 { font-size: clamp(84px, 4.7vw, 98px); }
+        .trace-copy .copy { font-size: clamp(20px, 1.05vw, 23px); max-width: 680px; }
+
+        .trace-records .record,
+        .trace-records .record:nth-child(1),
+        .trace-records .record:nth-child(2),
+        .trace-records .record:nth-child(3) { width: min(100%, 920px); }
+        .trace-records .record h3 { font-size: clamp(31px, 2vw, 36px); }
+        .trace-records .record p,
+        .record p { font-size: clamp(16px, .95vw, 18px); }
+        .record-head { font-size: clamp(10px, .38vw, 12px); }
+
+        .difference-apart > h3 { font-size: clamp(17px, .65vw, 19px); }
+        .difference-apart-grid h4 { font-size: clamp(12px, .48vw, 14px); }
+        .difference-apart-grid p { font-size: clamp(12px, .48vw, 14px); }
+        .difference-statement { font-size: clamp(17px, .65vw, 19px); }
+
+        .quality-grid article { min-height: clamp(320px, 31vh, 370px); }
+        .quality-grid h3 { font-size: clamp(32px, 2vw, 37px); }
+        .quality-grid p { font-size: clamp(16px, 1.05vw, 19px); max-width: 520px; }
+        .quality-grid b { font-size: clamp(46px, 2.8vw, 54px); }
+
+        .position-band h3 { font-size: clamp(12px, .48vw, 14px); }
+        .position-band p { font-size: clamp(13px, .52vw, 15px); }
+        .position-band span { font-size: clamp(37px, 1.5vw, 42px); }
+      }
+
+      @media (min-width: 2400px) {
+        .hero-copy h1 { font-size: clamp(140px, 5.6vw, 175px); }
+        .hero-copy .copy { font-size: clamp(23px, 1.15vw, 26px); max-width: 980px; }
+        .link-line { width: min(460px, 100%); font-size: clamp(13px, .46vw, 16px); }
+        .link-line b { font-size: clamp(22px, .72vw, 25px); }
+
+        .proof-strip article { min-height: clamp(210px, 12vh, 240px); }
+        .proof-strip b { font-size: clamp(56px, 3vw, 68px); }
+        .proof-strip span { font-size: clamp(11px, .46vw, 13px); }
+
+        .discipline-list h2 { font-size: clamp(114px, 5vw, 132px); }
+        .discipline-list button span { font-size: clamp(32px, 1.85vw, 38px); }
+        .discipline-list button b { font-size: clamp(11px, .46vw, 13px); }
+
+        .media-caption h3 { font-size: clamp(76px, 4vw, 92px); max-width: 1000px; }
+        .media-caption small { font-size: clamp(11px, .46vw, 13px); }
+        .media-caption p { font-size: clamp(23px, 1.15vw, 26px); max-width: 920px; }
+
+        .trace-copy h2 { font-size: clamp(100px, 5vw, 118px); }
+        .trace-copy .copy { font-size: clamp(23px, 1.15vw, 26px); max-width: 760px; }
+
+        .trace-records .record,
+        .trace-records .record:nth-child(1),
+        .trace-records .record:nth-child(2),
+        .trace-records .record:nth-child(3) { width: min(100%, 1040px); }
+        .trace-records .record h3 { font-size: clamp(36px, 2.1vw, 42px); }
+        .trace-records .record p,
+        .record p { font-size: clamp(18px, 1vw, 20px); }
+        .record-head { font-size: clamp(11px, .4vw, 13px); }
+
+        .difference-apart > h3 { font-size: clamp(19px, .7vw, 22px); }
+        .difference-apart-grid h4 { font-size: clamp(14px, .5vw, 16px); }
+        .difference-apart-grid p { font-size: clamp(14px, .5vw, 16px); }
+        .difference-statement { font-size: clamp(19px, .7vw, 22px); }
+
+        .quality-grid article { min-height: clamp(370px, 32vh, 410px); }
+        .quality-grid h3 { font-size: clamp(38px, 2.1vw, 44px); }
+        .quality-grid p { font-size: clamp(19px, 1.1vw, 22px); max-width: 560px; }
+        .quality-grid b { font-size: clamp(54px, 3vw, 64px); }
+
+        .position-band h3 { font-size: clamp(14px, .5vw, 16px); }
+        .position-band p { font-size: clamp(15px, .55vw, 17px); }
+        .position-band span { font-size: clamp(42px, 1.6vw, 48px); }
+      }
+
+      /* Second-section divider: a horizontal rule between "We do not
+         simply build instruments..." and "Patented technology. /
+         Deployable intelligence.", reusing the same border-top pattern
+         already used by `.intro-note` just below it in the same section.
+         This is a real, standalone element rather than a border on the
+         <em> itself: that heading has `data-reveal`, which runs GSAP
+         SplitText (type:"words,lines") and physically clones the <em>
+         into one copy per detected text line (plus an empty leading
+         copy for the block-level line break) — so a border or ::before
+         placed on the <em> renders once per clone, producing multiple
+         visible lines instead of one. Splitting the statement into two
+         separate `data-reveal` headings with a plain `<div>` between
+         them sidesteps that entirely: the divider is never inside
+         SplitText-processed content, so it can only ever render once. */
+      .intro-divider {
+        width: 100%;
+        height: 1px;
+        margin: clamp(24px, 3vh, 40px) 0;
+        background: var(--line);
+      }
+      .intro-main h2.intro-highlight { margin: 0; }
     </style>
     <link rel="stylesheet" href="index-chrome.css" />
   </head>
@@ -2425,13 +2601,13 @@
     <div class="cursor" data-site-cursor aria-hidden="true"><i></i><b></b></div>
     <div class="cursor-dot" data-site-cursor-dot aria-hidden="true"></div>
     <header class="index-header">
-      <a class="brand" href="/index.html">
+      <a class="brand" href="/">
         <img src="https://ik.imagekit.io/d9wt8plt0/logo.png?updatedAt=1726730990831" alt="Anika Sterilis corporate logo" />
         <span><b>ANIKA STERILIS</b><small>PRIVATE LIMITED</small></span>
       </a>
             <nav>
-        <a href="/home/">Home</a>
-        <a href="/index.html">Platform</a>
+        <a href="/">Home</a>
+        <a href="/platform.html">Platform</a>
         <a class="is-active" href="/capability.html" aria-current="page">Capabilities</a>
         <a href="/solutions">Solutions</a>
         <a href="/about">About us</a>
@@ -2449,8 +2625,8 @@
       <div class="mnav-panel" id="mobile-site-navigation" data-mnav-panel>
         <span>Site navigation / 06</span>
         <nav>
-          <a href="/home/"><b>01</b>Home</a>
-          <a href="/index.html"><b>02</b>Platform</a>
+          <a href="/"><b>01</b>Home</a>
+          <a href="/platform.html"><b>02</b>Platform</a>
           <a class="is-active" href="/capability.html"><b>03</b>Capabilities</a>
           <a href="/solutions"><b>04</b>Solutions</a>
           <a href="/about"><b>05</b>About Us</a>
@@ -2489,12 +2665,12 @@
             <img src="https://ik.imagekit.io/jxuol7kjt/WhatsApp%20Image%202026-07-23%20at%2012.20.38%20PM.jpeg" alt="Anika Sterilis assembly team" />
             <span>In-house integration</span>
           </figure>
-          <div class="hero-facility"><b>25</b>Granted Global Patents</div>
+          <div class="hero-facility"><b>25+</b>Granted Global Patents</div>
         </div>
       </section>
 
       <section class="proof-strip" aria-label="Capability proof">
-        <article><b>25</b><span>Granted Global<br />Patents</span></article>
+        <article><b>25+</b><span>Granted Global<br />Patents</span></article>
         <article><b>18+</b><span>Years of<br />technology &amp; R&amp;D*</span></article>
         <article><b>100+</b><span>Detectable<br />substances*</span></article>
         <article><b>100%</b><span>In-house technology<br />ownership</span></article>
@@ -2510,8 +2686,10 @@
           <span class="eyebrow">The technology behind the platform</span>
           <h2 data-reveal>
             We do not simply build instruments. We develop the technology that
-            powers them. <em>From granted global patents to deployable intelligence.</em>
+            powers them.
           </h2>
+          <div class="intro-divider" aria-hidden="true"></div>
+          <h2 class="intro-highlight" data-reveal><em>Patented technology.<br />Deployable intelligence.</em></h2>
           <div class="intro-note">
             <b>FROM IP TO DEPLOYMENT</b>
             <p class="copy">
@@ -2702,12 +2880,12 @@
           <a href="/contact">Start a conversation <b>↗</b></a>
         </div>
         <div class="footer-seal" aria-label="Anika Sterilis identity">
-          <span>ANIKA STERILIS / PRIVATE LIMITED</span>
+          <span>ANIKA STERILIS  PRIVATE LIMITED</span>
           <div><i></i><img src="https://ik.imagekit.io/d9wt8plt0/logo.png?updatedAt=1726730990831" alt="Anika Sterilis" /></div>
           <small>PLATFORM PROTECTED BY GRANTED GLOBAL PATENTS / 3000</small>
         </div>
         <nav class="footer-nav" aria-label="Footer navigation">
-          <div><span>Platform</span><a href="/solutions">AACTS® 3000</a><a href="/index.html#products">Product platform</a><a href="/capability.html">Capabilities</a><a href="/index.html#applications">Applications</a></div>
+          <div><span>Platform</span><a href="/solutions">AACTS® 3000</a><a href="/platform.html#products">Product platform</a><a href="/capability.html">Capabilities</a><a href="/platform.html#applications">Applications</a></div>
           <div><span>Company</span><a href="/about">About us</a><a href="/solutions">Solutions</a><a href="/contact">Contact</a></div>
           <div><span>Legal</span><a href="/privacy">Privacy</a><a href="/terms">Terms</a></div>
         </nav>

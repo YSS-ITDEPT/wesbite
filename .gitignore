@@ -12,6 +12,7 @@ node_modules
 dist
 dist-ssr
 *.local
+*.zip
 .env
 .env.*
 !.env.example
