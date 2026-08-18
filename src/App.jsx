@@ -29,7 +29,7 @@ function App() {
       <Route path="/capabilities/deep-technology" element={<CapabilityDetailPage />} />
       <Route path="/deep-technology" element={<CapabilityDetailPage />} />
       <Route path="/deep-tech" element={<CapabilityDetailPage />} />
-      <Route path="/deep-tech-test" element={<CapabilityDetailPage testHero />} />
+      <Route path="/test-hero" element={<CapabilityDetailPage testHero />} />
       <Route path="/deep-tech-video-test" element={<CapabilityDetailPage testHeroVideo />} />
     </Routes>
   )

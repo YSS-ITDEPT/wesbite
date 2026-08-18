@@ -263,7 +263,7 @@ function AboutPage() {
           </div>
         </section>
 
-        <section className="about-mission" id="vision-intent" aria-labelledby="about-mission-title">
+        <section className="about-mission" aria-labelledby="about-mission-title">
           <div className="about-mission__stage">
             <div className="about-mission__content">
               <p className="about-mission__kicker">Our Mission</p>

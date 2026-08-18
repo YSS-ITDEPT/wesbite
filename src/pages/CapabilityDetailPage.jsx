@@ -8,7 +8,11 @@ import './CapabilityDetailPage.css'
 const BASE_URL = import.meta.env.BASE_URL
 const pageUrl = (path) => `${BASE_URL}${path.replace(/^\//, '')}`
 const assetUrl = (path) => pageUrl(`/${path}`)
-const BLACK_HOLE_VIDEO = 'https://ik.imagekit.io/f01kcbjdo/Create_black_hole_animation_4K_202608161806_gwr_video_mvp.mp4'
+const BLACK_HOLE_VIDEO = 'https://ik.imagekit.io/y0yf2c1cwp/watermark-removed-Black_hole_art_direction_guidelines_202608171802.mp4?updatedAt=1787038813535'
+const BLACK_HOLE_MOBILE_VIDEO = 'https://ik.imagekit.io/y0yf2c1cwp/watermark-removed-Black_hole_art_direction_guidelines_202608171802.mp4?updatedAt=1787038813535'
+const MATTER_PARTICLES_VIDEO = 'https://ik.imagekit.io/y0yf2c1cwp/watermark-removed-golden_particles_faster.mp4'
+const MATTER_PARTICLES_MOBILE_VIDEO = 'https://ik.imagekit.io/y0yf2c1cwp/golden_particles_mobile_9x16.mp4'
+const ACCRETION_PLASMA_VIDEO = 'https://ik.imagekit.io/y0yf2c1cwp/watermark-removed-Black_hole_art_direction_guidelines_202608171802.mp4?updatedAt=1787038813535'
 
 const PROBLEM_AREAS = [
   [ShieldAlert, 'Security', 'Protect people from hazards they cannot see.', 'Chemical threats, explosives, narcotics and hazardous substances can be present before conventional awareness catches up.', 'Active chemical intelligence', 'deeptech-problem-security.png'],
@@ -132,13 +136,32 @@ const PAGES = {
   },
 }
 
+const keepInlineVideoPlaying = (element) => {
+  if (!element) return
+  element.muted = true
+  element.defaultMuted = true
+  element.playsInline = true
+  element.controls = false
+  element.setAttribute('muted', '')
+  element.setAttribute('playsinline', '')
+  element.setAttribute('webkit-playsinline', '')
+  element.removeAttribute('controls')
+  element.play?.().catch(() => {})
+}
+
 function BlackHoleCapabilityInstrument({ video = false }) {
   return (
-    <div className={`cap-gravity${video ? ' cap-gravity--video' : ''}`} data-cap-reveal>
+    <div className="cap-gravity cap-gravity--video" data-cap-reveal>
       <div className="cap-gravity__field">
         {video
-          ? <video src={BLACK_HOLE_VIDEO} autoPlay loop muted playsInline preload="auto" aria-label="Animated luminous accretion disc surrounding a black event horizon" />
-          : <img src="https://ik.imagekit.io/jxuol7kjt/ChatGPT%20Image%20Aug%2017,%202026,%2001_11_33%20PM.png" alt="Anika technology capability connecting the physical environment to actionable information" />}
+          ? <>
+              <video ref={keepInlineVideoPlaying} onLoadedData={(event) => keepInlineVideoPlaying(event.currentTarget)} onCanPlay={(event) => keepInlineVideoPlaying(event.currentTarget)} className="cap-gravity__video cap-gravity__video--desktop" src={BLACK_HOLE_VIDEO} poster={assetUrl('deeptech-black-hole-gargantua.png')} autoPlay loop muted playsInline preload="auto" controls={false} disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" aria-label="Animated luminous accretion disc surrounding a black event horizon" />
+              <video ref={keepInlineVideoPlaying} onLoadedData={(event) => keepInlineVideoPlaying(event.currentTarget)} onCanPlay={(event) => keepInlineVideoPlaying(event.currentTarget)} className="cap-gravity__video cap-gravity__video--mobile" src={BLACK_HOLE_MOBILE_VIDEO} poster={assetUrl('deeptech-black-hole-gargantua.png')} autoPlay loop muted playsInline preload="auto" controls={false} disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" aria-label="Animated luminous accretion disc surrounding a black event horizon" />
+            </>
+          : <>
+              <video ref={keepInlineVideoPlaying} onLoadedData={(event) => keepInlineVideoPlaying(event.currentTarget)} onCanPlay={(event) => keepInlineVideoPlaying(event.currentTarget)} className="cap-gravity__video cap-gravity__video--desktop" src={ACCRETION_PLASMA_VIDEO} poster={assetUrl('deeptech-black-hole-gargantua.png')} autoPlay loop muted playsInline preload="auto" controls={false} disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" aria-label="Anika technology capability connecting the physical environment to actionable information" />
+              <video ref={keepInlineVideoPlaying} onLoadedData={(event) => keepInlineVideoPlaying(event.currentTarget)} onCanPlay={(event) => keepInlineVideoPlaying(event.currentTarget)} className="cap-gravity__video cap-gravity__video--mobile" src={BLACK_HOLE_MOBILE_VIDEO} poster={assetUrl('deeptech-black-hole-gargantua.png')} autoPlay loop muted playsInline preload="auto" controls={false} disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" aria-label="Anika technology capability connecting the physical environment to actionable information" />
+            </>}
       </div>
       <div className="cap-gravity__head"><span>The problems Anika chooses</span><b>06 domains / 01 capability</b></div>
       <div className="cap-gravity__inputs">
@@ -205,6 +228,17 @@ function CapabilityDetailPage({ testHero = false, testHeroVideo = false }) {
       })
     }, { threshold: 0.12, rootMargin: '0px 0px -7% 0px' })
     elements.forEach((element) => observer.observe(element))
+    const videos = mainRef.current?.querySelectorAll('video[autoplay]') || []
+    videos.forEach((video) => {
+      video.muted = true
+      video.defaultMuted = true
+      video.playsInline = true
+      video.setAttribute('muted', '')
+      video.setAttribute('playsinline', '')
+      video.setAttribute('webkit-playsinline', '')
+      video.removeAttribute('controls')
+      video.play?.().catch(() => {})
+    })
     const updateScrollStory = () => {
       const root = mainRef.current
       if (!root) return
@@ -215,6 +249,16 @@ function CapabilityDetailPage({ testHero = false, testHeroVideo = false }) {
         const rect = opening.getBoundingClientRect()
         const scrollable = Math.max(opening.offsetHeight - window.innerHeight, 1)
         opening.style.setProperty('--opening-progress', Math.max(0, Math.min(1, -rect.top / scrollable)))
+      }
+      const problemStory = root.querySelector('.cap-detail__problem-story')
+      if (problemStory) {
+        const cards = problemStory.querySelectorAll('.cap-detail__problem-grid article')
+        const storyTop = problemStory.getBoundingClientRect().top + window.scrollY
+        const scrollable = Math.max(problemStory.offsetHeight - window.innerHeight, 1)
+        const progress = Math.max(0, Math.min(1, (window.scrollY - storyTop) / scrollable))
+        const activeIndex = Math.min(cards.length - 1, Math.max(0, Math.floor(progress * cards.length)))
+        problemStory.style.setProperty('--problem-progress', progress)
+        cards.forEach((card, index) => card.classList.toggle('is-active', index === activeIndex))
       }
       root.querySelectorAll('[data-cap-parallax]').forEach((element) => {
         const rect = element.getBoundingClientRect()
@@ -258,17 +302,14 @@ function CapabilityDetailPage({ testHero = false, testHeroVideo = false }) {
             </div>
             {testHero || testHeroVideo ? <BlackHoleCapabilityInstrument video={testHeroVideo} /> : <div className="cap-detail__problem-engine" data-cap-reveal>
               <div className="cap-detail__problem-engine-head"><span>THE PROBLEMS ANIKA CHOOSES</span><b>06 DOMAINS / 01 CAPABILITY</b></div>
+              <div className="cap-detail__problem-inputs">
+                {OPENING_PROBLEMS.map(([Icon, name], index) => <article key={name}><Icon aria-hidden="true" strokeWidth={1.25} /><span>{name}</span><small>{String(index + 1).padStart(2, '0')}</small></article>)}
+              </div>
               <div className="cap-detail__technology-core">
-                <img className="cap-detail__technology-core-image" src={assetUrl('deeptech-gargantua-core.png')} alt="" aria-hidden="true" />
                 <div><span>Environment</span><small>Physical world</small></div><i aria-hidden="true" /><b>Anika<br />technology<br />capability</b><i aria-hidden="true" /><div><span>Decision</span><small>Information that can support action</small></div>
               </div>
-              <div className="cap-detail__answer-stack">
-                <div className="cap-detail__problem-inputs">
-                  {OPENING_PROBLEMS.map(([Icon, name], index) => <article key={name}><Icon aria-hidden="true" strokeWidth={1.25} /><span>{name}</span><small>{String(index + 1).padStart(2, '0')}</small></article>)}
-                </div>
-                <div className="cap-detail__answer-output" aria-label="Capability outcomes">
-                  {OPENING_OUTCOMES.map(([Icon, name, copy], index) => <div key={name}><b>0{index + 1}</b><Icon aria-hidden="true" strokeWidth={1.25} /><p><span>{name}</span><small>{copy}</small></p></div>)}
-                </div>
+              <div className="cap-detail__answer-output" aria-label="Capability outcomes">
+                {OPENING_OUTCOMES.map(([Icon, name, copy], index) => <div key={name}><b>0{index + 1}</b><Icon aria-hidden="true" strokeWidth={1.25} /><p><span>{name}</span><small>{copy}</small></p></div>)}
               </div>
             </div>}
           </div>
@@ -280,17 +321,37 @@ function CapabilityDetailPage({ testHero = false, testHeroVideo = false }) {
           </div>
         </section>
 
+        <section className="cap-mobile-problem-data" aria-label="The problems Anika chooses">
+          <div className="cap-mobile-problem-data__head">
+            <span>The problems Anika chooses</span>
+            <b>06 domains / 01 capability</b>
+          </div>
+          <div className="cap-mobile-problem-data__domains">
+            {OPENING_PROBLEMS.map(([Icon, name], index) => (
+              <article key={name}>
+                <Icon aria-hidden="true" strokeWidth={1.3} />
+                <p><b>{name}</b><small>{String(index + 1).padStart(2, '0')}</small></p>
+              </article>
+            ))}
+          </div>
+          <div className="cap-mobile-problem-data__facts">
+            {openingFacts.map(([Icon, value, label]) => (
+              <article key={value}>
+                <i><Icon aria-hidden="true" strokeWidth={1.25} /></i>
+                <p><b>{value}</b><span>{label}</span></p>
+              </article>
+            ))}
+          </div>
+        </section>
 
         <section className="cap-exact__deep">
           <div className="cap-exact__wrap">
             <div className="cap-exact__manifesto cap-exact__manifesto--image">
               <figure data-cap-parallax>
-                <picture>
-                  <source media="(max-width: 700px)" srcSet="https://ik.imagekit.io/jxuol7kjt/deeptech-mobile.png" />
-                  <img src={assetUrl('deeptech-matter-v2.png')} alt="Physical matter being translated into a measurable scientific signal" />
-                </picture>
+                <video className="cap-exact__manifesto-video" src={MATTER_PARTICLES_VIDEO} autoPlay loop muted playsInline preload="auto" aria-label="Golden particles moving through a dark analytical field" />
+                <video className="cap-exact__manifesto-video-mobile" src={MATTER_PARTICLES_MOBILE_VIDEO} autoPlay loop muted playsInline preload="auto" aria-label="Golden particles moving through a vertical analytical field" />
               </figure>
-              <div><span>ANIKA / PROBLEM-LED TECHNOLOGY</span><p>At Anika, <em>the problem determines the technology.</em><br />The technology does not determine the problem.</p></div>
+              <div><span>ANIKA / PROBLEM-LED TECHNOLOGY</span><p>At Anika, <br></br><em>the problem <br /> determines the <br/>technology.</em><p className="cap_p">The technology does not determine the problem.</p></p></div>
             </div>
             <div className="cap-exact__discipline-board">
               {content.items.map(([name, heading, copy], index) => {
@@ -311,8 +372,10 @@ function CapabilityDetailPage({ testHero = false, testHeroVideo = false }) {
             <div className="cap-exact__eyebrow" data-cap-reveal>02 / The problems Anika chooses</div>
             <h2 data-cap-reveal>Important problems<br />do not wait.</h2>
             <p className="cap-exact__lead" data-cap-reveal>They exist in airports, borders, hospitals, factories, military environments, cities, laboratories and the everyday world.</p>
-            <div className="cap-detail__problem-grid">
-              {PROBLEM_AREAS.map(([Icon, name, heading, copy, capability, image], index) => <article data-cap-reveal key={name}><figure><img src={assetUrl(image)} alt="" loading="lazy" /></figure><div className="cap-detail__problem-card-head"><b>{String(index + 1).padStart(2, '0')}</b><Icon aria-hidden="true" strokeWidth={1.3} /></div><div className="cap-detail__problem-card-copy"><small>{name}</small><h3>{heading}</h3><p>{copy}</p><footer><b>ANIKA</b> / {capability}</footer></div></article>)}
+            <div className="cap-detail__problem-story">
+              <div className="cap-detail__problem-grid">
+                {PROBLEM_AREAS.map(([Icon, name, heading, copy, capability, image], index) => <article data-cap-reveal key={name}><figure><img src={assetUrl(image)} alt="" loading="lazy" /></figure><div className="cap-detail__problem-card-head"><b>{String(index + 1).padStart(2, '0')}</b><Icon aria-hidden="true" strokeWidth={1.3} /></div><div className="cap-detail__problem-card-copy"><small>{name}</small><h3>{heading}</h3><p>{copy}</p><footer><b>ANIKA</b> / {capability}</footer></div></article>)}
+              </div>
             </div>
           </div>
         </section>

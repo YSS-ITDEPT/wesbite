@@ -15,15 +15,7 @@ gsap.registerPlugin(ScrollTrigger, SplitText)
 // on unmount, and everything is disabled under prefers-reduced-motion.
 export function useScrollReveal(
   scopeRef,
-  {
-    intro = [],
-    introHeadings = [],
-    headings = [],
-    groups = [],
-    headingStart = 'top 88%',
-    headingEnd = 'top 46%',
-    headingScrub = 1.1,
-  } = {},
+  { intro = [], introHeadings = [], headings = [], groups = [] } = {},
 ) {
   useLayoutEffect(() => {
     const root = scopeRef.current
@@ -118,9 +110,9 @@ export function useScrollReveal(
               ease: 'none',
               scrollTrigger: {
                 trigger: heading,
-                start: headingStart,
-                end: headingEnd,
-                scrub: headingScrub,
+                start: 'top 88%',
+                end: 'top 46%',
+                scrub: 1.1,
               },
             },
           )
