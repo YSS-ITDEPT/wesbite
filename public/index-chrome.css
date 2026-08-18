@@ -750,3 +750,48 @@ html::-webkit-scrollbar-thumb:hover {
   .mnav-panel nav a::before,
   .mnav-panel nav a::after { display: none; }
 }
+
+/* Large-desktop tier (iMac/ultrawide/4K-class screens). Placed at the very
+   end of the file on purpose: several base rules it overrides (notably
+   `.site-footer { min-height:92vh }`) are defined further down in the
+   file than where this block used to live, and CSS resolves same-
+   specificity ties by *source order*, not by which media query matches —
+   so a media-scoped override earlier in the file can still lose to an
+   unconditional rule that comes after it. Keeping this block last
+   guarantees it always wins that tie, regardless of where in the file
+   future edits add or move base rules. */
+@media (min-width: 1900px), (min-width: 1600px) and (min-resolution: 2dppx) {
+  .index-header { height: clamp(86px, 3.4vh + 1vw, 128px); }
+  .index-header .brand > img { width: clamp(82px, 3.2vh + 1vw, 122px); height: clamp(82px, 3.2vh + 1vw, 122px); }
+  .index-header .brand b { font-size: clamp(18px, .6vw + .5vh, 26px); }
+  .index-header .brand small { font-size: clamp(12px, .35vw + .3vh, 16px); }
+  .index-header nav { gap: clamp(30px, 1.2vw + .8vh, 46px); }
+  .index-header nav a,
+  .index-header .contact { font-size: clamp(14px, .45vw + .4vh, 19px); }
+  .index-header .contact span { width: clamp(27px, 1.6vh, 36px); height: clamp(27px, 1.6vh, 36px); }
+
+  /* Footer: `.site-footer { min-height:92vh }` reserves a fixed share of
+     the viewport regardless of content. Content ceilings can't keep pace
+     with 92vh's unbounded growth on very tall screens, so cap the reserved
+     height itself here — plus scale the content so what remains still
+     reads as substantial rather than just "smaller empty space." */
+  .site-footer { min-height: clamp(700px, 58vh, 1080px); }
+  .footer-brand { gap: clamp(13px, .9vw, 22px); }
+  .footer-logo { width: clamp(42px, 2.4vw + 1vh, 68px); height: clamp(42px, 2.4vw + 1vh, 68px); }
+  .footer-brand b { font-size: clamp(14px, .5vw + .4vh, 20px); }
+  .footer-brand small { font-size: clamp(9px, .3vw + .25vh, 12px); }
+  .footer-status { font-size: clamp(10px, .4vw + .3vh, 14px); }
+  .site-footer a.footer-toplink { font-size: clamp(11px, .4vw + .35vh, 15px); }
+  .footer-toplink b { width: clamp(32px, 1.8vw + 1vh, 46px); height: clamp(32px, 1.8vw + 1vh, 46px); font-size: clamp(13px, .6vw + .4vh, 18px); }
+  .footer-main { padding: clamp(75px, 6vh + 2vw, 190px) 0 clamp(68px, 5.4vh + 1.8vw, 160px); }
+  .footer-statement > span, .footer-seal > span, .footer-nav div > span { font-size: clamp(11px, .4vw + .35vh, 15px); }
+  .footer-statement h2 { font-size: clamp(48px, 4vw + 3vh, 156px); }
+  .footer-statement p { max-width: 720px; font-size: clamp(15px, .6vw + .5vh, 21px); }
+  .footer-statement > a { max-width: 560px; padding: clamp(17px, 1.4vh, 24px) 0; font-size: clamp(11px, .4vw + .35vh, 15px); }
+  .footer-statement > a b { font-size: clamp(15px, .55vw + .45vh, 21px); }
+  .footer-seal > div { width: clamp(160px, 12vw + 6vh, 320px); height: clamp(160px, 12vw + 6vh, 320px); max-width: none; max-height: none; }
+  .footer-seal > small { font-size: clamp(8px, .3vw + .3vh, 11px); }
+  .footer-nav { gap: clamp(30px, 2vw, 50px); }
+  .footer-nav a { font-size: clamp(14px, .5vw + .4vh, 19px); }
+  .footer-bottom { min-height: clamp(92px, 8vh, 150px); font-size: clamp(10px, .35vw + .3vh, 14px); }
+}

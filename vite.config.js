@@ -4,7 +4,10 @@ import { resolve } from 'node:path'
 import { readFile } from 'node:fs/promises'
 import { mkdir, writeFile } from 'node:fs/promises'
 
-const reactRoutes = new Set(['/solutions', '/sol', '/testsol', '/testsol1', '/testsol2', '/about', '/contact', '/privacy', '/terms', '/home', '/deep-tech', '/deep-tech-test', '/deep-tech-video-test', '/deep-technology', '/capabilities/deep-technology'])
+// "/" and "/index"/"/index.html" are the Home page (React) — the site index.
+// The Platform page now lives at "/platform.html" only, served automatically
+// by Vite's static public-dir handling (same as "/capability.html").
+const reactRoutes = new Set(['/', '/index', '/index.html', '/solutions', '/sol', '/testsol', '/testsol1', '/testsol2', '/about', '/contact', '/privacy', '/terms', '/deep-tech', '/deep-tech-test', '/deep-tech-video-test', '/deep-technology', '/capabilities/deep-technology'])
 
 function routeStaticAndReactPages() {
   return {
@@ -24,14 +27,6 @@ function routeStaticAndReactPages() {
             message: 'Contact submissions are available on the production server.',
           }))
           return
-        } else if (routePath === '/' || routePath === '/index.html') {
-          try {
-            res.setHeader('Content-Type', 'text/html; charset=utf-8')
-            res.end(await readFile(resolve(import.meta.dirname, 'public/index.html')))
-          } catch (error) {
-            next(error)
-          }
-          return
         } else if (reactRoutes.has(routePath)) {
           req.url = `/react.html${req.url.slice(pathname.length)}`
         }
@@ -44,7 +39,7 @@ function routeStaticAndReactPages() {
 
 function prepareCpanelBuild(deployBase) {
   const localTargets = [
-    'index.html',
+    'platform.html',
     'capability.html',
     'solutions',
     'sol',
@@ -52,7 +47,6 @@ function prepareCpanelBuild(deployBase) {
     'contact',
     'privacy',
     'terms',
-    'home',
     'index-chrome.css',
     'page-transition.js',
     'site-crosshair.js',
@@ -64,6 +58,7 @@ function prepareCpanelBuild(deployBase) {
       html,
     )
     return prefixed
+      .replaceAll('href="/"', `href="${deployBase}/"`)
       .replaceAll('"../solutions.html"', `"${deployBase}/solutions/"`)
       .replaceAll('"../about/about.html"', `"${deployBase}/about/"`)
       .replaceAll('"../contact.html"', `"${deployBase}/contact/"`)
@@ -73,7 +68,7 @@ function prepareCpanelBuild(deployBase) {
     name: 'prepare-cpanel-build',
     async closeBundle() {
       const dist = resolve(import.meta.dirname, 'dist')
-      const staticPages = ['index.html', 'capability.html']
+      const staticPages = ['platform.html', 'capability.html']
 
       for (const filename of staticPages) {
         const path = resolve(dist, filename)
@@ -82,7 +77,12 @@ function prepareCpanelBuild(deployBase) {
 
       const reactEntry = resolve(dist, 'react.html')
       const reactHtml = await readFile(reactEntry, 'utf8')
-      for (const route of ['solutions', 'sol', 'testsol', 'testsol1', 'testsol2', 'about', 'contact', 'privacy', 'terms', 'home', 'deep-tech', 'deep-tech-test', 'deep-tech-video-test', 'deep-technology', 'capabilities/deep-technology']) {
+
+      // "/" and "/index.html" are the site index (Home) — write the React
+      // shell directly to the dist root so both resolve on a static host.
+      await writeFile(resolve(dist, 'index.html'), reactHtml)
+
+      for (const route of ['index', 'solutions', 'sol', 'testsol', 'testsol1', 'testsol2', 'about', 'contact', 'privacy', 'terms', 'deep-tech', 'deep-tech-test', 'deep-tech-video-test', 'deep-technology', 'capabilities/deep-technology']) {
         const routeDirectory = resolve(dist, route)
         await mkdir(routeDirectory, { recursive: true })
         await writeFile(resolve(routeDirectory, 'index.html'), reactHtml)

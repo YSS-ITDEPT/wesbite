@@ -1,5 +1,4 @@
 import { Routes, Route } from 'react-router-dom'
-import HomePage from './pages/HomePage.jsx'
 import AdaptiveSolutionsPage from './pages/AdaptiveSolutionsPage.jsx'
 import SolutionsPage from './pages/SolutionsPage.jsx'
 import SolPage from './pages/SolPage.jsx'
@@ -15,7 +14,9 @@ import './App.css'
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
+      <Route path="/" element={<CapabilityDetailPage testHero />} />
+      <Route path="/index" element={<CapabilityDetailPage testHero />} />
+      <Route path="/index.html" element={<CapabilityDetailPage testHero />} />
       <Route path="/solutions" element={<AdaptiveSolutionsPage />} />
       <Route path="/sol" element={<SolPage />} />
       <Route path="/testsol" element={<TestSolPage />} />
@@ -25,7 +26,6 @@ function App() {
       <Route path="/contact" element={<ContactPage />} />
       <Route path="/privacy" element={<PrivacyPage />} />
       <Route path="/terms" element={<TermsPage />} />
-      <Route path="/home" element={<CapabilityDetailPage testHero />} />
       <Route path="/capabilities/deep-technology" element={<CapabilityDetailPage />} />
       <Route path="/deep-technology" element={<CapabilityDetailPage />} />
       <Route path="/deep-tech" element={<CapabilityDetailPage />} />
