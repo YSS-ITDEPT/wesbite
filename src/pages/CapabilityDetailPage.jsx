@@ -9,7 +9,7 @@ const BASE_URL = import.meta.env.BASE_URL
 const pageUrl = (path) => `${BASE_URL}${path.replace(/^\//, '')}`
 const assetUrl = (path) => pageUrl(`/${path}`)
 const BLACK_HOLE_VIDEO = 'https://ik.imagekit.io/7oaqyvwnm/black-hole_apo8_prob4.mp4'
-const BLACK_HOLE_MOBILE_VIDEO = BLACK_HOLE_VIDEO
+const BLACK_HOLE_MOBILE_VIDEO = assetUrl('deeptech-black-hole-mobile-safari.mp4')
 const MATTER_PARTICLES_VIDEO = 'https://ik.imagekit.io/7oaqyvwnm/golden_particles.mp4'
 const MATTER_PARTICLES_MOBILE_VIDEO = 'https://ik.imagekit.io/y0yf2c1cwp/golden_particles_mobile_9x16.mp4'
 const ACCRETION_PLASMA_VIDEO = BLACK_HOLE_VIDEO

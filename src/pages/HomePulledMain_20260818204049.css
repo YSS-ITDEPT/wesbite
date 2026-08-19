@@ -1318,7 +1318,7 @@
   .cap-detail__opening-message--primary h1,.cap-detail__opening-message--physical h2 { font-size:clamp(42px,12vw,60px); }
   .cap-detail__opening-stage .cap-detail__problem-engine { min-height:auto; }
   .cap-exact__manifesto--image,.cap-exact__manifesto--image > div { min-height:clamp(500px,72svh,580px); }
-  .cap-exact__manifesto--image figure::after { background:linear-gradient(0deg,rgba(5,7,8,.78),rgba(5,7,8,.18) 44%,rgba(5,7,8,.5)); }
+  /* .cap-exact__manifesto--image figure::after { background:linear-gradient(0deg,rgba(5,7,8,.78),rgba(5,7,8,.18) 44%,rgba(5,7,8,.5)); } */
   .cap-exact__manifesto-video { display:none; }
   .cap-exact__manifesto-video-mobile { display:block;object-position:center;transform:scale(1.02) translate3d(0,calc((var(--parallax,.5) - .5) * 14px),0); }
   .cap-exact__manifesto--image img { object-position:center top;transform:scale(1.12) translate3d(0,-8%,0); }
@@ -4245,7 +4245,7 @@
 
   .cap-detail.cap-exact.cap-exact--gravity .cap-detail__opening-copy {
     flex:0 0 auto !important;
-    min-height:clamp(240px,34svh,286px) !important;
+    min-height:clamp(240px,34svh,263px) !important;
   }
 
   .cap-detail.cap-exact.cap-exact--gravity .cap-gravity--video {
@@ -4260,22 +4260,22 @@
 
   .cap-detail.cap-exact.cap-exact--gravity .cap-gravity--video .cap-gravity__field {
     width:100vw !important;
-    height:clamp(170px,28svh,244px) !important;
+    height:clamp(190px,30svh,260px) !important;
     min-height:0 !important;
     max-height:none !important;
     margin:0 !important;
     overflow:hidden !important;
     aspect-ratio:auto !important;
-    background:#020202 url('/deeptech-black-hole-gargantua.png') center / cover no-repeat !important;
+    background:#020202 url('/deeptech-black-hole-gargantua.png') center / contain no-repeat !important;
   }
 
   .cap-detail.cap-exact.cap-exact--gravity .cap-gravity--video .cap-gravity__field video {
-    inset:-10% 0 !important;
+    inset:0 !important;
     width:100% !important;
-    height:120% !important;
-    object-fit:cover !important;
+    height:100% !important;
+    object-fit:contain !important;
     object-position:center !important;
-    transform:scale(1.08) !important;
+    transform:scale(1) !important;
     transform-origin:center !important;
     pointer-events:none !important;
   }
@@ -4543,7 +4543,534 @@
   }
 
   .cap-detail.cap-exact.cap-exact--gravity .cap-gravity--video .cap-gravity__field {
+    width:103% !important;
+  }
+}
+
+@media (min-width:390px) and (max-width:700px) {
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity--video .cap-gravity__field video {
+    transform:scale(1.12) !important;
+  }
+}
+
+@media (min-width:480px) and (max-width:700px) {
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity--video .cap-gravity__field video {
+    transform:scale(1.2) !important;
+  }
+}
+
+@media (min-width:600px) and (max-width:700px) {
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity--video .cap-gravity__field video {
+    transform:scale(1.3) !important;
+  }
+}
+
+.cap-gravity__mobile-endpoints {
+  display:none;
+}
+
+@media (max-width:700px) {
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity--video .cap-gravity__field {
+    position:relative !important;
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__mobile-endpoints {
+    position:absolute;
+    inset:0;
+    z-index:4;
+    display:block;
+    pointer-events:none;
+    user-select:none;
+    -webkit-user-select:none;
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__mobile-endpoint {
+    position:absolute;
+    top:50%;
+    display:grid;
+    gap:clamp(2px,.8vw,5px);
+    width:clamp(72px,24vw,118px);
+    transform:translateY(-50%);
+    color:#f6f3ec;
+    text-shadow:0 2px 10px rgba(0,0,0,.96),0 0 20px rgba(0,0,0,.9);
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__mobile-endpoint--environment {
+    left:clamp(6px,2.6vw,18px);
+    text-align:left;
+    justify-items:start;
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__mobile-endpoint--decision {
+    right:clamp(6px,2.6vw,18px);
+    text-align:right;
+    justify-items:end;
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__mobile-endpoint b {
+    color:#c9ceca;
+    font:800 clamp(6.5px,2vw,10px)/1.05 "Roboto Mono",monospace;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__mobile-endpoint span {
+    max-width:100%;
+    color:#fffaf2;
+    font:600 clamp(8px,2.65vw,12px)/1.15 "Space Grotesk",system-ui,sans-serif;
+  }
+}
+
+@media (max-width:360px) {
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__mobile-endpoint {
+    width:clamp(60px,23vw,78px);
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__mobile-endpoint b {
+    font-size:6px;
+    letter-spacing:.1em;
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__mobile-endpoint span {
+    font-size:7.4px;
+    line-height:1.1;
+  }
+}
+
+/* Problem cards: cards 01 and 06 should show their images cleanly, without
+   the dark wash/gradient layer or image dimming used on the other cards. */
+.cap-detail__problem-grid article:nth-child(1) > figure::after,
+.cap-detail__problem-grid article:nth-child(6) > figure::after {
+  display:none !important;
+  background:none !important;
+}
+
+.cap-detail__problem-grid article:nth-child(1) > figure img,
+.cap-detail__problem-grid article:nth-child(6) > figure img,
+.cap-detail__problem-grid article:nth-child(1):hover > figure img,
+.cap-detail__problem-grid article:nth-child(6):hover > figure img {
+  filter:none !important;
+}
+
+/* Mobile hero domain grid: keep the six problem labels readable on tiny
+   phones by making each cell a compact vertical tile instead of squeezing
+   icon + copy into a narrow horizontal row. */
+@media (max-width:700px) {
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__inputs.cap-mobile-problem-data__domains--inline {
+    gap:4px !important;
+    overflow:visible !important;
+    padding:4px 4px 7px !important;
+    background:#030303 !important;
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__inputs.cap-mobile-problem-data__domains--inline article {
+    min-height:clamp(64px,9svh,78px) !important;
+    grid-template-columns:1fr !important;
+    grid-template-rows:auto auto !important;
+    align-content:center !important;
+    justify-items:center !important;
+    gap:4px !important;
+    padding:7px 3px 8px !important;
+    overflow:visible !important;
+    border:1px solid rgba(255,255,255,.1) !important;
+    border-radius:4px !important;
+    background:linear-gradient(145deg,rgba(255,106,0,.055),rgba(8,11,12,.96) 46%,rgba(8,11,12,.98)) !important;
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__inputs.cap-mobile-problem-data__domains--inline svg {
+    width:clamp(24px,7vw,34px) !important;
+    height:clamp(24px,7vw,34px) !important;
+    padding:clamp(5px,1.8vw,8px) !important;
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__inputs.cap-mobile-problem-data__domains--inline p {
+    display:grid !important;
+    min-width:0 !important;
+    max-width:100% !important;
+    gap:2px !important;
+    align-items:center !important;
+    justify-items:center !important;
+    margin:0 !important;
+    overflow:visible !important;
+    text-align:center !important;
+    line-height:1 !important;
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__inputs.cap-mobile-problem-data__domains--inline b {
+    display:block !important;
+    max-width:100% !important;
+    overflow:visible !important;
+    white-space:normal !important;
+    overflow-wrap:normal !important;
+    color:#f7f4ef !important;
+    font-size:clamp(8px,2.55vw,10.5px) !important;
+    line-height:1.08 !important;
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__inputs.cap-mobile-problem-data__domains--inline small {
+    order:-1 !important;
+    margin:0 !important;
+    color:var(--cap-orange) !important;
+    font-size:clamp(5.5px,1.7vw,7px) !important;
+    line-height:1 !important;
+  }
+}
+
+@media (max-width:360px) {
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__inputs.cap-mobile-problem-data__domains--inline {
+    gap:3px !important;
+    padding-inline:3px !important;
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__inputs.cap-mobile-problem-data__domains--inline article {
+    min-height:61px !important;
+    padding:6px 2px 7px !important;
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__inputs.cap-mobile-problem-data__domains--inline b {
+    font-size:7.4px !important;
+    letter-spacing:-.01em !important;
+  }
+}
+
+/* Final mobile safety pass: keep the opening header labels below the fixed
+   navbar, and remove every figure overlay layer from problem cards 01 + 06. */
+@media (max-width:700px) {
+  .cap-detail.cap-exact.cap-exact--gravity .cap-detail__opening-stage {
+    padding-top:calc(env(safe-area-inset-top, 0px) + 82px) !important;
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-detail__opening-stage > header {
+    position:relative !important;
+    z-index:12 !important;
+    margin-top:0 !important;
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-detail__opening-stage > header span,
+  .cap-detail.cap-exact.cap-exact--gravity .cap-detail__opening-stage > header b {
+    display:block !important;
+    visibility:visible !important;
+    opacity:1 !important;
+  }
+}
+
+.cap-detail.cap-exact .cap-exact__problems .cap-detail__problem-grid article:nth-child(1) > figure::after,
+.cap-detail.cap-exact .cap-exact__problems .cap-detail__problem-grid article:nth-child(6) > figure::after,
+.cap-detail__problem-grid article:nth-child(1) > figure::after,
+.cap-detail__problem-grid article:nth-child(6) > figure::after {
+  display:none !important;
+  content:none !important;
+  opacity:0 !important;
+  background:transparent !important;
+  background-image:none !important;
+}
+
+/* Desktop cross-browser stabilization:
+   1) Problem-card footers must sit on one common baseline inside every card,
+      even when browser font metrics wrap paragraphs differently.
+   2) The domain grid bottom rule must be physically drawn, not dependent on
+      subpixel border painting at the grid edge. */
+@media (min-width:701px) {
+  .cap-detail.cap-exact .cap-exact__problems .cap-detail__problem-grid {
+    align-items:stretch !important;
+  }
+
+  .cap-detail.cap-exact .cap-exact__problems .cap-detail__problem-grid article {
+    display:flex !important;
+    height:100% !important;
+    min-height:clamp(420px,32vw,560px) !important;
+    flex-direction:column !important;
+  }
+
+  .cap-detail.cap-exact .cap-exact__problems .cap-detail__problem-grid article > figure {
+    flex:0 0 clamp(196px,15vw,274px) !important;
+    height:auto !important;
+  }
+
+  .cap-detail.cap-exact .cap-exact__problems .cap-detail__problem-grid article > .cap-detail__problem-card-copy {
+    display:grid !important;
+    min-height:0 !important;
+    flex:1 1 auto !important;
+    grid-template-rows:auto auto auto minmax(12px,1fr) auto !important;
+    align-content:stretch !important;
+  }
+
+  .cap-detail.cap-exact .cap-exact__problems .cap-detail__problem-card-copy footer {
+    grid-row:5 !important;
+    align-self:end !important;
     width:100% !important;
+    margin-top:0 !important;
+  }
+
+  .cap-exact__domain-grid {
+    position:relative !important;
+    overflow:visible !important;
+    border-bottom:0 !important;
+    box-shadow:inset 0 -1px 0 rgba(16,24,32,.24) !important;
+  }
+
+  .cap-exact__domain-grid::after {
+    position:absolute;
+    right:0;
+    bottom:0;
+    left:0;
+    z-index:3;
+    height:1px;
+    content:"";
+    pointer-events:none;
+    background:rgba(16,24,32,.28);
+    transform:translateZ(0);
+  }
+
+  .cap-exact__domain-grid article {
+    box-shadow:inset 0 -1px 0 rgba(16,24,32,.17) !important;
+  }
+}
+
+/* Remove the dark overlay wash from the image manifesto figure completely. */
+.cap-exact__manifesto.cap-exact__manifesto--image figure::after,
+.cap-exact__manifesto--image figure::after {
+  display:none !important;
+  content:none !important;
+  opacity:0 !important;
+  background:none !important;
+  background-image:none !important;
+}
+
+/* Short mobile devices, especially iPhone SE: the sticky hero is one viewport
+   tall, so video + facts + domains must compress as a system. This keeps the
+   full 3x2 domain grid visible instead of slicing the second row. */
+@media (max-width:700px) and (max-height:740px) {
+  .cap-detail.cap-exact.cap-exact--gravity .cap-detail__opening-stage {
+    padding-top:calc(env(safe-area-inset-top, 0px) + 70px) !important;
+    padding-bottom:4px !important;
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-detail__opening-copy {
+    min-height:clamp(194px,29svh,222px) !important;
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity--video .cap-gravity__field {
+    height:clamp(126px,20svh,158px) !important;
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-mobile-problem-data__facts--inline {
+    gap:1px !important;
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-mobile-problem-data__facts--inline article,
+  .cap-detail.cap-exact.cap-exact--gravity .cap-mobile-problem-data__facts--inline article:last-child {
+    min-height:clamp(34px,5.2svh,42px) !important;
+    grid-template-columns:22px minmax(0,1fr) !important;
+    gap:4px !important;
+    padding:4px 3px !important;
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-mobile-problem-data__facts--inline i {
+    width:20px !important;
+    height:20px !important;
+    padding:4px !important;
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-mobile-problem-data__facts--inline b {
+    font-size:6.8px !important;
+    line-height:1 !important;
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-mobile-problem-data__facts--inline span {
+    font-size:4.4px !important;
+    line-height:1.08 !important;
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__head.cap-mobile-problem-data__head--inline {
+    min-height:18px !important;
+    padding:3px 6px 2px !important;
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__head.cap-mobile-problem-data__head--inline span,
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__head.cap-mobile-problem-data__head--inline b {
+    font-size:5px !important;
+    line-height:1 !important;
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__inputs.cap-mobile-problem-data__domains--inline {
+    gap:3px !important;
+    padding:3px !important;
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__inputs.cap-mobile-problem-data__domains--inline article {
+    min-height:clamp(43px,6.2svh,50px) !important;
+    gap:2px !important;
+    padding:4px 2px !important;
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__inputs.cap-mobile-problem-data__domains--inline svg {
+    width:22px !important;
+    height:22px !important;
+    padding:5px !important;
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__inputs.cap-mobile-problem-data__domains--inline b {
+    font-size:7px !important;
+    line-height:1 !important;
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__inputs.cap-mobile-problem-data__domains--inline small {
+    font-size:5px !important;
+    line-height:1 !important;
+  }
+}
+
+/* Mobile facts: keep each icon visually centered in its icon column. */
+@media (max-width:700px) {
+  .cap-detail.cap-exact.cap-exact--gravity .cap-mobile-problem-data__facts--inline article {
+    justify-items:stretch !important;
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-mobile-problem-data__facts--inline i {
+    justify-self:center !important;
+    align-self:center !important;
+    display:grid !important;
+    place-items:center !important;
+    box-sizing:border-box !important;
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-mobile-problem-data__facts--inline i svg {
+    display:block !important;
+    box-sizing:border-box !important;
+    width:58% !important;
+    height:58% !important;
+    margin:0 !important;
+    padding:0 !important;
+    transform:none !important;
+    translate:none !important;
+  }
+}
+
+@media (max-width:700px) and (max-height:740px) {
+  .cap-detail.cap-exact.cap-exact--gravity .cap-mobile-problem-data__facts--inline i {
+    width:22px !important;
+    height:22px !important;
+    padding:0 !important;
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-mobile-problem-data__facts--inline i svg {
+    width:13px !important;
+    height:13px !important;
+  }
+}
+
+@media (max-width:700px) and (min-height:741px) {
+  .cap-detail.cap-exact.cap-exact--gravity .cap-mobile-problem-data__facts--inline i {
+    width:clamp(26px,7.2vw,32px) !important;
+    height:clamp(26px,7.2vw,32px) !important;
+    padding:0 !important;
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-mobile-problem-data__facts--inline i svg {
+    width:clamp(15px,4.3vw,19px) !important;
+    height:clamp(15px,4.3vw,19px) !important;
+  }
+}
+
+/* Mobile black-hole connector: two separate orange guide lines with a clear
+   center gap so they never cross the Anika technology core. */
+@media (max-width:700px) {
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__mobile-endpoints::before,
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__mobile-endpoints::after {
+    position:absolute;
+    top:50%;
+    z-index:1;
+    height:1px;
+    content:"";
+    pointer-events:none;
+    background:linear-gradient(90deg,rgba(255,106,0,.08),rgba(255,126,24,.85),rgba(255,106,0,.22));
+    box-shadow:0 0 8px rgba(255,106,0,.28);
+    transform:translateY(-50%);
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__mobile-endpoints::before {
+    left:clamp(30px,13vw,58px);
+    width:clamp(54px,25vw,148px);
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__mobile-endpoints::after {
+    right:clamp(30px,13vw,58px);
+    width:clamp(54px,25vw,148px);
+    background:linear-gradient(90deg,rgba(255,106,0,.22),rgba(255,126,24,.85),rgba(255,106,0,.08));
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__mobile-endpoint {
+    z-index:3;
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__mobile-endpoint::after {
+    position:absolute;
+    top:50%;
+    width:7px;
+    height:7px;
+    content:"";
+    border:1px solid rgba(255,126,24,.9);
+    border-radius:50%;
+    background:rgba(3,3,3,.7);
+    box-shadow:0 0 9px rgba(255,106,0,.28);
+    transform:translateY(-50%);
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__mobile-endpoint--environment::after {
+    right:calc(-1 * clamp(20px,6vw,34px));
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__mobile-endpoint--decision::after {
+    left:calc(-1 * clamp(20px,6vw,34px));
+  }
+}
+
+@media (max-width:360px) {
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__mobile-endpoints::before,
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__mobile-endpoints::after {
+    width:clamp(40px,22vw,70px);
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__mobile-endpoints::before {
+    left:36px;
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__mobile-endpoints::after {
+    right:36px;
+  }
+}
+
+/* Short-phone overflow fix:
+   Keep the opening as a scroll scene so --opening-progress still swaps the
+   primary/physical text, but allow the sticky stage to become taller than the
+   viewport on small-height phones. This prevents the lower domain tiles from
+   being clipped without changing their font sizes or visual design. */
+@media (max-width:700px) and (max-height:820px) {
+  .cap-detail.cap-exact.cap-exact--gravity .cap-detail__opening {
+    height:220vh !important;
+    height:220svh !important;
+    min-height:0 !important;
+    overflow:visible !important;
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-detail__opening-stage {
+    position:sticky !important;
+    top:0 !important;
+    height:auto !important;
+    min-height:100vh !important;
+    min-height:100svh !important;
+    overflow:visible !important;
+    padding-bottom:calc(env(safe-area-inset-bottom, 0px) + 18px) !important;
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-detail__opening-layout,
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity--video {
+    overflow:visible !important;
+  }
+
+  .cap-detail.cap-exact.cap-exact--gravity .cap-gravity__inputs.cap-mobile-problem-data__domains--inline {
+    margin-bottom:10px !important;
   }
 }
 

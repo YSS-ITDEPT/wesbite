@@ -12,6 +12,7 @@ import CapabilityDetailPage from './pages/CapabilityDetailPage.jsx'
 import DeepTechPageMain from './pages/DeepTechPageMain.jsx'
 import HomePageMain from './pages/HomePageMain.jsx'
 import HomePulledMain_20260818204049 from './pages/HomePulledMain_20260818204049.jsx'
+import HomePulledMainClone_20260819 from './pages/HomePulledMainClone_20260819.jsx'
 import './App.css'
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
       <Route path="/home-main" element={<HomePageMain />} />
       <Route path="/deep-tech-main" element={<DeepTechPageMain />} />
       <Route path="/home-pulled-main" element={<HomePulledMain_20260818204049 testHero />} />
+      <Route path="/home-pulled-main-clone" element={<HomePulledMainClone_20260819 testHero />} />
       <Route path="/solutions" element={<AdaptiveSolutionsPage />} />
       <Route path="/sol" element={<SolPage />} />
       <Route path="/testsol" element={<TestSolPage />} />

@@ -4,7 +4,7 @@ import Header from '../components/Header.jsx'
 import Footer from '../components/Footer.jsx'
 import { useScrollReveal } from '../hooks/useScrollReveal.js'
 import './HomePulledIndexChrome.css'
-import './HomePulledMain_20260818204049.css'
+import './HomePulledMainClone_20260819.css'
 
 const BASE_URL = import.meta.env.BASE_URL
 const pageUrl = (path) => `${BASE_URL}${path.replace(/^\//, '')}`
@@ -14,7 +14,7 @@ const BLACK_HOLE_VIDEO = 'https://ik.imagekit.io/f01kcbjdo/black-hole_apo8_prob4
 // The desktop asset carries an AAC audio track and a 4K/L5.2 profile, both of which are
 // known to make iOS Safari fall back to the native "tap to play" button instead of
 // autoplaying, even when the element is muted.
-const BLACK_HOLE_MOBILE_VIDEO = 'https://ik.imagekit.io/d9wt8plt0/watermark-removed-Black_hole_art_direction_guidelines_202608191030.mp4'
+const BLACK_HOLE_MOBILE_VIDEO = 'https://ik.imagekit.io/d9wt8plt0/black_hole.mp4'
 const MATTER_PARTICLES_VIDEO = 'https://ik.imagekit.io/7oaqyvwnm/golden_particles.mp4'
 // Mobile-Safari-safe encode of the same clip: H.264 Main/L4.0, yuv420p, no audio, faststart.
 const MATTER_PARTICLES_MOBILE_VIDEO = assetUrl('deeptech-golden-particles-mobile-safari.mp4')
@@ -259,7 +259,7 @@ function BlackHoleCapabilityInstrument({ video = false, facts = OPENING_FACTS })
   )
 }
 
-function HomePulledMain_20260818204049({ testHero = false, testHeroVideo = false }) {
+function HomePulledMainClone_20260819({ testHero = false, testHeroVideo = false }) {
   const content = PAGES.deepTechnology
   const chainContent = PAGES.technologyChain
   const openingFacts = testHero ? [...OPENING_FACTS, [ScanSearch, '25+', 'Granted Global Patents']] : OPENING_FACTS
@@ -513,6 +513,6 @@ function HomePulledMain_20260818204049({ testHero = false, testHeroVideo = false
   )
 }
 
-export default HomePulledMain_20260818204049
+export default HomePulledMainClone_20260819
 
 
