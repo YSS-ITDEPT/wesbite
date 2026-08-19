@@ -21,7 +21,7 @@ import './ContactPage.css'
 
 const CONTACT_HERO_BG = 'https://ik.imagekit.io/jxuol7kjt/ChatGPT%20Image%20Jul%2023,%202026,%2009_35_04%20AM.png'
 const CONTACT_FORM_IMAGE =
-  'https://ik.imagekit.io/jxuol7kjt/ChatGPT%20Image%20Jul%2023,%202026,%2001_18_50%20PM.png'
+  'https://ik.imagekit.io/y0yf2c1cwp/contact.webp'
 
 const LOCATIONS = [
   {
@@ -140,7 +140,14 @@ function ContactPage() {
       <Header alwaysVisible />
       <main className="contact-page" ref={mainRef}>
         <section className="contact-hero" aria-label="Contact Anika Sterilis">
-          <img className="contact-hero__image" src={CONTACT_HERO_BG} alt="" aria-hidden="true" />
+          <img
+            className="contact-hero__image"
+            src={CONTACT_HERO_BG}
+            alt=""
+            aria-hidden="true"
+            decoding="async"
+            fetchPriority="high"
+          />
           <div className="contact-hero__overlay" />
 
           <div className="contact-hero__content">
@@ -158,7 +165,7 @@ function ContactPage() {
           </div>
         </section>
 
-        <section className="contact-locations" aria-labelledby="contact-locations-title">
+        <section className="contact-locations contact-page__lazy-zone" aria-labelledby="contact-locations-title">
           <div className="contact-locations__header">
             <p className="contact-locations__kicker">
               <span />
@@ -216,7 +223,12 @@ function ContactPage() {
             </div>
 
             <div className="contact-locations__media">
-              <IndiaDotMap background="transparent" size={520} />
+              <IndiaDotMap
+                background="transparent"
+                size={520}
+                animate={false}
+                className="contact-locations__india-map"
+              />
             </div>
 
             <div className="contact-locations__card" key={LOCATIONS[1].name}>
@@ -262,7 +274,7 @@ function ContactPage() {
           </div>
         </section>
 
-        <section className="contact-inquiry" aria-labelledby="contact-inquiry-title">
+        <section className="contact-inquiry contact-page__lazy-zone" aria-labelledby="contact-inquiry-title">
           <div className="contact-inquiry__shell">
             <div
               className="contact-inquiry__visual"

@@ -6960,6 +6960,8 @@ body {
 
   .proof-list article > b { font-size: clamp(62px, 3.6vw, 80px); }
   .proof-list article h3 { font-size: clamp(28px, 2vw, 36px); }
+
+  .hero-01 .h1-seal { width: clamp(210px, 11vw, 260px); }
 }
 
 @media (min-width: 1920px) {
@@ -6988,10 +6990,18 @@ body {
 
   .parade-copy { width: min(100%, 880px); max-width: 880px; }
   .parade-copy h3 { font-size: clamp(82px, 4.6vw, 100px); }
-  .parade-word { font-size: clamp(150px, 25vw, 460px); }
+  /* Ceiling deliberately held close to the 1600px tier (not scaled up
+     proportionally with everything else): .parade-word is bottom-anchored
+     and right/left-anchored to the row edge, so a bigger font just extends
+     its far edge further under .parade-media — past this point that starts
+     swallowing whole leading letters instead of reading as a dramatic
+     background word. */
+  .parade-word { font-size: clamp(150px, 25vw, 420px); }
 
   .proof-list article > b { font-size: clamp(76px, 4vw, 94px); }
   .proof-list article h3 { font-size: clamp(34px, 2.2vw, 40px); }
+
+  .hero-01 .h1-seal { width: clamp(250px, 11vw, 300px); }
 }
 
 @media (min-width: 2400px) {
@@ -7020,8 +7030,64 @@ body {
 
   .parade-copy { width: min(100%, 1020px); max-width: 1020px; }
   .parade-copy h3 { font-size: clamp(100px, 5vw, 114px); }
-  .parade-word { font-size: clamp(170px, 26vw, 520px); }
+  .parade-word { font-size: clamp(170px, 26vw, 450px); }
 
   .proof-list article > b { font-size: clamp(92px, 4.4vw, 104px); }
   .proof-list article h3 { font-size: clamp(40px, 2.4vw, 48px); }
+
+  .hero-01 .h1-seal { width: clamp(280px, 11vw, 340px); }
+}
+
+/* Fix: the pinned "Active chemical intelligence" viewport is a fixed 100vh
+   box with overflow:hidden. Every height above is a static calc() that
+   estimates .proof-heading's rendered height (a magic number per
+   breakpoint) — whenever the real heading height drifts from that estimate
+   (e.g. the title wrapping to two lines at common laptop widths), the sum
+   exceeds 100vh and the second card row is clipped off the bottom. This is
+   reproducible even at an ordinary 1366x768 laptop viewport, well outside
+   the existing short-viewport media queries. Flex lets the browser give
+   .proof-list exactly the space left over after the heading and the
+   "Capability focus" bar actually render, so no estimate can go stale —
+   every height: calc(...) above still applies as a starting point but can
+   no longer cause overflow. */
+.proof-overview-pin {
+  display: flex;
+  flex-direction: column;
+}
+.proof-heading,
+.proof-sequence {
+  flex: 0 0 auto;
+}
+.proof-list {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+/* Fix: the numeral was grid-row:2 with align-self:end, sharing that row
+   with the paragraph. Row height comes from the taller of the two, so a
+   card whose paragraph is only one line (e.g. card 03) leaves the row
+   taller than its own number and the end-aligned numeral drops to the
+   bottom of that leftover space — reading visibly lower than neighbouring
+   cards whose longer paragraphs fill the row themselves. Aligning the
+   numeral to the start of the row (matching the paragraph) keeps every
+   card's numeral level with the first line of its paragraph regardless of
+   how many lines that paragraph wraps to. */
+.proof-list article > b {
+  align-self: start;
+}
+
+/* Fix: aligning the numeral to the start of its row (above) only levels
+   numbers whose cards share the same heading height. Headings vary between
+   one and two lines depending on their own text length (e.g. "Active
+   On-Demand Sampling" vs "DDMS-Optimized Detection Result"), which shifts
+   where each card's paragraph — and therefore its numeral — begins.
+   Reserving two lines of heading height on every card, even the ones whose
+   heading only needs one, keeps every card's paragraph/numeral row
+   starting at the same offset regardless of heading length. Desktop/tablet
+   only: mobile stacks the module below in normal flow, where this
+   reservation isn't needed. */
+@media (min-width: 801px) {
+  .proof-list article h3 {
+    min-height: 2.6em;
+  }
 }

@@ -1,14 +1,24 @@
-import { useEffect, useRef } from 'react'
+﻿import { useEffect, useRef } from 'react'
 import { Atom, BrainCircuit, Building2, ChartNoAxesCombined, ChevronsRight, Cog, Crosshair, Droplets, Factory, Globe2, Grid2X2, HeartPulse, Landmark, Microscope, Network, ScanLine, ScanSearch, ShieldAlert, ShieldCheck, Target, TestTube2, Wind } from 'lucide-react'
 import Header from '../components/Header.jsx'
 import Footer from '../components/Footer.jsx'
 import { useScrollReveal } from '../hooks/useScrollReveal.js'
-import './CapabilityDetailPage.css'
+import './HomePulledIndexChrome.css'
+import './HomePulledMain_20260818204049.css'
 
 const BASE_URL = import.meta.env.BASE_URL
 const pageUrl = (path) => `${BASE_URL}${path.replace(/^\//, '')}`
 const assetUrl = (path) => pageUrl(`/${path}`)
-const BLACK_HOLE_VIDEO = 'https://ik.imagekit.io/f01kcbjdo/Create_black_hole_animation_4K_202608161806_gwr_video_mvp.mp4'
+const BLACK_HOLE_VIDEO = 'https://ik.imagekit.io/f01kcbjdo/black-hole_apo8_prob4%20(1).mp4'
+// Dedicated mobile-Safari-safe encode: H.264 Main/L4.0, yuv420p, no audio track, faststart.
+// The desktop asset carries an AAC audio track and a 4K/L5.2 profile, both of which are
+// known to make iOS Safari fall back to the native "tap to play" button instead of
+// autoplaying, even when the element is muted.
+const BLACK_HOLE_MOBILE_VIDEO = assetUrl('deeptech-black-hole-mobile-safari.mp4')
+const MATTER_PARTICLES_VIDEO = 'https://ik.imagekit.io/7oaqyvwnm/golden_particles.mp4'
+// Mobile-Safari-safe encode of the same clip: H.264 Main/L4.0, yuv420p, no audio, faststart.
+const MATTER_PARTICLES_MOBILE_VIDEO = assetUrl('deeptech-golden-particles-mobile-safari.mp4')
+const ACCRETION_PLASMA_VIDEO = BLACK_HOLE_VIDEO
 
 const PROBLEM_AREAS = [
   [ShieldAlert, 'Security', 'Protect people from hazards they cannot see.', 'Chemical threats, explosives, narcotics and hazardous substances can be present before conventional awareness catches up.', 'Active chemical intelligence', 'deeptech-problem-security.png'],
@@ -132,20 +142,102 @@ const PAGES = {
   },
 }
 
-function BlackHoleCapabilityInstrument({ video = false }) {
+const keepInlineVideoPlaying = (element) => {
+  if (!element) return
+  element.muted = true
+  element.defaultMuted = true
+  element.playsInline = true
+  element.controls = false
+  element.setAttribute('muted', '')
+  element.setAttribute('playsinline', '')
+  element.setAttribute('webkit-playsinline', '')
+  element.removeAttribute('controls')
+  element.play?.().catch(() => {})
+}
+
+// Decorative background video (not user media): force it to behave like a
+// looping visual/Three.js-style animation on iOS Safari rather than a media
+// player. Safari renders its native "tap to play" button whenever the very
+// first play() attempt (fired before the file is decodable) gets rejected
+// and nothing retries it, so this re-attempts play() on every signal that
+// the video became playable or the tab became visible again — no polling.
+const useAutoplayVideo = (ref) => {
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return undefined
+
+    el.muted = true
+    el.defaultMuted = true
+    el.playsInline = true
+    el.setAttribute('muted', '')
+    el.setAttribute('playsinline', '')
+    el.setAttribute('webkit-playsinline', '')
+
+    const attemptPlay = () => {
+      if (!el.paused) return
+      const playPromise = el.play()
+      if (playPromise !== undefined) {
+        playPromise.catch((err) => {
+          console.debug('iOS autoplay blocked:', err)
+        })
+      }
+    }
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') attemptPlay()
+    }
+
+    el.addEventListener('loadedmetadata', attemptPlay)
+    el.addEventListener('loadeddata', attemptPlay)
+    el.addEventListener('canplay', attemptPlay)
+    window.addEventListener('pageshow', attemptPlay)
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+    attemptPlay()
+
+    return () => {
+      el.removeEventListener('loadedmetadata', attemptPlay)
+      el.removeEventListener('loadeddata', attemptPlay)
+      el.removeEventListener('canplay', attemptPlay)
+      window.removeEventListener('pageshow', attemptPlay)
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
+    }
+  }, [ref])
+}
+
+function BlackHoleCapabilityInstrument({ video = false, facts = OPENING_FACTS }) {
+  const mobileVideoRef = useRef(null)
+  useAutoplayVideo(mobileVideoRef)
+
   return (
-    <div className={`cap-gravity${video ? ' cap-gravity--video' : ''}`} data-cap-reveal>
+    <div className="cap-gravity cap-gravity--video" data-cap-reveal>
       <div className="cap-gravity__field">
         {video
-          ? <video src={BLACK_HOLE_VIDEO} autoPlay loop muted playsInline preload="auto" aria-label="Animated luminous accretion disc surrounding a black event horizon" />
-          : <img src="https://ik.imagekit.io/y0yf2c1cwp/black_hole.webp" alt="Anika technology capability connecting the physical environment to actionable information" />}
+          ? <>
+              <video ref={keepInlineVideoPlaying} onLoadedData={(event) => keepInlineVideoPlaying(event.currentTarget)} onCanPlay={(event) => keepInlineVideoPlaying(event.currentTarget)} className="cap-gravity__video cap-gravity__video--desktop" src={BLACK_HOLE_VIDEO} poster={assetUrl('deeptech-black-hole-gargantua.png')} autoPlay loop muted playsInline preload="auto" controls={false} disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" aria-label="Animated luminous accretion disc surrounding a black event horizon" />
+              <video ref={mobileVideoRef} className="cap-gravity__video cap-gravity__video--mobile" autoPlay loop muted playsInline preload="auto" controls={false} disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" aria-hidden="true" onLoadedData={() => mobileVideoRef.current?.play().catch(() => {})}>
+                <source src={BLACK_HOLE_MOBILE_VIDEO} type="video/mp4" />
+              </video>
+            </>
+          : <>
+              <video ref={keepInlineVideoPlaying} onLoadedData={(event) => keepInlineVideoPlaying(event.currentTarget)} onCanPlay={(event) => keepInlineVideoPlaying(event.currentTarget)} className="cap-gravity__video cap-gravity__video--desktop" src={ACCRETION_PLASMA_VIDEO} poster={assetUrl('deeptech-black-hole-gargantua.png')} autoPlay loop muted playsInline preload="auto" controls={false} disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" aria-label="Anika technology capability connecting the physical environment to actionable information" />
+              <video ref={mobileVideoRef} className="cap-gravity__video cap-gravity__video--mobile" autoPlay loop muted playsInline preload="auto" controls={false} disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" aria-hidden="true" onLoadedData={() => mobileVideoRef.current?.play().catch(() => {})}>
+                <source src={BLACK_HOLE_MOBILE_VIDEO} type="video/mp4" />
+              </video>
+            </>}
       </div>
-      <div className="cap-gravity__head"><span>The problems Anika chooses</span><b>06 domains / 01 capability</b></div>
-      <div className="cap-gravity__inputs">
+      <div className="cap-gravity__head cap-mobile-problem-data__head cap-mobile-problem-data__head--inline"><span>The problems Anika chooses</span><b>06 domains / 01 capability</b></div>
+      <div className="cap-gravity__inputs cap-mobile-problem-data__domains cap-mobile-problem-data__domains--inline">
         {OPENING_PROBLEMS.map(([Icon, name], index) => (
           <article key={name} style={{ '--gravity-delay': `${index * 70}ms`, '--gravity-start': index / 6 }}>
             <Icon aria-hidden="true" strokeWidth={1.35} />
             <p><b>{name}</b><small>{String(index + 1).padStart(2, '0')}</small></p>
+          </article>
+        ))}
+      </div>
+      <div className="cap-mobile-problem-data__facts cap-mobile-problem-data__facts--inline">
+        {facts.map(([Icon, value, label]) => (
+          <article key={value}>
+            <i><Icon aria-hidden="true" strokeWidth={1.25} /></i>
+            <p><b>{value}</b><span>{label}</span></p>
           </article>
         ))}
       </div>
@@ -157,11 +249,13 @@ function BlackHoleCapabilityInstrument({ video = false }) {
   )
 }
 
-function CapabilityDetailPage({ testHero = false, testHeroVideo = false }) {
+function HomePulledMain_20260818204049({ testHero = false, testHeroVideo = false }) {
   const content = PAGES.deepTechnology
   const chainContent = PAGES.technologyChain
   const openingFacts = testHero ? [...OPENING_FACTS, [ScanSearch, '25+', 'Granted Global Patents']] : OPENING_FACTS
   const mainRef = useRef(null)
+  const manifestoMobileVideoRef = useRef(null)
+  useAutoplayVideo(manifestoMobileVideoRef)
 
   useScrollReveal(mainRef, {
     headingStart: 'top 92%',
@@ -205,6 +299,17 @@ function CapabilityDetailPage({ testHero = false, testHeroVideo = false }) {
       })
     }, { threshold: 0.12, rootMargin: '0px 0px -7% 0px' })
     elements.forEach((element) => observer.observe(element))
+    const videos = mainRef.current?.querySelectorAll('video[autoplay]') || []
+    videos.forEach((video) => {
+      video.muted = true
+      video.defaultMuted = true
+      video.playsInline = true
+      video.setAttribute('muted', '')
+      video.setAttribute('playsinline', '')
+      video.setAttribute('webkit-playsinline', '')
+      video.removeAttribute('controls')
+      video.play?.().catch(() => {})
+    })
     const updateScrollStory = () => {
       const root = mainRef.current
       if (!root) return
@@ -215,6 +320,16 @@ function CapabilityDetailPage({ testHero = false, testHeroVideo = false }) {
         const rect = opening.getBoundingClientRect()
         const scrollable = Math.max(opening.offsetHeight - window.innerHeight, 1)
         opening.style.setProperty('--opening-progress', Math.max(0, Math.min(1, -rect.top / scrollable)))
+      }
+      const problemStory = root.querySelector('.cap-detail__problem-story')
+      if (problemStory) {
+        const cards = problemStory.querySelectorAll('.cap-detail__problem-grid article')
+        const storyTop = problemStory.getBoundingClientRect().top + window.scrollY
+        const scrollable = Math.max(problemStory.offsetHeight - window.innerHeight, 1)
+        const progress = Math.max(0, Math.min(1, (window.scrollY - storyTop) / scrollable))
+        const activeIndex = Math.min(cards.length - 1, Math.max(0, Math.floor(progress * cards.length)))
+        problemStory.style.setProperty('--problem-progress', progress)
+        cards.forEach((card, index) => card.classList.toggle('is-active', index === activeIndex))
       }
       root.querySelectorAll('[data-cap-parallax]').forEach((element) => {
         const rect = element.getBoundingClientRect()
@@ -256,7 +371,7 @@ function CapabilityDetailPage({ testHero = false, testHeroVideo = false }) {
                 <div className="cap-detail__opening-principle cap-detail__opening-principle--system"><Crosshair aria-hidden="true" strokeWidth={1.25} /><p>Science · Engineering · Technology · Intelligence<small>Physical world · Real systems · Real decisions</small></p></div>
               </div>
             </div>
-            {testHero || testHeroVideo ? <BlackHoleCapabilityInstrument video={testHeroVideo} /> : <div className="cap-detail__problem-engine" data-cap-reveal>
+            {testHero || testHeroVideo ? <BlackHoleCapabilityInstrument video={testHeroVideo} facts={openingFacts} /> : <div className="cap-detail__problem-engine" data-cap-reveal>
               <div className="cap-detail__problem-engine-head"><span>THE PROBLEMS ANIKA CHOOSES</span><b>06 DOMAINS / 01 CAPABILITY</b></div>
               <div className="cap-detail__problem-inputs">
                 {OPENING_PROBLEMS.map(([Icon, name], index) => <article key={name}><Icon aria-hidden="true" strokeWidth={1.25} /><span>{name}</span><small>{String(index + 1).padStart(2, '0')}</small></article>)}
@@ -277,17 +392,39 @@ function CapabilityDetailPage({ testHero = false, testHeroVideo = false }) {
           </div>
         </section>
 
+        <section className="cap-mobile-problem-data" aria-label="The problems Anika chooses">
+          <div className="cap-mobile-problem-data__head">
+            <span>The problems Anika chooses</span>
+            <b>06 domains / 01 capability</b>
+          </div>
+          <div className="cap-mobile-problem-data__domains">
+            {OPENING_PROBLEMS.map(([Icon, name], index) => (
+              <article key={name}>
+                <Icon aria-hidden="true" strokeWidth={1.3} />
+                <p><b>{name}</b><small>{String(index + 1).padStart(2, '0')}</small></p>
+              </article>
+            ))}
+          </div>
+          <div className="cap-mobile-problem-data__facts">
+            {openingFacts.map(([Icon, value, label]) => (
+              <article key={value}>
+                <i><Icon aria-hidden="true" strokeWidth={1.25} /></i>
+                <p><b>{value}</b><span>{label}</span></p>
+              </article>
+            ))}
+          </div>
+        </section>
 
         <section className="cap-exact__deep">
           <div className="cap-exact__wrap">
             <div className="cap-exact__manifesto cap-exact__manifesto--image">
               <figure data-cap-parallax>
-                <picture>
-                  <source media="(max-width: 700px)" srcSet="https://ik.imagekit.io/jxuol7kjt/deeptech-mobile.png" />
-                  <img src={assetUrl('deeptech-matter-v2.png')} alt="Physical matter being translated into a measurable scientific signal" />
-                </picture>
+                <video ref={keepInlineVideoPlaying} onLoadedData={(event) => keepInlineVideoPlaying(event.currentTarget)} onCanPlay={(event) => keepInlineVideoPlaying(event.currentTarget)} className="cap-exact__manifesto-video" src={MATTER_PARTICLES_VIDEO} autoPlay loop muted playsInline preload="auto" controls={false} disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" aria-label="Golden particles moving through a dark analytical field" />
+                <video ref={manifestoMobileVideoRef} className="cap-exact__manifesto-video-mobile" autoPlay loop muted playsInline preload="auto" controls={false} disablePictureInPicture controlsList="nodownload noplaybackrate nofullscreen" aria-hidden="true" onLoadedData={() => manifestoMobileVideoRef.current?.play().catch(() => {})}>
+                  <source src={MATTER_PARTICLES_MOBILE_VIDEO} type="video/mp4" />
+                </video>
               </figure>
-              <div><span>ANIKA / PROBLEM-LED TECHNOLOGY</span><p>At Anika, <em>the problem determines the technology.</em><br />The technology does not determine the problem.</p></div>
+              <div><span>ANIKA / PROBLEM-LED TECHNOLOGY</span><p>At Anika, <br></br><em>the problem <br /> determines the <br/>technology.</em></p><p className="cap_p">The technology does not determine the problem.</p></div>
             </div>
             <div className="cap-exact__discipline-board">
               {content.items.map(([name, heading, copy], index) => {
@@ -308,8 +445,10 @@ function CapabilityDetailPage({ testHero = false, testHeroVideo = false }) {
             <div className="cap-exact__eyebrow" data-cap-reveal>02 / The problems Anika chooses</div>
             <h2 data-cap-reveal>Important problems<br />do not wait.</h2>
             <p className="cap-exact__lead" data-cap-reveal>They exist in airports, borders, hospitals, factories, military environments, cities, laboratories and the everyday world.</p>
-            <div className="cap-detail__problem-grid">
-              {PROBLEM_AREAS.map(([Icon, name, heading, copy, capability, image], index) => <article data-cap-reveal key={name}><figure><img src={assetUrl(image)} alt="" loading="lazy" /></figure><div className="cap-detail__problem-card-head"><b>{String(index + 1).padStart(2, '0')}</b><Icon aria-hidden="true" strokeWidth={1.3} /></div><div className="cap-detail__problem-card-copy"><small>{name}</small><h3>{heading}</h3><p>{copy}</p><footer><b>ANIKA</b> / {capability}</footer></div></article>)}
+            <div className="cap-detail__problem-story">
+              <div className="cap-detail__problem-grid">
+                {PROBLEM_AREAS.map(([Icon, name, heading, copy, capability, image], index) => <article data-cap-reveal key={name}><figure><img src={assetUrl(image)} alt="" loading="lazy" /></figure><div className="cap-detail__problem-card-head"><b>{String(index + 1).padStart(2, '0')}</b><Icon aria-hidden="true" strokeWidth={1.3} /></div><div className="cap-detail__problem-card-copy"><small>{name}</small><h3>{heading}</h3><p>{copy}</p><footer><b>ANIKA</b> / {capability}</footer></div></article>)}
+              </div>
             </div>
           </div>
         </section>
@@ -364,4 +503,6 @@ function CapabilityDetailPage({ testHero = false, testHeroVideo = false }) {
   )
 }
 
-export default CapabilityDetailPage
+export default HomePulledMain_20260818204049
+
+

@@ -51,7 +51,7 @@ const ABOUT_BADGES = [
 ]
 
 const ABOUT_CLOSING_BG =
-  'https://ik.imagekit.io/jxuol7kjt/ChatGPT%20Image%20Jul%2023,%202026,%2011_04_10%20AM.png'
+  'https://ik.imagekit.io/y0yf2c1cwp/about-us.webp'
 
 // Safari 14 (the Safari generation shipped with macOS Big Sur) calculates
 // this decorative rail differently from current engines. Keep its compact
@@ -98,11 +98,11 @@ const HERO_STATS = [
 ]
 
 const ABOUT_BG =
-  'https://ik.imagekit.io/jxuol7kjt/ChatGPT%20Image%20Jul%2023,%202026,%2011_20_50%20AM.png'
+  'https://ik.imagekit.io/y0yf2c1cwp/company.webp'
 const PROCESS_IMAGE =
   'https://ik.imagekit.io/jxuol7kjt/WhatsApp%20Image%202026-05-20%20at%206.07.03%20PM.jpeg'
 const PROCESS_IMAGE_2 =
-  'https://ik.imagekit.io/jxuol7kjt/ChatGPT%20Image%20Jul%2023,%202026,%2012_28_24%20PM.png?updatedAt=1784790620239'
+  'https://ik.imagekit.io/y0yf2c1cwp/y1_machine.webp'
 const ACHIEVEMENTS_VIDEO = 'https://ik.imagekit.io/d9wt8plt0/tekno.mp4?updatedAt=1729138558192'
 const ACHIEVEMENTS_POSTER = pageUrl('/about-achievements-poster.webp')
 

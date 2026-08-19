@@ -1,4 +1,4 @@
-.cap-detail { --cap-orange:#ff6a00; --cap-paper:#e8e9e5; --cap-line:rgba(255,255,255,.12); background:#090b0c; color:#f3f5f4; overflow:hidden; }
+﻿.cap-detail { --cap-orange:#ff6a00; --cap-paper:#e8e9e5; --cap-line:rgba(255,255,255,.12); background:#090b0c; color:#f3f5f4; overflow:hidden; }
 .cap-detail [data-cap-reveal] { opacity:0; transform:translateY(30px); transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1); }
 .cap-detail [data-cap-reveal].is-visible { opacity:1; transform:none; }
 .cap-detail__hero { position:relative; min-height:100svh; display:flex; align-items:flex-end; padding:150px clamp(24px,5vw,86px) 74px; border-bottom:1px solid var(--cap-line); overflow:hidden; }
@@ -1904,21 +1904,4 @@
   .cap-gravity__field img,.cap-gravity__core::before,.cap-gravity__core::after { animation:none; }
   .cap-gravity__inputs article { opacity:1;transform:none;transition:none; }
   .cap-exact--gravity .cap-gravity__inputs::after { transform:scaleX(1); }
-}
-
-/* The pinned hero (.cap-detail__opening-stage) is forced to height:100vh
-   with its content vertically centered. That's fine on any normal
-   landscape desktop screen, where 100vh is a sane 700-1100px. But on a
-   desktop-width viewport that's taller than it is wide (a portrait
-   monitor, or DevTools responsive mode set to e.g. 1440x2560), 100vh
-   balloons far past the content's natural height, leaving huge empty
-   black space above and below it. Scope the cap to max-aspect-ratio so
-   it only engages for that tall/portrait shape and never touches a
-   normal wide desktop screen at any size. */
-@media (min-width:701px) and (max-aspect-ratio:1.2/1) {
-  .cap-detail__opening-stage {
-    height:min(100vh,1450px) !important;
-    height:min(100svh,1450px) !important;
-    overflow-y:auto !important;
-  }
 }

@@ -9,6 +9,9 @@ import ContactPage from './pages/ContactPage.jsx'
 import PrivacyPage from './pages/PrivacyPage.jsx'
 import TermsPage from './pages/TermsPage.jsx'
 import CapabilityDetailPage from './pages/CapabilityDetailPage.jsx'
+import DeepTechPageMain from './pages/DeepTechPageMain.jsx'
+import HomePageMain from './pages/HomePageMain.jsx'
+import HomePulledMain_20260818204049 from './pages/HomePulledMain_20260818204049.jsx'
 import './App.css'
 
 function App() {
@@ -17,6 +20,9 @@ function App() {
       <Route path="/" element={<CapabilityDetailPage testHero />} />
       <Route path="/index" element={<CapabilityDetailPage testHero />} />
       <Route path="/index.html" element={<CapabilityDetailPage testHero />} />
+      <Route path="/home-main" element={<HomePageMain />} />
+      <Route path="/deep-tech-main" element={<DeepTechPageMain />} />
+      <Route path="/home-pulled-main" element={<HomePulledMain_20260818204049 testHero />} />
       <Route path="/solutions" element={<AdaptiveSolutionsPage />} />
       <Route path="/sol" element={<SolPage />} />
       <Route path="/testsol" element={<TestSolPage />} />
@@ -29,6 +35,7 @@ function App() {
       <Route path="/capabilities/deep-technology" element={<CapabilityDetailPage />} />
       <Route path="/deep-technology" element={<CapabilityDetailPage />} />
       <Route path="/deep-tech" element={<CapabilityDetailPage />} />
+      <Route path="/test-hero" element={<CapabilityDetailPage testHero />} />
       <Route path="/deep-tech-test" element={<CapabilityDetailPage testHero />} />
       <Route path="/deep-tech-video-test" element={<CapabilityDetailPage testHeroVideo />} />
     </Routes>

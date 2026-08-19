@@ -129,7 +129,7 @@ function Footer() {
         <div className="footer-seal" aria-label="Anika Sterilis identity">
           <span>ANIKA STERILIS  PRIVATE LIMITED</span>
           <div><i className="footer-seal__sweep" ref={sweepRef} /><img src={LOGO_URL} alt="Anika Sterilis" /></div>
-          <small>PLATFORM PROTECTED BY GRANTED GLOBAL PATENTS / 3000</small>
+          <small>PLATFORM PROTECTED BY GRANTED GLOBAL PATENTS / AACTS 3000</small>
         </div>
 
         <nav className="footer-nav" aria-label="Footer navigation">

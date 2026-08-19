@@ -1,9 +1,9 @@
-import { useEffect, useRef } from 'react'
+﻿import { useEffect, useRef } from 'react'
 import { Atom, BrainCircuit, Building2, ChartNoAxesCombined, ChevronsRight, Cog, Crosshair, Droplets, Factory, Globe2, Grid2X2, HeartPulse, Landmark, Microscope, Network, ScanLine, ScanSearch, ShieldAlert, ShieldCheck, Target, TestTube2, Wind } from 'lucide-react'
 import Header from '../components/Header.jsx'
 import Footer from '../components/Footer.jsx'
 import { useScrollReveal } from '../hooks/useScrollReveal.js'
-import './CapabilityDetailPage.css'
+import './DeepTechPageMain.css'
 
 const BASE_URL = import.meta.env.BASE_URL
 const pageUrl = (path) => `${BASE_URL}${path.replace(/^\//, '')}`
@@ -138,7 +138,7 @@ function BlackHoleCapabilityInstrument({ video = false }) {
       <div className="cap-gravity__field">
         {video
           ? <video src={BLACK_HOLE_VIDEO} autoPlay loop muted playsInline preload="auto" aria-label="Animated luminous accretion disc surrounding a black event horizon" />
-          : <img src="https://ik.imagekit.io/y0yf2c1cwp/black_hole.webp" alt="Anika technology capability connecting the physical environment to actionable information" />}
+          : <img src="https://ik.imagekit.io/jxuol7kjt/ChatGPT%20Image%20Aug%2017,%202026,%2001_11_33%20PM.png" alt="Anika technology capability connecting the physical environment to actionable information" />}
       </div>
       <div className="cap-gravity__head"><span>The problems Anika chooses</span><b>06 domains / 01 capability</b></div>
       <div className="cap-gravity__inputs">
@@ -157,7 +157,7 @@ function BlackHoleCapabilityInstrument({ video = false }) {
   )
 }
 
-function CapabilityDetailPage({ testHero = false, testHeroVideo = false }) {
+function DeepTechPageMain({ testHero = false, testHeroVideo = false }) {
   const content = PAGES.deepTechnology
   const chainContent = PAGES.technologyChain
   const openingFacts = testHero ? [...OPENING_FACTS, [ScanSearch, '25+', 'Granted Global Patents']] : OPENING_FACTS
@@ -364,4 +364,5 @@ function CapabilityDetailPage({ testHero = false, testHeroVideo = false }) {
   )
 }
 
-export default CapabilityDetailPage
+export default DeepTechPageMain
+

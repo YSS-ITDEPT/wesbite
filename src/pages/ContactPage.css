@@ -3,6 +3,11 @@
   background: #000;
 }
 
+.contact-page__lazy-zone {
+  content-visibility: auto;
+  contain-intrinsic-size: 900px;
+}
+
 .contact-hero {
   position: relative;
   display: flex;
@@ -21,6 +26,8 @@
   height: 100%;
   object-fit: cover;
   object-position: right center;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .contact-hero__overlay {
@@ -75,6 +82,7 @@
   position: relative;
   padding: clamp(4rem, 9vh, 6.5rem) clamp(1.5rem, 6vw, 6rem);
   background: #000;
+  contain: layout paint style;
 }
 
 .contact-locations__header {
@@ -136,6 +144,11 @@
   flex: 0 1 460px;
   align-items: center;
   justify-content: center;
+  contain: layout paint;
+}
+
+.contact-locations__india-map .idm-ping {
+  animation: none !important;
 }
 
 .contact-locations__card {
@@ -365,6 +378,7 @@
 .contact-inquiry {
   padding: clamp(2rem, 5vw, 4rem) clamp(1.25rem, 4vw, 3rem);
   background: #ededed;
+  contain: layout paint style;
 }
 
 .contact-inquiry__shell {
@@ -376,6 +390,7 @@
   border-radius: 8px;
   background: #fbfbfb;
   box-shadow: 0 28px 70px rgba(0, 0, 0, 0.12);
+  contain: layout paint;
 }
 
 /* Left dark panel: diagonal right edge + background image. */
@@ -391,6 +406,8 @@
   background-position: center bottom;
   background-size: cover;
   background-repeat: no-repeat;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .contact-inquiry__visual::before {
